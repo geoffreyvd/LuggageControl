@@ -1,6 +1,6 @@
 # LuggageControl
 Project LuggageControl by IS104 - Team 3
 
-Poject Rules:
--Language used: English <Br>
+Poject Rules: <br>
+-Language used: English <br>
 -Sync before push
