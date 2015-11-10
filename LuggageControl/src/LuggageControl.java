@@ -17,6 +17,8 @@ public class LuggageControl {
     public static void main(String[] args) {
         // circumventing static reference
         new LuggageControl();
+        
+        
     }
     
 }
