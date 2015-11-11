@@ -16,4 +16,6 @@ Project Tuesday:
     * What did you do 
     * What are you gonna do 
     * Did you have any issues
+* Create the milestones for next week based on shedule
+* Merge the current development branch (if compiling) into master and create release version
 
