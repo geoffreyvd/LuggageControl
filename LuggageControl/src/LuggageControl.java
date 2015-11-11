@@ -1,7 +1,7 @@
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Toolkit;
+import managers.SecurityMan;
 
 /**
  * Root class off application creates the main windows
@@ -17,11 +17,25 @@ public class LuggageControl extends javax.swing.JFrame {
     private GraphicsDevice graphicsDevice;
     private Dimension monitorSize;
     
+    // security manager and event interface
+    private SecurityMan secman;
+    SecurityMan.SecurityUpdates secManUpdates = new SecurityMan.SecurityUpdates() {
+        
+        @Override
+        public void userTimeOut() {
+            System.out.println("Calling! SecurityMan do you copy?");
+        }
+    };
+    
     /**
      * 
      */
     public LuggageControl() {
         
+        // parse the refernence of our interface to the security manager class
+        // so it can call us.
+        secman = new SecurityMan(secManUpdates);
+         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
         graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
