@@ -17,6 +17,13 @@ public class LoginScreen extends javax.swing.JPanel {
     public LoginScreen() {
         initComponents();
     }
+    
+    /**
+     * Test method to test if method is available from the array of screens within the main class.
+     */
+    public void ParseLogin() {
+        System.out.println("Test");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
