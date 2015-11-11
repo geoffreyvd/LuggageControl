@@ -1,3 +1,8 @@
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
+
 /**
  * Root class off application creates the main windows
  * @author Team3 Fys
@@ -9,11 +14,22 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.HomeScreenEmployee homeScreenEmployee;
     private screen.UserManagement userManagement;
     
+    private GraphicsDevice graphicsDevice;
+    private Dimension monitorSize;
+    
     /**
      * 
      */
     public LuggageControl() {
+        
+        // get the monitor dimension of the default monitor
+        // this needs to switch to the monitor the application will appear in the future
+        graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        monitorSize = new Dimension(graphicsDevice.getDisplayMode().getWidth(), graphicsDevice.getDisplayMode().getHeight());
+        
         initComponents();
+        
+        this.setSize(monitorSize);
         this.setVisible(true);
     }
 
@@ -35,6 +51,7 @@ public class LuggageControl extends javax.swing.JFrame {
         homeScreenEmployee = new screen.HomeScreenEmployee();
         userManagement = new screen.UserManagement();
         
+        loginScreen.setSize(monitorSize);
         loginScreen.setVisible(true);
         
         this.add(loginScreen);
