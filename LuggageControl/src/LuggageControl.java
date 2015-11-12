@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import managers.DatabaseMan;
 
 /**
  * Root class off application creates the main windows
@@ -55,6 +56,10 @@ public class LuggageControl extends javax.swing.JFrame {
         loginScreen.setVisible(true);
         
         this.add(loginScreen);
+        /*
+         DatabaseMan DB1 = new DatabaseMan();
+         DB1.Query("select * from wsdatabase.cijfer");
+         */
     }
     
 }
