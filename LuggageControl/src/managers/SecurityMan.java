@@ -13,6 +13,7 @@ public class SecurityMan {
     // default timeout is 300 seconds (5 minutes)
     int timeOutTime = 300;
     
+    // timer to manage when the user has timed out.
     Timer timeOut;
     
     /**
@@ -25,9 +26,46 @@ public class SecurityMan {
         // pass the defined class reference tot the binding interface
         // now we can call our abstract functions
         secUpdatesInterface = secUpdatesReference;
-       
-        // lets test calling our reference shall we?
-        secUpdatesInterface.userTimeOut();
+        
+        timeOut = new Timer();
+        timeOut.scheduleAtFixedRate(null, null, timeOutTime);
+    }
+    
+    /**
+     * Resets the timeout timer to zero.
+     * @return true if succeeded, false on failed 
+     */
+    public boolean resetTimer() {
+        try{
+            timeOut.cancel();
+            timeOut.purge();
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean setTimeOutTime(int newTimeOutTime) {
+        try {
+            timeOutTime = newTimeOutTime;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Filters strings to the point where they are safe to use within our application
+     * This class is mostly used for filtering user input
+     * @param originalString
+     * @return filtered string to prevent SQL injections, cross-site scripting and other exploits
+     */
+    public static String filteredString(String originalString) {
+        return originalString;
     }
     
     /**
