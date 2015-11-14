@@ -1,7 +1,6 @@
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Toolkit;
 import managers.DatabaseMan;
 
 /**
@@ -61,5 +60,4 @@ public class LuggageControl extends javax.swing.JFrame {
          DB1.Query("select * from wsdatabase.cijfer");
          */
     }
-    
 }
