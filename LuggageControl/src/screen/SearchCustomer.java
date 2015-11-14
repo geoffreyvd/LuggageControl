@@ -5,16 +5,21 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author Admin
  */
-public class SearchCustomer extends javax.swing.JPanel {
+public class SearchCustomer extends SwitchingJPanel {
+    
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
     /**
      * Creates new form SearchCostumer
      */
-    public SearchCustomer() {
+    public SearchCustomer(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 

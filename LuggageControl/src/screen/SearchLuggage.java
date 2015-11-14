@@ -5,16 +5,21 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author Admin
  */
-public class SearchLuggage extends javax.swing.JPanel {
+public class SearchLuggage extends SwitchingJPanel {
+    
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
     /**
      * Creates new form SearchLuggage
      */
-    public SearchLuggage() {
+    public SearchLuggage(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 
