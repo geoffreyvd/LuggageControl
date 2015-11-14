@@ -102,38 +102,54 @@ public class LuggageControl extends javax.swing.JFrame {
          */
     }
     
+    /**
+     * This is required since the removeAll method breaks the JFrame
+     * Current implementation is silly,
+     * we need a way to find out what the current screen is
+     */
+    private void removeAllJPanels() {
+        this.remove(addCustomer);
+        this.remove(addLuggage);
+        this.remove(changeSettings);
+        this.remove(homeScreenEmployee);
+        this.remove(loginScreen);
+        this.remove(searchCustomer);
+        this.remove(searchLuggage);
+        this.remove(userManagement);
+    }
+    
     private void switchJPanel(String panelName) {
         switch (panelName) {
             case ScreenNames.ADD_CUSTOMER:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(addCustomer);
                 break;
             case ScreenNames.ADD_LUGGAGE:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(addLuggage);
                 break;
             case ScreenNames.CHANGE_SETTINGS:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(changeSettings);
                 break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(homeScreenEmployee);
                 break;
             case ScreenNames.LOGINSCREEN:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(loginScreen);
                 break;
             case ScreenNames.SEARCH_CUSTOMER:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(searchCustomer);
                 break;
             case ScreenNames.SEARCH_LUGGAGE:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(searchLuggage);
                 break;
             case ScreenNames.USER_MANAGEMENT:
-                this.removeAll();
+                this.removeAllJPanels();
                 this.add(userManagement);
                 break;
             default:
