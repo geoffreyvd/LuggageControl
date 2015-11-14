@@ -37,5 +37,6 @@ public class ScreenNames {
     public static final String LOGINSCREEN = "LOGINSCREEN";
     public static final String HOME_SCREEN_EMPLOYEE = "HOME_SCREEN_EMPLOYEE";
     public static final String SEARCH_CUSTOMER = "SEARCH_CUSTOMER";
+    public static final String SEARCH_LUGGAGE = "SEARCH_LUGGAGE";
     public static final String USER_MANAGEMENT = "USER_MANAGEMENT";
 }
