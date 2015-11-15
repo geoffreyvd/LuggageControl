@@ -20,6 +20,8 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
     private screen.UserManagement userManagement;
+    
+    private SwitchingJPanel currentPanel;
 
     private GraphicsDevice graphicsDevice;
     private Dimension monitorSize;
@@ -29,7 +31,7 @@ public class LuggageControl extends javax.swing.JFrame {
 
         @Override
         public void switchPanel(String screenName) {
-            // put method to switch jpanel here
+            switchJPanel(screenName);
         }
     };
 
@@ -96,58 +98,103 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
 
+        this.currentPanel = loginScreen;
         this.switchJPanel(ScreenNames.LOGINSCREEN);
     }
 
     /**
-     * This is required since the removeAll method breaks the JFrame Current
-     * implementation is silly, we need a way to find out what the current
-     * screen is
+     * This is required since the removeAll method breaks the JFrame
+     * Current implementation is silly,
+     * we need a way to find out what the current screen is
      */
-    private void removeAllJPanels() {
-        this.remove(addCustomer);
-        this.remove(addLuggage);
-        this.remove(changeSettings);
-        this.remove(homeScreenEmployee);
-        this.remove(loginScreen);
-        this.remove(searchCustomer);
-        this.remove(searchLuggage);
-        this.remove(userManagement);
+    private void removeCurrentJPanel() {
+        if(this.currentPanel instanceof screen.AddCustomer) {
+            this.remove(addCustomer);
+        }
+        else if(this.currentPanel instanceof screen.AddLuggage) {
+            this.remove(addLuggage);
+        }
+        else if(this.currentPanel instanceof screen.ChangeSettings) {
+            this.remove(changeSettings);
+        }
+        else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
+            this.remove(homeScreenEmployee);
+        }
+        else if(this.currentPanel instanceof screen.LoginScreen) {
+            this.remove(loginScreen);
+        }
+        else if(this.currentPanel instanceof screen.SearchCustomer) {
+            this.remove(searchCustomer);
+        }
+        else if(this.currentPanel instanceof screen.SearchLuggage) {
+            this.remove(searchLuggage);
+        }
+        else if(this.currentPanel instanceof screen.UserManagement) {
+            this.remove(userManagement);
+        } 
     }
-
+    
+    /**
+     * 
+     * @param panelName string that identifies the screen use constants.ScreenNames
+     */
     private void switchJPanel(String panelName) {
         switch (panelName) {
             case ScreenNames.ADD_CUSTOMER:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(addCustomer);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = addCustomer;
                 break;
             case ScreenNames.ADD_LUGGAGE:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(addLuggage);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = addLuggage;
                 break;
             case ScreenNames.CHANGE_SETTINGS:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(changeSettings);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = changeSettings;
                 break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(homeScreenEmployee);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = homeScreenEmployee;
                 break;
             case ScreenNames.LOGINSCREEN:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(loginScreen);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = loginScreen;
                 break;
             case ScreenNames.SEARCH_CUSTOMER:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(searchCustomer);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = searchCustomer;
                 break;
             case ScreenNames.SEARCH_LUGGAGE:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(searchLuggage);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = searchLuggage;
                 break;
             case ScreenNames.USER_MANAGEMENT:
-                this.removeAllJPanels();
+                this.removeCurrentJPanel();
                 this.add(userManagement);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = userManagement;
                 break;
             default:
                 System.out.println("Trying to switch to screen that does not exist!");
