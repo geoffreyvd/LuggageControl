@@ -137,8 +137,8 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
 
-        this.currentPanel = loginScreen;
-        this.switchJPanel(ScreenNames.LOGINSCREEN);
+        this.currentPanel = help;
+        this.switchJPanel(ScreenNames.HELP);
     }
 
     /**

@@ -2,7 +2,9 @@ package constants;
 
 /**
  * Class to store string variables of each JPanel screen name,
- * this can then be used to easily tell methods about which JPanel screen their talking.
+ * this can then be used to easily tell methods about which JPanel screen their talking,
+ * Some developers find this ugly but java itself uses this all the time
+ * just take a look into the Swing library.
  * @author Corne Lukken
  */
 public class ScreenNames {
