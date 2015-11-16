@@ -5,16 +5,21 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author root
  */
-public class UserManagement extends javax.swing.JPanel {
+public class UserManagement extends SwitchingJPanel {
+    
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
     /**
      * Creates new form UserManagement
      */
-    public UserManagement() {
+    public UserManagement(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 

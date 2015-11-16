@@ -2,19 +2,6 @@ Algemene readme file, hier geen documentatie plaatsen. Documentatie wordt geplaa
 
 Project LuggageControl by IS104 - Team 3
 
-<<<<<<< HEAD
-Project Rules:
--Language used: English
--Sync before push
--Tell people before pushing# 
-
-Project Dinsdag:
--Meeting with action points
--Discuss milestones
---what did you do
---what are you gonna do
---did you have
-=======
 Project Rules: 
 * Language used: English 
 * Check github everyday
@@ -32,5 +19,3 @@ Project Tuesday:
     * Did you have any issues
 * Create the milestones for next week based on schedule
 * Merge the current development branch (if compiling) into master and create release version
-
->>>>>>> refs/remotes/origin/master

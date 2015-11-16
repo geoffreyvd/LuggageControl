@@ -1,20 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen;
+
+import baseClasses.SwitchingJPanel;
 
 /**
  *
  * @author root
  */
-public class ChangeSettings extends javax.swing.JPanel {
+public class ChangeSettings extends SwitchingJPanel {
 
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
+    
     /**
      * Creates new form ChangeSettings
      */
-    public ChangeSettings() {
+    public ChangeSettings(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 

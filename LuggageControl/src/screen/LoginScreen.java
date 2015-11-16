@@ -5,16 +5,21 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author root
  */
-public class LoginScreen extends javax.swing.JPanel {
+public class LoginScreen extends SwitchingJPanel {
+    
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
     /**
      * Creates new form LoginScreen
      */
-    public LoginScreen() {
+    public LoginScreen(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 
