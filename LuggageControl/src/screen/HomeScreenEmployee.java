@@ -5,16 +5,21 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author root
  */
-public class HomeScreenEmployee extends javax.swing.JPanel {
+public class HomeScreenEmployee extends SwitchingJPanel {
+    
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
     /**
      * Creates new form HomeSCreenEmployee
      */
-    public HomeScreenEmployee() {
+    public HomeScreenEmployee(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 
