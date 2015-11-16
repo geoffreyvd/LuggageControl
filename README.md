@@ -19,3 +19,4 @@ Project Tuesday:
     * Did you have any issues
 * Create the milestones for next week based on schedule
 * Merge the current development branch (if compiling) into master and create release version
+
