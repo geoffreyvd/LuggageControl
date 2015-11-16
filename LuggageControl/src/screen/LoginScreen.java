@@ -61,7 +61,7 @@ public class LoginScreen extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.ADD_LUGGAGE);
+        sJPanelEventsInstance.switchPanel(ScreenNames.HELP);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

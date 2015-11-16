@@ -5,16 +5,20 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author Admin
  */
-public class Example extends javax.swing.JPanel {
+public class Example extends SwitchingJPanel {
 
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
     /**
      * Creates new form Test
      */
-    public Example() {
+    public Example(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 

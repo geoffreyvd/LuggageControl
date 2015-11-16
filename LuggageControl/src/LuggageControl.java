@@ -1,4 +1,3 @@
-
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -8,7 +7,6 @@ import constants.ScreenNames;
 
 /**
  * Root class off application creates the main windows
- *
  * @author Team3 Fys
  */
 public class LuggageControl extends javax.swing.JFrame {
@@ -16,6 +14,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.AddLuggage addLuggage;
     private screen.ChangeSettings changeSettings;
     private screen.CustomerDetails customerDetails;    
+    private screen.Help help;
     private screen.HomeScreenEmployee homeScreenEmployee;
     private screen.HomeScreenManager homeScreenManager;
     private screen.GenerateStatistics generateStatistics;
@@ -48,6 +47,8 @@ public class LuggageControl extends javax.swing.JFrame {
         // this needs to switch to the monitor the application will appear in the future
         graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         monitorSize = new Dimension(graphicsDevice.getDisplayMode().getWidth(), graphicsDevice.getDisplayMode().getHeight());
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         initComponents();
 
@@ -73,6 +74,7 @@ public class LuggageControl extends javax.swing.JFrame {
         addLuggage = new screen.AddLuggage(sjPanelEventsInstance);
         changeSettings = new screen.ChangeSettings(sjPanelEventsInstance);
         customerDetails = new screen.CustomerDetails(sjPanelEventsInstance);
+        help = new screen.Help(sjPanelEventsInstance);
         homeScreenEmployee = new screen.HomeScreenEmployee(sjPanelEventsInstance);
         homeScreenManager = new screen.HomeScreenManager(sjPanelEventsInstance);
         generateStatistics = new screen.GenerateStatistics(sjPanelEventsInstance);
@@ -93,6 +95,9 @@ public class LuggageControl extends javax.swing.JFrame {
         
         customerDetails.setSize(monitorSize);
         customerDetails.setVisible(true);
+        
+        help.setSize(monitorSize);
+        help.setVisible(true);
 
         homeScreenEmployee.setSize(monitorSize);
         homeScreenEmployee.setVisible(true);
@@ -123,9 +128,7 @@ public class LuggageControl extends javax.swing.JFrame {
     }
 
     /**
-     * This is required since the removeAll method breaks the JFrame
-     * Current implementation is silly,
-     * we need a way to find out what the current screen is
+     * Based on our currentPanel variable we remove the panel so a new one can be added.
      */
     private void removeCurrentJPanel() {
         if(this.currentPanel instanceof screen.AddCustomer) {
@@ -139,6 +142,9 @@ public class LuggageControl extends javax.swing.JFrame {
         }
         else if(this.currentPanel instanceof screen.CustomerDetails) {
             this.remove(customerDetails);
+        }
+        else if(this.currentPanel instanceof screen.Help) {
+            this.remove(help);
         }
         else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
@@ -167,7 +173,7 @@ public class LuggageControl extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * Switch the panel to another panel identified by ScreenNames constants.
      * @param panelName string that identifies the screen use constants.ScreenNames
      */
     private void switchJPanel(String panelName) {
@@ -199,6 +205,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.revalidate();
                 this.repaint();
                 this.currentPanel = customerDetails;
+                break;
+            case ScreenNames.HELP:
+                this.removeCurrentJPanel();
+                this.add(help);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = help;
                 break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
                 this.removeCurrentJPanel();
