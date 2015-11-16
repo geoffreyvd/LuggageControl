@@ -15,12 +15,16 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.AddCustomer addCustomer;
     private screen.AddLuggage addLuggage;
     private screen.ChangeSettings changeSettings;
+    private screen.CustomerDetails customerDetails;    
     private screen.HomeScreenEmployee homeScreenEmployee;
+    private screen.HomeScreenManager homeScreenManager;
+    private screen.GenerateStatistics generateStatistics;
     private screen.LoginScreen loginScreen;
+    private screen.LuggageDetails luggageDetails;
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
     private screen.UserManagement userManagement;
-    
+
     private SwitchingJPanel currentPanel;
 
     private GraphicsDevice graphicsDevice;
@@ -68,8 +72,12 @@ public class LuggageControl extends javax.swing.JFrame {
         addCustomer = new screen.AddCustomer(sjPanelEventsInstance);
         addLuggage = new screen.AddLuggage(sjPanelEventsInstance);
         changeSettings = new screen.ChangeSettings(sjPanelEventsInstance);
+        customerDetails = new screen.CustomerDetails(sjPanelEventsInstance);
         homeScreenEmployee = new screen.HomeScreenEmployee(sjPanelEventsInstance);
+        homeScreenManager = new screen.HomeScreenManager(sjPanelEventsInstance);
+        generateStatistics = new screen.GenerateStatistics(sjPanelEventsInstance);
         loginScreen = new screen.LoginScreen(sjPanelEventsInstance);
+        luggageDetails = new screen.LuggageDetails(sjPanelEventsInstance);
         searchCustomer = new screen.SearchCustomer(sjPanelEventsInstance);
         searchLuggage = new screen.SearchLuggage(sjPanelEventsInstance);
         userManagement = new screen.UserManagement(sjPanelEventsInstance);
@@ -82,12 +90,24 @@ public class LuggageControl extends javax.swing.JFrame {
 
         changeSettings.setSize(monitorSize);
         changeSettings.setVisible(true);
+        
+        customerDetails.setSize(monitorSize);
+        customerDetails.setVisible(true);
 
         homeScreenEmployee.setSize(monitorSize);
         homeScreenEmployee.setVisible(true);
+        
+        homeScreenManager.setSize(monitorSize);
+        homeScreenManager.setVisible(true);
+        
+        generateStatistics.setSize(monitorSize);
+        generateStatistics.setVisible(true);
 
         loginScreen.setSize(monitorSize);
         loginScreen.setVisible(true);
+        
+        luggageDetails.setSize(monitorSize);
+        luggageDetails.setVisible(true);
 
         searchCustomer.setSize(monitorSize);
         searchCustomer.setVisible(true);
@@ -117,11 +137,23 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.ChangeSettings) {
             this.remove(changeSettings);
         }
+        else if(this.currentPanel instanceof screen.ChangeSettings) {
+            this.remove(customerDetails);
+        }
         else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
         }
+        else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
+            this.remove(homeScreenManager);
+        }
+        else if(this.currentPanel instanceof screen.LoginScreen) {
+            this.remove(generateStatistics);
+        }
         else if(this.currentPanel instanceof screen.LoginScreen) {
             this.remove(loginScreen);
+        }
+        else if(this.currentPanel instanceof screen.LoginScreen) {
+            this.remove(luggageDetails);
         }
         else if(this.currentPanel instanceof screen.SearchCustomer) {
             this.remove(searchCustomer);
@@ -161,6 +193,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = changeSettings;
                 break;
+            case ScreenNames.CUSTOMER_DETAILS:
+                this.removeCurrentJPanel();
+                this.add(customerDetails);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = customerDetails;
+                break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
                 this.removeCurrentJPanel();
                 this.add(homeScreenEmployee);
@@ -168,12 +207,33 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = homeScreenEmployee;
                 break;
+            case ScreenNames.HOME_SCREEN_MANAGER:
+                this.removeCurrentJPanel();
+                this.add(homeScreenManager);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = homeScreenManager;
+                break;
+            case ScreenNames.GENERATE_STATISTICS:
+                this.removeCurrentJPanel();
+                this.add(generateStatistics);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = generateStatistics;
+                break;
             case ScreenNames.LOGINSCREEN:
                 this.removeCurrentJPanel();
                 this.add(loginScreen);
                 this.revalidate();
                 this.repaint();
                 this.currentPanel = loginScreen;
+                break;
+            case ScreenNames.LUGGAGE_DETAILS:
+                this.removeCurrentJPanel();
+                this.add(luggageDetails);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = luggageDetails;
                 break;
             case ScreenNames.SEARCH_CUSTOMER:
                 this.removeCurrentJPanel();

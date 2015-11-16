@@ -5,16 +5,20 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author Admin
  */
-public class LuggageDetails extends javax.swing.JPanel {
+public class LuggageDetails extends SwitchingJPanel {
 
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
     /**
      * Creates new form LuggageDetails
      */
-    public LuggageDetails() {
+    public LuggageDetails(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 

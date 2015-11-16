@@ -44,7 +44,7 @@ public class PieChart_AWT extends ApplicationFrame {
                 dataset, // data    
                 true, // include legend   
                 true, // include tooltips
-                false); // don't include tooltips
+                false); // don't include URLs
 
         return chart;
     }

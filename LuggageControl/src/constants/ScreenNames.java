@@ -34,8 +34,12 @@ public class ScreenNames {
     public static final String ADD_CUSTOMER = "ADD_CUSTOMER";
     public static final String ADD_LUGGAGE = "ADD_LUGGAGE";
     public static final String CHANGE_SETTINGS = "CHANGE_SETTINGS";
-    public static final String LOGINSCREEN = "LOGINSCREEN";
+    public static final String CUSTOMER_DETAILS = "CUSTOMER_DETAILS";
     public static final String HOME_SCREEN_EMPLOYEE = "HOME_SCREEN_EMPLOYEE";
+    public static final String HOME_SCREEN_MANAGER = "HOME_SCREEN_MANAGER"; 
+    public static final String GENERATE_STATISTICS =  "GENERATE_STATISTICS";
+    public static final String LOGINSCREEN = "LOGINSCREEN";
+    public static final String LUGGAGE_DETAILS = "LUGGAGE_DETAILS";
     public static final String SEARCH_CUSTOMER = "SEARCH_CUSTOMER";
     public static final String SEARCH_LUGGAGE = "SEARCH_LUGGAGE";
     public static final String USER_MANAGEMENT = "USER_MANAGEMENT";

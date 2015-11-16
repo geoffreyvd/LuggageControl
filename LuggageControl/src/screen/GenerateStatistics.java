@@ -5,16 +5,20 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author Admin
  */
-public class GenerateStatistics extends javax.swing.JPanel {
+public class GenerateStatistics extends SwitchingJPanel {
 
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
     /**
      * Creates new form GenerateStatistics
      */
-    public GenerateStatistics() {
+    public GenerateStatistics(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 

@@ -5,16 +5,20 @@
  */
 package screen;
 
+import baseClasses.SwitchingJPanel;
+
 /**
  *
  * @author Admin
  */
-public class HomeScreenManager extends javax.swing.JPanel {
+public class HomeScreenManager extends SwitchingJPanel {
 
+    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
     /**
      * Creates new form HomeScreenManagment
      */
-    public HomeScreenManager() {
+    public HomeScreenManager(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
+        sJPanelEventsInstance = sJPanelEventsReference;
         initComponents();
     }
 
@@ -35,7 +39,7 @@ public class HomeScreenManager extends javax.swing.JPanel {
         jButton18 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setText("Statistics");
+        jLabel1.setText("Homescreen manager");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Percentage found luggage", "Item 2", "Item 3", "Item 4" }));
 
@@ -83,11 +87,11 @@ public class HomeScreenManager extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(41, 41, 41)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 51, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
