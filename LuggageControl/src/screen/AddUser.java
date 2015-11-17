@@ -187,7 +187,7 @@ public class AddUser extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImageActionPerformed
@@ -203,7 +203,7 @@ public class AddUser extends SwitchingJPanel {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(ScreenNames.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
 

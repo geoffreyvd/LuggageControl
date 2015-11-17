@@ -154,27 +154,27 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(ScreenNames.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.CHANGE_SETTINGS);
+        this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteCustomerActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.DELETE_CUSTOMER);
+        this.luggageControl.switchJPanel(ScreenNames.DELETE_CUSTOMER);
     }//GEN-LAST:event_buttonDeleteCustomerActionPerformed
 
     private void buttonDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteLuggageActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.DELETE_LUGGAGE);
+        this.luggageControl.switchJPanel(ScreenNames.DELETE_LUGGAGE);
     }//GEN-LAST:event_buttonDeleteLuggageActionPerformed
 
     private void buttonUserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserManagementActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.USER_MANAGEMENT);
+        this.luggageControl.switchJPanel(ScreenNames.USER_MANAGEMENT);
     }//GEN-LAST:event_buttonUserManagementActionPerformed
 
     private void buttonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddUserActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.ADD_USER);
+        this.luggageControl.switchJPanel(ScreenNames.ADD_USER);
     }//GEN-LAST:event_buttonAddUserActionPerformed
 
     private void buttonDatabaseImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseImportActionPerformed
