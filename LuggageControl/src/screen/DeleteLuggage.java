@@ -6,24 +6,16 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
  * @author Gebruiker
  */
 public class DeleteLuggage extends SwitchingJPanel {
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    
-    public DeleteLuggage(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
-        initComponents();
-    }
 
-    /**
-     * Creates new form DeleteLuggage
-     */
-    public DeleteLuggage() {
+    public DeleteLuggage(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 

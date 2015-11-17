@@ -6,6 +6,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
@@ -13,12 +14,8 @@ import baseClasses.SwitchingJPanel;
  */
 public class GenerateStatistics extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    /**
-     * Creates new form GenerateStatistics
-     */
-    public GenerateStatistics(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public GenerateStatistics(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 

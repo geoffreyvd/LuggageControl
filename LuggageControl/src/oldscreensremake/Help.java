@@ -1,9 +1,10 @@
-package screen;
+package oldscreensremake;
 
 import baseClasses.SwitchingJPanel;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import javax.swing.JList;
+import main.LuggageControl;
 
 /**
  *
@@ -11,14 +12,8 @@ import javax.swing.JList;
  */
 public class Help extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    
-    /**
-     * Creates new form Help
-     * @param SJPanelEvents reference to a SwitchingJPanel event object
-     */
-    public Help(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public Help(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -31,7 +26,7 @@ public class Help extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        switchingJPanel1 = new baseClasses.SwitchingJPanel();
+        switchingJPanel1 = new baseClasses.SwitchingJPanel(this.luggageControl);
         screenName = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();

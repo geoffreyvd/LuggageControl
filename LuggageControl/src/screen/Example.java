@@ -6,6 +6,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
@@ -13,12 +14,8 @@ import baseClasses.SwitchingJPanel;
  */
 public class Example extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    /**
-     * Creates new form Test
-     */
-    public Example(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public Example(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 

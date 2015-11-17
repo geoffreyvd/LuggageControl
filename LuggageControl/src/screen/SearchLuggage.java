@@ -6,20 +6,16 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
  * @author Admin
  */
 public class SearchLuggage extends SwitchingJPanel {
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form SearchLuggage
-     */
-    public SearchLuggage(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public SearchLuggage(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 

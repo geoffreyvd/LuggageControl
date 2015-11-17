@@ -3,6 +3,7 @@ package managers;
 import constants.ScreenNames;
 import java.util.Timer;
 import java.util.TimerTask;
+import main.LuggageControl;
 
 /**
  * Manage security aspects such as user input filtering and login management
@@ -12,21 +13,21 @@ import java.util.TimerTask;
 public class SecurityMan {
 
     // reference to defined version of securityupdates
-    private SecurityUpdates secUpdatesInterface;
+    private LuggageControl luggageControl;
 
     // <editor-fold defaultstate="collapsed" desc="time out, timertask, timer and default time out time">
     // Custom timertask which contains reference to the securityupdate event interface.
     private class timeOutTimerTask extends TimerTask {
 
-        SecurityUpdates secUpdatesInterface;
+        LuggageControl luggageControlTimer;
 
-        public timeOutTimerTask(SecurityUpdates secUpdatesReference) {
-            secUpdatesInterface = secUpdatesReference;
+        public timeOutTimerTask(LuggageControl luggageControl) {
+            this.luggageControlTimer = luggageControl;
         }
 
         @Override
         public void run() {
-            secUpdatesInterface.userTimeOut();
+            luggageControl.userTimeOut();
         }
     }
 
@@ -50,15 +51,15 @@ public class SecurityMan {
      * @param secUpdatesReference instance of abstract securityUpdates class to
      * push events
      */
-    public SecurityMan(SecurityUpdates secUpdatesReference) {
+    public SecurityMan(LuggageControl luggageControl) {
 
         // pass the defined class reference to the event interface
         // now we can call our abstract functions
-        secUpdatesInterface = secUpdatesReference;
+        this.luggageControl = luggageControl;
 
         // create the timer and start the userTimeOut task
         timeOut = new Timer();
-        fireTimeOut = new timeOutTimerTask(secUpdatesInterface);
+        fireTimeOut = new timeOutTimerTask(this.luggageControl);
 
         //  start the timer with the timertask
         timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
@@ -138,28 +139,9 @@ public class SecurityMan {
         return originalString;
     }
 
-    /**
-     * Updates will be pushed through this class Things like timeouts, logins
-     * intrusions and such.
-     */
-    public abstract static class SecurityUpdates {
-
-        /**
-         * Called when the logged in user was inactive for the provided timeout
-         * time
-         */
-        public abstract void userTimeOut();
-        
-        /**
-         * 
-         * @param String screenName used to identify the screen we are switching to
-         */
-        public abstract void switchPanel(String screenName);
-    }
-
     public void logInUser(String username, String password) {
         if (username.equals(password)) {
-            secUpdatesInterface.switchPanel(ScreenNames.ADD_LUGGAGE);
+            this.luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
         }
     }
 }
