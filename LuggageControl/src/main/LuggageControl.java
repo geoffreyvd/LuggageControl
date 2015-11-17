@@ -21,7 +21,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.DeleteLuggage deleteLuggage;
     private screen.Example example;
     private screen.GenerateStatistics generateStatistics;
-    private screen.Help help;
+    private oldscreensremake.Help help;
     private screen.help.Adding helpAdding;
     private screen.help.Finding helpFinding;
     private screen.help.Linking helpLinking;
@@ -32,7 +32,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.LuggageDetails luggageDetails;
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
-    private screen.UserManagement userManagement;
+    private oldscreensremake.UserManagement userManagement;
 
     private SwitchingJPanel currentPanel;
 
@@ -90,7 +90,7 @@ public class LuggageControl extends javax.swing.JFrame {
         deleteLuggage = new screen.DeleteLuggage(this);
         example = new screen.Example(this);
         generateStatistics = new screen.GenerateStatistics(this);
-        help = new screen.Help(this);
+        help = new oldscreensremake.Help(this);
         helpAdding = new screen.help.Adding(this);
         helpFinding = new screen.help.Finding(this);
         helpLinking = new screen.help.Linking(this);
@@ -101,7 +101,7 @@ public class LuggageControl extends javax.swing.JFrame {
         luggageDetails = new screen.LuggageDetails(this);
         searchCustomer = new screen.SearchCustomer(this);
         searchLuggage = new screen.SearchLuggage(this);
-        userManagement = new screen.UserManagement(this);
+        userManagement = new oldscreensremake.UserManagement(this);
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
@@ -198,7 +198,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
         }
-        else if(this.currentPanel instanceof screen.Help) {
+        else if(this.currentPanel instanceof oldscreensremake.Help) {
             this.remove(help);
         }
         else if(this.currentPanel instanceof screen.help.Adding) {
@@ -231,7 +231,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof screen.UserManagement) {
+        else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
             this.remove(userManagement);
         } 
     }
