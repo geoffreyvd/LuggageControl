@@ -168,12 +168,12 @@ public class LuggageControl extends javax.swing.JFrame {
         this.add(menuBar);
         */
         
-        this.currentPanel = helpLinking;
-        this.switchJPanel(ScreenNames.Help.LINKING);
+        this.currentPanel = loginScreen;
+        this.switchJPanel(ScreenNames.LOGINSCREEN);
         
         // testing if I can switch to a specific tab
         // and yes that works
-        helpLinking.selectTab("Not available");
+        // helpLinking.selectTab("Not available");
     }
 
     /**

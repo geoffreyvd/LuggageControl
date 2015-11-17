@@ -1,6 +1,6 @@
 package screen.help;
 
-import baseClasses.ErrorJFrame;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import main.LuggageControl;
 
@@ -41,7 +41,7 @@ public class Adding extends SwitchingJPanel {
         }
         else {
             // does not display errors yet.
-            new ErrorJFrame();
+            new ErrorJDialog();
         }
     }
 

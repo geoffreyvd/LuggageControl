@@ -1,6 +1,6 @@
 package screen.help;
 
-import baseClasses.ErrorJFrame;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import main.LuggageControl;
 
@@ -40,7 +40,7 @@ public class Linking extends SwitchingJPanel {
             linkingTab.setSelectedComponent(lostFoundLuggageP);
         }
         else {
-            new ErrorJFrame("Error: tab does not exist", (new Throwable()).getStackTrace());
+            new ErrorJDialog("Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 
