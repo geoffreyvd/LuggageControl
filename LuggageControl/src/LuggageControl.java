@@ -152,7 +152,7 @@ public class LuggageControl extends javax.swing.JFrame {
         
         // testing if I can switch to a specific tab
         // and yes that works
-        helpLinking.selectTab(helpLinking.FLIGHTS_TO_LUGGAGE);
+        helpLinking.selectTab(helpLinking.CUSTOMER_TO_FLIGHTS);
     }
 
     /**

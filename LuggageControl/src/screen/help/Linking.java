@@ -78,7 +78,7 @@ public class Linking extends SwitchingJPanel {
         );
         customerFlightsPLayout.setVerticalGroup(
             customerFlightsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 781, Short.MAX_VALUE)
         );
 
         linkingTab.addTab("Customer to flights", customerFlightsP);
@@ -91,7 +91,7 @@ public class Linking extends SwitchingJPanel {
         );
         customerLuggagePLayout.setVerticalGroup(
             customerLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 781, Short.MAX_VALUE)
         );
 
         linkingTab.addTab("Customer to luggage", customerLuggageP);
@@ -104,7 +104,7 @@ public class Linking extends SwitchingJPanel {
         );
         flightLuggagePLayout.setVerticalGroup(
             flightLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 781, Short.MAX_VALUE)
         );
 
         linkingTab.addTab("Flights to luggage", flightLuggageP);
@@ -117,7 +117,7 @@ public class Linking extends SwitchingJPanel {
         );
         lostFoundLuggagePLayout.setVerticalGroup(
             lostFoundLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 781, Short.MAX_VALUE)
         );
 
         linkingTab.addTab("Lost luggage to found luggage", lostFoundLuggageP);
@@ -139,8 +139,8 @@ public class Linking extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(linkingTab, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(linkingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         linkingTab.getAccessibleContext().setAccessibleName("Linking Luggage");

@@ -37,8 +37,8 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="screenName" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="linkingTab" min="-2" pref="282" max="-2" attributes="0"/>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <Component id="linkingTab" pref="808" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,7 +79,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="255" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="781" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -101,7 +101,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="255" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="781" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -123,7 +123,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="255" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="781" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -145,7 +145,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="255" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="781" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
