@@ -157,8 +157,8 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
 
-        this.currentPanel = helpLinking;
-        this.switchJPanel(ScreenNames.Help.LINKING);
+        this.currentPanel = addLuggage;
+        this.switchJPanel(ScreenNames.ADD_LUGGAGE);
         
         // testing if I can switch to a specific tab
         // and yes that works
