@@ -31,104 +31,104 @@ public class CustomerDetails extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jFormattedTextField6 = new javax.swing.JFormattedTextField();
-        jComboBox2 = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        labelHeaderLeftSide = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
+        labelNameDisplay = new javax.swing.JLabel();
+        labelLastName = new javax.swing.JLabel();
+        labelLastNameDisplay = new javax.swing.JLabel();
+        labelOwnerId = new javax.swing.JLabel();
+        labelOwnerIdDisplay = new javax.swing.JLabel();
+        textFieldCellphoneNumber = new javax.swing.JFormattedTextField();
+        textFieldEmail = new javax.swing.JFormattedTextField();
+        textFieldAddFlightNumber = new javax.swing.JFormattedTextField();
+        comboBoxFlightNumbersList = new javax.swing.JComboBox();
+        buttonRemoveFlightNumber = new javax.swing.JButton();
+        buttonUpdateCustomer = new javax.swing.JButton();
+        buttonCancelChanges = new javax.swing.JButton();
+        separatorScreenDefider = new javax.swing.JSeparator();
+        labelHeaderRightSide = new javax.swing.JLabel();
+        textFieldLuggageId = new javax.swing.JFormattedTextField();
+        textFieldFlightNumber = new javax.swing.JFormattedTextField();
+        comboBoxStatusList = new javax.swing.JComboBox();
+        scrollPaneSearchTable = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        buttonSearchLuggage = new javax.swing.JButton();
+        buttonHelp = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setText("Costumer details");
+        labelHeaderLeftSide.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelHeaderLeftSide.setText("Customer details");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Name: ");
+        labelName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelName.setText("Name: ");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText(" XXXXXXXXX");
+        labelNameDisplay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNameDisplay.setText(" XXXXXXXXX");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Last name: ");
+        labelLastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelLastName.setText("Last name: ");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText(" XXXXXXXXX");
+        labelLastNameDisplay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelLastNameDisplay.setText(" XXXXXXXXX");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Owner ID: ");
+        labelOwnerId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelOwnerId.setText("Owner ID: ");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText(" XXXXXXXXX");
+        labelOwnerIdDisplay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelOwnerIdDisplay.setText(" XXXXXXXXX");
 
-        jFormattedTextField2.setText("Cellphone number");
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        textFieldCellphoneNumber.setText("Cellphone number");
+        textFieldCellphoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                textFieldCellphoneNumberActionPerformed(evt);
             }
         });
 
-        jFormattedTextField3.setText("Number");
+        textFieldEmail.setText("Email");
 
-        jFormattedTextField4.setText("Add flightnumber");
+        textFieldAddFlightNumber.setText("Add flightnumber");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Flightnumbers", "Item 2", "Item 3", "Item 4" }));
+        comboBoxFlightNumbersList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Flightnumbers", "Item 2", "Item 3", "Item 4" }));
 
-        jButton9.setText("Remove");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        buttonRemoveFlightNumber.setText("Remove");
+        buttonRemoveFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                removeFlightNumber(evt);
             }
         });
 
-        jButton10.setText("Update");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        buttonUpdateCustomer.setText("Update");
+        buttonUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                updates(evt);
             }
         });
 
-        jButton11.setText("Cancel");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelChanges.setText("Cancel");
+        buttonCancelChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                canceles(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel8.setText("Luggage search");
+        labelHeaderRightSide.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelHeaderRightSide.setText("Luggage search");
 
-        jFormattedTextField5.setText("Lugagge ID");
-        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
+        textFieldLuggageId.setText("Lugagge ID");
+        textFieldLuggageId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField5ActionPerformed(evt);
+                textFieldLuggageIdActionPerformed(evt);
             }
         });
 
-        jFormattedTextField6.setText("Flightnumber");
-        jFormattedTextField6.addActionListener(new java.awt.event.ActionListener() {
+        textFieldFlightNumber.setText("Flightnumber");
+        textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField6ActionPerformed(evt);
+                textFieldFlightNumberActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
+        comboBoxStatusList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,26 +141,26 @@ public class CustomerDetails extends SwitchingJPanel {
                 "Luggage ID", "Flightnumber", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scrollPaneSearchTable.setViewportView(jTable1);
 
-        jButton12.setText("Search");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        buttonSearchLuggage.setText("Search");
+        buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                searches(evt);
             }
         });
 
-        jButton13.setText("Help");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        buttonHelp.setText("Help");
+        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                goesToHelpAdding(evt);
             }
         });
 
-        jButton14.setText("Back");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                backToSearchCustomer(evt);
             }
         });
 
@@ -172,163 +172,163 @@ public class CustomerDetails extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonUpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonCancelChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBoxFlightNumbersList, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonRemoveFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldAddFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(labelName)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel3))
-                    .addComponent(jLabel1)
+                        .addComponent(labelNameDisplay))
+                    .addComponent(labelHeaderLeftSide)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(labelOwnerId)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel7))
+                        .addComponent(labelOwnerIdDisplay))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(labelLastName)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel5)))
+                        .addComponent(labelLastNameDisplay)))
                 .addGap(30, 30, 30)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(separatorScreenDefider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldLuggageId, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel8)
+                            .addComponent(labelHeaderRightSide)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buttonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(scrollPaneSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
+            .addComponent(separatorScreenDefider)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelHeaderLeftSide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(labelName)
+                            .addComponent(labelNameDisplay))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(labelLastName)
+                            .addComponent(labelLastNameDisplay))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(labelOwnerId)
+                            .addComponent(labelOwnerIdDisplay))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton9))
+                            .addComponent(comboBoxFlightNumbersList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonRemoveFlightNumber))
                         .addGap(11, 11, 11)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldAddFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10)
-                            .addComponent(jButton11)))
+                            .addComponent(buttonUpdateCustomer)
+                            .addComponent(buttonCancelChanges)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelHeaderRightSide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton13)
+                                .addComponent(buttonHelp)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton14)))
+                                .addComponent(buttonBack)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldLuggageId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBoxStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPaneSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton12)))
+                        .addComponent(buttonSearchLuggage)))
                 .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void textFieldCellphoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCellphoneNumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_textFieldCellphoneNumberActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void removeFlightNumber(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFlightNumber
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_removeFlightNumber
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void updates(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updates
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_updates
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void canceles(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canceles
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_canceles
 
-    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
+    private void textFieldLuggageIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLuggageIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
+    }//GEN-LAST:event_textFieldLuggageIdActionPerformed
 
-    private void jFormattedTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField6ActionPerformed
+    private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField6ActionPerformed
+    }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void searches(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searches
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_searches
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void goesToHelpAdding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpAdding
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_goesToHelpAdding
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void backToSearchCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToSearchCustomer
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_backToSearchCustomer
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton buttonBack;
+    private javax.swing.JButton buttonCancelChanges;
+    private javax.swing.JButton buttonHelp;
+    private javax.swing.JButton buttonRemoveFlightNumber;
+    private javax.swing.JButton buttonSearchLuggage;
+    private javax.swing.JButton buttonUpdateCustomer;
+    private javax.swing.JComboBox comboBoxFlightNumbersList;
+    private javax.swing.JComboBox comboBoxStatusList;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labelHeaderLeftSide;
+    private javax.swing.JLabel labelHeaderRightSide;
+    private javax.swing.JLabel labelLastName;
+    private javax.swing.JLabel labelLastNameDisplay;
+    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelNameDisplay;
+    private javax.swing.JLabel labelOwnerId;
+    private javax.swing.JLabel labelOwnerIdDisplay;
+    private javax.swing.JScrollPane scrollPaneSearchTable;
+    private javax.swing.JSeparator separatorScreenDefider;
+    private javax.swing.JFormattedTextField textFieldAddFlightNumber;
+    private javax.swing.JFormattedTextField textFieldCellphoneNumber;
+    private javax.swing.JFormattedTextField textFieldEmail;
+    private javax.swing.JFormattedTextField textFieldFlightNumber;
+    private javax.swing.JFormattedTextField textFieldLuggageId;
     // End of variables declaration//GEN-END:variables
 }

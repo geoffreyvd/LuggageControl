@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -21,28 +21,28 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jFormattedTextField2" pref="200" max="32767" attributes="0"/>
-                          <Component id="jButton1" max="32767" attributes="0"/>
+                          <Component id="textFieldCustomerId" pref="200" max="32767" attributes="0"/>
+                          <Component id="buttonSearchLuggage" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Component id="scrollPaneLuggageTable" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelHeader" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jFormattedTextField1" pref="200" max="32767" attributes="0"/>
+                                      <Component id="textFieldCustomerName" pref="200" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="611" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton18" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jButton17" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="buttonHelp" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="buttonBack" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -58,45 +58,45 @@
               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jButton18" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton17" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldCustomerName" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jFormattedTextField2" min="-2" max="-2" attributes="0"/>
+              <Component id="textFieldCustomerId" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="buttonSearchLuggage" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="94" max="-2" attributes="0"/>
+              <Component id="scrollPaneLuggageTable" min="-2" pref="94" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton18">
+    <Component class="javax.swing.JButton" name="buttonHelp">
       <Properties>
         <Property name="text" type="java.lang.String" value="Help"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="goesToHelpFinding"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton17">
+    <Component class="javax.swing.JButton" name="buttonBack">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backToEmployeeScreen"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="labelHeader">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="30" style="1"/>
@@ -104,22 +104,25 @@
         <Property name="text" type="java.lang.String" value="Delete luggage"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldCustomerName">
       <Properties>
         <Property name="text" type="java.lang.String" value="Customer name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldCustomerId">
       <Properties>
         <Property name="text" type="java.lang.String" value="Customer ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="buttonSearchLuggage">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searches"/>
+      </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="scrollPaneLuggageTable">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
