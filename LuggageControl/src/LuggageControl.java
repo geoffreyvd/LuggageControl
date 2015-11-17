@@ -14,7 +14,9 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.AddCustomer addCustomer;
     private screen.AddLuggage addLuggage;
     private screen.ChangeSettings changeSettings;
-    private screen.CustomerDetails customerDetails;    
+    private screen.CustomerDetails customerDetails;   
+    private screen.DeleteCustomer deleteCustomer;
+    private screen.DeleteLuggage deleteLuggage;
     private screen.Help help;
     private screen.help.Adding helpAdding;
     private screen.help.Finding helpFinding;
@@ -95,6 +97,8 @@ public class LuggageControl extends javax.swing.JFrame {
         addLuggage = new screen.AddLuggage(sjPanelEventsInstance);
         changeSettings = new screen.ChangeSettings(sjPanelEventsInstance);
         customerDetails = new screen.CustomerDetails(sjPanelEventsInstance);
+        deleteCustomer = new screen.DeleteCustomer(sjPanelEventsInstance);
+        deleteLuggage = new screen.DeleteLuggage(sjPanelEventsInstance);
         help = new screen.Help(sjPanelEventsInstance);
         helpAdding = new screen.help.Adding(sjPanelEventsInstance);
         helpFinding = new screen.help.Finding(sjPanelEventsInstance);
@@ -119,6 +123,12 @@ public class LuggageControl extends javax.swing.JFrame {
         
         customerDetails.setSize(monitorSize);
         customerDetails.setVisible(true);
+        
+        deleteCustomer.setSize(monitorSize);
+        deleteCustomer.setVisible(true);
+        
+        deleteLuggage.setSize(monitorSize);
+        deleteLuggage.setVisible(true);
         
         help.setSize(monitorSize);
         help.setVisible(true);
@@ -172,6 +182,12 @@ public class LuggageControl extends javax.swing.JFrame {
         }
         else if(this.currentPanel instanceof screen.CustomerDetails) {
             this.remove(customerDetails);
+        }
+        else if(this.currentPanel instanceof screen.DeleteCustomer) {
+            this.remove(deleteCustomer);
+        }
+        else if(this.currentPanel instanceof screen.DeleteLuggage) {
+            this.remove(deleteLuggage);
         }
         else if(this.currentPanel instanceof screen.Help) {
             this.remove(help);
@@ -244,6 +260,20 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.revalidate();
                 this.repaint();
                 this.currentPanel = customerDetails;
+                break;
+            case ScreenNames.DELETE_CUSTOMER:
+                this.removeCurrentJPanel();
+                this.add(deleteCustomer);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = deleteCustomer;
+                break;
+            case ScreenNames.DELETE_LUGGAGE:
+                this.removeCurrentJPanel();
+                this.add(deleteLuggage);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = deleteLuggage;
                 break;
             case ScreenNames.HELP:
                 this.removeCurrentJPanel();

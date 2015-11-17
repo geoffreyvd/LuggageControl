@@ -41,6 +41,8 @@ public class ScreenNames {
     public static final String ADD_LUGGAGE = "ADD_LUGGAGE";
     public static final String CHANGE_SETTINGS = "CHANGE_SETTINGS";
     public static final String CUSTOMER_DETAILS = "CUSTOMER_DETAILS";
+    public static final String DELETE_CUSTOMER = "DELETE_CUSTOMER";
+    public static final String DELETE_LUGGAGE = "DELETE_LUGGAGE";
     public static final String HELP = "HELP";
     public static final String HOME_SCREEN_ADMINISTRATOR = "HOME_SCREEN_ADMINISTRATOR";
     public static final String HOME_SCREEN_EMPLOYEE = "HOME_SCREEN_EMPLOYEE";
