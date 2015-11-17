@@ -70,6 +70,8 @@ public class LuggageControl extends javax.swing.JFrame {
 
         initComponents();
 
+        // start fullscreen
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(monitorSize);
     }
 
@@ -173,7 +175,7 @@ public class LuggageControl extends javax.swing.JFrame {
         
         // testing if I can switch to a specific tab
         // and yes that works
-        helpLinking.selectTab("Not available");
+        // helpLinking.selectTab("Not available");
     }
 
     /**

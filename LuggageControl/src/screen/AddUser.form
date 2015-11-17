@@ -16,48 +16,66 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="1" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="textFieldDescription" min="-2" pref="297" max="-2" attributes="0"/>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="buttonUploadImage" alignment="1" min="-2" pref="182" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="buttonCancel" pref="90" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textFieldFlightNumber" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                              <Component id="textFieldOrigin" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="comboBoxStatus" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textFieldLocation" alignment="0" pref="130" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="textFieldWeight" min="-2" pref="130" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldDestination" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="textFieldOwnerId" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="textFieldSize" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="textFieldColor" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="labelAddUser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonBack" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
                           <Component id="buttonHelp" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="buttonCancel" min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="filler2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="comboBoxGender" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="textFieldBirthday" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="textFieldAdress" max="32767" attributes="0"/>
+                              <Component id="textFieldNationality" min="-2" pref="266" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="textFieldCity" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="textFieldPostalcode" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="textFieldCellphone" alignment="0" min="-2" pref="266" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="textFieldFlightNumber" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textFieldFirstname" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="textFieldLastname" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="filler1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="buttonUploadImage" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -68,62 +86,75 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelAddUser" min="-2" pref="49" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldOwnerId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                              <Component id="labelAddUser" min="-2" pref="49" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldLocation" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="filler1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="filler2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jPanel1" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
                       <Component id="buttonUploadImage" min="-2" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="95" max="32767" attributes="0"/>
+                      <Component id="textFieldFlightNumber" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="comboBoxStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldFirstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldLastname" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldWeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxGender" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldBirthday" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="textFieldDescription" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="88" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="textFieldCellphone" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="textFieldNationality" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="textFieldAdress" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldPostalcode" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -150,56 +181,31 @@
         <Property name="text" type="java.lang.String" value="Flightnumber"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldOrigin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Origin"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldLocation">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Location"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldOwnerId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Owner ID"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDestination">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Destination"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="comboBoxStatus">
+    <Component class="javax.swing.JComboBox" name="comboBoxGender">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Status"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Female"/>
+            <StringItem index="1" value="Male"/>
+            <StringItem index="2" value="Androgenous"/>
           </StringArray>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Gender"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldColor">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldFirstname">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Color"/>
+        <Property name="text" type="java.lang.String" value="Firstname"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldSize">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldBirthday">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Size"/>
+        <Property name="text" type="java.lang.String" value="Birthday"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldWeight">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldLastname">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Weight"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDescription">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
+        <Property name="text" type="java.lang.String" value="Lastname"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelAddUser">
@@ -233,6 +239,76 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldNationality">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nationality"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldAdress">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adress"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldCity">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="City"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldPostalcode">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Postalcode"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldCellphone">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cellphone"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCellphoneActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Component class="javax.swing.Box$Filler" name="filler1">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[32767, 0]"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.VerticalStrut"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.Box$Filler" name="filler2">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[32767, 0]"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.HorizontalGlue"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
