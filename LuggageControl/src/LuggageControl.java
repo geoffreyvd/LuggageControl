@@ -2,7 +2,6 @@ import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import managers.SecurityMan;
-import managers.DatabaseMan;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 
@@ -46,6 +45,11 @@ public class LuggageControl extends javax.swing.JFrame {
         public void userTimeOut() {
             System.out.println("Calling! SecurityMan do you copy?");
         }
+        
+        @Override
+        public void switchPanel(String screenName) {
+            switchJPanel(screenName);
+        }
     };
 
     // event to switch from panel
@@ -54,6 +58,11 @@ public class LuggageControl extends javax.swing.JFrame {
         @Override
         public void switchPanel(String screenName) {
             switchJPanel(screenName);
+        }
+        
+        @Override
+        public void loginUser(String username, String password) {
+            
         }
     };
     
@@ -173,7 +182,7 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setVisible(true);
 
         this.currentPanel = helpLinking;
-        this.switchJPanel(ScreenNames.Help.LINKING);
+        this.switchJPanel(ScreenNames.LOGINSCREEN);
         
         // testing if I can switch to a specific tab
         // and yes that works
