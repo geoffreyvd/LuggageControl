@@ -7,6 +7,7 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import main.LuggageControl;
 
 /**
  *
@@ -14,13 +15,8 @@ import constants.ScreenNames;
  */
 public class LoginScreen extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-
-    /**
-     * Creates new form LoginScreen
-     */
-    public LoginScreen(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public LoginScreen(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -33,27 +29,32 @@ public class LoginScreen extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        username = new javax.swing.JFormattedTextField();
-        password = new javax.swing.JPasswordField();
+        buttonLogin = new javax.swing.JButton();
+        textFieldUsername = new javax.swing.JFormattedTextField();
+        textFieldPassword = new javax.swing.JPasswordField();
 
-        jButton1.setText("Log in");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonLogin.setText("Log in");
+        buttonLogin.setToolTipText("");
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonLoginActionPerformed(evt);
             }
         });
 
-        username.setText("Username");
-        username.setName(""); // NOI18N
-        username.addActionListener(new java.awt.event.ActionListener() {
+        textFieldUsername.setText("Username");
+        textFieldUsername.setName(""); // NOI18N
+        textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
+                textFieldUsernameActionPerformed(evt);
             }
         });
 
-        password.setText("Password");
+        textFieldPassword.setText("Password");
+        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,38 +64,38 @@ public class LoginScreen extends SwitchingJPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                        .addComponent(username))
-                    .addComponent(jButton1))
+                        .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(textFieldUsername))
+                    .addComponent(buttonLogin))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(buttonLogin)
                 .addContainerGap(138, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String inputUsername = username.getText();
-        String inputPassword = password.getText();
-        sJPanelEventsInstance.loginUser(inputUsername, inputPassword);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        String inputUsername = textFieldUsername.getText();
+        String inputPassword = textFieldPassword.getText();
+        this.luggageControl.loginUser(inputUsername, inputPassword);
+    }//GEN-LAST:event_buttonLoginActionPerformed
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
+    }//GEN-LAST:event_textFieldPasswordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JFormattedTextField username;
+    private javax.swing.JButton buttonLogin;
+    private javax.swing.JPasswordField textFieldPassword;
+    private javax.swing.JFormattedTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

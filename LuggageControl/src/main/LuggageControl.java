@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -19,7 +21,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.DeleteLuggage deleteLuggage;
     private screen.Example example;
     private screen.GenerateStatistics generateStatistics;
-    private screen.Help help;
+    private oldscreensremake.Help help;
     private screen.help.Adding helpAdding;
     private screen.help.Finding helpFinding;
     private screen.help.Linking helpLinking;
@@ -30,7 +32,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.LuggageDetails luggageDetails;
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
-    private screen.UserManagement userManagement;
+    private oldscreensremake.UserManagement userManagement;
 
     private SwitchingJPanel currentPanel;
 
@@ -39,32 +41,6 @@ public class LuggageControl extends javax.swing.JFrame {
     
     // security manager and event interface
     private SecurityMan secman;
-    SecurityMan.SecurityUpdates secManUpdates = new SecurityMan.SecurityUpdates() {
-        
-        @Override
-        public void userTimeOut() {
-            System.out.println("Calling! SecurityMan do you copy?");
-        }
-        
-        @Override
-        public void switchPanel(String screenName) {
-            switchJPanel(screenName);
-        }
-    };
-
-    // event to switch from panel
-    private SwitchingJPanel.SJPanelEvents sjPanelEventsInstance = new SwitchingJPanel.SJPanelEvents() {
-
-        @Override
-        public void switchPanel(String screenName) {
-            switchJPanel(screenName);
-        }
-        
-        @Override
-        public void loginUser(String username, String password) {
-            
-        }
-    };
     
     /**
      *
@@ -72,7 +48,7 @@ public class LuggageControl extends javax.swing.JFrame {
     public LuggageControl() {
         // parse the refernence of our interface to the security manager class
         // so it can call us.
-        secman = new SecurityMan(secManUpdates);
+        secman = new SecurityMan(this);
         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
@@ -105,27 +81,27 @@ public class LuggageControl extends javax.swing.JFrame {
      * memory consumption.
      */
     private void initComponents() {
-        addCustomer = new screen.AddCustomer(sjPanelEventsInstance);
-        addLuggage = new screen.AddLuggage(sjPanelEventsInstance);
-        addUser = new screen.AddUser(sjPanelEventsInstance);
-        changeSettings = new screen.ChangeSettings(sjPanelEventsInstance);
-        customerDetails = new screen.CustomerDetails(sjPanelEventsInstance);
-        deleteCustomer = new screen.DeleteCustomer(sjPanelEventsInstance);
-        deleteLuggage = new screen.DeleteLuggage(sjPanelEventsInstance);
-        example = new screen.Example(sjPanelEventsInstance);
-        generateStatistics = new screen.GenerateStatistics(sjPanelEventsInstance);
-        help = new screen.Help(sjPanelEventsInstance);
-        helpAdding = new screen.help.Adding(sjPanelEventsInstance);
-        helpFinding = new screen.help.Finding(sjPanelEventsInstance);
-        helpLinking = new screen.help.Linking(sjPanelEventsInstance);
-        homeScreenAdministrator = new screen.HomeScreenAdministrator(sjPanelEventsInstance);
-        homeScreenEmployee = new screen.HomeScreenEmployee(sjPanelEventsInstance);
-        homeScreenManager = new screen.HomeScreenManager(sjPanelEventsInstance);
-        loginScreen = new screen.LoginScreen(sjPanelEventsInstance);
-        luggageDetails = new screen.LuggageDetails(sjPanelEventsInstance);
-        searchCustomer = new screen.SearchCustomer(sjPanelEventsInstance);
-        searchLuggage = new screen.SearchLuggage(sjPanelEventsInstance);
-        userManagement = new screen.UserManagement(sjPanelEventsInstance);
+        addCustomer = new screen.AddCustomer(this);
+        addLuggage = new screen.AddLuggage(this);
+        addUser = new screen.AddUser(this);
+        changeSettings = new screen.ChangeSettings(this);
+        customerDetails = new screen.CustomerDetails(this);
+        deleteCustomer = new screen.DeleteCustomer(this);
+        deleteLuggage = new screen.DeleteLuggage(this);
+        example = new screen.Example(this);
+        generateStatistics = new screen.GenerateStatistics(this);
+        help = new oldscreensremake.Help(this);
+        helpAdding = new screen.help.Adding(this);
+        helpFinding = new screen.help.Finding(this);
+        helpLinking = new screen.help.Linking(this);
+        homeScreenAdministrator = new screen.HomeScreenAdministrator(this);
+        homeScreenEmployee = new screen.HomeScreenEmployee(this);
+        homeScreenManager = new screen.HomeScreenManager(this);
+        loginScreen = new screen.LoginScreen(this);
+        luggageDetails = new screen.LuggageDetails(this);
+        searchCustomer = new screen.SearchCustomer(this);
+        searchLuggage = new screen.SearchLuggage(this);
+        userManagement = new oldscreensremake.UserManagement(this);
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
@@ -222,7 +198,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
         }
-        else if(this.currentPanel instanceof screen.Help) {
+        else if(this.currentPanel instanceof oldscreensremake.Help) {
             this.remove(help);
         }
         else if(this.currentPanel instanceof screen.help.Adding) {
@@ -255,7 +231,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof screen.UserManagement) {
+        else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
             this.remove(userManagement);
         } 
     }
@@ -264,7 +240,7 @@ public class LuggageControl extends javax.swing.JFrame {
      * Switch the panel to another panel identified by ScreenNames constants.
      * @param panelName string that identifies the screen use constants.ScreenNames
      */
-    private void switchJPanel(String panelName) {
+    public void switchJPanel(String panelName) {
         switch (panelName) {
             case ScreenNames.ADD_CUSTOMER:
                 this.removeCurrentJPanel();
@@ -396,5 +372,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 System.out.println("Trying to switch to screen that does not exist!");
                 break;
         }
+    }
+    
+    public void loginUser(String username, String password) {
+        
+    }
+    
+    public void userTimeOut() {
+        
     }
 }

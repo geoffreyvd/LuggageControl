@@ -1,26 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import main.LuggageControl;
 
 /**
  *
  * @author user
  */
 public class HomeScreenAdministrator extends SwitchingJPanel{
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form HomeScreenAdministrator
-     */
-    public HomeScreenAdministrator(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference; 
+    public HomeScreenAdministrator(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 

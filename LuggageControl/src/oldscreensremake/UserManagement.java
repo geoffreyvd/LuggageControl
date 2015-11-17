@@ -3,24 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package screen;
+package oldscreensremake;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import main.LuggageControl;
 
 /**
  *
  * @author root
  */
 public class UserManagement extends SwitchingJPanel {
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form UserManagement
-     */
-    public UserManagement(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public UserManagement(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -32,7 +28,6 @@ public class UserManagement extends SwitchingJPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         labelUserDetails = new javax.swing.JLabel();
         labelUserId = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();

@@ -2,6 +2,7 @@ package screen.help;
 
 import baseClasses.ErrorJFrame;
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
@@ -14,14 +15,9 @@ public class Finding extends SwitchingJPanel {
     public static final String CUSTOMER_TO_LUGGAGE = "CUSTOMER_TO_LUGGAGE";
     public static final String FLIGHTS_TO_LUGGAGE = "FLIGHTS_TO_LUGGAGE";
     public static final String LUGGAGE_TO_LUGGAGE = "LUGGAGE_TO_LUGGAGE";
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form LinkLuggage
-     */
-    public Finding(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public Finding(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
     
