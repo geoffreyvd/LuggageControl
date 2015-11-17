@@ -39,6 +39,8 @@ public class PopUpJFDialog extends javax.swing.JDialog {
      * Halt all other program operation until window is closed.
      */
     protected void haltProgram() {
-        this.setModal(true);
+        this.setVisible(false);
+        this.setModalityType(DEFAULT_MODALITY_TYPE);
+        this.setVisible(true);
     }
 }

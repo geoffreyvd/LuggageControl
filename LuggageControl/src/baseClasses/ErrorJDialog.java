@@ -27,6 +27,7 @@ public class ErrorJDialog extends PopUpJFDialog{
         textPane.setEditable(false);
         textPane.setText(text);
         this.add(textPane);
+        this.haltProgram();
     }
     
     /**
@@ -45,5 +46,6 @@ public class ErrorJDialog extends PopUpJFDialog{
         }
         textPane.setText(text);
         this.add(textPane);
+        this.haltProgram();
     }
 }

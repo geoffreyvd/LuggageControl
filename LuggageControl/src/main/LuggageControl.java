@@ -173,7 +173,7 @@ public class LuggageControl extends javax.swing.JFrame {
         
         // testing if I can switch to a specific tab
         // and yes that works
-        // helpLinking.selectTab("Not available");
+        helpLinking.selectTab("Not available");
     }
 
     /**
@@ -385,10 +385,18 @@ public class LuggageControl extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * 
+     * @param username
+     * @param password 
+     */
     public void loginUser(String username, String password) {
         
     }
     
+    /**
+     * 
+     */
     public void userTimeOut() {
         
     }
