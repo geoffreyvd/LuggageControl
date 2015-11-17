@@ -21,7 +21,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.DeleteLuggage deleteLuggage;
     private screen.Example example;
     private screen.GenerateStatistics generateStatistics;
-    private oldscreensremake.Help help;
+    private screen.Help help;
     private screen.help.Adding helpAdding;
     private screen.help.Finding helpFinding;
     private screen.help.Linking helpLinking;
@@ -90,7 +90,7 @@ public class LuggageControl extends javax.swing.JFrame {
         deleteLuggage = new screen.DeleteLuggage(this);
         example = new screen.Example(this);
         generateStatistics = new screen.GenerateStatistics(this);
-        help = new oldscreensremake.Help(this);
+        help = new screen.Help(this);
         helpAdding = new screen.help.Adding(this);
         helpFinding = new screen.help.Finding(this);
         helpLinking = new screen.help.Linking(this);
@@ -198,7 +198,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
         }
-        else if(this.currentPanel instanceof oldscreensremake.Help) {
+        else if(this.currentPanel instanceof screen.Help) {
             this.remove(help);
         }
         else if(this.currentPanel instanceof screen.help.Adding) {

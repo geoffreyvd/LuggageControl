@@ -1,11 +1,8 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
-<<<<<<< HEAD
 import constants.ScreenNames;
-=======
 import main.LuggageControl;
->>>>>>> origin/develop
 
 /**
  *
@@ -196,7 +193,7 @@ public class AddLuggage extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadsImageActionPerformed
@@ -208,11 +205,11 @@ public class AddLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.Help.ADDING);
+        this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void tionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tionPerformed

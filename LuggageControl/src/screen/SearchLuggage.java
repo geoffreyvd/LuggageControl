@@ -167,11 +167,11 @@ public class SearchLuggage extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.Help.FINDING);
+        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void comboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxStatusActionPerformed

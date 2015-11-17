@@ -7,20 +7,16 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import main.LuggageControl;
 
 /**
  *
  * @author Admin
  */
 public class SearchCustomer extends SwitchingJPanel {
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form SearchCostumer
-     */
-    public SearchCustomer(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public SearchCustomer(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -179,15 +175,15 @@ public class SearchCustomer extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.Help.FINDING);
+        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void mberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mberActionPerformed

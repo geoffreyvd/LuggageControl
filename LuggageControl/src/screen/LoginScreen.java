@@ -43,11 +43,6 @@ public class LoginScreen extends SwitchingJPanel {
 
         textFieldUsername.setText("Username");
         textFieldUsername.setName(""); // NOI18N
-        textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldUsernameActionPerformed(evt);
-            }
-        });
 
         textFieldPassword.setText("Password");
         textFieldPassword.addActionListener(new java.awt.event.ActionListener() {

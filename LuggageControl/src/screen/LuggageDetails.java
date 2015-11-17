@@ -258,7 +258,7 @@ public class LuggageDetails extends SwitchingJPanel {
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.SEARCH_LUGGAGE);
+        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
     }//GEN-LAST:event_butonCancelActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
@@ -266,11 +266,11 @@ public class LuggageDetails extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.SEARCH_LUGGAGE);
+        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        sJPanelEventsInstance.switchPanel(ScreenNames.Help.LINKING);
+        this.luggageControl.switchJPanel(ScreenNames.Help.LINKING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
 
