@@ -38,7 +38,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.LuggageDetails luggageDetails;
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
-    // private screen.UserManagement userManagement;
+    private screen.UserManagement userManagement;
     // </editor-fold>
 
     private JMenuBar menuBar;
@@ -113,7 +113,7 @@ public class LuggageControl extends javax.swing.JFrame {
         luggageDetails = new screen.LuggageDetails(this);
         searchCustomer = new screen.SearchCustomer(this);
         searchLuggage = new screen.SearchLuggage(this);
-        //userManagement = new screen.UserManagement(this);
+        userManagement = new screen.UserManagement(this);
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
@@ -149,8 +149,8 @@ public class LuggageControl extends javax.swing.JFrame {
         searchCustomer.setVisible(true);
         searchLuggage.setSize(monitorSize);
         searchLuggage.setVisible(true);
-        //userManagement.setSize(monitorSize);
-        //userManagement.setVisible(true);
+        userManagement.setSize(monitorSize);
+        userManagement.setVisible(true);
         // </editor-fold>
         
         /* Corendon red menubar
