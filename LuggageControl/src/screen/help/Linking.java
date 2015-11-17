@@ -40,8 +40,7 @@ public class Linking extends SwitchingJPanel {
             linkingTab.setSelectedComponent(lostFoundLuggageP);
         }
         else {
-            // does not display errors yet.
-            new ErrorJFrame();
+            new ErrorJFrame("Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 

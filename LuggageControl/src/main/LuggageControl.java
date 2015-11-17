@@ -153,6 +153,7 @@ public class LuggageControl extends javax.swing.JFrame {
         //userManagement.setVisible(true);
         // </editor-fold>
         
+        /* Corendon red menubar
         menuBar = new JMenuBar();
         menuBar.setSize(1920, 50);
         menuBar.setBackground(Styling.CORENDON_RED);
@@ -165,13 +166,14 @@ public class LuggageControl extends javax.swing.JFrame {
         menuBar.add(menuItem);
         
         this.add(menuBar);
+        */
         
-        this.currentPanel = loginScreen;
-        this.switchJPanel(ScreenNames.LOGINSCREEN);
+        this.currentPanel = helpLinking;
+        this.switchJPanel(ScreenNames.Help.LINKING);
         
         // testing if I can switch to a specific tab
         // and yes that works
-        // helpLinking.selectTab(helpLinking.CUSTOMER_TO_FLIGHTS);
+        helpLinking.selectTab("Not available");
     }
 
     /**
