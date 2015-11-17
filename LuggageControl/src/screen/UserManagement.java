@@ -6,20 +6,16 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
  * @author root
  */
 public class UserManagement extends SwitchingJPanel {
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form UserManagement
-     */
-    public UserManagement(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public UserManagement(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -32,7 +28,7 @@ public class UserManagement extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        switchingJPanel1 = new baseClasses.SwitchingJPanel();
+        switchingJPanel1 = new SwitchingJPanel(this.luggageControl);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();

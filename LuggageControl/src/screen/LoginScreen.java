@@ -7,6 +7,7 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import main.LuggageControl;
 
 /**
  *
@@ -14,13 +15,8 @@ import constants.ScreenNames;
  */
 public class LoginScreen extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-
-    /**
-     * Creates new form LoginScreen
-     */
-    public LoginScreen(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public LoginScreen(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -84,7 +80,7 @@ public class LoginScreen extends SwitchingJPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String inputUsername = username.getText();
         String inputPassword = password.getText();
-        sJPanelEventsInstance.loginUser(inputUsername, inputPassword);
+        this.luggageControl.loginUser(inputUsername, inputPassword);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
