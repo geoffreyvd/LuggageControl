@@ -1,7 +1,9 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
+import javax.swing.JList;
 
 /**
  *
@@ -145,12 +147,18 @@ public class Help extends SwitchingJPanel {
     }//GEN-LAST:event_helpListMouseClicked
 
     /**
-     * Monitor keypresses for list view
+     * Monitor key presses for list view
      * @param evt event to identify the key and which item was selected during keypress
      */
     private void helpListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpListKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("You pressed enter");
+            JList tempItem = null;
+            try {
+                tempItem = (javax.swing.JList<String>)evt.getComponent();
+            }
+            catch(Exception e) {
+            }
+            System.out.println("You pressed " + tempItem.getSelectedValue());
         }
     }//GEN-LAST:event_helpListKeyPressed
 

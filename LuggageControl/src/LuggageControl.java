@@ -16,6 +16,9 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.ChangeSettings changeSettings;
     private screen.CustomerDetails customerDetails;    
     private screen.Help help;
+    private screen.help.Adding helpAdding;
+    private screen.help.Finding helpFinding;
+    private screen.help.Linking helpLinking;
     private screen.HomeScreenEmployee homeScreenEmployee;
     private screen.HomeScreenManager homeScreenManager;
     private screen.GenerateStatistics generateStatistics;
@@ -62,20 +65,24 @@ public class LuggageControl extends javax.swing.JFrame {
         graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         monitorSize = new Dimension(graphicsDevice.getDisplayMode().getWidth(), graphicsDevice.getDisplayMode().getHeight());
         
+        // Exits the application on closing this JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         initComponents();
 
         this.setSize(monitorSize);
-        this.setVisible(true);
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // circumventing static reference
-        new LuggageControl();
+        // circumventing static reference with appropiate EventQueue
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LuggageControl().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -89,6 +96,9 @@ public class LuggageControl extends javax.swing.JFrame {
         changeSettings = new screen.ChangeSettings(sjPanelEventsInstance);
         customerDetails = new screen.CustomerDetails(sjPanelEventsInstance);
         help = new screen.Help(sjPanelEventsInstance);
+        helpAdding = new screen.help.Adding(sjPanelEventsInstance);
+        helpFinding = new screen.help.Finding(sjPanelEventsInstance);
+        helpLinking = new screen.help.Linking(sjPanelEventsInstance);
         homeScreenEmployee = new screen.HomeScreenEmployee(sjPanelEventsInstance);
         homeScreenManager = new screen.HomeScreenManager(sjPanelEventsInstance);
         generateStatistics = new screen.GenerateStatistics(sjPanelEventsInstance);
@@ -137,14 +147,20 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
 
-        this.currentPanel = help;
-        this.switchJPanel(ScreenNames.HELP);
+        this.currentPanel = helpLinking;
+        this.switchJPanel(ScreenNames.Help.LINKING);
+        
+        // testing if I can switch to a specific tab
+        // and yes that works
+        helpLinking.selectTab(helpLinking.FLIGHTS_TO_LUGGAGE);
     }
 
     /**
      * Based on our currentPanel variable we remove the panel so a new one can be added.
      */
     private void removeCurrentJPanel() {
+        
+        // this giant if statement needs to be converted to a switch statement
         if(this.currentPanel instanceof screen.AddCustomer) {
             this.remove(addCustomer);
         }
@@ -159,6 +175,15 @@ public class LuggageControl extends javax.swing.JFrame {
         }
         else if(this.currentPanel instanceof screen.Help) {
             this.remove(help);
+        }
+        else if(this.currentPanel instanceof screen.help.Adding) {
+            this.remove(helpAdding);
+        }
+        else if(this.currentPanel instanceof screen.help.Finding) {
+            this.remove(helpFinding);
+        }
+        else if(this.currentPanel instanceof screen.help.Linking) {
+            this.remove(helpLinking);
         }
         else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
@@ -226,6 +251,27 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.revalidate();
                 this.repaint();
                 this.currentPanel = help;
+                break;
+            case ScreenNames.Help.ADDING:
+                this.removeCurrentJPanel();
+                this.add(helpAdding);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = helpAdding;
+                break;
+            case ScreenNames.Help.FINDING:
+                this.removeCurrentJPanel();
+                this.add(helpFinding);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = helpFinding;
+                break;
+            case ScreenNames.Help.LINKING:
+                this.removeCurrentJPanel();
+                this.add(helpLinking);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = helpLinking;
                 break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
                 this.removeCurrentJPanel();

@@ -1,5 +1,9 @@
 package constants;
 
+// A team FYI about this class, someone is gonna complain about this and make us move it to LuggageControl,
+// This is because a rule of the ITOPIA conventions is that you may not create empty classes for the sole purpose of holding static strings.
+// Not really a big problem just a heads up.
+
 /**
  * Class to store string variables of each JPanel screen name,
  * this can then be used to easily tell methods about which JPanel screen their talking,
@@ -47,4 +51,10 @@ public class ScreenNames {
     public static final String SEARCH_CUSTOMER = "SEARCH_CUSTOMER";
     public static final String SEARCH_LUGGAGE = "SEARCH_LUGGAGE";
     public static final String USER_MANAGEMENT = "USER_MANAGEMENT";
+    
+    public class Help {
+        public static final String LINKING = "LINKING";
+        public static final String ADDING = "ADDING";
+        public static final String FINDING = "FINDING";
+    }
 }
