@@ -26,7 +26,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="baseClasses.SwitchingJPanel" name="switchingJPanel1">
+    <Container class="SwitchingJPanel" name="switchingJPanel1">
 
       <Layout>
         <DimensionLayout dim="0">

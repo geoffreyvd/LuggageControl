@@ -1,24 +1,25 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package screen;
 
 import baseClasses.SwitchingJPanel;
-import java.awt.Component;
-import java.awt.event.KeyEvent;
 import javax.swing.JList;
+import main.LuggageControl;
 
 /**
  *
- * @author Corne Lukken
+ * @author root
  */
-public class Help extends SwitchingJPanel {
+public class Help extends SwitchingJPanel{
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    
     /**
      * Creates new form Help
-     * @param SJPanelEvents reference to a SwitchingJPanel event object
      */
-    public Help(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public Help(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -31,23 +32,24 @@ public class Help extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        switchingJPanel1 = new baseClasses.SwitchingJPanel();
-        screenName = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel1 = new javax.swing.JLabel();
+        buttonBack = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
         helpList = new javax.swing.JList();
-        jButton9 = new javax.swing.JButton();
 
-        switchingJPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setText("Help");
 
-        screenName.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        screenName.setText("Help");
-        screenName.setPreferredSize(new java.awt.Dimension(1920, 1080));
-
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                buttonBackbackToEmployeeScreen(evt);
+            }
+        });
+
+        jScrollPane2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                helpListKeyPressed(evt);
             }
         });
 
@@ -56,7 +58,6 @@ public class Help extends SwitchingJPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        helpList.setMaximumSize(new java.awt.Dimension(32767, 32767));
         helpList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 helpListMouseClicked(evt);
@@ -67,91 +68,45 @@ public class Help extends SwitchingJPanel {
                 helpListKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(helpList);
-
-        jButton9.setText("Example");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout switchingJPanel1Layout = new javax.swing.GroupLayout(switchingJPanel1);
-        switchingJPanel1.setLayout(switchingJPanel1Layout);
-        switchingJPanel1Layout.setHorizontalGroup(
-            switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, switchingJPanel1Layout.createSequentialGroup()
-                .addGroup(switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, switchingJPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                                .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
-                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(30, 30, 30))
-        );
-        switchingJPanel1Layout.setVerticalGroup(
-            switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                .addGroup(switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(backButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
+        jScrollPane2.setViewportView(helpList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 676, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(switchingJPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(527, 527, 527)
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(switchingJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonBack))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void buttonBackbackToEmployeeScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToEmployeeScreen
         // TODO add your handling code here:
-    }//GEN-LAST:event_backButtonActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_buttonBackbackToEmployeeScreen
 
     private void helpListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpListMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_helpListMouseClicked
 
-    /**
-     * Monitor key presses for list view
-     * @param evt event to identify the key and which item was selected during keypress
-     */
     private void helpListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpListKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if(evt.getKeyCode() == evt.VK_ENTER) {
             JList tempItem = null;
             try {
                 tempItem = (javax.swing.JList<String>)evt.getComponent();
@@ -164,11 +119,9 @@ public class Help extends SwitchingJPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JList helpList;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel screenName;
-    private baseClasses.SwitchingJPanel switchingJPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
