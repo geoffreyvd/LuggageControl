@@ -6,12 +6,18 @@ import java.awt.GraphicsEnvironment;
 import managers.SecurityMan;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import constants.Styling;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  * Root class off application creates the main windows
  * @author Team3 Fys
  */
 public class LuggageControl extends javax.swing.JFrame {
+    // <editor-fold defaultstate="collapsed" desc="Screen objects">
     private screen.AddCustomer addCustomer;
     private screen.AddLuggage addLuggage;
     private screen.AddUser addUser;
@@ -32,8 +38,12 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.LuggageDetails luggageDetails;
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
-    private oldscreensremake.UserManagement userManagement;
+    // private screen.UserManagement userManagement;
+    // </editor-fold>
 
+    private JMenuBar menuBar;
+    
+    // keeps a reference to the current active panel
     private SwitchingJPanel currentPanel;
 
     private GraphicsDevice graphicsDevice;
@@ -81,6 +91,8 @@ public class LuggageControl extends javax.swing.JFrame {
      * memory consumption.
      */
     private void initComponents() {
+        
+        // <editor-fold defaultstate="collapsed" desc="Screen objects">
         addCustomer = new screen.AddCustomer(this);
         addLuggage = new screen.AddLuggage(this);
         addUser = new screen.AddUser(this);
@@ -101,68 +113,65 @@ public class LuggageControl extends javax.swing.JFrame {
         luggageDetails = new screen.LuggageDetails(this);
         searchCustomer = new screen.SearchCustomer(this);
         searchLuggage = new screen.SearchLuggage(this);
-        userManagement = new oldscreensremake.UserManagement(this);
+        //userManagement = new screen.UserManagement(this);
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
-
         addLuggage.setSize(monitorSize);
         addLuggage.setVisible(true);
-        
         addUser.setSize(monitorSize);
         addUser.setVisible(true);
-
         changeSettings.setSize(monitorSize);
         changeSettings.setVisible(true);
-        
         customerDetails.setSize(monitorSize);
         customerDetails.setVisible(true);
-        
         deleteCustomer.setSize(monitorSize);
         deleteCustomer.setVisible(true);
-        
         deleteLuggage.setSize(monitorSize);
         deleteLuggage.setVisible(true);
-        
         example.setSize(monitorSize);
         example.setVisible(true);
-        
         generateStatistics.setSize(monitorSize);
         generateStatistics.setVisible(true);
-        
         help.setSize(monitorSize);
         help.setVisible(true);
-        
         homeScreenAdministrator.setSize(monitorSize);
         homeScreenAdministrator.setVisible(true);
-
         homeScreenEmployee.setSize(monitorSize);
         homeScreenEmployee.setVisible(true);
-        
         homeScreenManager.setSize(monitorSize);
         homeScreenManager.setVisible(true);
-       
         loginScreen.setSize(monitorSize);
         loginScreen.setVisible(true);
-        
         luggageDetails.setSize(monitorSize);
         luggageDetails.setVisible(true);
-
         searchCustomer.setSize(monitorSize);
         searchCustomer.setVisible(true);
-
         searchLuggage.setSize(monitorSize);
         searchLuggage.setVisible(true);
-
-        userManagement.setSize(monitorSize);
-        userManagement.setVisible(true);
-
-        this.currentPanel = helpLinking;
+        //userManagement.setSize(monitorSize);
+        //userManagement.setVisible(true);
+        // </editor-fold>
+        
+        menuBar = new JMenuBar();
+        menuBar.setSize(1920, 50);
+        menuBar.setBackground(Styling.CORENDON_RED);
+        menuBar.setVisible(true);
+        
+        JMenuItem menuItem = new JMenuItem();
+        menuItem.setText("Test item");
+        menuItem.setForeground(Color.WHITE);
+        menuItem.setBackground(Styling.CORENDON_RED);
+        menuBar.add(menuItem);
+        
+        this.add(menuBar);
+        
+        this.currentPanel = loginScreen;
         this.switchJPanel(ScreenNames.LOGINSCREEN);
         
         // testing if I can switch to a specific tab
         // and yes that works
-        helpLinking.selectTab(helpLinking.CUSTOMER_TO_FLIGHTS);
+        // helpLinking.selectTab(helpLinking.CUSTOMER_TO_FLIGHTS);
     }
 
     /**
@@ -231,9 +240,9 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
-            this.remove(userManagement);
-        } 
+//        else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
+//            this.remove(userManagement);
+//        } 
     }
     
     /**
@@ -361,13 +370,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = searchLuggage;
                 break;
-            case ScreenNames.USER_MANAGEMENT:
-                this.removeCurrentJPanel();
-                this.add(userManagement);
-                this.revalidate();
-                this.repaint();
-                this.currentPanel = userManagement;
-                break;
+//            case ScreenNames.USER_MANAGEMENT:
+//                this.removeCurrentJPanel();
+//                this.add(userManagement);
+//                this.revalidate();
+//                this.repaint();
+//                this.currentPanel = userManagement;
+//                break;
             default:
                 System.out.println("Trying to switch to screen that does not exist!");
                 break;
