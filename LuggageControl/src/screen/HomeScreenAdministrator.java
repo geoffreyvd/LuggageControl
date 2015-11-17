@@ -6,20 +6,16 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
  * @author user
  */
 public class HomeScreenAdministrator extends SwitchingJPanel{
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
 
-    /**
-     * Creates new form HomeScreenAdministrator
-     */
-    public HomeScreenAdministrator(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference; 
+    public HomeScreenAdministrator(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 

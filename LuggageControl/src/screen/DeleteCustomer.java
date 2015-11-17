@@ -6,22 +6,17 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
  * @author Gebruiker
  */
 public class DeleteCustomer extends SwitchingJPanel {
-    
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    
-    public DeleteCustomer(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
-        initComponents();
+
+    public DeleteCustomer(LuggageControl luggageControl) {
+        super(luggageControl);
     }
-    /**
-     * Creates new form DeleteCustomer
-     */
 
     /**
      * This method is called from within the constructor to initialize the form.

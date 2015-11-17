@@ -46,6 +46,9 @@
           <Dimension value="[1920, 1080]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SwitchingJPanel(this.luggageControl);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

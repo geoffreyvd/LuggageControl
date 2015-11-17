@@ -1,9 +1,9 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import javax.swing.JList;
+import main.LuggageControl;
 
 /**
  *
@@ -11,14 +11,8 @@ import javax.swing.JList;
  */
 public class Help extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    
-    /**
-     * Creates new form Help
-     * @param SJPanelEvents reference to a SwitchingJPanel event object
-     */
-    public Help(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public Help(LuggageControl luggageControl) {
+        super(luggageControl);
         initComponents();
     }
 
@@ -31,7 +25,7 @@ public class Help extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        switchingJPanel1 = new baseClasses.SwitchingJPanel();
+        switchingJPanel1 = new SwitchingJPanel(this.luggageControl);
         screenName = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -98,18 +92,15 @@ public class Help extends SwitchingJPanel {
         switchingJPanel1Layout.setVerticalGroup(
             switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(switchingJPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(switchingJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(switchingJPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(backButton)))
+                    .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

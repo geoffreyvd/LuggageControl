@@ -1,6 +1,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import main.LuggageControl;
 
 /**
  *
@@ -8,13 +9,9 @@ import baseClasses.SwitchingJPanel;
  */
 public class AddCustomer extends SwitchingJPanel {
 
-    private SwitchingJPanel.SJPanelEvents sJPanelEventsInstance;
-    
-    /**
-     * Creates new form AddCustomer
-     */
-    public AddCustomer(SwitchingJPanel.SJPanelEvents sJPanelEventsReference) {
-        sJPanelEventsInstance = sJPanelEventsReference;
+    public AddCustomer(LuggageControl luggageControl) {
+        super(luggageControl);
+        this.luggageControl.setTitle("Now every screen can change the title lol!");
         initComponents();
     }
 

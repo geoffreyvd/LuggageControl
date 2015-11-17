@@ -39,32 +39,6 @@ public class LuggageControl extends javax.swing.JFrame {
     
     // security manager and event interface
     private SecurityMan secman;
-    SecurityMan.SecurityUpdates secManUpdates = new SecurityMan.SecurityUpdates() {
-        
-        @Override
-        public void userTimeOut() {
-            System.out.println("Calling! SecurityMan do you copy?");
-        }
-        
-        @Override
-        public void switchPanel(String screenName) {
-            switchJPanel(screenName);
-        }
-    };
-
-    // event to switch from panel
-    private SwitchingJPanel.SJPanelEvents sjPanelEventsInstance = new SwitchingJPanel.SJPanelEvents() {
-
-        @Override
-        public void switchPanel(String screenName) {
-            switchJPanel(screenName);
-        }
-        
-        @Override
-        public void loginUser(String username, String password) {
-            
-        }
-    };
     
     /**
      *
@@ -72,7 +46,7 @@ public class LuggageControl extends javax.swing.JFrame {
     public LuggageControl() {
         // parse the refernence of our interface to the security manager class
         // so it can call us.
-        secman = new SecurityMan(secManUpdates);
+        //secman = new SecurityMan(this);
         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
@@ -105,27 +79,6 @@ public class LuggageControl extends javax.swing.JFrame {
      * memory consumption.
      */
     private void initComponents() {
-        addCustomer = new screen.AddCustomer(sjPanelEventsInstance);
-        addLuggage = new screen.AddLuggage(sjPanelEventsInstance);
-        addUser = new screen.AddUser(sjPanelEventsInstance);
-        changeSettings = new screen.ChangeSettings(sjPanelEventsInstance);
-        customerDetails = new screen.CustomerDetails(sjPanelEventsInstance);
-        deleteCustomer = new screen.DeleteCustomer(sjPanelEventsInstance);
-        deleteLuggage = new screen.DeleteLuggage(sjPanelEventsInstance);
-        example = new screen.Example(sjPanelEventsInstance);
-        generateStatistics = new screen.GenerateStatistics(sjPanelEventsInstance);
-        help = new screen.Help(sjPanelEventsInstance);
-        helpAdding = new screen.help.Adding(sjPanelEventsInstance);
-        helpFinding = new screen.help.Finding(sjPanelEventsInstance);
-        helpLinking = new screen.help.Linking(sjPanelEventsInstance);
-        homeScreenAdministrator = new screen.HomeScreenAdministrator(sjPanelEventsInstance);
-        homeScreenEmployee = new screen.HomeScreenEmployee(sjPanelEventsInstance);
-        homeScreenManager = new screen.HomeScreenManager(sjPanelEventsInstance);
-        loginScreen = new screen.LoginScreen(sjPanelEventsInstance);
-        luggageDetails = new screen.LuggageDetails(sjPanelEventsInstance);
-        searchCustomer = new screen.SearchCustomer(sjPanelEventsInstance);
-        searchLuggage = new screen.SearchLuggage(sjPanelEventsInstance);
-        userManagement = new screen.UserManagement(sjPanelEventsInstance);
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
