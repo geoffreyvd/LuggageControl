@@ -6,6 +6,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
 
 /**
  *
@@ -32,76 +33,76 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
+        labelHome = new javax.swing.JLabel();
+        buttonHelp = new javax.swing.JButton();
+        buttonChangeSettings = new javax.swing.JButton();
+        buttonDeleteCustomer = new javax.swing.JButton();
+        buttonDeleteLuggage = new javax.swing.JButton();
+        buttonUserManagement = new javax.swing.JButton();
+        buttonAddUser = new javax.swing.JButton();
+        labelDatabaseManagement = new javax.swing.JLabel();
+        buttonDatabaseImport = new javax.swing.JButton();
+        buttonDatabaseExport = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setText("Home");
+        labelHome.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelHome.setText("Home");
 
-        jButton17.setText("Help");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        buttonHelp.setText("Help");
+        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                buttonHelpActionPerformed(evt);
             }
         });
 
-        jButton18.setText("Change settings");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        buttonChangeSettings.setText("Change settings");
+        buttonChangeSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                buttonChangeSettingsActionPerformed(evt);
             }
         });
 
-        jButton19.setText("Delete costumer");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        buttonDeleteCustomer.setText("Delete costumer");
+        buttonDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                buttonDeleteCustomerActionPerformed(evt);
             }
         });
 
-        jButton20.setText("Delete luggage");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        buttonDeleteLuggage.setText("Delete luggage");
+        buttonDeleteLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                buttonDeleteLuggageActionPerformed(evt);
             }
         });
 
-        jButton21.setText("User management");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
+        buttonUserManagement.setText("User management");
+        buttonUserManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
+                buttonUserManagementActionPerformed(evt);
             }
         });
 
-        jButton22.setText("Add user");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
+        buttonAddUser.setText("Add user");
+        buttonAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
+                buttonAddUserActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel2.setText("Database management");
+        labelDatabaseManagement.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelDatabaseManagement.setText("Database management");
 
-        jButton23.setText("Database import");
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
+        buttonDatabaseImport.setText("Database import");
+        buttonDatabaseImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
+                buttonDatabaseImportActionPerformed(evt);
             }
         });
 
-        jButton24.setText("Database export");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
+        buttonDatabaseExport.setText("Database export");
+        buttonDatabaseExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
+                buttonDatabaseExportActionPerformed(evt);
             }
         });
 
@@ -113,23 +114,23 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(labelHome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addComponent(labelDatabaseManagement)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(buttonChangeSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonDeleteLuggage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDeleteCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonUserManagement, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonDatabaseExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDatabaseImport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 369, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
@@ -139,71 +140,71 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton17)
+                        .addComponent(buttonHelp)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton18))
+                        .addComponent(buttonChangeSettings))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(labelHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDatabaseManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton19)
-                    .addComponent(jButton23))
+                    .addComponent(buttonDeleteCustomer)
+                    .addComponent(buttonDatabaseImport))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton20)
-                    .addComponent(jButton24))
+                    .addComponent(buttonDeleteLuggage)
+                    .addComponent(buttonDatabaseExport))
                 .addGap(18, 18, 18)
-                .addComponent(jButton21)
+                .addComponent(buttonUserManagement)
                 .addGap(18, 18, 18)
-                .addComponent(jButton22)
+                .addComponent(buttonAddUser)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        sJPanelEventsInstance.switchPanel(ScreenNames.HELP);
+    }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+    private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
+        sJPanelEventsInstance.switchPanel(ScreenNames.CHANGE_SETTINGS);
+    }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
+    private void buttonDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteCustomerActionPerformed
+        sJPanelEventsInstance.switchPanel(ScreenNames.DELETE_CUSTOMER);
+    }//GEN-LAST:event_buttonDeleteCustomerActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    private void buttonDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteLuggageActionPerformed
+        sJPanelEventsInstance.switchPanel(ScreenNames.DELETE_LUGGAGE);
+    }//GEN-LAST:event_buttonDeleteLuggageActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
+    private void buttonUserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserManagementActionPerformed
+        sJPanelEventsInstance.switchPanel(ScreenNames.USER_MANAGEMENT);
+    }//GEN-LAST:event_buttonUserManagementActionPerformed
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
+    private void buttonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddUserActionPerformed
+        sJPanelEventsInstance.switchPanel(ScreenNames.ADD_USER);
+    }//GEN-LAST:event_buttonAddUserActionPerformed
 
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+    private void buttonDatabaseImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseImportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
+    }//GEN-LAST:event_buttonDatabaseImportActionPerformed
 
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+    private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton24ActionPerformed
+    }//GEN-LAST:event_buttonDatabaseExportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton buttonAddUser;
+    private javax.swing.JButton buttonChangeSettings;
+    private javax.swing.JButton buttonDatabaseExport;
+    private javax.swing.JButton buttonDatabaseImport;
+    private javax.swing.JButton buttonDeleteCustomer;
+    private javax.swing.JButton buttonDeleteLuggage;
+    private javax.swing.JButton buttonHelp;
+    private javax.swing.JButton buttonUserManagement;
+    private javax.swing.JLabel labelDatabaseManagement;
+    private javax.swing.JLabel labelHome;
     // End of variables declaration//GEN-END:variables
 }
