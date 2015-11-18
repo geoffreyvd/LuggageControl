@@ -1,6 +1,6 @@
 package screen.help;
 
-import baseClasses.ErrorJFrame;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import main.LuggageControl;
 
@@ -24,7 +24,7 @@ public class Linking extends SwitchingJPanel {
     /**
      * Tells the screen to switch to a specific tab
      * Use the jPanel class its static strings to identify the tab.
-     * @param String string of the tab identifying constants.
+     * @param tabName string of the tab identifying constants.
      */
     public void selectTab(String tabName) {
         if(tabName.equals(CUSTOMER_TO_FLIGHTS)) {
@@ -40,8 +40,7 @@ public class Linking extends SwitchingJPanel {
             linkingTab.setSelectedComponent(lostFoundLuggageP);
         }
         else {
-            // does not display errors yet.
-            new ErrorJFrame();
+            new ErrorJDialog("Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 
