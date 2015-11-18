@@ -8,7 +8,6 @@ package snippits;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import managers.DatabaseMan;
-import sun.applet.Main;
 
 /**
  *

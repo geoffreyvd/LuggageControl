@@ -24,7 +24,7 @@ public class Linking extends SwitchingJPanel {
     /**
      * Tells the screen to switch to a specific tab
      * Use the jPanel class its static strings to identify the tab.
-     * @param String string of the tab identifying constants.
+     * @param tabName string of the tab identifying constants.
      */
     public void selectTab(String tabName) {
         if(tabName.equals(CUSTOMER_TO_FLIGHTS)) {

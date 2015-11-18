@@ -48,7 +48,7 @@ public class SecurityMan {
      * kicks I put this here anyway just kidding I'm stupid where using a timer,
      * yes you need to create an object of this class.
      *
-     * @param secUpdatesReference instance of abstract securityUpdates class to
+     * @param luggageControl reference to main class
      * push events
      */
     public SecurityMan(LuggageControl luggageControl) {
@@ -139,9 +139,19 @@ public class SecurityMan {
         return originalString;
     }
 
-    public void logInUser(String username, String password) {
+    /**
+     * Log the user in and handle session and permissions
+     * @param username username as described in database
+     * @param password password as described in database
+     * @return true if successful, false when failed.
+     */
+    public boolean logInUser(String username, String password) {
         if (username.equals(password)) {
             this.luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

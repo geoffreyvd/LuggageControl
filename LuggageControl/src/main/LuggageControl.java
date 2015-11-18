@@ -1,5 +1,6 @@
 package main;
 
+import baseClasses.ErrorJDialog;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -177,7 +178,8 @@ public class LuggageControl extends javax.swing.JFrame {
         // and yes that works
         // helpLinking.selectTab("Not available");
     }
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Screen switching methods">
     /**
      * Based on our currentPanel variable we remove the panel so a new one can be added.
      */
@@ -386,14 +388,17 @@ public class LuggageControl extends javax.swing.JFrame {
                 break;
         }
     }
+    // </editor-fold>
     
     /**
-     * 
-     * @param username
-     * @param password 
+     * Parse to login to the security manager and attempt a login sequence.
+     * @param username the username as described in the database
+     * @param password the password as described in the database
      */
     public void loginUser(String username, String password) {
-        
+        if(secman.logInUser(username, password)) {
+            new ErrorJDialog("User logged in!", "You did it!");
+        }
     }
     
     /**
