@@ -29,13 +29,13 @@ public class LuggageDetails extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lableLuggageDetails = new javax.swing.JLabel();
-        lableFlightnumber = new javax.swing.JLabel();
-        lableFlightnumberNumber = new javax.swing.JLabel();
-        lableOrigin = new javax.swing.JLabel();
-        lableOriginPlace = new javax.swing.JLabel();
-        lableDestination = new javax.swing.JLabel();
-        lableDestinationPlace = new javax.swing.JLabel();
+        labelLuggageDetails = new javax.swing.JLabel();
+        labelFlightnumber = new javax.swing.JLabel();
+        labelFlightnumberNumber = new javax.swing.JLabel();
+        labelOrigin = new javax.swing.JLabel();
+        labelOriginPlace = new javax.swing.JLabel();
+        labelDestination = new javax.swing.JLabel();
+        labelDestinationPlace = new javax.swing.JLabel();
         textFieldLocation = new javax.swing.JFormattedTextField();
         textFieldOwnerID = new javax.swing.JFormattedTextField();
         comboBoxLuggageStatus = new javax.swing.JComboBox();
@@ -44,7 +44,7 @@ public class LuggageDetails extends SwitchingJPanel {
         textFieldSize = new javax.swing.JFormattedTextField();
         textFieldDescription = new javax.swing.JFormattedTextField();
         separatorCenter = new javax.swing.JSeparator();
-        lableCustomerSearch = new javax.swing.JLabel();
+        labelCustomerSearch = new javax.swing.JLabel();
         textboxSearchName = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCustomerSearch = new javax.swing.JTable();
@@ -54,26 +54,26 @@ public class LuggageDetails extends SwitchingJPanel {
         buttonBack = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
 
-        lableLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        lableLuggageDetails.setText("Luggage details");
+        labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelLuggageDetails.setText("Luggage details");
 
-        lableFlightnumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lableFlightnumber.setText("Flightnumber: ");
+        labelFlightnumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelFlightnumber.setText("Flightnumber: ");
 
-        lableFlightnumberNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lableFlightnumberNumber.setText(" XXXXXXXXX");
+        labelFlightnumberNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelFlightnumberNumber.setText(" XXXXXXXXX");
 
-        lableOrigin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lableOrigin.setText("Origin: ");
+        labelOrigin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelOrigin.setText("Origin: ");
 
-        lableOriginPlace.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lableOriginPlace.setText(" XXXXXXXXXX");
+        labelOriginPlace.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelOriginPlace.setText(" XXXXXXXXXX");
 
-        lableDestination.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lableDestination.setText("Destination: ");
+        labelDestination.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDestination.setText("Destination: ");
 
-        lableDestinationPlace.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lableDestinationPlace.setText(" XXXXXXXXX");
+        labelDestinationPlace.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDestinationPlace.setText(" XXXXXXXXX");
 
         textFieldLocation.setText("Location");
 
@@ -89,8 +89,8 @@ public class LuggageDetails extends SwitchingJPanel {
 
         textFieldDescription.setText("Description");
 
-        lableCustomerSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        lableCustomerSearch.setText("Customer Search");
+        labelCustomerSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelCustomerSearch.setText("Customer Search");
 
         textboxSearchName.setText("Name");
 
@@ -165,18 +165,18 @@ public class LuggageDetails extends SwitchingJPanel {
                         .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(textFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lableOrigin)
+                            .addComponent(labelOrigin)
                             .addGap(0, 0, 0)
-                            .addComponent(lableOriginPlace))
+                            .addComponent(labelOriginPlace))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lableFlightnumber)
+                            .addComponent(labelFlightnumber)
                             .addGap(0, 0, 0)
-                            .addComponent(lableFlightnumberNumber))
-                        .addComponent(lableLuggageDetails)
+                            .addComponent(labelFlightnumberNumber))
+                        .addComponent(labelLuggageDetails)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lableDestination)
+                            .addComponent(labelDestination)
                             .addGap(0, 0, 0)
-                            .addComponent(lableDestinationPlace)))
+                            .addComponent(labelDestinationPlace)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -186,7 +186,7 @@ public class LuggageDetails extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lableCustomerSearch)
+                        .addComponent(labelCustomerSearch)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,19 +203,19 @@ public class LuggageDetails extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lableLuggageDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelLuggageDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lableFlightnumber)
-                            .addComponent(lableFlightnumberNumber))
+                            .addComponent(labelFlightnumber)
+                            .addComponent(labelFlightnumberNumber))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lableOrigin)
-                            .addComponent(lableOriginPlace))
+                            .addComponent(labelOrigin)
+                            .addComponent(labelOriginPlace))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lableDestination)
-                            .addComponent(lableDestinationPlace))
+                            .addComponent(labelDestination)
+                            .addComponent(labelDestinationPlace))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(textFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -238,7 +238,7 @@ public class LuggageDetails extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lableCustomerSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelCustomerSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(textboxSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -282,14 +282,14 @@ public class LuggageDetails extends SwitchingJPanel {
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JComboBox comboBoxLuggageStatus;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lableCustomerSearch;
-    private javax.swing.JLabel lableDestination;
-    private javax.swing.JLabel lableDestinationPlace;
-    private javax.swing.JLabel lableFlightnumber;
-    private javax.swing.JLabel lableFlightnumberNumber;
-    private javax.swing.JLabel lableLuggageDetails;
-    private javax.swing.JLabel lableOrigin;
-    private javax.swing.JLabel lableOriginPlace;
+    private javax.swing.JLabel labelCustomerSearch;
+    private javax.swing.JLabel labelDestination;
+    private javax.swing.JLabel labelDestinationPlace;
+    private javax.swing.JLabel labelFlightnumber;
+    private javax.swing.JLabel labelFlightnumberNumber;
+    private javax.swing.JLabel labelLuggageDetails;
+    private javax.swing.JLabel labelOrigin;
+    private javax.swing.JLabel labelOriginPlace;
     private javax.swing.JSeparator separatorCenter;
     private javax.swing.JTable tableCustomerSearch;
     private javax.swing.JFormattedTextField textFieldColor;

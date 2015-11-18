@@ -117,6 +117,7 @@ public class LuggageControl extends javax.swing.JFrame {
         searchCustomer = new screen.SearchCustomer(this);
         searchLuggage = new screen.SearchLuggage(this);
         userManagement = new screen.UserManagement(this);
+        // </editor-fold>
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
@@ -154,7 +155,9 @@ public class LuggageControl extends javax.swing.JFrame {
         searchLuggage.setVisible(true);
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
-        // </editor-fold>
+
+        this.currentPanel = addLuggage;
+        this.switchJPanel(ScreenNames.ADD_LUGGAGE);
         
         /* Corendon red menubar
         menuBar = new JMenuBar();
@@ -171,15 +174,14 @@ public class LuggageControl extends javax.swing.JFrame {
         this.add(menuBar);
         */
         
-        this.currentPanel = help;
-        this.switchJPanel(ScreenNames.HELP);
-        
+        this.currentPanel = loginScreen;
+        this.switchJPanel(ScreenNames.LOGINSCREEN);
         // testing if I can switch to a specific tab
         // and yes that works
         // helpLinking.selectTab("Not available");
     }
     
-    // <editor-fold defaultstate="collapsed" desc="Screen switching methods">
+    
     /**
      * Based on our currentPanel variable we remove the panel so a new one can be added.
      */
@@ -246,9 +248,10 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.SearchLuggage) {
             this.remove(searchLuggage);
         }
-//        else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
-//            this.remove(userManagement);
-//        } 
+
+        else if(this.currentPanel instanceof screen.UserManagement) {
+            this.remove(userManagement);
+        }
     }
     
     /**
