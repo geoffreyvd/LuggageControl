@@ -156,8 +156,7 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
 
-        this.currentPanel = homeScreenAdministrator;
-        this.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        
         
         /* Corendon red menubar
         menuBar = new JMenuBar();
@@ -174,12 +173,8 @@ public class LuggageControl extends javax.swing.JFrame {
         this.add(menuBar);
         */
         
-<<<<<<< HEAD
-
-=======
         this.currentPanel = loginScreen;
         this.switchJPanel(ScreenNames.LOGINSCREEN);
->>>>>>> origin/develop
         // testing if I can switch to a specific tab
         // and yes that works
         // helpLinking.selectTab("Not available");
@@ -403,10 +398,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = userManagement;
                 break;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/develop
             default:
                 new ErrorJDialog("Error: screen does not exist", (new Throwable()).getStackTrace());
                 break;

@@ -22,7 +22,7 @@ public class DataBaseQueryExample {
         DatabaseMan DB1 = new DatabaseMan();
 
         //ResulSet result is a table wth values
-        ResultSet result = DB1.Query("select * from wsdatabase.cijfer");
+        ResultSet result = DB1.Query("select * from users");
         try {
             //This while loop, loops trough every row in result
             while (result.next()) {
@@ -39,7 +39,12 @@ public class DataBaseQueryExample {
         DatabaseMan DB2 = new DatabaseMan();
 
         //This query will return a string, it only returns 1 value!
-        String result1 = DB2.QueryOneResult("select * from wsdatabase.cijfer");
+        String result1 = DB2.QueryOneResult("select * from users");
+        System.out.println(result1);
+        
+        DatabaseMan DB3 = new DatabaseMan();
+        
+        String result2 = DB3.QueryOneResult("select users.permissions from users where username = \"geoffreyvd\" and password = \"gucciguc\"");
         System.out.println(result1);
     }
 }

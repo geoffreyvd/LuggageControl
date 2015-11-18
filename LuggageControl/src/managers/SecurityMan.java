@@ -45,11 +45,10 @@ public class SecurityMan {
     // </editor-fold>
     /**
      * You probably don't need to create an object of this class, but just for
-     * kicks I put this here anyway just kidding I'm stupid where using a timer,
+     * kicks I put this here anyway just kidding I'm stupid we're using a timer,
      * yes you need to create an object of this class.
      *
-     * @param luggageControl reference to main class
-     * push events
+     * @param luggageControl reference to main class push events
      */
     public SecurityMan(LuggageControl luggageControl) {
 
@@ -141,16 +140,35 @@ public class SecurityMan {
 
     /**
      * Log the user in and handle session and permissions
+     *
      * @param username username as described in database
      * @param password password as described in database
      * @return true if successful, false when failed.
      */
     public boolean logInUser(String username, String password) {
-        if (username.equals(password)) {
-            this.luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
+        DatabaseMan DB2 = new DatabaseMan();
+        //This query will return a string, it only returns 1 value!
+        String result = DB2.QueryOneResult("select users.permissions from users where username = \""
+                                            + username + "\" and password = \"" + password + "\"");
+        if (result != null) {
+            System.out.println("succesful query");
+            int resultInt = Integer.parseInt(result);
+            if (resultInt == 0) {
+                //oude gebruiker gegevens zonder inlog
+                return false;
+            }else if (resultInt == 1) {
+                //gebruiker
+                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+            }else if (resultInt == 2) {
+                //manager
+                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+            }else if (resultInt == 3) {
+                //admin
+                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+            }
             return true;
-        }
-        else {
+        } else {
+            System.out.println("De opgegeven gebruiker niet gevonden in de database");
             return false;
         }
     }

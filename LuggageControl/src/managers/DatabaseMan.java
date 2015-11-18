@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class DatabaseMan {
 
     private final String HOST_NAME = "localhost";
-    private final String DATABASE_USERNAME = "luggagecontroluser";
+    private final String DATABASE_USERNAME = "lugcontroluser";
     private final String DATABASE_PASSWORD = "verysecurepassword";
     private final String DATABASE_NAME = "LuggageControlData";
 
