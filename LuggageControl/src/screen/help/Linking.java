@@ -12,8 +12,8 @@ public class Linking extends SwitchingJPanel {
     
     // static variables used to identify tabs
     public static final String CUSTOMER_TO_FLIGHTS = "CUSTOMER_TO_FLIGHTS";
-    public static final String CUSTOMER_TO_LUGGAGE = "CUSTOMER_TO_LUGGAGE";
     public static final String FLIGHTS_TO_LUGGAGE = "FLIGHTS_TO_LUGGAGE";
+    public static final String LUGGAGE_TO_CUSTOMER = "LUGGAGE_TO_CUSTOMER";
     public static final String LUGGAGE_TO_LUGGAGE = "LUGGAGE_TO_LUGGAGE";
 
     public Linking(LuggageControl luggageControl) {
@@ -28,13 +28,13 @@ public class Linking extends SwitchingJPanel {
      */
     public void selectTab(String tabName) {
         if(tabName.equals(CUSTOMER_TO_FLIGHTS)) {
-            linkingTab.setSelectedComponent(customerFlightsP);
-        }
-        else if(tabName.equals(CUSTOMER_TO_LUGGAGE)) {
-            linkingTab.setSelectedComponent(customerLuggageP);
+            linkingTab.setSelectedComponent(panelCustomersFlights);
         }
         else if(tabName.equals(FLIGHTS_TO_LUGGAGE)) {
-            linkingTab.setSelectedComponent(flightLuggageP);
+            linkingTab.setSelectedComponent(panelFlightsLuggage);
+        }
+        else if(tabName.equals(LUGGAGE_TO_CUSTOMER)) {
+            linkingTab.setSelectedComponent(panelLuggageCustomers);
         }
         else if(tabName.equals(LUGGAGE_TO_LUGGAGE)) {
             linkingTab.setSelectedComponent(lostFoundLuggageP);
@@ -54,9 +54,9 @@ public class Linking extends SwitchingJPanel {
 
         screenName = new javax.swing.JLabel();
         linkingTab = new javax.swing.JTabbedPane();
-        customerFlightsP = new javax.swing.JPanel();
-        customerLuggageP = new javax.swing.JPanel();
-        flightLuggageP = new javax.swing.JPanel();
+        panelCustomersFlights = new javax.swing.JPanel();
+        panelFlightsLuggage = new javax.swing.JPanel();
+        panelLuggageCustomers = new javax.swing.JPanel();
         lostFoundLuggageP = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -65,44 +65,44 @@ public class Linking extends SwitchingJPanel {
         screenName.setText("Help - linking");
         screenName.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        javax.swing.GroupLayout customerFlightsPLayout = new javax.swing.GroupLayout(customerFlightsP);
-        customerFlightsP.setLayout(customerFlightsPLayout);
-        customerFlightsPLayout.setHorizontalGroup(
-            customerFlightsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelCustomersFlightsLayout = new javax.swing.GroupLayout(panelCustomersFlights);
+        panelCustomersFlights.setLayout(panelCustomersFlightsLayout);
+        panelCustomersFlightsLayout.setHorizontalGroup(
+            panelCustomersFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1855, Short.MAX_VALUE)
         );
-        customerFlightsPLayout.setVerticalGroup(
-            customerFlightsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelCustomersFlightsLayout.setVerticalGroup(
+            panelCustomersFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 781, Short.MAX_VALUE)
         );
 
-        linkingTab.addTab("Customer to flights", customerFlightsP);
+        linkingTab.addTab("Customer to flights", panelCustomersFlights);
 
-        javax.swing.GroupLayout customerLuggagePLayout = new javax.swing.GroupLayout(customerLuggageP);
-        customerLuggageP.setLayout(customerLuggagePLayout);
-        customerLuggagePLayout.setHorizontalGroup(
-            customerLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelFlightsLuggageLayout = new javax.swing.GroupLayout(panelFlightsLuggage);
+        panelFlightsLuggage.setLayout(panelFlightsLuggageLayout);
+        panelFlightsLuggageLayout.setHorizontalGroup(
+            panelFlightsLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1855, Short.MAX_VALUE)
         );
-        customerLuggagePLayout.setVerticalGroup(
-            customerLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelFlightsLuggageLayout.setVerticalGroup(
+            panelFlightsLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 781, Short.MAX_VALUE)
         );
 
-        linkingTab.addTab("Customer to luggage", customerLuggageP);
+        linkingTab.addTab("Flights to luggage", panelFlightsLuggage);
 
-        javax.swing.GroupLayout flightLuggagePLayout = new javax.swing.GroupLayout(flightLuggageP);
-        flightLuggageP.setLayout(flightLuggagePLayout);
-        flightLuggagePLayout.setHorizontalGroup(
-            flightLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelLuggageCustomersLayout = new javax.swing.GroupLayout(panelLuggageCustomers);
+        panelLuggageCustomers.setLayout(panelLuggageCustomersLayout);
+        panelLuggageCustomersLayout.setHorizontalGroup(
+            panelLuggageCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1855, Short.MAX_VALUE)
         );
-        flightLuggagePLayout.setVerticalGroup(
-            flightLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelLuggageCustomersLayout.setVerticalGroup(
+            panelLuggageCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 781, Short.MAX_VALUE)
         );
 
-        linkingTab.addTab("Flights to luggage", flightLuggageP);
+        linkingTab.addTab("Luggage to customers", panelLuggageCustomers);
 
         javax.swing.GroupLayout lostFoundLuggagePLayout = new javax.swing.GroupLayout(lostFoundLuggageP);
         lostFoundLuggageP.setLayout(lostFoundLuggagePLayout);
@@ -143,11 +143,11 @@ public class Linking extends SwitchingJPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel customerFlightsP;
-    private javax.swing.JPanel customerLuggageP;
-    private javax.swing.JPanel flightLuggageP;
     private javax.swing.JTabbedPane linkingTab;
     private javax.swing.JPanel lostFoundLuggageP;
+    private javax.swing.JPanel panelCustomersFlights;
+    private javax.swing.JPanel panelFlightsLuggage;
+    private javax.swing.JPanel panelLuggageCustomers;
     private javax.swing.JLabel screenName;
     // End of variables declaration//GEN-END:variables
 }

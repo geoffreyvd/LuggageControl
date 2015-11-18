@@ -171,8 +171,8 @@ public class LuggageControl extends javax.swing.JFrame {
         this.add(menuBar);
         */
         
-        this.currentPanel = loginScreen;
-        this.switchJPanel(ScreenNames.LOGINSCREEN);
+        this.currentPanel = help;
+        this.switchJPanel(ScreenNames.HELP);
         
         // testing if I can switch to a specific tab
         // and yes that works
@@ -376,16 +376,35 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = searchLuggage;
                 break;
-//            case ScreenNames.USER_MANAGEMENT:
-//                this.removeCurrentJPanel();
-//                this.add(userManagement);
-//                this.revalidate();
-//                this.repaint();
-//                this.currentPanel = userManagement;
-//                break;
-            default:
-                System.out.println("Trying to switch to screen that does not exist!");
+            case ScreenNames.USER_MANAGEMENT:
+                this.removeCurrentJPanel();
+                this.add(userManagement);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = userManagement;
                 break;
+            default:
+                new ErrorJDialog("Error: screen does not exist", (new Throwable()).getStackTrace());
+                break;
+        }
+    }
+    
+    /**
+     * 
+     * @param tabName 
+     */
+    public void switchTab(String tabName, String helpScreen) {
+        if(helpScreen == ScreenNames.Help.ADDING) {
+            helpAdding.selectTab(tabName);
+        }
+        else if(helpScreen == ScreenNames.Help.FINDING) {
+            helpFinding.selectTab(tabName);
+        }
+        else if(helpScreen == ScreenNames.Help.LINKING) {
+            helpLinking.selectTab(tabName);
+        }
+        else {
+            new ErrorJDialog("Error: screen does not exist", (new Throwable()).getStackTrace());
         }
     }
     // </editor-fold>

@@ -62,7 +62,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="customerFlightsP">
+        <Container class="javax.swing.JPanel" name="panelCustomersFlights">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Customer to flights">
@@ -84,11 +84,11 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="javax.swing.JPanel" name="customerLuggageP">
+        <Container class="javax.swing.JPanel" name="panelFlightsLuggage">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Customer to luggage">
-                <Property name="tabTitle" type="java.lang.String" value="Customer to luggage"/>
+              <JTabbedPaneConstraints tabName="Flights to luggage">
+                <Property name="tabTitle" type="java.lang.String" value="Flights to luggage"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -106,11 +106,11 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Container class="javax.swing.JPanel" name="flightLuggageP">
+        <Container class="javax.swing.JPanel" name="panelLuggageCustomers">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Flights to luggage">
-                <Property name="tabTitle" type="java.lang.String" value="Flights to luggage"/>
+              <JTabbedPaneConstraints tabName="Luggage to customers">
+                <Property name="tabTitle" type="java.lang.String" value="Luggage to customers"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
