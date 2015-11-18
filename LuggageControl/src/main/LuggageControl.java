@@ -32,7 +32,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.LuggageDetails luggageDetails;
     private screen.SearchCustomer searchCustomer;
     private screen.SearchLuggage searchLuggage;
-    private oldscreensremake.UserManagement userManagement;
+    //private oldscreensremake.UserManagement userManagement;
 
     private SwitchingJPanel currentPanel;
 
@@ -101,7 +101,7 @@ public class LuggageControl extends javax.swing.JFrame {
         luggageDetails = new screen.LuggageDetails(this);
         searchCustomer = new screen.SearchCustomer(this);
         searchLuggage = new screen.SearchLuggage(this);
-        userManagement = new oldscreensremake.UserManagement(this);
+        //userManagement = new oldscreensremake.UserManagement(this);
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
@@ -154,11 +154,11 @@ public class LuggageControl extends javax.swing.JFrame {
         searchLuggage.setSize(monitorSize);
         searchLuggage.setVisible(true);
 
-        userManagement.setSize(monitorSize);
-        userManagement.setVisible(true);
+        //userManagement.setSize(monitorSize);
+        //userManagement.setVisible(true);
 
-        this.currentPanel = helpLinking;
-        this.switchJPanel(ScreenNames.LOGINSCREEN);
+        this.currentPanel = addLuggage;
+        this.switchJPanel(ScreenNames.ADD_LUGGAGE);
         
         // testing if I can switch to a specific tab
         // and yes that works
@@ -231,9 +231,9 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
+        /*else if(this.currentPanel instanceof oldscreensremake.UserManagement) {
             this.remove(userManagement);
-        } 
+        } */
     }
     
     /**
@@ -361,13 +361,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = searchLuggage;
                 break;
-            case ScreenNames.USER_MANAGEMENT:
+            /*case ScreenNames.USER_MANAGEMENT:
                 this.removeCurrentJPanel();
                 this.add(userManagement);
                 this.revalidate();
                 this.repaint();
                 this.currentPanel = userManagement;
-                break;
+                break;*/
             default:
                 System.out.println("Trying to switch to screen that does not exist!");
                 break;
