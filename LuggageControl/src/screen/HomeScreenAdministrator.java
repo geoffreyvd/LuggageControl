@@ -2,6 +2,8 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.io.File;
+import javax.swing.JFileChooser;
 import main.LuggageControl;
 
 /**
@@ -178,7 +180,12 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     }//GEN-LAST:event_buttonAddUserActionPerformed
 
     private void buttonDatabaseImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseImportActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File databaseImport = fileChooser.getSelectedFile();
+            System.out.println(fileChooser.getSelectedFile());
+        }   
     }//GEN-LAST:event_buttonDatabaseImportActionPerformed
 
     private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed

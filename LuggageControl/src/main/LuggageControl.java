@@ -156,8 +156,8 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
 
-        this.currentPanel = addLuggage;
-        this.switchJPanel(ScreenNames.ADD_LUGGAGE);
+        this.currentPanel = homeScreenAdministrator;
+        this.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
         
         /* Corendon red menubar
         menuBar = new JMenuBar();
@@ -174,8 +174,6 @@ public class LuggageControl extends javax.swing.JFrame {
         this.add(menuBar);
         */
         
-        this.currentPanel = loginScreen;
-        this.switchJPanel(ScreenNames.LOGINSCREEN);
 
         // testing if I can switch to a specific tab
         // and yes that works
@@ -249,7 +247,6 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.SearchLuggage) {
             this.remove(searchLuggage);
         }
-
         else if(this.currentPanel instanceof screen.UserManagement) {
             this.remove(userManagement);
         }
@@ -274,6 +271,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.revalidate();
                 this.repaint();
                 this.currentPanel = addLuggage;
+                break;
+            case ScreenNames.ADD_USER:
+                this.removeCurrentJPanel();
+                this.add(addUser);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = changeSettings;
                 break;
             case ScreenNames.CHANGE_SETTINGS:
                 this.removeCurrentJPanel();
@@ -331,6 +335,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = helpLinking;
                 break;
+            case ScreenNames.HOME_SCREEN_ADMINISTRATOR:
+                this.removeCurrentJPanel();
+                this.add(homeScreenAdministrator);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = homeScreenAdministrator;
+                break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
                 this.removeCurrentJPanel();
                 this.add(homeScreenEmployee);
@@ -380,14 +391,13 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.currentPanel = searchLuggage;
                 break;
-
-//            case ScreenNames.USER_MANAGEMENT:
-//                this.removeCurrentJPanel();
-//                this.add(userManagement);
-//                this.revalidate();
-//                this.repaint();
-//                this.currentPanel = userManagement;
-//                break;
+            case ScreenNames.USER_MANAGEMENT:
+                this.removeCurrentJPanel();
+                this.add(userManagement);
+                this.revalidate();
+                this.repaint();
+                this.currentPanel = userManagement;
+                break;
 
             default:
                 System.out.println("Trying to switch to screen that does not exist!");
