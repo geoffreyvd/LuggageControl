@@ -33,7 +33,7 @@ public class Help extends SwitchingJPanel{
     
     /**
      * Open the next help screen based on which helpList item was pressed.
-     * @param panelName name of the screen which can be found in ScreenConstants
+     * @param listItemName list of items, the screen is based on the index make sure it lines up.
      */
     public void openHelpScreen(String listItemName) {
         if(listItemName.equals(helpList.getModel().getElementAt(0))) {
@@ -169,10 +169,12 @@ public class Help extends SwitchingJPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackbackToPreviousScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToPreviousScreen
+        this.userNotAFK();
         luggageControl.switchPreviousPanel();
     }//GEN-LAST:event_buttonBackbackToPreviousScreen
 
     private void helpListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpListMouseClicked
+        this.userNotAFK();
         JList tempItem = null;
         try {
             tempItem = (javax.swing.JList<String>)evt.getComponent();
@@ -194,6 +196,7 @@ public class Help extends SwitchingJPanel{
     }//GEN-LAST:event_helpListMouseClicked
 
     private void helpListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpListKeyPressed
+        this.userNotAFK();
         if(evt.getKeyCode() == evt.VK_ENTER) {
             JList tempItem = null;
             try {

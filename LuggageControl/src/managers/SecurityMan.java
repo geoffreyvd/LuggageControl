@@ -10,12 +10,17 @@ import main.LuggageControl;
  *
  * @author Dantali0n
  */
-public class SecurityMan {
+public class SecurityMan { 
 
     // reference to defined version of securityupdates
     private LuggageControl luggageControl;
     
+    // used to manage a connection to the database
     private DatabaseMan databaseMan;
+    
+    private int userPermissions;
+    
+    private boolean userLoggedIn;
 
     // <editor-fold defaultstate="collapsed" desc="time out, timertask, timer and default time out time">
     // Custom timertask which contains reference to the securityupdate event interface.
@@ -46,9 +51,7 @@ public class SecurityMan {
 
     // </editor-fold>
     /**
-     * You probably don't need to create an object of this class, but just for
-     * kicks I put this here anyway just kidding I'm stupid we're using a timer,
-     * yes you need to create an object of this class.
+     * Manage logging in automatic time outs and other security aspects
      *
      * @param luggageControl reference to main class push events
      */
@@ -60,6 +63,10 @@ public class SecurityMan {
         
         // our constant connection to the database
         this.databaseMan = new DatabaseMan();
+        
+        // users are nog logged in by default
+        this.userLoggedIn = false;
+        this.userPermissions = 0;
 
         // create the timer and start the userTimeOut task
         timeOut = new Timer();
@@ -68,69 +75,7 @@ public class SecurityMan {
         //  start the timer with the timertask
         timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
     }
-
-    /**
-     * Resets the timeout timer to zero.
-     *
-     * @return true if succeeded, false when failed.
-     */
-    public boolean resetTimer() {
-        try {
-            timeOut.cancel();
-            timeOut.purge();
-            timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="set, get, reset timeout time">
-    /**
-     * Gets the timeout time and returns it Please note that the timer is not
-     * guaranteed to run at this interval
-     *
-     * @return timeout time in milliseconds
-     */
-    public int getTimeOutTime() {
-        return timeOutTime;
-    }
-
-    /**
-     * Sets the timeout time to the new specified time Please note that the
-     * timer time does not change until you reset the timer.
-     *
-     * @param newTimeOutTime
-     * @return true if succeeded, false when failed.
-     */
-    public boolean setTimeOutTime(int newTimeOutTime) {
-        try {
-            timeOutTime = newTimeOutTime;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Resets the timeout time to the default time Please note that the timer
-     * time does not change until you reset the timer.
-     *
-     * @return true if succeeded, false when failed.
-     */
-    public boolean resetTimeOutTime() {
-        try {
-            timeOutTime = defaultTimeOutTime;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
-    }
-    // </editor-fold>
-
+    
     /**
      * Filters strings to the point where they are safe to use within our
      * application This class is mostly used for filtering user input
@@ -142,7 +87,7 @@ public class SecurityMan {
     public static String filteredString(String originalString) {
         return originalString;
     }
-
+    
     /**
      * Log the user in and handle session and permissions
      *
@@ -154,6 +99,7 @@ public class SecurityMan {
         //This query will return a string, it only returns 1 value!
         String result = databaseMan.QueryOneResult("select users.permissions from users where username = \""
                                             + username + "\" and password = \"" + password + "\"");
+        username = null;
         password = null;
         if (result != null) {
             System.out.println("succesful query");
@@ -177,4 +123,80 @@ public class SecurityMan {
             return false;
         }
     }
+    
+    /**
+     * 
+     * @return user permissions level 
+     */
+    public int getPermissions() {
+        return userPermissions;
+    }
+    
+    /**
+     * 
+     * @return true if the user is logged in, false if the user is not.
+     */
+    public boolean getLoggedIn() {
+        return userLoggedIn;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="set, get, reset timeout time">
+    /**
+     * Gets the timeout time and returns it Please note that the timer is not
+     * guaranteed to run at this interval
+     *
+     * @return timeout time in milliseconds
+     */
+    public int getTimeOutTime() {
+        return timeOutTime;
+    }
+    
+    /**
+     * Resets the timeout time to the default time Please note that the timer
+     * time does not change until you reset the timer.
+     * @return true if succeeded, false when failed.
+     */
+    public boolean resetTimeOutTime() {
+        try {
+            timeOutTime = defaultTimeOutTime;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Resets the timeout timer to zero.
+     * @return true if succeeded, false when failed.
+     */
+    public boolean resetTimer() {
+        try {
+            timeOut.cancel();
+            timeOut.purge();
+            timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Sets the timeout time to the new specified time Please note that the
+     * timer time does not change until you reset the timer.
+     *
+     * @param newTimeOutTime
+     * @return true if succeeded, false when failed.
+     */
+    public boolean setTimeOutTime(int newTimeOutTime) {
+        try {
+            timeOutTime = newTimeOutTime;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    // </editor-fold>
 }

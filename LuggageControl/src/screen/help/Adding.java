@@ -139,6 +139,7 @@ public class Adding extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackbackToPreviousScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToPreviousScreen
+        this.userNotAFK();
         luggageControl.switchPreviousPanel();
     }//GEN-LAST:event_buttonBackbackToPreviousScreen
 

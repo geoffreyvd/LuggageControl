@@ -13,4 +13,11 @@ public class SwitchingJPanel extends javax.swing.JPanel{
     public SwitchingJPanel(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
     }
+    
+    /**
+     * Make luggagecontrol aware that the user is not afk and has moved.
+     */
+    protected void userNotAFK() {
+        luggageControl.setUserAFK(false);
+    }
 }

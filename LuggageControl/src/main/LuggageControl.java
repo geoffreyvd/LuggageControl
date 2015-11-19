@@ -9,6 +9,9 @@ import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import constants.Styling;
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -54,6 +57,32 @@ public class LuggageControl extends javax.swing.JFrame {
     // security manager and event interface
     private SecurityMan secman;
     
+    // <editor-fold defaultstate="collapsed" desc="user afk timers and time outs">
+    // Custom timer task to check whether the user was afk during the last 5 seconds
+    private class UserAFKTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            if(userAFK.get() == false) {
+                userAFK.set(true);
+                secman.resetTimer();
+            }
+        }
+    }
+    
+    // true if the user was afk, false if the user has moved
+    private AtomicBoolean userAFK = new AtomicBoolean(true);
+
+    // default timeout is 5000 milliseconds (5 seconds)
+    private int userAFKTimeOutTime = 5000;
+
+    // timer to manage when the user has timed out.
+    private Timer userAFKTIMER;
+
+    // instance of our custom timer
+    private UserAFKTimerTask userAFKTimerTask;
+
+    // </editor-fold>
+    
     /**
      *
      */
@@ -61,6 +90,14 @@ public class LuggageControl extends javax.swing.JFrame {
         // parse the refernence of our interface to the security manager class
         // so it can call us.
         secman = new SecurityMan(this);
+        
+        // <editor-fold defaultstate="collapsed" desc="user afk timers and time outs">
+        // Create timer and timertask to check whether user has moved keyboard or mouse during the last period
+        userAFKTIMER = new Timer();
+        userAFKTimerTask = new UserAFKTimerTask();
+        //  start the timer with the timertask
+        userAFKTIMER.scheduleAtFixedRate(userAFKTimerTask, userAFKTimeOutTime, userAFKTimeOutTime);
+        // </editor-fold>
         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
@@ -428,8 +465,9 @@ public class LuggageControl extends javax.swing.JFrame {
     }
     
     /**
-     * 
-     * @param tabName 
+     * Switch a screen.help panel to a specific tab.
+     * @param tabName the name of the tab
+     * @param helpScreen the help screen must be of package screen.help
      */
     public void switchTab(String tabName, String helpScreen) {
         if(helpScreen == ScreenNames.Help.ADDING) {
@@ -459,10 +497,13 @@ public class LuggageControl extends javax.swing.JFrame {
         else {
             new ErrorJDialog("Username or password incorrect", "Your username or password is incorrect.");
         }
+        username = null;
+        password = null;
     }
     
     /**
-     * Parse to login to the security manager and attempt a login sequence.
+     * Parse to login to the security manager and attempt a login sequence
+     * This method is more secure since it uses a char array instead of a String which is easier deleted.
      * @param username the username as described in the database
      * @param password array of characters which together are the password as described in the database
      */
@@ -475,10 +516,14 @@ public class LuggageControl extends javax.swing.JFrame {
 //        }
     }
     
+    public void setUserAFK(boolean userAFK) {
+        this.userAFK.set(userAFK);
+    }
+    
     /**
-     * 
+     * Called when the user is timed-out switches the panel back to the login panel.
      */
     public void userTimeOut() {
-        
+        this.switchJPanel(ScreenNames.LOGINSCREEN);
     }
 }
