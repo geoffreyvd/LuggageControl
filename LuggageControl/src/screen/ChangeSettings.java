@@ -107,19 +107,19 @@ public class ChangeSettings extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkBoxTextToSpeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxTextToSpeachActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_checkBoxTextToSpeachActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void comboBoxParagraphFontSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxParagraphFontSizeActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_comboBoxParagraphFontSizeActionPerformed
 
 

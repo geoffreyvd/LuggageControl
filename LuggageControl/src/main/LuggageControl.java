@@ -93,7 +93,7 @@ public class LuggageControl extends javax.swing.JFrame {
         
         // <editor-fold defaultstate="collapsed" desc="user afk timers and time outs">
         // Create timer and timertask to check whether user has moved keyboard or mouse during the last period
-        userAFKTIMER = new Timer();
+        userAFKTIMER = new Timer("userAFKTimer");
         userAFKTimerTask = new UserAFKTimerTask();
         //  start the timer with the timertask
         userAFKTIMER.scheduleAtFixedRate(userAFKTimerTask, userAFKTimeOutTime, userAFKTimeOutTime);
@@ -517,6 +517,7 @@ public class LuggageControl extends javax.swing.JFrame {
     }
     
     public void setUserAFK(boolean userAFK) {
+        System.out.println("User moved!");
         this.userAFK.set(userAFK);
     }
     

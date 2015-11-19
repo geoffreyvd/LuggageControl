@@ -241,10 +241,12 @@ public class AddUser extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImageActionPerformed
+        this.userNotAFK();
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -258,7 +260,7 @@ public class AddUser extends SwitchingJPanel {
     }//GEN-LAST:event_buttonUploadImageActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed

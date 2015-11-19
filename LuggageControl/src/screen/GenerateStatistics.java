@@ -120,15 +120,15 @@ public class GenerateStatistics extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goesToHelpAdding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpAdding
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_goesToHelpAdding
 
     private void backToHomeScreenManager(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToHomeScreenManager
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_backToHomeScreenManager
 
     private void generateStatistics(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateStatistics
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_generateStatistics
 
 

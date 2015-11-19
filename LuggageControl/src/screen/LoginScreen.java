@@ -38,6 +38,12 @@ public class LoginScreen extends SwitchingJPanel {
         textFieldUsername = new javax.swing.JFormattedTextField();
         textFieldPassword = new javax.swing.JPasswordField();
 
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelMouseMoved(evt);
+            }
+        });
+
         buttonLogin.setText("Log in");
         buttonLogin.setToolTipText("");
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +92,7 @@ public class LoginScreen extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        this.userNotAFK();
         String inputUsername = textFieldUsername.getText();
         String inputPassword = textFieldPassword.getText();
         this.luggageControl.loginUser(inputUsername, inputPassword);
@@ -93,10 +100,12 @@ public class LoginScreen extends SwitchingJPanel {
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textFieldUserKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldUserKeyPress
+        this.userNotAFK();
         // textFieldPassword set focus
     }//GEN-LAST:event_textFieldUserKeyPress
 
     private void textFieldPassKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldPassKeyPress
+        this.userNotAFK();
         String inputUsername = textFieldUsername.getText();
         String inputPassword = textFieldPassword.getText();
         if(evt.getKeyCode() == evt.VK_ENTER) {
@@ -107,6 +116,10 @@ public class LoginScreen extends SwitchingJPanel {
             }
         }
     }//GEN-LAST:event_textFieldPassKeyPress
+
+    private void panelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseMoved
+        this.userNotAFK();
+    }//GEN-LAST:event_panelMouseMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;

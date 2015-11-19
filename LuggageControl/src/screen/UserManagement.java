@@ -232,35 +232,38 @@ public class UserManagement extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
     private void buttonDeletebutonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeletebutonCancelActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR); 
     }//GEN-LAST:event_buttonDeletebutonCancelActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.HELP); 
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void textFieldCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCityActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldCityActionPerformed
 
     private void textFieldCellphoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCellphoneNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldCellphoneNumberActionPerformed
 
     private void textFieldZipcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZipcodeActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldZipcodeActionPerformed
 
 

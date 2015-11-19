@@ -254,22 +254,25 @@ public class LuggageDetails extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
     }//GEN-LAST:event_butonCancelActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.Help.LINKING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 

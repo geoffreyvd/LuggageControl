@@ -138,15 +138,15 @@ public class DeleteLuggage extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goesToHelpFinding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpFinding
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_goesToHelpFinding
 
     private void backToEmployeeScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToEmployeeScreen
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_backToEmployeeScreen
 
     private void searches(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searches
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_searches
 
 

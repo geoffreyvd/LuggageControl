@@ -111,19 +111,19 @@ public class HomeScreenManager extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGenerateStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerateStatisticsActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonGenerateStatisticsActionPerformed
 
     private void buttonExportStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExportStatisticsActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonExportStatisticsActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
 
