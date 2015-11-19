@@ -19,7 +19,7 @@ public class PromptSupportTextFieldPlaceholder extends javax.swing.JPanel {
     public PromptSupportTextFieldPlaceholder() {
         initComponents();
         PromptSupport.setPrompt("Bunnies", randomTextField);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, randomTextField);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, randomTextField); // can also be HIGHLIGHT_PROMPT for darker on selected
     }
 
     /**

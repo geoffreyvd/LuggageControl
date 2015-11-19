@@ -6,6 +6,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
+import org.jdesktop.swingx.prompt.PromptSupport;
 /**
  *
  * @author Admin
@@ -15,6 +16,30 @@ public class AddUser extends SwitchingJPanel {
     public AddUser(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
+        PromptSupport.setPrompt("First name", textFieldFirstname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstname);
+        PromptSupport.setPrompt("Last name", textFieldLastname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLastname);
+        PromptSupport.setPrompt("Birthday(yyyy-mm-dd)", textFieldBirthday);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldBirthday);
+        PromptSupport.setPrompt("Cellphone", textFieldCellphone);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
+        PromptSupport.setPrompt("Nationality", textFieldNationality);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldNationality);
+        PromptSupport.setPrompt("Adress", textFieldAdress);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAdress);
+        PromptSupport.setPrompt("City", textFieldCity);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCity);
+        PromptSupport.setPrompt("Postalcode", textFieldPostalcode);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPostalcode);
+        PromptSupport.setPrompt("Username", textFieldUsername);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUsername);
+        PromptSupport.setPrompt("Password", textFieldPassword);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPassword);
+        
+
     }
 
     /**
@@ -61,7 +86,6 @@ public class AddUser extends SwitchingJPanel {
             }
         });
 
-        textFieldFlightNumber.setText("Flightnumber");
         textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldFlightNumberActionPerformed(evt);
@@ -70,12 +94,6 @@ public class AddUser extends SwitchingJPanel {
 
         comboBoxGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Female", "Male", "Androgenous" }));
         comboBoxGender.setToolTipText("Gender");
-
-        textFieldFirstname.setText("Firstname");
-
-        textFieldBirthday.setText("Birthday");
-
-        textFieldLastname.setText("Lastname");
 
         labelAddUser.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddUser.setText("Add user");
@@ -101,15 +119,6 @@ public class AddUser extends SwitchingJPanel {
             }
         });
 
-        textFieldNationality.setText("Nationality");
-
-        textFieldAdress.setText("Adress");
-
-        textFieldCity.setText("City");
-
-        textFieldPostalcode.setText("Postalcode");
-
-        textFieldCellphone.setText("Cellphone");
         textFieldCellphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCellphoneActionPerformed(evt);
@@ -118,9 +127,11 @@ public class AddUser extends SwitchingJPanel {
 
         comboBoxProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Profession", "Item 2", "Item 3", "Item 4" }));
 
-        textFieldUsername.setText("Username");
-
-        textFieldPassword.setText("Password");
+        textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldUsernameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -265,6 +276,10 @@ public class AddUser extends SwitchingJPanel {
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
+
+    private void textFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldUsernameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -167,9 +167,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Flightnumber"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldFlightNumberActionPerformed"/>
       </Events>
@@ -187,19 +184,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFirstname">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Firstname"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldBirthday">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Birthday"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLastname">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Lastname"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelAddUser">
       <Properties>
@@ -234,29 +222,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldNationality">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nationality"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldAdress">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Adress"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCity">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="City"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldPostalcode">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Postalcode"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCellphone">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cellphone"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCellphoneActionPerformed"/>
       </Events>
@@ -276,14 +249,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldUsername">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Username"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldUsernameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Password"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
