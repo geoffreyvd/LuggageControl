@@ -98,41 +98,26 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Name"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldNameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldLastName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Last name"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldLastNameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldCellphoneNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cellphone number"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCellphoneNumberActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldEmail">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Email"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldEmailActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldFlightNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Flight number"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldFlightNumberActionPerformed"/>
       </Events>
@@ -183,9 +168,6 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="textFieldQuickSearchFlightNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Flight number"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldQuickSearchFlightNumberActionPerformed"/>
       </Events>

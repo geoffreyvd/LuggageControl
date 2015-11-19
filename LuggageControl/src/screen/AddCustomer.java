@@ -3,6 +3,7 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import main.LuggageControl;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -13,6 +14,20 @@ public class AddCustomer extends SwitchingJPanel {
     public AddCustomer(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Name", textFieldName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldName);
+        PromptSupport.setPrompt("Last Name", textFieldLastName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLastName);
+        PromptSupport.setPrompt("Cellphone number", textFieldCellphoneNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphoneNumber);
+        PromptSupport.setPrompt("Last Name", textFieldLastName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLastName);
+        PromptSupport.setPrompt("E-Mail", textFieldEmail);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
+        PromptSupport.setPrompt("Flight number", textFieldFlightNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
+        PromptSupport.setPrompt("Flight number", textFieldQuickSearchFlightNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldQuickSearchFlightNumber);
     }
 
     /**
@@ -40,35 +55,30 @@ public class AddCustomer extends SwitchingJPanel {
         labelAddCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddCustomer.setText("Add customer");
 
-        textFieldName.setText("Name");
         textFieldName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldNameActionPerformed(evt);
             }
         });
 
-        textFieldLastName.setText("Last name");
         textFieldLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldLastNameActionPerformed(evt);
             }
         });
 
-        textFieldCellphoneNumber.setText("Cellphone number");
         textFieldCellphoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCellphoneNumberActionPerformed(evt);
             }
         });
 
-        textFieldEmail.setText("Email");
         textFieldEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldEmailActionPerformed(evt);
             }
         });
 
-        textFieldFlightNumber.setText("Flight number");
         textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldFlightNumberActionPerformed(evt);
@@ -105,7 +115,6 @@ public class AddCustomer extends SwitchingJPanel {
         ));
         table.setViewportView(tableCustomer);
 
-        textFieldQuickSearchFlightNumber.setText("Flight number");
         textFieldQuickSearchFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldQuickSearchFlightNumberActionPerformed(evt);
