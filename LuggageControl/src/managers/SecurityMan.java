@@ -69,7 +69,7 @@ public class SecurityMan {
         this.userPermissions = 0;
 
         // create the timer and start the userTimeOut task
-        timeOut = new Timer();
+        timeOut = new Timer("userTimeOutTimer");
         fireTimeOut = new timeOutTimerTask(this.luggageControl);
 
         //  start the timer with the timertask
@@ -174,6 +174,9 @@ public class SecurityMan {
         try {
             timeOut.cancel();
             timeOut.purge();
+            timeOut = null;
+            timeOut = new Timer("userTimeOutTimer");
+            fireTimeOut = new timeOutTimerTask(luggageControl);
             timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
         } catch (Exception e) {
             System.out.println(e.getMessage());

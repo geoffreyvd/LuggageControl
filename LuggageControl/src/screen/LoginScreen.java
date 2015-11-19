@@ -38,6 +38,12 @@ public class LoginScreen extends SwitchingJPanel {
         textFieldUsername = new javax.swing.JFormattedTextField();
         textFieldPassword = new javax.swing.JPasswordField();
 
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelMouseMoved(evt);
+            }
+        });
+
         buttonLogin.setText("Log in");
         buttonLogin.setToolTipText("");
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +116,10 @@ public class LoginScreen extends SwitchingJPanel {
             }
         }
     }//GEN-LAST:event_textFieldPassKeyPress
+
+    private void panelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseMoved
+        this.userNotAFK();
+    }//GEN-LAST:event_panelMouseMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
