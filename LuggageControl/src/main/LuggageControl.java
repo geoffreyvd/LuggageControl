@@ -46,6 +46,7 @@ public class LuggageControl extends javax.swing.JFrame {
     
     // keeps a reference to the current active panel
     private SwitchingJPanel currentPanel;
+    private SwitchingJPanel previousPanel;
 
     private GraphicsDevice graphicsDevice;
     private Dimension monitorSize;
@@ -155,8 +156,6 @@ public class LuggageControl extends javax.swing.JFrame {
         searchLuggage.setVisible(true);
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
-
-        
         
         /* Corendon red menubar
         menuBar = new JMenuBar();
@@ -180,6 +179,13 @@ public class LuggageControl extends javax.swing.JFrame {
         // helpLinking.selectTab("Not available");
     }
     
+    /**
+     * Switch to the previously displayed panel.
+     */
+    public void switchPreviousPanel() {
+        String tempSwitchString = this.previousPanel.getClass().getSimpleName();
+        this.switchJPanel(tempSwitchString);
+    }
     
     /**
      * Based on our currentPanel variable we remove the panel so a new one can be added.
@@ -263,6 +269,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(addCustomer);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = addCustomer;
                 break;
             case ScreenNames.ADD_LUGGAGE:
@@ -270,6 +277,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(addLuggage);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = addLuggage;
                 break;
             case ScreenNames.ADD_USER:
@@ -277,13 +285,15 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(addUser);
                 this.revalidate();
                 this.repaint();
-                this.currentPanel = changeSettings;
+                this.previousPanel = currentPanel;
+                this.currentPanel = addUser;
                 break;
             case ScreenNames.CHANGE_SETTINGS:
                 this.removeCurrentJPanel();
                 this.add(changeSettings);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = changeSettings;
                 break;
             case ScreenNames.CUSTOMER_DETAILS:
@@ -291,6 +301,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(customerDetails);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = customerDetails;
                 break;
             case ScreenNames.DELETE_CUSTOMER:
@@ -298,6 +309,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(deleteCustomer);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = deleteCustomer;
                 break;
             case ScreenNames.DELETE_LUGGAGE:
@@ -305,6 +317,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(deleteLuggage);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = deleteLuggage;
                 break;
             case ScreenNames.HELP:
@@ -312,6 +325,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(help);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = help;
                 break;
             case ScreenNames.Help.ADDING:
@@ -319,6 +333,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(helpAdding);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = helpAdding;
                 break;
             case ScreenNames.Help.FINDING:
@@ -326,6 +341,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(helpFinding);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = helpFinding;
                 break;
             case ScreenNames.Help.LINKING:
@@ -333,6 +349,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(helpLinking);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = helpLinking;
                 break;
             case ScreenNames.HOME_SCREEN_ADMINISTRATOR:
@@ -340,6 +357,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(homeScreenAdministrator);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = homeScreenAdministrator;
                 break;
             case ScreenNames.HOME_SCREEN_EMPLOYEE:
@@ -347,6 +365,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(homeScreenEmployee);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = homeScreenEmployee;
                 break;
             case ScreenNames.HOME_SCREEN_MANAGER:
@@ -354,6 +373,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(homeScreenManager);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = homeScreenManager;
                 break;
             case ScreenNames.GENERATE_STATISTICS:
@@ -361,6 +381,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(generateStatistics);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = generateStatistics;
                 break;
             case ScreenNames.LOGINSCREEN:
@@ -368,6 +389,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(loginScreen);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = loginScreen;
                 break;
             case ScreenNames.LUGGAGE_DETAILS:
@@ -375,6 +397,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(luggageDetails);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = luggageDetails;
                 break;
             case ScreenNames.SEARCH_CUSTOMER:
@@ -382,6 +405,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(searchCustomer);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = searchCustomer;
                 break;
             case ScreenNames.SEARCH_LUGGAGE:
@@ -389,6 +413,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(searchLuggage);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = searchLuggage;
                 break;
             case ScreenNames.USER_MANAGEMENT:
@@ -396,9 +421,9 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(userManagement);
                 this.revalidate();
                 this.repaint();
+                this.previousPanel = currentPanel;
                 this.currentPanel = userManagement;
                 break;
-
             default:
                 new ErrorJDialog("Error: screen does not exist", (new Throwable()).getStackTrace());
                 break;
@@ -432,8 +457,25 @@ public class LuggageControl extends javax.swing.JFrame {
      */
     public void loginUser(String username, String password) {
         if(secman.logInUser(username, password)) {
-            new ErrorJDialog("User logged in!", "You did it!");
+            
         }
+        else {
+            new ErrorJDialog("Username or password incorrect", "Your username or password is incorrect.");
+        }
+    }
+    
+    /**
+     * Parse to login to the security manager and attempt a login sequence.
+     * @param username the username as described in the database
+     * @param password array of characters which together are the password as described in the database
+     */
+    public void loginUser(String username, char[] password) {
+//        if(secman.logInUser(username, password)) {
+//            
+//        }
+//        else {
+//            new ErrorJDialog("Username or password incorrect", "Your username or password is incorrect.");
+//        }
     }
     
     /**

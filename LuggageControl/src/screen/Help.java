@@ -167,7 +167,7 @@ public class Help extends SwitchingJPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackbackToEmployeeScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToEmployeeScreen
-        // TODO add your handling code here:
+        luggageControl.switchPreviousPanel();
     }//GEN-LAST:event_buttonBackbackToEmployeeScreen
 
     private void helpListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpListMouseClicked
