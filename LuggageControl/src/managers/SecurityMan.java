@@ -3,6 +3,8 @@ package managers;
 import constants.ScreenNames;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import main.LuggageControl;
 
 /**
@@ -18,9 +20,9 @@ public class SecurityMan {
     // used to manage a connection to the database
     private DatabaseMan databaseMan;
     
-    private int userPermissions;
+    private AtomicInteger userPermissions = new AtomicInteger(0);
     
-    private boolean userLoggedIn;
+    private AtomicBoolean userLoggedIn = new AtomicBoolean(false);
 
     // <editor-fold defaultstate="collapsed" desc="time out, timertask, timer and default time out time">
     // Custom timertask which contains reference to the securityupdate event interface.
@@ -34,6 +36,8 @@ public class SecurityMan {
 
         @Override
         public void run() {
+            userPermissions.set(0);
+            userLoggedIn.set(false);
             luggageControl.userTimeOut();
         }
     }
@@ -63,10 +67,6 @@ public class SecurityMan {
         
         // our constant connection to the database
         this.databaseMan = new DatabaseMan();
-        
-        // users are nog logged in by default
-        this.userLoggedIn = false;
-        this.userPermissions = 0;
 
         // create the timer and start the userTimeOut task
         timeOut = new Timer("userTimeOutTimer");
@@ -129,7 +129,7 @@ public class SecurityMan {
      * @return user permissions level 
      */
     public int getPermissions() {
-        return userPermissions;
+        return userPermissions.get();
     }
     
     /**
@@ -137,7 +137,7 @@ public class SecurityMan {
      * @return true if the user is logged in, false if the user is not.
      */
     public boolean getLoggedIn() {
-        return userLoggedIn;
+        return userLoggedIn.get();
     }
 
     // <editor-fold defaultstate="collapsed" desc="set, get, reset timeout time">
