@@ -51,9 +51,42 @@ public class DataBaseQueryExample {
         System.out.println("example 4:");
         DatabaseMan DB4 = new DatabaseMan();
 
+        String query = "INSERT INTO users"
+                + "(username,password,firstname,surname,cellphone,birthday,gender,nationality,adress,city,postcode,permissions) VALUES"
+                + "(?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        String[] values = new String[12];
+        String[] types = new String[12];
+
+        values[0] = "geoffreyvd3";
+        values[1] = "gucciguc";
+        values[2] = "geoffrey";
+        values[3] = "geoffrey";
+        values[4] = "56465464";
+        values[5] = "1996-12-12";
+        values[6] = "male";
+        values[7] = "dutchy";
+        values[8] = "sduyfgi";
+        values[9] = "haarlem";
+        values[10] = "2033v";
+        values[11] = "1";
+
+        types[0] = "String";
+        types[1] = "String";
+        types[2] = "String";
+        types[3] = "String";
+        types[4] = "Int";
+        types[5] = "String";
+        types[6] = "String";
+        types[7] = "String";
+        types[8] = "String";
+        types[9] = "String";
+        types[10] = "String";
+        types[11] = "Int";
+
         try {
 
-            DB4.QueryInsertUser();
+            DB4.QueryInsertUser(query, values, types);
 
         } catch (SQLException e) {
 
