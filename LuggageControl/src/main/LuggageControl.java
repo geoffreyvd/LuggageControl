@@ -333,7 +333,6 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(helpAdding);
                 this.revalidate();
                 this.repaint();
-                this.previousPanel = currentPanel;
                 this.currentPanel = helpAdding;
                 break;
             case ScreenNames.Help.FINDING:
@@ -341,7 +340,6 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(helpFinding);
                 this.revalidate();
                 this.repaint();
-                this.previousPanel = currentPanel;
                 this.currentPanel = helpFinding;
                 break;
             case ScreenNames.Help.LINKING:
@@ -349,7 +347,6 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.add(helpLinking);
                 this.revalidate();
                 this.repaint();
-                this.previousPanel = currentPanel;
                 this.currentPanel = helpLinking;
                 break;
             case ScreenNames.HOME_SCREEN_ADMINISTRATOR:

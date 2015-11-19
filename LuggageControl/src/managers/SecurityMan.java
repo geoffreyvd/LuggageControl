@@ -14,6 +14,8 @@ public class SecurityMan {
 
     // reference to defined version of securityupdates
     private LuggageControl luggageControl;
+    
+    private DatabaseMan databaseMan;
 
     // <editor-fold defaultstate="collapsed" desc="time out, timertask, timer and default time out time">
     // Custom timertask which contains reference to the securityupdate event interface.
@@ -55,6 +57,9 @@ public class SecurityMan {
         // pass the defined class reference to the event interface
         // now we can call our abstract functions
         this.luggageControl = luggageControl;
+        
+        // our constant connection to the database
+        this.databaseMan = new DatabaseMan();
 
         // create the timer and start the userTimeOut task
         timeOut = new Timer();
@@ -146,13 +151,13 @@ public class SecurityMan {
      * @return true if successful, false when failed.
      */
     public boolean logInUser(String username, String password) {
-        DatabaseMan DB2 = new DatabaseMan();
         //This query will return a string, it only returns 1 value!
-        String result = DB2.QueryOneResult("select users.permissions from users where username = \""
+        String result = databaseMan.QueryOneResult("select users.permissions from users where username = \""
                                             + username + "\" and password = \"" + password + "\"");
+        password = null;
         if (result != null) {
             System.out.println("succesful query");
-            int resultInt = Integer.parseInt(result);
+            int resultInt = Byte.parseByte(result);
             if (resultInt == 0) {
                 //oude gebruiker gegevens zonder inlog
                 return false;

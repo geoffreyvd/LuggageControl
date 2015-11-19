@@ -59,6 +59,7 @@ public class Finding extends SwitchingJPanel {
         panelFindFlights = new javax.swing.JPanel();
         panelFindLuggage = new javax.swing.JPanel();
         panelFindLinks = new javax.swing.JPanel();
+        buttonBack = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
@@ -70,11 +71,11 @@ public class Finding extends SwitchingJPanel {
         panelFindCustomer.setLayout(panelFindCustomerLayout);
         panelFindCustomerLayout.setHorizontalGroup(
             panelFindCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1855, Short.MAX_VALUE)
+            .addGap(0, 1852, Short.MAX_VALUE)
         );
         panelFindCustomerLayout.setVerticalGroup(
             panelFindCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
+            .addGap(0, 849, Short.MAX_VALUE)
         );
 
         linkingTab.addTab("Find customers", panelFindCustomer);
@@ -118,6 +119,13 @@ public class Finding extends SwitchingJPanel {
 
         linkingTab.addTab("Find links", panelFindLinks);
 
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackbackToPreviousScreen(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,25 +133,35 @@ public class Finding extends SwitchingJPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(linkingTab))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(linkingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 1860, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(linkingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(linkingTab)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         linkingTab.getAccessibleContext().setAccessibleName("Linking Luggage");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonBackbackToPreviousScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToPreviousScreen
+        luggageControl.switchPreviousPanel();
+    }//GEN-LAST:event_buttonBackbackToPreviousScreen
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBack;
     private javax.swing.JTabbedPane linkingTab;
     private javax.swing.JPanel panelFindCustomer;
     private javax.swing.JPanel panelFindFlights;

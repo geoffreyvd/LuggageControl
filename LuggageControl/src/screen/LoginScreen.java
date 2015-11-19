@@ -104,7 +104,6 @@ public class LoginScreen extends SwitchingJPanel {
         }
     }//GEN-LAST:event_textFieldPassKeyPress
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
     private javax.swing.JPasswordField textFieldPassword;

@@ -59,7 +59,7 @@
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBackbackToEmployeeScreen"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBackbackToPreviousScreen"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="scrollPaneHelpList">
@@ -80,7 +80,7 @@
         <Component class="javax.swing.JList" name="helpList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="12">
+              <StringArray count="11">
                 <StringItem index="0" value="Add new customer [employee]"/>
                 <StringItem index="1" value="Add new flight [employee]"/>
                 <StringItem index="2" value="Add new luggage [employee]"/>
@@ -92,9 +92,10 @@
                 <StringItem index="8" value="Linking flights to luggage [employee]"/>
                 <StringItem index="9" value="Linking luggage to customers [employee]"/>
                 <StringItem index="10" value="Linking lost luggage to found luggage [employee]"/>
-                <StringItem index="11" value=" "/>
               </StringArray>
             </Property>
+            <Property name="selectionMode" type="int" value="0"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="helpListMouseClicked"/>
