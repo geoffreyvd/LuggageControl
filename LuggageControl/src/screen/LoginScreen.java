@@ -6,9 +6,8 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
-import javax.swing.JList;
 import main.LuggageControl;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -19,6 +18,11 @@ public class LoginScreen extends SwitchingJPanel {
     public LoginScreen(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Username", textFieldUsername);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUsername);
+        PromptSupport.setPrompt("Password", textFieldPassword);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPassword);
+
     }
 
     /**
@@ -42,7 +46,7 @@ public class LoginScreen extends SwitchingJPanel {
             }
         });
 
-        textFieldUsername.setText("Username");
+        textFieldUsername.setToolTipText("");
         textFieldUsername.setName(""); // NOI18N
         textFieldUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -50,7 +54,6 @@ public class LoginScreen extends SwitchingJPanel {
             }
         });
 
-        textFieldPassword.setText("Password");
         textFieldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textFieldPassKeyPress(evt);
