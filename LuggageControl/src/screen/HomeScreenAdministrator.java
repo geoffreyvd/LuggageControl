@@ -198,7 +198,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     }//GEN-LAST:event_buttonDatabaseImportActionPerformed
 
     private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed
-<<<<<<< HEAD
+
         Runtime rt = Runtime.getRuntime();
         try {
             rt.exec("CMD /C /F:ON mysqldump luggagecontroldata -uroot -pVjdo1v!!  > C:/LuggageControlData1.sql");
@@ -221,9 +221,9 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
         
         
         
-=======
+
         this.userNotAFK();
->>>>>>> origin/develop
+
     }//GEN-LAST:event_buttonDatabaseExportActionPerformed
 
 
