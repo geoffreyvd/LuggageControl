@@ -3,6 +3,8 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
 
@@ -189,7 +191,28 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     }//GEN-LAST:event_buttonDatabaseImportActionPerformed
 
     private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed
-        // TODO add your handling code here:
+        Runtime rt = Runtime.getRuntime();
+        try {
+            rt.exec("CMD /C /F:ON mysqldump luggagecontroldata -uroot -pVjdo1v!!  > C:/LuggageControlData1.sql");
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("C:/LuggageControlData1.sql"));
+        int returnValue = fileChooser.showSaveDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+            FileWriter fw = new FileWriter(fileChooser.getSelectedFile()+".sql");
+            fw.write(toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        }   
+        
+        
+        
     }//GEN-LAST:event_buttonDatabaseExportActionPerformed
 
 
