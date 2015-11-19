@@ -111,7 +111,7 @@ public class Help extends SwitchingJPanel{
         buttonBack.setText("Back");
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackbackToEmployeeScreen(evt);
+                buttonBackbackToPreviousScreen(evt);
             }
         });
 
@@ -123,10 +123,12 @@ public class Help extends SwitchingJPanel{
         });
 
         helpList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Add new customer [employee]", "Add new flight [employee]", "Add new luggage [employee]", "Find customer [employee - administrator]", "Find flights [employee - administrator]", "Find luggage [employee - administrator]", "Find linkes between customers, luggage and flights [employee - administrator]", "Linking customers to flights [employee]", "Linking flights to luggage [employee]", "Linking luggage to customers [employee]", "Linking lost luggage to found luggage [employee]", " " };
+            String[] strings = { "Add new customer [employee]", "Add new flight [employee]", "Add new luggage [employee]", "Find customer [employee - administrator]", "Find flights [employee - administrator]", "Find luggage [employee - administrator]", "Find linkes between customers, luggage and flights [employee - administrator]", "Linking customers to flights [employee]", "Linking flights to luggage [employee]", "Linking luggage to customers [employee]", "Linking lost luggage to found luggage [employee]" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        helpList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        helpList.setToolTipText("");
         helpList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 helpListMouseClicked(evt);
@@ -166,9 +168,9 @@ public class Help extends SwitchingJPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonBackbackToEmployeeScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToEmployeeScreen
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonBackbackToEmployeeScreen
+    private void buttonBackbackToPreviousScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToPreviousScreen
+        luggageControl.switchPreviousPanel();
+    }//GEN-LAST:event_buttonBackbackToPreviousScreen
 
     private void helpListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpListMouseClicked
         JList tempItem = null;

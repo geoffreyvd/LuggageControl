@@ -18,12 +18,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="textFieldPassword" pref="155" max="32767" attributes="0"/>
-                      <Component id="textFieldUsername" alignment="1" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="buttonLogin" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="textFieldPassword" pref="155" max="32767" attributes="0"/>
+                  <Component id="textFieldUsername" alignment="1" max="32767" attributes="0"/>
+                  <Component id="buttonLogin" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -58,13 +56,16 @@
         <Property name="text" type="java.lang.String" value="Username"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldUserKeyPress"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="textFieldPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldPasswordActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldPassKeyPress"/>
       </Events>
     </Component>
   </SubComponents>

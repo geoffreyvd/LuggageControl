@@ -7,6 +7,7 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import javax.swing.JList;
 import main.LuggageControl;
 
 /**
@@ -43,11 +44,16 @@ public class LoginScreen extends SwitchingJPanel {
 
         textFieldUsername.setText("Username");
         textFieldUsername.setName(""); // NOI18N
+        textFieldUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldUserKeyPress(evt);
+            }
+        });
 
         textFieldPassword.setText("Password");
-        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldPasswordActionPerformed(evt);
+        textFieldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldPassKeyPress(evt);
             }
         });
 
@@ -57,11 +63,10 @@ public class LoginScreen extends SwitchingJPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                        .addComponent(textFieldUsername))
-                    .addComponent(buttonLogin))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(textFieldUsername)
+                    .addComponent(buttonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,10 +89,21 @@ public class LoginScreen extends SwitchingJPanel {
         inputPassword = null;
     }//GEN-LAST:event_buttonLoginActionPerformed
 
-    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldPasswordActionPerformed
+    private void textFieldUserKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldUserKeyPress
+        // textFieldPassword set focus
+    }//GEN-LAST:event_textFieldUserKeyPress
 
+    private void textFieldPassKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldPassKeyPress
+        String inputUsername = textFieldUsername.getText();
+        String inputPassword = textFieldPassword.getText();
+        if(evt.getKeyCode() == evt.VK_ENTER) {
+            try {
+                this.luggageControl.loginUser(inputUsername, inputPassword);
+            }
+            catch(Exception e) {
+            }
+        }
+    }//GEN-LAST:event_textFieldPassKeyPress
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
