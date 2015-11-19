@@ -266,39 +266,39 @@ public class CustomerDetails extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textFieldCellphoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCellphoneNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldCellphoneNumberActionPerformed
 
     private void removeFlightNumber(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFlightNumber
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_removeFlightNumber
 
     private void updates(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updates
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_updates
 
     private void canceles(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canceles
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_canceles
 
     private void textFieldLuggageIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLuggageIdActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldLuggageIdActionPerformed
 
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
     private void searches(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searches
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_searches
 
     private void goesToHelpAdding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpAdding
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_goesToHelpAdding
 
     private void backToSearchCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToSearchCustomer
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_backToSearchCustomer
 
 

@@ -162,27 +162,27 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addsCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addsCustomer
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_addsCustomer
 
     private void addsLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addsLuggage
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_addsLuggage
 
     private void searchesCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchesCustomer
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_searchesCustomer
 
     private void searchesLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchesLuggage
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_searchesLuggage
 
     private void goesToHelpFinding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpFinding
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_goesToHelpFinding
 
     private void goesToChangeSettingsScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToChangeSettingsScreen
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_goesToChangeSettingsScreen
 
 
