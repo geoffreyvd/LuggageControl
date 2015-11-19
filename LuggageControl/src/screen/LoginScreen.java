@@ -81,6 +81,7 @@ public class LoginScreen extends SwitchingJPanel {
         String inputUsername = textFieldUsername.getText();
         String inputPassword = textFieldPassword.getText();
         this.luggageControl.loginUser(inputUsername, inputPassword);
+        inputPassword = null;
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed

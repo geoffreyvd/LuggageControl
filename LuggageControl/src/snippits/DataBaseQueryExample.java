@@ -41,10 +41,25 @@ public class DataBaseQueryExample {
         //This query will return a string, it only returns 1 value!
         String result1 = DB2.QueryOneResult("select * from users");
         System.out.println(result1);
-        
+
         DatabaseMan DB3 = new DatabaseMan();
-        
+
         String result2 = DB3.QueryOneResult("select users.permissions from users where username = \"geoffreyvd\" and password = \"gucciguc\"");
         System.out.println(result1);
+
+        //example 4
+        System.out.println("example 4:");
+        DatabaseMan DB4 = new DatabaseMan();
+
+        try {
+
+            DB4.QueryInsertUser();
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+
+        }
+
     }
 }
