@@ -8,6 +8,7 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import main.LuggageControl;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -18,6 +19,16 @@ public class SearchCustomer extends SwitchingJPanel {
     public SearchCustomer(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("First name", textFieldFirstName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstName);
+        PromptSupport.setPrompt("Last name", textFieldLastName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLastName);
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
+        PromptSupport.setPrompt("Cellphone number", textFieldCellphoneNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphoneNumber);
+        PromptSupport.setPrompt("Email", textFieldEmail);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
     }
 
     /**
@@ -30,8 +41,8 @@ public class SearchCustomer extends SwitchingJPanel {
     private void initComponents() {
 
         labelSearchCustomer = new javax.swing.JLabel();
-        textFieldName = new javax.swing.JFormattedTextField();
-        textFieldLastname = new javax.swing.JFormattedTextField();
+        textFieldFirstName = new javax.swing.JFormattedTextField();
+        textFieldLastName = new javax.swing.JFormattedTextField();
         textFieldCellphoneNumber = new javax.swing.JFormattedTextField();
         textFieldEmail = new javax.swing.JFormattedTextField();
         textFieldFlightnumber = new javax.swing.JFormattedTextField();
@@ -45,25 +56,17 @@ public class SearchCustomer extends SwitchingJPanel {
         labelSearchCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchCustomer.setText("Search Customer");
 
-        textFieldName.setText("Name");
-        textFieldName.addActionListener(new java.awt.event.ActionListener() {
+        textFieldFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldNameActionPerformed(evt);
+                textFieldFirstNameActionPerformed(evt);
             }
         });
 
-        textFieldLastname.setText("Last name");
-
-        textFieldCellphoneNumber.setText("Cellphone number");
         textFieldCellphoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mberActionPerformed(evt);
             }
         });
-
-        textFieldEmail.setText("Email");
-
-        textFieldFlightnumber.setText("Flightnumber");
 
         buttonSearch.setText("Search");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +100,8 @@ public class SearchCustomer extends SwitchingJPanel {
             new Object [][] {
                 {"", null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
@@ -124,11 +129,11 @@ public class SearchCustomer extends SwitchingJPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelSearchCustomer)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,11 +152,11 @@ public class SearchCustomer extends SwitchingJPanel {
                         .addComponent(labelSearchCustomer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,9 +164,9 @@ public class SearchCustomer extends SwitchingJPanel {
                         .addComponent(buttonHelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonBack)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearch)
                     .addComponent(buttonCancel))
@@ -192,9 +197,9 @@ public class SearchCustomer extends SwitchingJPanel {
         this.userNotAFK();
     }//GEN-LAST:event_mberActionPerformed
 
-    private void textFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNameActionPerformed
+    private void textFieldFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFirstNameActionPerformed
         this.userNotAFK();
-    }//GEN-LAST:event_textFieldNameActionPerformed
+    }//GEN-LAST:event_textFieldFirstNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,8 +212,8 @@ public class SearchCustomer extends SwitchingJPanel {
     private javax.swing.JTable tableSearchCustomer;
     private javax.swing.JFormattedTextField textFieldCellphoneNumber;
     private javax.swing.JFormattedTextField textFieldEmail;
+    private javax.swing.JFormattedTextField textFieldFirstName;
     private javax.swing.JFormattedTextField textFieldFlightnumber;
-    private javax.swing.JFormattedTextField textFieldLastname;
-    private javax.swing.JFormattedTextField textFieldName;
+    private javax.swing.JFormattedTextField textFieldLastName;
     // End of variables declaration//GEN-END:variables
 }

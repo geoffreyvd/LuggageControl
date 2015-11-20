@@ -103,10 +103,17 @@ public class LoginScreen extends SwitchingJPanel {
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         this.userNotAFK();
-        String inputUsername = textFieldUsername.getText();
-        String inputPassword = textFieldPassword.getText();
-        this.luggageControl.loginUser(inputUsername, inputPassword);
-        inputPassword = null;
+        try {
+            if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
+                    
+            }
+            else {
+                this.labelLoginError.setText("Username or password incorrect!");
+                this.resetLabel(5000, labelLoginError);
+            }
+        }
+        catch(Exception e) {
+        }
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textFieldUserKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldUserKeyPress
@@ -116,11 +123,9 @@ public class LoginScreen extends SwitchingJPanel {
 
     private void textFieldPassKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldPassKeyPress
         this.userNotAFK();
-        String inputUsername = textFieldUsername.getText();
-        String inputPassword = textFieldPassword.getText();
         if(evt.getKeyCode() == evt.VK_ENTER) {
             try {
-                if(this.luggageControl.loginUser(inputUsername, inputPassword)) {
+                if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
                     
                 }
                 else {

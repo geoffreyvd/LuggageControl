@@ -22,19 +22,19 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="textFieldColor" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="textFieldWeight" min="-2" pref="155" max="-2" attributes="0"/>
+                              <Component id="textFieldUpdateColor" min="-2" pref="155" max="-2" attributes="0"/>
+                              <Component id="textFieldUpdateWeight" min="-2" pref="155" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="textFieldDescription" max="32767" attributes="0"/>
+                          <Component id="textFieldUpdateDescription" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="comboBoxLuggageStatus" min="-2" pref="155" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="textFieldSize" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="textFieldUpdateSize" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="textFieldOwnerID" min="-2" pref="155" max="-2" attributes="0"/>
-                      <Component id="textFieldLocation" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="textFieldUpdateOwnerID" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="textFieldUpdateLocation" min="-2" pref="155" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="labelOrigin" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
                           <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="textboxSearchName" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Component id="textFieldSearchName" min="-2" pref="155" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="338" max="-2" attributes="0"/>
                   <Component id="buttonSearch" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
@@ -102,21 +102,21 @@
                           <Component id="labelDestinationPlace" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Component id="textFieldLocation" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldUpdateLocation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldOwnerID" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldUpdateOwnerID" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldUpdateSize" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="textFieldDescription" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="textFieldUpdateDescription" min="-2" pref="51" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="textFieldColor" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldUpdateColor" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Component id="textFieldWeight" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldUpdateWeight" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" pref="40" max="32767" attributes="0"/>
@@ -130,7 +130,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labelCustomerSearch" min="-2" pref="49" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="textboxSearchName" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldSearchName" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
@@ -206,15 +206,9 @@
         <Property name="text" type="java.lang.String" value=" XXXXXXXXX"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldLocation">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Location"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateLocation">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldOwnerID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Owner ID"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateOwnerID">
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBoxLuggageStatus">
       <Properties>
@@ -228,25 +222,13 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldColor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Color"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateColor">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldWeight">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Weight"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateWeight">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldSize">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Size"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateSize">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDescription">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateDescription">
     </Component>
     <Component class="javax.swing.JSeparator" name="separatorCenter">
     </Component>
@@ -258,10 +240,7 @@
         <Property name="text" type="java.lang.String" value="Customer Search"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textboxSearchName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Name"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldSearchName">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

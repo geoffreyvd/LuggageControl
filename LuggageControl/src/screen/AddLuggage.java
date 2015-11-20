@@ -2,13 +2,12 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
-import java.awt.BorderLayout;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import main.LuggageControl;
+import managers.DatabaseMan;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -19,6 +18,21 @@ public class AddLuggage extends SwitchingJPanel {
     public AddLuggage(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
+        PromptSupport.setPrompt("Location", textFieldLocation);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLocation);
+        PromptSupport.setPrompt("OwnerID", textFieldOwnerID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOwnerID);
+        PromptSupport.setPrompt("Weight", textFieldWeight);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldWeight);
+        PromptSupport.setPrompt("Color", textFieldColor);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldColor);
+        PromptSupport.setPrompt("Size", textFieldSize);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSize);
+        PromptSupport.setPrompt("Content", textFieldContent);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldContent);
+        
     }
 
     /**
@@ -33,15 +47,13 @@ public class AddLuggage extends SwitchingJPanel {
         buttonHelp = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
         textFieldFlightnumber = new javax.swing.JFormattedTextField();
-        textFieldOrigin = new javax.swing.JFormattedTextField();
         textFieldLocation = new javax.swing.JFormattedTextField();
         textFieldOwnerID = new javax.swing.JFormattedTextField();
-        textFieldDestination = new javax.swing.JFormattedTextField();
         comboBoxLuggageStatus = new javax.swing.JComboBox();
         textFieldColor = new javax.swing.JFormattedTextField();
         textFieldSize = new javax.swing.JFormattedTextField();
         textFieldWeight = new javax.swing.JFormattedTextField();
-        textFieldDescription = new javax.swing.JFormattedTextField();
+        textFieldContent = new javax.swing.JFormattedTextField();
         labelAddLuggage = new javax.swing.JLabel();
         buttonUploadImage = new javax.swing.JButton();
         buttonConfirm = new javax.swing.JButton();
@@ -62,30 +74,7 @@ public class AddLuggage extends SwitchingJPanel {
             }
         });
 
-        textFieldFlightnumber.setText("Flightnumber");
-
-        textFieldOrigin.setText("Origin");
-
-        textFieldLocation.setText("Location");
-        textFieldLocation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tionPerformed(evt);
-            }
-        });
-
-        textFieldOwnerID.setText("Owner ID");
-
-        textFieldDestination.setText("Destination");
-
         comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
-
-        textFieldColor.setText("Color");
-
-        textFieldSize.setText("Size");
-
-        textFieldWeight.setText("Weight");
-
-        textFieldDescription.setText("Description");
 
         labelAddLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddLuggage.setText("Add luggage");
@@ -111,6 +100,8 @@ public class AddLuggage extends SwitchingJPanel {
             }
         });
 
+        pic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,26 +117,24 @@ public class AddLuggage extends SwitchingJPanel {
                             .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldContent, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(textFieldLocation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
                                     .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textFieldSize, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 18, Short.MAX_VALUE)
+                                .addGap(0, 104, Short.MAX_VALUE)
                                 .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,12 +154,8 @@ public class AddLuggage extends SwitchingJPanel {
                             .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,16 +164,16 @@ public class AddLuggage extends SwitchingJPanel {
                             .addComponent(textFieldSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(textFieldDescription))
+                        .addComponent(textFieldContent, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonBack)
                         .addGap(25, 25, 25)
                         .addComponent(buttonUploadImage)
-                        .addGap(18, 18, 18)
-                        .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonConfirm)
                             .addComponent(butonCancel))))
@@ -207,7 +192,6 @@ public class AddLuggage extends SwitchingJPanel {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
 
             ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
             pic.setIcon(image);
@@ -216,7 +200,10 @@ public class AddLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonUploadsImageActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
+        DatabaseMan db = new DatabaseMan();
+        db.Query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
         this.userNotAFK();
+        
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
@@ -229,10 +216,6 @@ public class AddLuggage extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void tionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tionPerformed
-        this.userNotAFK();
-    }//GEN-LAST:event_tionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;
@@ -244,11 +227,9 @@ public class AddLuggage extends SwitchingJPanel {
     private javax.swing.JLabel labelAddLuggage;
     private javax.swing.JLabel pic;
     private javax.swing.JFormattedTextField textFieldColor;
-    private javax.swing.JFormattedTextField textFieldDescription;
-    private javax.swing.JFormattedTextField textFieldDestination;
+    private javax.swing.JFormattedTextField textFieldContent;
     private javax.swing.JFormattedTextField textFieldFlightnumber;
     private javax.swing.JFormattedTextField textFieldLocation;
-    private javax.swing.JFormattedTextField textFieldOrigin;
     private javax.swing.JFormattedTextField textFieldOwnerID;
     private javax.swing.JFormattedTextField textFieldSize;
     private javax.swing.JFormattedTextField textFieldWeight;
