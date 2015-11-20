@@ -9,6 +9,7 @@ import baseClasses.SwitchingJPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.LuggageControl;
+import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -24,7 +25,8 @@ public class LoginScreen extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUsername);
         PromptSupport.setPrompt("Password", textFieldPassword);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPassword);
-
+        DatabaseMan db = new DatabaseMan();
+        db.exportDatabase("henk");
     }
 
     /**

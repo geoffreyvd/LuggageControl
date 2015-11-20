@@ -104,7 +104,7 @@ public class SecurityMan {
      */
     public boolean logInUser(String username, String password) {
         //This query will return a string, it only returns 1 value!
-        String result = databaseMan.QueryOneResult("select users.permissions from users where username = \""
+        String result = databaseMan.queryOneResult("select users.permissions from users where username = \""
                                             + username + "\" and password = \"" + password + "\"");
         username = null;
         password = null;
