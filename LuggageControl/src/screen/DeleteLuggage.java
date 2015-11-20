@@ -6,7 +6,9 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
 import main.LuggageControl;
+import managers.DatabaseMan;
 
 /**
  *
@@ -35,7 +37,7 @@ public class DeleteLuggage extends SwitchingJPanel {
         textFieldCustomerId = new javax.swing.JFormattedTextField();
         buttonSearchLuggage = new javax.swing.JButton();
         scrollPaneLuggageTable = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableDeleteLuggage = new javax.swing.JTable();
 
         buttonHelp.setText("Help");
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +67,7 @@ public class DeleteLuggage extends SwitchingJPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableDeleteLuggage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -84,7 +86,7 @@ public class DeleteLuggage extends SwitchingJPanel {
                 return types [columnIndex];
             }
         });
-        scrollPaneLuggageTable.setViewportView(jTable1);
+        scrollPaneLuggageTable.setViewportView(tableDeleteLuggage);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,15 +140,17 @@ public class DeleteLuggage extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        // TODO add your handling code here:
+        DatabaseMan db = new DatabaseMan();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
 
@@ -154,9 +158,9 @@ public class DeleteLuggage extends SwitchingJPanel {
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearchLuggage;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelHeader;
     private javax.swing.JScrollPane scrollPaneLuggageTable;
+    private javax.swing.JTable tableDeleteLuggage;
     private javax.swing.JFormattedTextField textFieldCustomerId;
     private javax.swing.JFormattedTextField textFieldCustomerName;
     // End of variables declaration//GEN-END:variables
