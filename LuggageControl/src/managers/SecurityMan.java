@@ -36,9 +36,14 @@ public class SecurityMan {
 
         @Override
         public void run() {
-            userPermissions.set(0);
-            userLoggedIn.set(false);
-            luggageControl.userTimeOut();
+            if(userAFK.get()) {
+                userPermissions.set(0);
+                userLoggedIn.set(false);
+                luggageControl.userTimeOut();
+            }
+            else {
+                userAFK.set(true);
+            }
         }
     }
 
@@ -46,6 +51,8 @@ public class SecurityMan {
     private int defaultTimeOutTime = 300000;
 
     private int timeOutTime = defaultTimeOutTime;
+    
+    private AtomicBoolean userAFK = new AtomicBoolean(true);
 
     // timer to manage when the user has timed out.
     private Timer timeOut;
@@ -139,6 +146,15 @@ public class SecurityMan {
     public boolean getLoggedIn() {
         return userLoggedIn.get();
     }
+    
+    public boolean getUserAFK() {
+        return this.userAFK.get();
+    }
+    
+    public void setUserAFK(boolean useAFK) {
+        this.userAFK.set(useAFK);
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="set, get, reset timeout time">
     /**

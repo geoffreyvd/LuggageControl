@@ -6,6 +6,8 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
@@ -37,7 +39,9 @@ public class LoginScreen extends SwitchingJPanel {
         buttonLogin = new javax.swing.JButton();
         textFieldUsername = new javax.swing.JFormattedTextField();
         textFieldPassword = new javax.swing.JPasswordField();
+        labelLoginError = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(70, 300));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 panelMouseMoved(evt);
@@ -54,6 +58,7 @@ public class LoginScreen extends SwitchingJPanel {
 
         textFieldUsername.setToolTipText("");
         textFieldUsername.setName(""); // NOI18N
+        textFieldUsername.setPreferredSize(new java.awt.Dimension(200, 27));
         textFieldUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textFieldUserKeyPress(evt);
@@ -71,23 +76,26 @@ public class LoginScreen extends SwitchingJPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(textFieldUsername)
-                    .addComponent(buttonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldPassword)
+                    .addComponent(textFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLoginError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(labelLoginError, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogin)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,7 +118,13 @@ public class LoginScreen extends SwitchingJPanel {
         String inputPassword = textFieldPassword.getText();
         if(evt.getKeyCode() == evt.VK_ENTER) {
             try {
-                this.luggageControl.loginUser(inputUsername, inputPassword);
+                if(this.luggageControl.loginUser(inputUsername, inputPassword)) {
+                    
+                }
+                else {
+                    this.labelLoginError.setText("Username or password incorrect!");
+                    this.resetLabel(5000, labelLoginError);
+                }
             }
             catch(Exception e) {
             }
@@ -123,6 +137,7 @@ public class LoginScreen extends SwitchingJPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
+    private javax.swing.JLabel labelLoginError;
     private javax.swing.JPasswordField textFieldPassword;
     private javax.swing.JFormattedTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables

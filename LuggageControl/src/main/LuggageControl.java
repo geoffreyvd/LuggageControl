@@ -57,32 +57,6 @@ public class LuggageControl extends javax.swing.JFrame {
     // security manager and event interface
     private SecurityMan secman;
     
-    // <editor-fold defaultstate="collapsed" desc="user afk timers and time outs">
-    // Custom timer task to check whether the user was afk during the last 5 seconds
-    private class UserAFKTimerTask extends TimerTask {
-        @Override
-        public void run() {
-            if(userAFK.get() == false) {
-                userAFK.set(true);
-                secman.resetTimer();
-            }
-        }
-    }
-    
-    // true if the user was afk, false if the user has moved
-    private AtomicBoolean userAFK = new AtomicBoolean(true);
-
-    // default timeout is 5000 milliseconds (5 seconds)
-    private int userAFKTimeOutTime = 5000;
-
-    // timer to manage when the user has timed out.
-    private Timer userAFKTIMER;
-
-    // instance of our custom timer
-    private UserAFKTimerTask userAFKTimerTask;
-
-    // </editor-fold>
-    
     /**
      *
      */
@@ -90,14 +64,6 @@ public class LuggageControl extends javax.swing.JFrame {
         // parse the refernence of our interface to the security manager class
         // so it can call us.
         secman = new SecurityMan(this);
-        
-        // <editor-fold defaultstate="collapsed" desc="user afk timers and time outs">
-        // Create timer and timertask to check whether user has moved keyboard or mouse during the last period
-        userAFKTIMER = new Timer("userAFKTimer");
-        userAFKTimerTask = new UserAFKTimerTask();
-        //  start the timer with the timertask
-        userAFKTIMER.scheduleAtFixedRate(userAFKTimerTask, userAFKTimeOutTime, userAFKTimeOutTime);
-        // </editor-fold>
         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
@@ -490,15 +456,17 @@ public class LuggageControl extends javax.swing.JFrame {
      * @param username the username as described in the database
      * @param password the password as described in the database
      */
-    public void loginUser(String username, String password) {
+    public boolean loginUser(String username, String password) {
         if(secman.logInUser(username, password)) {
-            
+            username = null;
+            password = null;
+            return true;
         }
         else {
-            new ErrorJDialog("Username or password incorrect", "Your username or password is incorrect.");
+            username = null;
+            password = null;
+            return false;
         }
-        username = null;
-        password = null;
     }
     
     /**
@@ -518,7 +486,7 @@ public class LuggageControl extends javax.swing.JFrame {
     
     public void setUserAFK(boolean userAFK) {
         System.out.println("User moved!");
-        this.userAFK.set(userAFK);
+        this.secman.setUserAFK(false);
     }
     
     /**

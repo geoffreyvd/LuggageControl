@@ -1,5 +1,6 @@
 package baseClasses;
 
+import javax.swing.JLabel;
 import main.LuggageControl;
 
 /**
@@ -19,5 +20,26 @@ public class SwitchingJPanel extends javax.swing.JPanel{
      */
     protected void userNotAFK() {
         luggageControl.setUserAFK(false);
+    }
+    
+    /**
+     * Method to reset given label after a specific period of time
+     * @param time
+     * @param label 
+     */
+    protected void resetLabel(final int time, final JLabel label) {
+        Thread resetText = new Thread("resetText-" + label.getClass().getSimpleName()) {
+                        
+            @Override
+            public void run() {
+                try {
+                    sleep(time);
+                    label.setText("");
+                } catch (InterruptedException ex) {
+                }
+                
+            }
+        };
+        resetText.start();
     }
 }
