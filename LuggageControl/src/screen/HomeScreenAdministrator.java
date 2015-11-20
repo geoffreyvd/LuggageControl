@@ -199,26 +199,25 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
 
     private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed
 
-        Runtime rt = Runtime.getRuntime();
-        try {
-            rt.exec("CMD /C /F:ON mysqldump luggagecontroldata -uroot -pVjdo1v!!  > C:/LuggageControlData1.sql");
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("C:/LuggageControlData1.sql"));
+
         int returnValue = fileChooser.showSaveDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             try {
             FileWriter fw = new FileWriter(fileChooser.getSelectedFile()+".sql");
-            fw.write(toString());
+                System.out.println(fileChooser.getSelectedFile());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         }   
-        
+        Runtime rt = Runtime.getRuntime();
+        try {
+            rt.exec("CMD /C mysqldump luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
+            
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }        
         
         
 
