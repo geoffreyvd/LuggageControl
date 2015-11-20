@@ -40,14 +40,14 @@ public class DeleteLuggage extends SwitchingJPanel {
         buttonHelp.setText("Help");
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goesToHelpFinding(evt);
+                buttonHelpActionPerformed(evt);
             }
         });
 
         buttonBack.setText("Back");
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backToEmployeeScreen(evt);
+                buttonBackActionPerformed(evt);
             }
         });
 
@@ -61,7 +61,7 @@ public class DeleteLuggage extends SwitchingJPanel {
         buttonSearchLuggage.setText("Search");
         buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searches(evt);
+                buttonSearchActionPerformed(evt);
             }
         });
 
@@ -137,17 +137,17 @@ public class DeleteLuggage extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goesToHelpFinding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpFinding
-        this.userNotAFK();
-    }//GEN-LAST:event_goesToHelpFinding
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void backToEmployeeScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToEmployeeScreen
-        this.userNotAFK();
-    }//GEN-LAST:event_backToEmployeeScreen
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonBackActionPerformed
 
-    private void searches(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searches
-        this.userNotAFK();
-    }//GEN-LAST:event_searches
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

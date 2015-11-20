@@ -93,7 +93,7 @@
         <Property name="text" type="java.lang.String" value="Add customer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addsCustomer"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddCustomerActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonAddLuggage">
@@ -101,7 +101,7 @@
         <Property name="text" type="java.lang.String" value="Add luggage"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addsLuggage"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddLuggageActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonSearchCustomer">
@@ -109,7 +109,7 @@
         <Property name="text" type="java.lang.String" value="Search customer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchesCustomer"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSearchCustomerActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonSearchLuggage">
@@ -117,7 +117,7 @@
         <Property name="text" type="java.lang.String" value="Search luggage"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchesLuggage"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSearchLuggageActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelHeaderRightSide">
@@ -141,7 +141,7 @@
         <Property name="text" type="java.lang.String" value="Help"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="goesToHelpFinding"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHelpActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonChangeSettings">
@@ -149,7 +149,7 @@
         <Property name="text" type="java.lang.String" value="Change settings"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="goesToChangeSettingsScreen"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeSettingsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldFlightNumber">
