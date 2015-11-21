@@ -2,6 +2,8 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 
@@ -52,12 +54,11 @@ public class DeleteFlight extends SwitchingJPanel {
             }
         });
 
+        scrollPaneTable.setPreferredSize(new java.awt.Dimension(1920, 10080));
+
         tableFlights.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Flight number", "Origin", "Destination", "Departure", "Arrival", "Remove"
@@ -130,7 +131,7 @@ public class DeleteFlight extends SwitchingJPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneTable, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -161,10 +162,17 @@ public class DeleteFlight extends SwitchingJPanel {
         //String[] values = {"danta"};
         String[] values = {};
         try {
-            ResultSet result = db.queryPrepared("SELECT * FROM luggagecontroldata.users;", values);
-            while(result.next()) {
-                System.out.println(result.getString("username"));
+            ResultSet result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights;", values);
+            DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
+            for(int i = 0; i < datamodel.getRowCount(); i++) {
+                datamodel.removeRow(i);
             }
+            while(result.next()) {
+                System.out.println(result.getString("origin"));
+                Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival")};
+                datamodel.addRow(data);
+            }
+            tableFlights.setModel(datamodel);
         }
         catch(Exception e) {
             
