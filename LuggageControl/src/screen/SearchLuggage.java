@@ -231,13 +231,13 @@ public class SearchLuggage extends SwitchingJPanel {
         //String[] values = {"danta"};
         ResultSet result = new EmptyResultSet();
         try {
-            if(textFieldFlightNumber.getText().equals("")) {
+            if(textFieldLuggageID.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights;", values);
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
-                String[] values = {textFieldFlightNumber.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ?;", values);
+                String[] values = {textFieldLuggageID.getText()};
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableLuggageSearch.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
@@ -253,7 +253,7 @@ public class SearchLuggage extends SwitchingJPanel {
         catch(Exception e) {
             
         }
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelpLinking;
