@@ -258,12 +258,23 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 //System.out.println(e.getMessage());
             }
         }
-        System.out.println(line);
+        try{
+            line = line + "/mysqldump.exe";
+        Runtime rt = Runtime.getRuntime();
+        rt.exec("CMD /C " + line + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
+        
+        }catch(IOException e){
+            
+        }
+        
+        
+        
         /*
+        System.out.println(line);
         Runtime rt = Runtime.getRuntime();
         try {
             /*String[] exec = {"CMD /", "cd /", "dir /s *mysqldump.exe*"};
-                    
+               
             String line;
                    BufferedReader in = new BufferedReader(
                 new InputStreamReader(rt.exec(exec).getInputStream()) );
@@ -272,7 +283,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
        
                 in.close();
      }
-            //rt.exec("CMD /C " + locatie + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
+            rt.exec("CMD /C " + locatie + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
             rt.exec("CMD /C mysqldump luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
             
 
