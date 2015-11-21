@@ -174,7 +174,7 @@ public class DeleteFlight extends SwitchingJPanel {
             }
             else {
                 String[] values = {textFieldFlightNumber.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ?;", values);
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
