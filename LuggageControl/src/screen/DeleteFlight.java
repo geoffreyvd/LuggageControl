@@ -2,6 +2,7 @@ package screen;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -80,6 +81,7 @@ public class DeleteFlight extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 1080));
         scrollPaneTable.setViewportView(tableFlights);
 
         buttonBack.setText("Back");
@@ -133,16 +135,19 @@ public class DeleteFlight extends SwitchingJPanel {
                 .addComponent(buttonSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
         this.userNotAFK();
+        this.luggageControl.switchPreviousPanel();
     }//GEN-LAST:event_buttonBack
 
     private void buttonHelp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelp
         this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
+        this.luggageControl.switchTab(screen.help.Removing.REMOVE_ENTRIES, ScreenNames.Help.REMOVING);
     }//GEN-LAST:event_buttonHelp
 
     private void buttonSearch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearch

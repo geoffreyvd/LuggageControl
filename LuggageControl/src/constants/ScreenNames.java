@@ -61,5 +61,6 @@ public class ScreenNames {
         public static final String ADDING = "Adding";
         public static final String FINDING = "Finding";
         public static final String LINKING = "Linking";
+        public static final String REMOVING = "Removing";
     }
 }
