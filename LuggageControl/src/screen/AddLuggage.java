@@ -3,6 +3,7 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.io.File;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
@@ -200,7 +201,7 @@ public class AddLuggage extends SwitchingJPanel {
         || "".equals(textFieldOwnerID.getText()) || "".equals(comboBoxLuggageStatus.getSelectedItem().toString())
         || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
         || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))){
-        db.query("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
+        ResultSet result = db.queryPrepared("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
         "VALUES ("+textFieldLocation.getText()+", "+textFieldColor.getText()+", "+textFieldWeight.getText()+
         ", "+textFieldSize.getText()+", "+textFieldContent.getText()+", "+comboBoxLuggageStatus.getSelectedItem().toString()+", "+pic+");");
             System.out.println("work");

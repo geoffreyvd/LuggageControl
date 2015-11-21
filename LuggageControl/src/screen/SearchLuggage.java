@@ -5,9 +5,13 @@
  */
 package screen;
 
+import baseClasses.EmptyResultSet;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
+import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -69,16 +73,27 @@ public class SearchLuggage extends SwitchingJPanel {
 
         tableLuggageSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Luggage ID", "Flight number", "Owner ID", "Status", "Location", "Origin", "Destination"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableLuggageSearch);
 
         buttonHelpLinking.setText("Help");
@@ -166,9 +181,9 @@ public class SearchLuggage extends SwitchingJPanel {
                             .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(textFieldContent))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearch)
                     .addComponent(buttonCancel))
@@ -210,6 +225,34 @@ public class SearchLuggage extends SwitchingJPanel {
         this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
+    private void fillFlightTable() {
+        DatabaseMan db = new DatabaseMan();
+        //String[] types = {db.PS_TYPE_STRING};
+        //String[] values = {"danta"};
+        ResultSet result = new EmptyResultSet();
+        try {
+            if(textFieldFlightNumber.getText().equals("")) {
+                String[] values = {};
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights;", values);
+            }
+            else {
+                String[] values = {textFieldFlightNumber.getText()};
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ?;", values);
+            }
+            DefaultTableModel datamodel = (DefaultTableModel)tableLuggageSearch.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while(result.next()) {
+                System.out.println(result.getString("origin"));
+                Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival")};
+                datamodel.addRow(data);
+            }
+            tableLuggageSearch.setModel(datamodel);
+        }
+        catch(Exception e) {
+            
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
