@@ -10,11 +10,14 @@ import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- *
- * @author Admin
+ * This JPanel adds a luggage into the database
+ * @author Konrad
  */
 public class AddLuggage extends SwitchingJPanel {
 
+    /**
+     * Creates new form AddFlight and sets a prompt on all the textfields
+     */
     public AddLuggage(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
@@ -45,7 +48,6 @@ public class AddLuggage extends SwitchingJPanel {
     private void initComponents() {
 
         buttonHelp = new javax.swing.JButton();
-        buttonBack = new javax.swing.JButton();
         textFieldFlightnumber = new javax.swing.JFormattedTextField();
         textFieldLocation = new javax.swing.JFormattedTextField();
         textFieldOwnerID = new javax.swing.JFormattedTextField();
@@ -64,13 +66,6 @@ public class AddLuggage extends SwitchingJPanel {
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHelpActionPerformed(evt);
-            }
-        });
-
-        buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
             }
         });
 
@@ -112,9 +107,7 @@ public class AddLuggage extends SwitchingJPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(labelAddLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textFieldContent, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,9 +160,7 @@ public class AddLuggage extends SwitchingJPanel {
                         .addComponent(textFieldContent, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonBack)
-                        .addGap(25, 25, 25)
+                        .addGap(59, 59, 59)
                         .addComponent(buttonUploadImage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,11 +172,11 @@ public class AddLuggage extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-    }//GEN-LAST:event_buttonBackActionPerformed
-
+    /**
+     * pops up a new window which makes the user choose an image and uploads it, 
+     * then it loads the image onto panels in the label
+     * @param evt 
+     */
     private void buttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadsImageActionPerformed
         this.userNotAFK();
         JFileChooser fileChooser = new JFileChooser();
@@ -199,18 +190,50 @@ public class AddLuggage extends SwitchingJPanel {
         }
     }//GEN-LAST:event_buttonUploadsImageActionPerformed
 
+    /**
+     * puts all the strings from the texgtfields into the database
+     * @param evt 
+     */
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         DatabaseMan db = new DatabaseMan();
-        db.query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
+        if (!("".equals(textFieldFlightnumber.getText())|| "".equals(textFieldLocation.getText()) 
+        || "".equals(textFieldOwnerID.getText()) || "".equals(comboBoxLuggageStatus.getSelectedItem().toString())
+        || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
+        || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))){
+        db.query("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
+        "VALUES ("+textFieldLocation.getText()+", "+textFieldColor.getText()+", "+textFieldWeight.getText()+
+        ", "+textFieldSize.getText()+", "+textFieldContent.getText()+", "+comboBoxLuggageStatus.getSelectedItem().toString()+", "+pic+");");
+            System.out.println("work");
+        }
+        else{
+            System.out.println("not work");
+        }
+        
         this.userNotAFK();
         
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
+    /**
+     * sets the user as not afk, resets all the text fields and combobox, and changes to panel home screen
+     * @param evt 
+     */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
+        textFieldFlightnumber.setText("");
+        textFieldLocation.setText("");
+        textFieldOwnerID.setText("");
+        comboBoxLuggageStatus.setSelectedIndex(0);
+        textFieldWeight.setText("");
+        textFieldColor.setText("");
+        textFieldSize.setText("");
+        textFieldContent.setText("");
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
-
+    
+    /**
+     * sets the user as not afk and changes to panel help_adding
+     * @param evt 
+     */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
@@ -219,7 +242,6 @@ public class AddLuggage extends SwitchingJPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;
-    private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonConfirm;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonUploadImage;

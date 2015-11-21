@@ -6,6 +6,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
 import main.LuggageControl;
 
 /**
@@ -178,7 +179,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearchCustomerActionPerformed
 
     private void buttonAddLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddLuggageActionPerformed
-        // TODO add your handling code here:
+        this.luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
     }//GEN-LAST:event_buttonAddLuggageActionPerformed
 
     private void buttonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCustomerActionPerformed

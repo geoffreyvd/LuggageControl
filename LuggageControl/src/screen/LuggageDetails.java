@@ -11,11 +11,14 @@ import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- *
+ * This JPanel changes the data from the corresponding luggage into the database
  * @author Admin
  */
 public class LuggageDetails extends SwitchingJPanel {
 
+    /**
+     * Creates new form AddFlight and sets a prompt on all the textfields
+     */
     public LuggageDetails(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
@@ -29,8 +32,8 @@ public class LuggageDetails extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateColor);
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
-        PromptSupport.setPrompt("Description", textFieldUpdateDescription);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateDescription);
+        PromptSupport.setPrompt("Content", textFieldUpdateContent);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateContent);
         PromptSupport.setPrompt("Name", textFieldSearchName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSearchName);
         
@@ -58,7 +61,7 @@ public class LuggageDetails extends SwitchingJPanel {
         textFieldUpdateColor = new javax.swing.JFormattedTextField();
         textFieldUpdateWeight = new javax.swing.JFormattedTextField();
         textFieldUpdateSize = new javax.swing.JFormattedTextField();
-        textFieldUpdateDescription = new javax.swing.JFormattedTextField();
+        textFieldUpdateContent = new javax.swing.JFormattedTextField();
         separatorCenter = new javax.swing.JSeparator();
         labelCustomerSearch = new javax.swing.JLabel();
         textFieldSearchName = new javax.swing.JFormattedTextField();
@@ -159,7 +162,7 @@ public class LuggageDetails extends SwitchingJPanel {
                                 .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textFieldUpdateDescription))
+                            .addComponent(textFieldUpdateContent))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -222,18 +225,18 @@ public class LuggageDetails extends SwitchingJPanel {
                         .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldUpdateSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textFieldUpdateDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldUpdateContent, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(11, 11, 11)
                                 .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonUpdate)
                             .addComponent(buttonCancel)))
@@ -259,20 +262,44 @@ public class LuggageDetails extends SwitchingJPanel {
         this.userNotAFK();
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
+    /**
+     * sets the user as not afk and changes to panel home screen
+     * @param evt 
+     */
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
+        textFieldUpdateLocation.setText("");
+        textFieldUpdateOwnerID.setText("");
+        textFieldUpdateColor.setText("");
+        comboBoxLuggageStatus.setSelectedIndex(0);
+        textFieldUpdateWeight.setText("");
+        textFieldUpdateSize.setText("");
+        textFieldUpdateContent.setText("");
+        textFieldSearchName.setText("");
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_butonCancelActionPerformed
 
+    /**
+     * searches through the database with the given variables
+     * @param evt 
+     */
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
+    /**
+     * sets the user as not afk and changes to panel searchLuggage
+     * @param evt 
+     */
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
+    /**
+     * sets the user as not afk and changes to panel help_linking
+     * @param evt 
+     */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.Help.LINKING);
@@ -299,7 +326,7 @@ public class LuggageDetails extends SwitchingJPanel {
     private javax.swing.JTable tableCustomerSearch;
     private javax.swing.JFormattedTextField textFieldSearchName;
     private javax.swing.JFormattedTextField textFieldUpdateColor;
-    private javax.swing.JFormattedTextField textFieldUpdateDescription;
+    private javax.swing.JFormattedTextField textFieldUpdateContent;
     private javax.swing.JFormattedTextField textFieldUpdateLocation;
     private javax.swing.JFormattedTextField textFieldUpdateOwnerID;
     private javax.swing.JFormattedTextField textFieldUpdateSize;

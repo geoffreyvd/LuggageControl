@@ -8,13 +8,13 @@ import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- *
+ * This JPanel adds a flight into the database
  * @author Konrad
  */
 public class AddFlight extends SwitchingJPanel {
 
     /**
-     * Creates new form AddFlight
+     * Creates new form AddFlight and sets a prompt on all the textfields
      */
     public AddFlight(LuggageControl luggageControl ) {
         super(luggageControl);
@@ -48,7 +48,6 @@ public class AddFlight extends SwitchingJPanel {
         textFieldDepartureTime = new javax.swing.JFormattedTextField();
         textFieldArivalTime = new javax.swing.JFormattedTextField();
         buttonHelp = new javax.swing.JButton();
-        buttonBack = new javax.swing.JButton();
         buttonConfirm = new javax.swing.JButton();
         butonCancel = new javax.swing.JButton();
 
@@ -59,13 +58,6 @@ public class AddFlight extends SwitchingJPanel {
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHelpActionPerformed(evt);
-            }
-        });
-
-        buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
             }
         });
 
@@ -100,9 +92,7 @@ public class AddFlight extends SwitchingJPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                                 .addGap(162, 162, 162)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,11 +114,8 @@ public class AddFlight extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonHelp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonBack)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(buttonHelp))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldDepartureTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,16 +133,19 @@ public class AddFlight extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * sets the user as not afk and changes to panel help_adding
+     * @param evt 
+     */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-    }//GEN-LAST:event_buttonBackActionPerformed
-
+    /**
+     * puts all the strings from the texgtfields into the database
+     * @param evt 
+     */
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         DatabaseMan db = new DatabaseMan();
         db.query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
@@ -163,15 +153,23 @@ public class AddFlight extends SwitchingJPanel {
 
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
+    /**
+     * sets the user as not afk, resets all the text fields and changes to panel home screen
+     * @param evt 
+     */
     private void butonCancelbuttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelbuttonCancelActionPerformed
         this.userNotAFK();
+        textFieldFlightnumber.setText("");
+        textFieldDestination.setText("");
+        textFieldOrigin.setText("");
+        textFieldDepartureTime.setText("");
+        textFieldArivalTime.setText("");
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_butonCancelbuttonCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;
-    private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonConfirm;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JLabel labelAddCustomer;

@@ -26,7 +26,7 @@
                               <Component id="textFieldUpdateWeight" min="-2" pref="155" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="textFieldUpdateDescription" max="32767" attributes="0"/>
+                          <Component id="textFieldUpdateContent" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="comboBoxLuggageStatus" min="-2" pref="155" max="-2" attributes="0"/>
@@ -105,21 +105,21 @@
                       <Component id="textFieldUpdateLocation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldUpdateOwnerID" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldUpdateSize" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="textFieldUpdateDescription" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="textFieldUpdateContent" min="-2" pref="51" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="textFieldUpdateColor" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="textFieldUpdateWeight" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" pref="40" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" pref="34" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -228,7 +228,7 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateSize">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateDescription">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateContent">
     </Component>
     <Component class="javax.swing.JSeparator" name="separatorCenter">
     </Component>
