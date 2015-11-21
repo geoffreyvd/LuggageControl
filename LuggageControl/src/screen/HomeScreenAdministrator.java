@@ -223,7 +223,41 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        }   
+        }
+        String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
+        ProcessBuilder pb = new ProcessBuilder(command);
+        char schijf;
+        String line = null;
+        for (schijf = 'A'; schijf <= 'Z'; schijf++) {
+            pb.directory(new File(schijf + ":\\"));
+            try {
+                Process process = pb.start();
+                //System.out.println(process.getInputStream());
+
+                InputStream is = process.getInputStream();
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader br = new BufferedReader(isr);
+                
+
+                while ((line = br.readLine()) != null) {
+
+                    if (!line.contains("Directory of")) {
+
+                    } else {
+                        line = (line.replace("Directory of", ""));
+                        line = (line.trim());
+                        System.out.println(line);
+
+                    }
+                }
+
+                
+            } catch (java.io.IOException e) {
+                //System.out.println(e.getMessage());
+            }
+
+        }
+        /*
         Runtime rt = Runtime.getRuntime();
         try {
             /*String[] exec = {"CMD /", "cd /", "dir /s *mysqldump.exe*"};
@@ -235,7 +269,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 System.out.println(line);
        
                 in.close();
-     }*/
+     }
             //rt.exec("CMD /C " + locatie + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
             rt.exec("CMD /C mysqldump luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
             
@@ -247,7 +281,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
         
 
         this.userNotAFK();
-
+       */ 
     }//GEN-LAST:event_buttonDatabaseExportActionPerformed
 
     private void buttonDeleteFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFlight
