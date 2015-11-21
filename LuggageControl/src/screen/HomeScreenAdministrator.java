@@ -2,9 +2,12 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
 
@@ -223,6 +226,17 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
         }   
         Runtime rt = Runtime.getRuntime();
         try {
+            /*String[] exec = {"CMD /", "cd /", "dir /s *mysqldump.exe*"};
+                    
+            String line;
+                   BufferedReader in = new BufferedReader(
+                new InputStreamReader(rt.exec(exec).getInputStream()) );
+                while ((line = in.readLine()) != null) {
+                System.out.println(line);
+       
+                in.close();
+     }*/
+            //rt.exec("CMD /C " + locatie + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
             rt.exec("CMD /C mysqldump luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
             
 
