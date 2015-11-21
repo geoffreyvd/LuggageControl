@@ -201,7 +201,7 @@ public class AddLuggage extends SwitchingJPanel {
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         DatabaseMan db = new DatabaseMan();
-        db.Query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
+        db.query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
         this.userNotAFK();
         
     }//GEN-LAST:event_buttonConfirmActionPerformed

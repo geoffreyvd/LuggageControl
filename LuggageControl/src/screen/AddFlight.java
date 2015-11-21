@@ -1,25 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen;
 
+import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import main.LuggageControl;
 import managers.DatabaseMan;
 
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
- * @author Admin
+ * @author Konrad
  */
-public class AddFlight extends javax.swing.JPanel {
+public class AddFlight extends SwitchingJPanel {
 
     /**
      * Creates new form AddFlight
      */
-    public AddFlight() {
+    public AddFlight(LuggageControl luggageControl ) {
         super(luggageControl);
         initComponents();
         PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
@@ -161,7 +158,7 @@ public class AddFlight extends javax.swing.JPanel {
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         DatabaseMan db = new DatabaseMan();
-        db.Query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
+        db.query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
         this.userNotAFK();
 
     }//GEN-LAST:event_buttonConfirmActionPerformed
