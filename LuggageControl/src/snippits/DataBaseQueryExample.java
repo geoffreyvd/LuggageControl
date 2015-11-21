@@ -33,8 +33,9 @@ public class DataBaseQueryExample {
             System.out.println("An error occured while querying the database");
         }
 
-        System.out.println("\nExample 2: ");
+        
         //example 2: selecting all values from ws.database.cijfer, those values are printed in console
+        System.out.println("\nExample 2: ");
 
         DatabaseMan DB2 = new DatabaseMan();
 
@@ -42,57 +43,81 @@ public class DataBaseQueryExample {
         String result1 = DB2.queryOneResult("select * from users");
         System.out.println(result1);
 
+        
+        //example 3 user log in
+        System.out.println("Example 3");
         DatabaseMan DB3 = new DatabaseMan();
 
         String result2 = DB3.queryOneResult("select users.permissions from users where username = \"geoffreyvd\" and password = \"gucciguc\"");
-        System.out.println(result1);
+        System.out.println(result2);
 
-        //example 4
-        System.out.println("example 4:");
-        DatabaseMan DB4 = new DatabaseMan();
-
-        String query = "INSERT INTO users"
-                + "(username,password,firstname,surname,cellphone,birthday,gender,nationality,adress,city,postcode,permissions) VALUES"
-                + "(?,?,?,?,?,?,?,?,?,?,?,?)";
-
-        String[] values = new String[12];
-        String[] types = new String[12];
-
-        values[0] = "geoffreyvd3";
-        values[1] = "gucciguc";
-        values[2] = "geoffrey";
-        values[3] = "geoffrey";
-        values[4] = "56465464";
-        values[5] = "1996-12-12";
-        values[6] = "male";
-        values[7] = "dutchy";
-        values[8] = "sduyfgi";
-        values[9] = "haarlem";
-        values[10] = "2033v";
-        values[11] = "1";
-
-        types[0] = "String";
-        types[1] = "String";
-        types[2] = "String";
-        types[3] = "String";
-        types[4] = "Int";
-        types[5] = "String";
-        types[6] = "String";
-        types[7] = "String";
-        types[8] = "String";
-        types[9] = "String";
-        types[10] = "String";
-        types[11] = "Int";
-
+        
+//        //example 4 insert query example
+//        System.out.println("example 4:");
+//        DatabaseMan DB4 = new DatabaseMan();
+//
+//        String query = "INSERT INTO users"
+//                + "(username,password,firstname,surname,cellphone,birthday,gender,nationality,adress,city,postcode,permissions) VALUES"
+//                + "(?,?,?,?,?,?,?,?,?,?,?,?)";
+//
+//        String[] values = new String[12];
+//        String[] types = new String[12];
+//
+//        values[0] = "geoffreyvd4";
+//        values[1] = "gucciguc";
+//        values[2] = "geoffrey";
+//        values[3] = "geoffrey";
+//        values[4] = "56465464";
+//        values[5] = "1996-12-12";
+//        values[6] = "male";
+//        values[7] = "dutchy";
+//        values[8] = "sduyfgi";
+//        values[9] = "haarlem";
+//        values[10] = "2033v";
+//        values[11] = "1";
+//
+//        types[0] = "String";
+//        types[1] = "String";
+//        types[2] = "String";
+//        types[3] = "String";
+//        types[4] = "Int";
+//        types[5] = "String";
+//        types[6] = "String";
+//        types[7] = "String";
+//        types[8] = "String";
+//        types[9] = "String";
+//        types[10] = "String";
+//        types[11] = "Int";
+//
+//        try {
+//
+//            DB4.queryInsert(query, values, types);
+//
+//        } catch (SQLException e) {
+//
+//            System.out.println(e.getMessage());
+//
+//        }
+        
+        // example 5 prepared statement query
+        System.out.println("example 5");
+        DatabaseMan DB5 = new DatabaseMan();
+        
+        String[] values1 = new String[1];
+        values1[0] = "geoffreyvd4";        
+        String query = "select * from users where username = ?";
+        
         try {
-
-            DB4.queryInsertUser(query, values, types);
+            result = DB5.queryPrepared(query, values1);
+            while (result.next()) {
+                System.out.println(result.getString("password") + " " + result.getString("firstname") + " " + result.getString(3));
+            }
 
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
 
         }
-
+        
     }
 }
