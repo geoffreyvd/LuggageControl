@@ -140,7 +140,7 @@ public class DatabaseMan {
      * @param types the value types, supported: String, Int
      * @throws SQLException
      */
-    public void queryInsert(String query, String[] values, String[] types) throws SQLException {
+    public void queryPreparedInsert(String query, String[] values, String[] types) throws SQLException {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         try {

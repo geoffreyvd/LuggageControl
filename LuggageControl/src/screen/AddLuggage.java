@@ -201,9 +201,17 @@ public class AddLuggage extends SwitchingJPanel {
         || "".equals(textFieldOwnerID.getText()) || "".equals(comboBoxLuggageStatus.getSelectedItem().toString())
         || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
         || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))){
-        ResultSet result = db.queryPrepared("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
-        "VALUES ("+textFieldLocation.getText()+", "+textFieldColor.getText()+", "+textFieldWeight.getText()+
-        ", "+textFieldSize.getText()+", "+textFieldContent.getText()+", "+comboBoxLuggageStatus.getSelectedItem().toString()+", "+pic+");");
+            String[] values = {textFieldLocation.getText(), textFieldColor.getText(), 
+                textFieldWeight.getText(), textFieldSize.getText(), textFieldContent.getText(), 
+                comboBoxLuggageStatus.getSelectedItem().toString()};
+            String[] types = {"String", "String", "String", "String", "String", "String"};
+            try {
+                db.queryPreparedInsert("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
+                "VALUES (?, ?, ?, ?, ?, ?);", values, types);
+            }
+            catch(Exception e) {
+                
+            }
             System.out.println("work");
         }
         else{
