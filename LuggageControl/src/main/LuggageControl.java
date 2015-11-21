@@ -28,6 +28,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.ChangeSettings changeSettings;
     private screen.CustomerDetails customerDetails;   
     private screen.DeleteCustomer deleteCustomer;
+    private screen.DeleteFlight deleteFlight;
     private screen.DeleteLuggage deleteLuggage;
     private screen.Example example;
     private screen.GenerateStatistics generateStatistics;
@@ -106,6 +107,7 @@ public class LuggageControl extends javax.swing.JFrame {
         changeSettings = new screen.ChangeSettings(this);
         customerDetails = new screen.CustomerDetails(this);
         deleteCustomer = new screen.DeleteCustomer(this);
+        deleteFlight = new screen.DeleteFlight(this);
         deleteLuggage = new screen.DeleteLuggage(this);
         example = new screen.Example(this);
         generateStatistics = new screen.GenerateStatistics(this);
@@ -135,6 +137,8 @@ public class LuggageControl extends javax.swing.JFrame {
         customerDetails.setVisible(true);
         deleteCustomer.setSize(monitorSize);
         deleteCustomer.setVisible(true);
+        deleteFlight.setSize(monitorSize);
+        deleteFlight.setVisible(true);
         deleteLuggage.setSize(monitorSize);
         deleteLuggage.setVisible(true);
         example.setSize(monitorSize);
@@ -213,6 +217,9 @@ public class LuggageControl extends javax.swing.JFrame {
         }
         else if(this.currentPanel instanceof screen.DeleteCustomer) {
             this.remove(deleteCustomer);
+        }
+        else if(this.currentPanel instanceof screen.DeleteFlight) {
+            this.remove(deleteFlight);
         }
         else if(this.currentPanel instanceof screen.DeleteLuggage) {
             this.remove(deleteLuggage);
@@ -314,6 +321,14 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.previousPanel = currentPanel;
                 this.currentPanel = deleteCustomer;
+                break;
+            case ScreenNames.DELETE_FLIGHT:
+                this.removeCurrentJPanel();
+                this.add(deleteFlight);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = currentPanel;
+                this.currentPanel = deleteFlight;
                 break;
             case ScreenNames.DELETE_LUGGAGE:
                 this.removeCurrentJPanel();
@@ -485,7 +500,6 @@ public class LuggageControl extends javax.swing.JFrame {
     }
     
     public void setUserAFK(boolean userAFK) {
-        System.out.println("User moved!");
         this.secman.setUserAFK(false);
     }
     

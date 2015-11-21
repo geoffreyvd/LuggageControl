@@ -5,6 +5,10 @@
  */
 package managers;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,8 +20,8 @@ import java.util.logging.Logger;
 
 /**
  * DataBaseManager is an class with predefined credentials for the database. It
- * also provides Query methods which can be used to query directly to the
- * database.
+ also provides query methods which can be used to query directly to the
+ database.
  *
  * @author geoffrey
  */
@@ -27,9 +31,46 @@ public class DatabaseMan {
     private final String DATABASE_USERNAME = "lugcontroluser";
     private final String DATABASE_PASSWORD = "verysecurepassword";
     private final String DATABASE_NAME = "LuggageControlData";
+    
+    public static final String PS_TYPE_STRING = "String";
+    public static final String PS_TYPE_INT = "Int";
 
     public DatabaseMan() {
 
+    }
+    
+    public void exportDatabase(String file) {
+        if(System.getProperty("os.name").equals("Linux")) {
+            Runtime rt = Runtime.getRuntime();
+            String[] commands = {"/bin/sh", "-c", "mysqldump -u lugcontroluser -p -r gucci.sql LuggageControlData", "verysecure"};
+            Process proc;
+            try {
+                proc = rt.exec(commands);
+                BufferedReader stdInput = new BufferedReader(new 
+                InputStreamReader(proc.getInputStream()));
+
+                BufferedReader stdError = new BufferedReader(new 
+                InputStreamReader(proc.getErrorStream()));
+
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+//        if(System.getProperty("os.name").equals("Linux")) {
+//            try {
+//                InputStream henk = rt.exec("mysqldump luggagecontroldata -u root -r guuci.sql").getInputStream();
+//                String locatie = henk.toString();
+//                System.out.println(locatie);
+//            }
+//            catch(Exception e) {
+//                
+//            }
+//        }
+//        else {
+//            
+//        }
     }
 
     /**
@@ -38,7 +79,7 @@ public class DatabaseMan {
      * @param query
      * @return ResultSet result
      */
-    public ResultSet Query(String query) {
+    public ResultSet query(String query) {
         try {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://" + HOST_NAME + "/" + DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -57,7 +98,7 @@ public class DatabaseMan {
      * @param query
      * @return String value
      */
-    public String QueryOneResult(String query) {
+    public String queryOneResult(String query) {
         try {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://" + HOST_NAME + "/" + DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -78,7 +119,7 @@ public class DatabaseMan {
      * @param types the value types, supported: String, Int
      * @throws SQLException 
      */
-    public void QueryInsertUser(String query, String[] values, String[] types) throws SQLException {
+    public void queryInsertUser(String query, String[] values, String[] types) throws SQLException {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -104,7 +145,8 @@ public class DatabaseMan {
                 }
             }
             // execute insert SQL stetement
-            preparedStatement.executeUpdate();
+           ResultSet result = preparedStatement.executeQuery();
+           System.out.println(result.toString());
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,5 +158,54 @@ public class DatabaseMan {
                 dbConnection.close();
             }
         }
+    }
+    
+    /**
+     * Prepared statements insert query
+     * @param query
+     * @param values the values to be inserted
+     * @param types the value types, supported: String, Int
+     * @throws SQLException 
+     */
+    public ResultSet queryPrepared(String query, String[] values, String[] types) throws SQLException {
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet results = null;
+        try {
+            dbConnection = DriverManager.getConnection(
+                    "jdbc:mysql://" + HOST_NAME + "/" + DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+            preparedStatement = dbConnection.prepareStatement(query);
+
+            //For every value in the arrays, values and types, fill in the prepared statement
+            for (int i = 0; i < values.length; i++) {
+                switch (types[i]) {
+                    case PS_TYPE_STRING:
+                        {
+                            String value = values[i];
+                            preparedStatement.setString((i + 1), value);
+                            break;
+                        }
+                    case PS_TYPE_INT:
+                        {
+                            int value = Integer.parseInt(values[i]);
+                            preparedStatement.setInt((i + 1), value);
+                            break;
+                        }
+                }
+            }
+            // execute insert SQL stetement
+           results = preparedStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return results;
     }
 }

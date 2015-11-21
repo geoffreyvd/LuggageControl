@@ -9,6 +9,7 @@ import baseClasses.SwitchingJPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.LuggageControl;
+import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -24,7 +25,8 @@ public class LoginScreen extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUsername);
         PromptSupport.setPrompt("Password", textFieldPassword);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPassword);
-
+        DatabaseMan db = new DatabaseMan();
+        db.exportDatabase("henk");
     }
 
     /**
@@ -101,10 +103,17 @@ public class LoginScreen extends SwitchingJPanel {
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         this.userNotAFK();
-        String inputUsername = textFieldUsername.getText();
-        String inputPassword = textFieldPassword.getText();
-        this.luggageControl.loginUser(inputUsername, inputPassword);
-        inputPassword = null;
+        try {
+            if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
+                    
+            }
+            else {
+                this.labelLoginError.setText("Username or password incorrect!");
+                this.resetLabel(5000, labelLoginError);
+            }
+        }
+        catch(Exception e) {
+        }
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textFieldUserKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldUserKeyPress
@@ -114,11 +123,9 @@ public class LoginScreen extends SwitchingJPanel {
 
     private void textFieldPassKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldPassKeyPress
         this.userNotAFK();
-        String inputUsername = textFieldUsername.getText();
-        String inputPassword = textFieldPassword.getText();
         if(evt.getKeyCode() == evt.VK_ENTER) {
             try {
-                if(this.luggageControl.loginUser(inputUsername, inputPassword)) {
+                if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
                     
                 }
                 else {
@@ -132,7 +139,7 @@ public class LoginScreen extends SwitchingJPanel {
     }//GEN-LAST:event_textFieldPassKeyPress
 
     private void panelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseMoved
-        this.userNotAFK();
+        // this.userNotAFK();
     }//GEN-LAST:event_panelMouseMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -33,7 +33,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="textFieldOwnerID" min="-2" pref="155" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="textFieldDestinaiton" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="textFieldDestination" min="-2" pref="155" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="textFieldFlightnumber" min="-2" pref="155" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldDestinaiton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldDestination" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -130,34 +130,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLuggageID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Luggage ID"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightnumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Flightnumber"/>
-      </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDestinaiton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Destination"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldDestination">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldOrigin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Origin"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLocation">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Location"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldOwnerID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Owner ID"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBoxLuggageStatus">
       <Properties>
@@ -175,9 +157,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldDescription">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
-      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

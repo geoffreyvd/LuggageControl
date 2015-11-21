@@ -29,12 +29,11 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldDescription" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
+                          <Component id="textFieldContent" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="textFieldFlightnumber" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <Component id="textFieldOrigin" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="comboBoxLuggageStatus" alignment="0" max="32767" attributes="0"/>
                                           <Component id="textFieldLocation" alignment="0" pref="130" max="32767" attributes="0"/>
@@ -44,17 +43,16 @@
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textFieldDestination" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                   <Component id="textFieldOwnerID" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                   <Component id="textFieldSize" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                   <Component id="textFieldColor" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="94" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
                               <Component id="butonCancel" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
@@ -81,13 +79,8 @@
                           <Component id="textFieldOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldDestination" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldLocation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldColor" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -98,7 +91,7 @@
                           <Component id="textFieldWeight" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="textFieldDescription" max="32767" attributes="0"/>
+                      <Component id="textFieldContent" pref="207" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
@@ -106,9 +99,9 @@
                       <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="buttonUploadImage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="pic" min="-2" pref="156" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="pic" min="-2" pref="219" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,32 +131,10 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightnumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Flightnumber"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldOrigin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Origin"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLocation">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Location"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldOwnerID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Owner ID"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDestination">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Destination"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBoxLuggageStatus">
       <Properties>
@@ -178,24 +149,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldColor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Color"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldSize">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Size"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldWeight">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Weight"/>
-      </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDescription">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldContent">
     </Component>
     <Component class="javax.swing.JLabel" name="labelAddLuggage">
       <Properties>
@@ -230,6 +189,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="pic">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Default Cursor"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

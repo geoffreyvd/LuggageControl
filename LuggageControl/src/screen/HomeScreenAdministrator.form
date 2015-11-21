@@ -35,6 +35,7 @@
                           <Component id="buttonDeleteCustomer" alignment="0" max="32767" attributes="0"/>
                           <Component id="buttonUserManagement" alignment="0" max="32767" attributes="0"/>
                           <Component id="buttonAddUser" alignment="1" max="32767" attributes="0"/>
+                          <Component id="buttonDeleteFlight" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="224" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -73,11 +74,13 @@
                   <Component id="buttonDeleteLuggage" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonDatabaseExport" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <Component id="buttonDeleteFlight" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="buttonUserManagement" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="buttonAddUser" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace pref="121" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -161,6 +164,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDatabaseExportActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonDeleteFlight">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete flight"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteFlight"/>
       </Events>
     </Component>
   </SubComponents>

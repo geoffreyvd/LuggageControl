@@ -8,6 +8,7 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import main.LuggageControl;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -18,6 +19,20 @@ public class SearchLuggage extends SwitchingJPanel {
     public SearchLuggage(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("LuggageID", textFieldLuggageID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageID);
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
+        PromptSupport.setPrompt("OwnerID", textFieldOwnerID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOwnerID);
+        PromptSupport.setPrompt("Location", textFieldLocation);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLocation);
+        PromptSupport.setPrompt("Origin", textFieldOrigin);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOrigin);
+        PromptSupport.setPrompt("Destination", textFieldDestination);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDestination);
+        PromptSupport.setPrompt("Descritpion", textFieldDescription);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDescription);
     }
 
     /**
@@ -32,7 +47,7 @@ public class SearchLuggage extends SwitchingJPanel {
         labelSearchLuggage = new javax.swing.JLabel();
         textFieldLuggageID = new javax.swing.JFormattedTextField();
         textFieldFlightnumber = new javax.swing.JFormattedTextField();
-        textFieldDestinaiton = new javax.swing.JFormattedTextField();
+        textFieldDestination = new javax.swing.JFormattedTextField();
         textFieldOrigin = new javax.swing.JFormattedTextField();
         textFieldLocation = new javax.swing.JFormattedTextField();
         textFieldOwnerID = new javax.swing.JFormattedTextField();
@@ -48,26 +63,12 @@ public class SearchLuggage extends SwitchingJPanel {
         labelSearchLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchLuggage.setText("Search luggage");
 
-        textFieldLuggageID.setText("Luggage ID");
-
-        textFieldFlightnumber.setText("Flightnumber");
-
-        textFieldDestinaiton.setText("Destination");
-
-        textFieldOrigin.setText("Origin");
-
-        textFieldLocation.setText("Location");
-
-        textFieldOwnerID.setText("Owner ID");
-
         comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
         comboBoxLuggageStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxStatusActionPerformed(evt);
             }
         });
-
-        textFieldDescription.setText("Description");
 
         tableLuggageSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,7 +132,7 @@ public class SearchLuggage extends SwitchingJPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(31, 31, 31)
-                                        .addComponent(textFieldDestinaiton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(31, 31, 31)
@@ -180,7 +181,7 @@ public class SearchLuggage extends SwitchingJPanel {
                             .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldDestinaiton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(textFieldDescription))
                 .addGap(18, 18, Short.MAX_VALUE)
@@ -227,7 +228,7 @@ public class SearchLuggage extends SwitchingJPanel {
     private javax.swing.JLabel labelSearchLuggage;
     private javax.swing.JTable tableLuggageSearch;
     private javax.swing.JFormattedTextField textFieldDescription;
-    private javax.swing.JFormattedTextField textFieldDestinaiton;
+    private javax.swing.JFormattedTextField textFieldDestination;
     private javax.swing.JFormattedTextField textFieldFlightnumber;
     private javax.swing.JFormattedTextField textFieldLocation;
     private javax.swing.JFormattedTextField textFieldLuggageID;
