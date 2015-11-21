@@ -238,25 +238,27 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 InputStreamReader isr = new InputStreamReader(is);
                 BufferedReader br = new BufferedReader(isr);
                 
+                String tempLine;
+                while ((tempLine = br.readLine()) != null && line == null) {
 
-                while ((line = br.readLine()) != null) {
-
-                    if (!line.contains("Directory of")) {
+                    if (!tempLine.contains("Directory of")) {
 
                     } else {
-                        line = (line.replace("Directory of", ""));
+                        line = (tempLine.replace("Directory of", ""));
                         line = (line.trim());
                         System.out.println(line);
-
                     }
                 }
-
                 
+                if(line != null) {
+                    schijf = 'Z';
+                }
+
             } catch (java.io.IOException e) {
                 //System.out.println(e.getMessage());
             }
-
         }
+        System.out.println(line);
         /*
         Runtime rt = Runtime.getRuntime();
         try {
