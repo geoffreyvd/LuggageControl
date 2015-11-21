@@ -1,5 +1,6 @@
 package screen;
 
+import baseClasses.EmptyResultSet;
 import baseClasses.SwitchingJPanel;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
@@ -160,11 +161,18 @@ public class DeleteFlight extends SwitchingJPanel {
         DatabaseMan db = new DatabaseMan();
         //String[] types = {db.PS_TYPE_STRING};
         //String[] values = {"danta"};
-        String[] values = {};
+        ResultSet result = new EmptyResultSet();
         try {
-            ResultSet result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights;", values);
+            if(textFieldFlightNumber.getText().equals("")) {
+                String[] values = {};
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights;", values);
+            }
+            else {
+                String[] values = {textFieldFlightNumber.getText()};
+                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ?;", values);
+            }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
-            for(int i = 0; i < datamodel.getRowCount(); i++) {
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
                 datamodel.removeRow(i);
             }
             while(result.next()) {
