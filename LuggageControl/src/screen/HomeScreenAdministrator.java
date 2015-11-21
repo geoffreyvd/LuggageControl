@@ -38,6 +38,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
         labelDatabaseManagement = new javax.swing.JLabel();
         buttonDatabaseImport = new javax.swing.JButton();
         buttonDatabaseExport = new javax.swing.JButton();
+        buttonDeleteFlight = new javax.swing.JButton();
 
         labelHome.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHome.setText("Home");
@@ -101,6 +102,13 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
             }
         });
 
+        buttonDeleteFlight.setText("Delete flight");
+        buttonDeleteFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteFlight(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +129,8 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                             .addComponent(buttonDeleteLuggage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonDeleteCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonUserManagement, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDeleteFlight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonDatabaseExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,11 +158,13 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDeleteLuggage)
                     .addComponent(buttonDatabaseExport))
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
+                .addComponent(buttonDeleteFlight)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonUserManagement)
                 .addGap(18, 18, 18)
                 .addComponent(buttonAddUser)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -225,6 +236,11 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
 
     }//GEN-LAST:event_buttonDatabaseExportActionPerformed
 
+    private void buttonDeleteFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFlight
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.DELETE_FLIGHT);
+    }//GEN-LAST:event_buttonDeleteFlight
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddUser;
@@ -232,6 +248,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     private javax.swing.JButton buttonDatabaseExport;
     private javax.swing.JButton buttonDatabaseImport;
     private javax.swing.JButton buttonDeleteCustomer;
+    private javax.swing.JButton buttonDeleteFlight;
     private javax.swing.JButton buttonDeleteLuggage;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonUserManagement;

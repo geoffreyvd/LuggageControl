@@ -43,6 +43,7 @@ public class ScreenNames {
     public static final String CHANGE_SETTINGS = "ChangeSettings";
     public static final String CUSTOMER_DETAILS = "CustomerDetails";
     public static final String DELETE_CUSTOMER = "DeleteCustomer";
+    public static final String DELETE_FLIGHT = "DeleteFlight";
     public static final String DELETE_LUGGAGE = "DeleteLuggage";
     public static final String EXAMPLE = "Exampel";
     public static final String GENERATE_STATISTICS =  "GenerateStatistics";

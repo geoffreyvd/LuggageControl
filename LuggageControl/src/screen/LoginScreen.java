@@ -139,7 +139,7 @@ public class LoginScreen extends SwitchingJPanel {
     }//GEN-LAST:event_textFieldPassKeyPress
 
     private void panelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseMoved
-        this.userNotAFK();
+        // this.userNotAFK();
     }//GEN-LAST:event_panelMouseMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

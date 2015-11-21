@@ -31,6 +31,9 @@ public class DatabaseMan {
     private final String DATABASE_USERNAME = "lugcontroluser";
     private final String DATABASE_PASSWORD = "verysecurepassword";
     private final String DATABASE_NAME = "LuggageControlData";
+    
+    public static final String PS_TYPE_STRING = "String";
+    public static final String PS_TYPE_INT = "Int";
 
     public DatabaseMan() {
 
@@ -142,7 +145,8 @@ public class DatabaseMan {
                 }
             }
             // execute insert SQL stetement
-            preparedStatement.executeUpdate();
+           ResultSet result = preparedStatement.executeQuery();
+           System.out.println(result.toString());
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,5 +158,54 @@ public class DatabaseMan {
                 dbConnection.close();
             }
         }
+    }
+    
+    /**
+     * Prepared statements insert query
+     * @param query
+     * @param values the values to be inserted
+     * @param types the value types, supported: String, Int
+     * @throws SQLException 
+     */
+    public ResultSet queryPrepared(String query, String[] values, String[] types) throws SQLException {
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet results = null;
+        try {
+            dbConnection = DriverManager.getConnection(
+                    "jdbc:mysql://" + HOST_NAME + "/" + DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
+            preparedStatement = dbConnection.prepareStatement(query);
+
+            //For every value in the arrays, values and types, fill in the prepared statement
+            for (int i = 0; i < values.length; i++) {
+                switch (types[i]) {
+                    case PS_TYPE_STRING:
+                        {
+                            String value = values[i];
+                            preparedStatement.setString((i + 1), value);
+                            break;
+                        }
+                    case PS_TYPE_INT:
+                        {
+                            int value = Integer.parseInt(values[i]);
+                            preparedStatement.setInt((i + 1), value);
+                            break;
+                        }
+                }
+            }
+            // execute insert SQL stetement
+           results = preparedStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return results;
     }
 }
