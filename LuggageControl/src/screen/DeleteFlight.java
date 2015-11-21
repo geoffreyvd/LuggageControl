@@ -159,10 +159,9 @@ public class DeleteFlight extends SwitchingJPanel {
         DatabaseMan db = new DatabaseMan();
         //String[] types = {db.PS_TYPE_STRING};
         //String[] values = {"danta"};
-        String[] types = {};
         String[] values = {};
         try {
-            ResultSet result = db.queryPrepared("SELECT * FROM luggagecontroldata.users;", values, types);
+            ResultSet result = db.queryPrepared("SELECT * FROM luggagecontroldata.users;", values);
             while(result.next()) {
                 System.out.println(result.getString("username"));
             }
