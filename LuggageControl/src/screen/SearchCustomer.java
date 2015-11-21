@@ -11,11 +11,14 @@ import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- *
- * @author Admin
+ * Searches through the client database with the given data.
+ * @author Konrad
  */
 public class SearchCustomer extends SwitchingJPanel {
 
+    /**
+     * Creates new form AddFlight and sets a prompt on all the textfields
+     */
     public SearchCustomer(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
@@ -49,24 +52,11 @@ public class SearchCustomer extends SwitchingJPanel {
         buttonSearch = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
-        buttonBack = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableSearchCustomer = new javax.swing.JTable();
 
         labelSearchCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchCustomer.setText("Search Customer");
-
-        textFieldFirstName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldFirstNameActionPerformed(evt);
-            }
-        });
-
-        textFieldCellphoneNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mberActionPerformed(evt);
-            }
-        });
 
         buttonSearch.setText("Search");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -86,13 +76,6 @@ public class SearchCustomer extends SwitchingJPanel {
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHelpActionPerformed(evt);
-            }
-        });
-
-        buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
             }
         });
 
@@ -138,9 +121,7 @@ public class SearchCustomer extends SwitchingJPanel {
                                         .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
@@ -160,10 +141,7 @@ public class SearchCustomer extends SwitchingJPanel {
                             .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonHelp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonBack)))
+                    .addComponent(buttonHelp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 40, Short.MAX_VALUE)
@@ -174,36 +152,39 @@ public class SearchCustomer extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Searches through the client database with the given data.
+     * @param evt
+     */
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
+    /**
+     * sets the user as not afk, resets all the textfields and changes to panel home screen
+     * @param evt 
+     */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
+        textFieldFlightnumber.setText("");
+        textFieldFirstName.setText("");
+        textFieldLastName.setText("");
+        textFieldCellphoneNumber.setText("");
+        textFieldEmail.setText("");
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
+    /**
+     * sets the user as not afk and changes to panel help_finding
+     * @param evt 
+     */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-    }//GEN-LAST:event_buttonBackActionPerformed
-
-    private void mberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mberActionPerformed
-        this.userNotAFK();
-    }//GEN-LAST:event_mberActionPerformed
-
-    private void textFieldFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFirstNameActionPerformed
-        this.userNotAFK();
-    }//GEN-LAST:event_textFieldFirstNameActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearch;
