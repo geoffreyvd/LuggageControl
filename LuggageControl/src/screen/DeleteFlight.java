@@ -209,7 +209,8 @@ public class DeleteFlight extends SwitchingJPanel {
     private void buttonUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdate
         DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
         String query = "DELETE FROM flights WHERE 1=1";
-        ArrayList<Integer> data = new ArrayList();
+        ArrayList<String> data = new ArrayList();
+        ArrayList<String> types = new ArrayList();
         boolean[] idRemove = new boolean[datamodel.getRowCount()]; 
         
         for (int i = datamodel.getRowCount() - 1; i > 0; i--) {
@@ -217,12 +218,13 @@ public class DeleteFlight extends SwitchingJPanel {
             // if this entry equals true - true to remove
             if((boolean)datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
                 query += " OR flight_id = ?";
-                data.add((int)datamodel.getValueAt(i, 0));
+                data.add((String)datamodel.getValueAt(i, 0));
+                types.add(db.PS_TYPE_INT);
             }
         }
         
         try {
-            db.queryPrepared(query, data.toArray(new String[data.size()]));
+            db.queryPreparedManipulation(query, data.toArray(new String[data.size()]), data.toArray(new String[data.size()]));
         }
         catch(Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);

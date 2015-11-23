@@ -52,20 +52,9 @@ public class DatabaseMan {
                 e.printStackTrace();
             }
         }
-
-//        if(System.getProperty("os.name").equals("Linux")) {
-//            try {
-//                InputStream henk = rt.exec("mysqldump luggagecontroldata -u root -r guuci.sql").getInputStream();
-//                String locatie = henk.toString();
-//                System.out.println(locatie);
-//            }
-//            catch(Exception e) {
-//                
-//            }
-//        }
-//        else {
-//            
-//        }
+        else {
+            // MICHIE put your windows export thing a ma jig here!
+        }
     }
 
     /**
@@ -140,7 +129,7 @@ public class DatabaseMan {
      * @param types the value types, supported: String, Int
      * @throws SQLException
      */
-    public void queryPreparedInsert(String query, String[] values, String[] types) throws SQLException {
+    public void queryPreparedManipulation(String query, String[] values, String[] types) throws SQLException {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         try {

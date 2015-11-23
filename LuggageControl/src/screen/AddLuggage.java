@@ -206,7 +206,7 @@ public class AddLuggage extends SwitchingJPanel {
                 comboBoxLuggageStatus.getSelectedItem().toString()};
             String[] types = {"String", "String", "String", "String", "String", "String"};
             try {
-                db.queryPreparedInsert("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
+                db.queryPreparedManipulation("INSERT INTO `luggagecontroldata`.`luggage` (`location`, `color`, `weight`, `size`, `contents`, `status`, `image`) "+
                 "VALUES (?, ?, ?, ?, ?, ?);", values, types);
             }
             catch(Exception e) {
