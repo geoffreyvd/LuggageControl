@@ -27,36 +27,28 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="591" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="textFieldOwnerID" min="-2" pref="155" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="textFieldDestination" min="-2" pref="155" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="textFieldFlightnumber" min="-2" pref="155" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="textFieldOrigin" min="-2" pref="155" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="buttonHelpLinking" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="labelSearchLuggage" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="textFieldLuggageID" min="-2" pref="155" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="textFieldLocation" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="comboBoxLuggageStatus" min="-2" pref="155" max="-2" attributes="0"/>
+                                          <Component id="textFieldLocation" min="-2" pref="155" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="labelSearchLuggage" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="comboBoxLuggageStatus" min="-2" pref="95" max="-2" attributes="0"/>
-                                  <Component id="textFieldContent" min="-2" pref="219" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Component id="textFieldOwnerID" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="textFieldFlightNumber" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="buttonHelpLinking" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -76,29 +68,20 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="textFieldLuggageID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldLocation" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="buttonHelpLinking" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldFlightnumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldDestination" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textFieldOwnerID" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="textFieldContent" max="32767" attributes="0"/>
+                  <Component id="buttonHelpLinking" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace type="separate" pref="28" max="32767" attributes="0"/>
+              <EmptySpace type="separate" pref="48" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,11 +102,7 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLuggageID">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldFlightnumber">
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldDestination">
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldOrigin">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldFlightNumber">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLocation">
     </Component>
@@ -141,8 +120,6 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldContent">
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -153,28 +130,16 @@
         <Component class="javax.swing.JTable" name="tableLuggageSearch">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
+              <Table columnCount="5" rowCount="0">
                 <Column editable="false" title="Luggage ID" type="java.lang.Integer"/>
                 <Column editable="false" title="Flight number" type="java.lang.Integer"/>
                 <Column editable="false" title="Owner ID" type="java.lang.Integer"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
                 <Column editable="false" title="Location" type="java.lang.Object"/>
-                <Column editable="false" title="Origin" type="java.lang.Object"/>
-                <Column editable="false" title="Destination" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

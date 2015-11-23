@@ -171,7 +171,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonSearchLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggageActionPerformed
-        // TODO add your handling code here:
+        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
     }//GEN-LAST:event_buttonSearchLuggageActionPerformed
 
     private void buttonSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomerActionPerformed
