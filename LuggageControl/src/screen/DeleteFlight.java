@@ -1,20 +1,23 @@
 package screen;
 
 import baseClasses.EmptyResultSet;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- *
+ * Screen to remove flights from the database
  * @author Corne Lukken
  */
 public class DeleteFlight extends SwitchingJPanel {
+    
+    private DatabaseMan db = new DatabaseMan();
 
     public DeleteFlight(LuggageControl luggageControl) {
         super(luggageControl);
@@ -61,6 +64,7 @@ public class DeleteFlight extends SwitchingJPanel {
 
         scrollPaneTable.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
+        tableFlights.setAutoCreateRowSorter(true);
         tableFlights.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -85,6 +89,7 @@ public class DeleteFlight extends SwitchingJPanel {
             }
         });
         tableFlights.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        tableFlights.getTableHeader().setReorderingAllowed(false);
         scrollPaneTable.setViewportView(tableFlights);
 
         buttonBack.setText("Back");
@@ -156,35 +161,71 @@ public class DeleteFlight extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Switches the screen to the <code>HomeScreenAdministrator</code> screen
+     * @param evt event with key and component information
+     */
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
         this.userNotAFK();
-        this.luggageControl.switchPreviousPanel();
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBack
 
+    /**
+     * Opens the help screen about removing data entries
+     * @param evt event with key and component information
+     */
     private void buttonHelp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelp
         this.userNotAFK();
         this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
         this.luggageControl.switchTab(screen.help.Removing.REMOVE_ENTRIES, ScreenNames.Help.REMOVING);
     }//GEN-LAST:event_buttonHelp
 
+    /**
+     * Fills the table with the flight database data when the button is pressed.
+     * @param evt event with key and component information
+     */
     private void buttonSearch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearch
         this.userNotAFK();
         this.fillFlightTable();
     }//GEN-LAST:event_buttonSearch
 
+    /**
+     * Calls <code>fillFlightTable()</code> if the pressed key is enter. 
+     * @param evt event with key and component information
+     */
     private void flightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flightNumberKeyPressed
         this.userNotAFK();
+        
+        // identify the pressed key
         if(evt.getKeyCode() == evt.VK_ENTER) {
             this.fillFlightTable();
         }
     }//GEN-LAST:event_flightNumberKeyPressed
 
+    /**
+     * Loops through the table dataset and removes any rows which are marked for removal.
+     * @param evt event with key and component information
+     */
     private void buttonUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdate
         DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
-        boolean[] idRemove = new boolean[datamodel.getRowCount() - 1]; 
-        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-            // does not work yet
-            //idRemove[i] = (boolean)datamodel.getValueAt(i, 5);
+        String query = "DELETE FROM flights WHERE 1=1";
+        ArrayList<Integer> data = new ArrayList();
+        boolean[] idRemove = new boolean[datamodel.getRowCount()]; 
+        
+        for (int i = datamodel.getRowCount() - 1; i > 0; i--) {
+            
+            // if this entry equals true - true to remove
+            if((boolean)datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
+                query += " OR flight_id = ?";
+                data.add((int)datamodel.getValueAt(i, 0));
+            }
+        }
+        
+        try {
+            db.queryPrepared(query, data.toArray(new String[data.size()]));
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
         }
         
         for(boolean idrem: idRemove) {
@@ -192,10 +233,11 @@ public class DeleteFlight extends SwitchingJPanel {
         }
     }//GEN-LAST:event_buttonUpdate
 
+    /**
+     * Looks at the text fields and if their filled in, 
+     * determines how our database query should look and runs it and finally fills the table with the data.
+     */
     private void fillFlightTable() {
-        DatabaseMan db = new DatabaseMan();
-        //String[] types = {db.PS_TYPE_STRING};
-        //String[] values = {"danta"};
         ResultSet result = new EmptyResultSet();
         try {
             if(textFieldFlightNumber.getText().equals("")) {
@@ -212,14 +254,14 @@ public class DeleteFlight extends SwitchingJPanel {
             }
             while(result.next()) {
                 System.out.println(result.getString("origin"));
-                Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival")};
+                Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival"), false};
                 // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
             tableFlights.setModel(datamodel);
         }
         catch(Exception e) {
-            e.printStackTrace();
+            new ErrorJDialog(this.luggageControl, true, "Error: retrieving flights dataset", (new Throwable()).getStackTrace());
         }
     }
 

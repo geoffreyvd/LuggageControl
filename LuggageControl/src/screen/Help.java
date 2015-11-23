@@ -81,7 +81,7 @@ public class Help extends SwitchingJPanel{
             luggageControl.switchTab(screen.help.Linking.LUGGAGE_TO_LUGGAGE, ScreenNames.Help.LINKING);
         }
         else {
-            new ErrorJDialog(listItemName, (new Throwable()).getStackTrace());
+            new ErrorJDialog(this.luggageControl, true, listItemName, (new Throwable()).getStackTrace());
         }
 //            case helpList.getComponent(0).getName():
 //                luggageControl.switchJPanel(pane);

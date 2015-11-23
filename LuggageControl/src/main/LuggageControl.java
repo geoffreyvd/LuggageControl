@@ -456,7 +456,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.currentPanel = userManagement;
                 break;
             default:
-                new ErrorJDialog("Error: screen does not exist", (new Throwable()).getStackTrace());
+                new ErrorJDialog(this, true, "Error: screen does not exist", (new Throwable()).getStackTrace());
                 break;
         }
     }
@@ -480,7 +480,7 @@ public class LuggageControl extends javax.swing.JFrame {
             helpRemoving.selectTab(tabName);
         }
         else {
-            new ErrorJDialog("Error: screen does not exist", (new Throwable()).getStackTrace());
+            new ErrorJDialog(this, true, "Error: screen does not exist", (new Throwable()).getStackTrace());
         }
     }
     

@@ -32,7 +32,7 @@ public class Removing extends SwitchingJPanel {
             linkingTab.setSelectedComponent(panelRemoveLinks);
         }
         else {
-            new ErrorJDialog("Error: tab does not exist", (new Throwable()).getStackTrace());
+            new ErrorJDialog(this.luggageControl, true, "Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 

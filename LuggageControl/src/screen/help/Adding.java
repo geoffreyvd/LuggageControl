@@ -36,7 +36,7 @@ public class Adding extends SwitchingJPanel {
             tabAdding.setSelectedComponent(panelAddLuggage);
         }
         else {
-            new ErrorJDialog("Error: tab does not exist", (new Throwable()).getStackTrace());
+            new ErrorJDialog(this.luggageControl, true, "Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 

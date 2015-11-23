@@ -41,7 +41,7 @@ public class Finding extends SwitchingJPanel {
         }
         else {
             // does not display errors yet.
-            new ErrorJDialog("Error: tab does not exist", (new Throwable()).getStackTrace());
+            new ErrorJDialog(this.luggageControl, true, "Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 

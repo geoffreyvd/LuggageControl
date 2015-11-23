@@ -6,10 +6,10 @@ import baseClasses.ErrorJDialog;
  * Run this file to display an ErrorJDialog pop-up
  * @author Corne Lukken
  */
-public class ErrorPopupExample {
+public class ErrorPopupExample extends javax.swing.JFrame{
     
     public ErrorPopupExample() {
-        new ErrorJDialog("Error: tab does not exist", (new Throwable()).getStackTrace());
+        new ErrorJDialog(this, true, "Error: tab does not exist", (new Throwable()).getStackTrace());
     }
     
     public static void main(String[] args) throws Exception {
