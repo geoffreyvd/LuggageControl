@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -18,6 +19,8 @@ public class DeleteFlight extends SwitchingJPanel {
     public DeleteFlight(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
     }
 
     /**
@@ -43,7 +46,6 @@ public class DeleteFlight extends SwitchingJPanel {
         labelName.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelName.setText("Delete Flight");
 
-        textFieldFlightNumber.setText("flight number");
         textFieldFlightNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 flightNumberKeyPressed(evt);
@@ -57,7 +59,7 @@ public class DeleteFlight extends SwitchingJPanel {
             }
         });
 
-        scrollPaneTable.setPreferredSize(new java.awt.Dimension(1920, 10080));
+        scrollPaneTable.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         tableFlights.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,10 +149,10 @@ public class DeleteFlight extends SwitchingJPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneTable, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonUpdate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -198,11 +200,11 @@ public class DeleteFlight extends SwitchingJPanel {
         try {
             if(textFieldFlightNumber.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights;", values);
+                result = db.queryPrepared("SELECT * FROM flights;", values);
             }
             else {
                 String[] values = {textFieldFlightNumber.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.flights WHERE flight_id = ? ;", values);
+                result = db.queryPrepared("SELECT * FROM flights WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
@@ -211,12 +213,13 @@ public class DeleteFlight extends SwitchingJPanel {
             while(result.next()) {
                 System.out.println(result.getString("origin"));
                 Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival")};
+                // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
             tableFlights.setModel(datamodel);
         }
         catch(Exception e) {
-            
+            e.printStackTrace();
         }
     }
 

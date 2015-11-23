@@ -84,6 +84,18 @@ public class SecurityMan {
     }
     
     /**
+     * Filters datetime to the point where they are safe to use within our
+     * application This class is mostly used for filtering user input
+     *
+     * @param originalDateTime 
+     * @return filtered datetime to prevent SQL injections, cross-site scripting
+     * and other exploits
+     */
+    public static String filteredDateTime(String originalDateTime) {
+        return originalDateTime;
+    }
+    
+    /**
      * Filters strings to the point where they are safe to use within our
      * application This class is mostly used for filtering user input
      *

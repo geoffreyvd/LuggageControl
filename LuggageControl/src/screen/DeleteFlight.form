@@ -71,10 +71,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollPaneTable" min="-2" pref="207" max="-2" attributes="0"/>
+              <Component id="scrollPaneTable" pref="207" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="buttonUpdate" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,9 +89,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="flight number"/>
-      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="flightNumberKeyPressed"/>
       </Events>
@@ -107,7 +104,7 @@
     <Container class="javax.swing.JScrollPane" name="scrollPaneTable">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1920, 10080]"/>
+          <Dimension value="[1920, 1080]"/>
         </Property>
       </Properties>
       <AuxValues>

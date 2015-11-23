@@ -28,7 +28,7 @@ public class DatabaseMan {
     private final String HOST_NAME = "localhost";
     private final String DATABASE_USERNAME = "lugcontroluser";
     private final String DATABASE_PASSWORD = "verysecurepassword";
-    private final String DATABASE_NAME = "LuggageControlData";
+    private final String DATABASE_NAME = "luggagecontroldata";
 
     public static final String PS_TYPE_STRING = "String";
     public static final String PS_TYPE_INT = "Int";
