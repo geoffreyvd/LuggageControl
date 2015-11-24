@@ -173,7 +173,7 @@ public class AddFlight extends SwitchingJPanel {
 
             try {
 
-                db.queryPreparedManipulation(query, values, types);
+                db.queryManipulation(query, values, types);
 
             } catch (Exception e) {
 

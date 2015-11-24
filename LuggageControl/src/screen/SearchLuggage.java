@@ -240,7 +240,7 @@ public class SearchLuggage extends SwitchingJPanel {
             }
             else {
                 String[] values = {(String)comboBoxLuggageStatus.getSelectedItem()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
             }
             if(textFieldLocation.getText().equals("")) {
                 String[] values = {};
