@@ -121,7 +121,7 @@ public class DeleteFlight extends SwitchingJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -208,7 +208,7 @@ public class DeleteFlight extends SwitchingJPanel {
      */
     private void buttonUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdate
         DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
-        String query = "DELETE FROM flights WHERE 1=1";
+        String query = "DELETE FROM flights WHERE 1=0";
         ArrayList<String> data = new ArrayList();
         ArrayList<String> types = new ArrayList();
         boolean[] idRemove = new boolean[datamodel.getRowCount()]; 
@@ -224,7 +224,7 @@ public class DeleteFlight extends SwitchingJPanel {
         }
         
         try {
-            db.queryPreparedManipulation(query, data.toArray(new String[data.size()]), data.toArray(new String[data.size()]));
+            db.queryPreparedManipulation(query, data.toArray(new String[data.size()]), types.toArray(new String[types.size()]));
         }
         catch(Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
