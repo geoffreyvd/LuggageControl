@@ -32,7 +32,6 @@ public class SecurityMan {
         LuggageControl luggageControlTimer;
 
         public timeOutTimerTask(LuggageControl luggageControl) {
-            this.luggageControlTimer = luggageControl;
         }
 
         @Override
@@ -41,6 +40,7 @@ public class SecurityMan {
                 userPermissions.set(0);
                 userLoggedIn.set(false);
                 luggageControl.userTimeOut();
+                this.cancel();
             }
             else {
                 userAFK.set(true);
@@ -79,9 +79,6 @@ public class SecurityMan {
         // create the timer and start the userTimeOut task
         timeOut = new Timer("userTimeOutTimer");
         fireTimeOut = new timeOutTimerTask(this.luggageControl);
-
-        //  start the timer with the timertask
-        timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
     }
     
     /**
@@ -121,7 +118,7 @@ public class SecurityMan {
         return originalInt;
     }
     
-        /**
+    /**
      * 
      * @param originalInt
      * @param minimumInt
@@ -130,6 +127,19 @@ public class SecurityMan {
      */
     public static String filteredInt(String originalInt, int minimumInt, int maximumInt) {
         return originalInt;
+    }
+    
+    /**
+     * Filters strings based on a array of characters which either are allowed or disallowed
+     *
+     * @param originalString the string to be filtered
+     * @param characters array of characters which depending on the <code>whitelist</code> boolean are allowed or disallowed
+     * @param whitelist if true array of characters is applied as whitelist, default is blacklist
+     * @return filtered string to prevent SQL injections, cross-site scripting
+     * and other exploits
+     */
+    public static String filteredString(String originalString, char[] characters, boolean whitelist) {
+        return originalString;
     }
     
     /**
@@ -165,14 +175,20 @@ public class SecurityMan {
                 return false;
             }else if (resultInt == 1) {
                 //gebruiker
+                this.userPermissions.set(1);
                 this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
             }else if (resultInt == 2) {
                 //manager
+                this.userPermissions.set(2);
                 this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
             }else if (resultInt == 3) {
                 //admin
+                this.userPermissions.set(3);
                 this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
             }
+            // set the user permission and start the time out timer.
+            this.resetTimer();
+            this.userLoggedIn.set(true);
             return true;
         } else {
             System.out.println("De opgegeven gebruiker niet gevonden in de database");
@@ -196,14 +212,21 @@ public class SecurityMan {
         return userLoggedIn.get();
     }
     
+    /**
+     * 
+     * @return true if the user is afk, false if not
+     */
     public boolean getUserAFK() {
         return this.userAFK.get();
     }
     
+    /**
+     * Sets the user afk this is used to trigger the user timeout
+     * @param useAFK true if the user is afk false if he's not
+     */
     public void setUserAFK(boolean useAFK) {
         this.userAFK.set(useAFK);
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="set, get, reset timeout time">
     /**
@@ -221,9 +244,12 @@ public class SecurityMan {
      * time does not change until you reset the timer.
      * @return true if succeeded, false when failed.
      */
-    public boolean resetTimeOutTime() {
+    public boolean resetTimeOutTime(boolean resetTimer) {
         try {
             timeOutTime = defaultTimeOutTime;
+            if(resetTimer) {
+                this.resetTimer();
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -242,7 +268,7 @@ public class SecurityMan {
             timeOut = null;
             timeOut = new Timer("userTimeOutTimer");
             fireTimeOut = new timeOutTimerTask(luggageControl);
-            timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
+            this.startTimer();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -257,14 +283,22 @@ public class SecurityMan {
      * @param newTimeOutTime
      * @return true if succeeded, false when failed.
      */
-    public boolean setTimeOutTime(int newTimeOutTime) {
+    public boolean setTimeOutTime(int newTimeOutTime, boolean resetTimer) {
         try {
             timeOutTime = newTimeOutTime;
+            if(resetTimer) {
+                this.resetTimer();
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
         return true;
+    }
+    
+    public void startTimer() {
+        //  start the timer with the timertask
+        timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
     }
     // </editor-fold>
 }
