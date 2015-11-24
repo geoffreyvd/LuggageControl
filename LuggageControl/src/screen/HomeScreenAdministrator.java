@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import main.LuggageControl;
+import managers.DatabaseMan;
 
 /**
  *
@@ -220,130 +221,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
     }//GEN-LAST:event_buttonDatabaseImportActionPerformed
 
     private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed
-
-        JTextField username = new JTextField(5);
-        JPasswordField password = new JPasswordField(5);
-        JPanel myPanel = new JPanel();
-        myPanel.add(new JLabel("Username:"));
-        myPanel.add(username);
-        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Password:"));
-        myPanel.add(password);
-
-        int result = JOptionPane.showConfirmDialog(null, myPanel,
-                "Please Enter your mysql username and password", JOptionPane.OK_CANCEL_OPTION);
-        if (result == JOptionPane.CANCEL_OPTION) {
-
-        } else {
-
-            JFileChooser fileChooser = new JFileChooser();
-
-            int returnValue = fileChooser.showSaveDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                try {
-                    FileWriter fw = new FileWriter(fileChooser.getSelectedFile() + ".sql");
-                    //fw.close();
-                    System.out.println(fileChooser.getSelectedFile());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
-            ProcessBuilder pb = new ProcessBuilder(command);
-            char schijf;
-            String line = null;
-            for (schijf = 'A';
-                    schijf <= 'Z'; schijf++) {
-                pb.directory(new File(schijf + ":\\"));
-                try {
-                    Process process = pb.start();
-                    //System.out.println(process.getInputStream());
-
-                    InputStream is = process.getInputStream();
-                    InputStreamReader isr = new InputStreamReader(is);
-                    BufferedReader br = new BufferedReader(isr);
-                    
-
-                    String tempLine;
-                    while ((tempLine = br.readLine()) != null && line == null) {
-
-                        if (!tempLine.contains("Directory of")) {
-
-                        } else {
-                            line = (tempLine.replace("Directory of", ""));
-                            line = (line.trim());
-                            System.out.println(line);
-                        }
-                    }
-
-                    if (line != null) {
-                        schijf = 'Z';
-                    }
-
-                } catch (java.io.IOException e) {
-                    //System.out.println(e.getMessage());
-                }
-            }
-
-            try {
-                line = line + "/mysqldump.exe";
-                // Runtime rt = Runtime.getRuntime();
-                // rt.exec("CMD /C " + line + " luggagecontroldata -u"+ username.getText()+ " -p"+ password.getText()+ " -r"+ fileChooser.getSelectedFile() + ".sql");
-
-                Process process2 = Runtime.getRuntime().exec("CMD /C " + line + " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + fileChooser.getSelectedFile() + ".sql");
-                BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
-                BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
-                while ((line = bri.readLine()) != null) {
-                    System.out.println(line);
-                }
-                bri.close();
-               
-                while ((line = bre.readLine()) != null) {
-                    if (line.startsWith("mysqldump: Got error:")) {
-                        JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
-                        File file = new File(fileChooser.getSelectedFile() + ".sql");
-                        System.out.println(fileChooser.getSelectedFile() + ".sql");
-                        if(!file.delete()){
-                            new ErrorJDialog(this.luggageControl, true, "Error: trying to remove file", new Throwable().getStackTrace());
-                        }
-                        
-                    }
-                }
-                bre.close();
-                process2.waitFor();
-
-            } catch (IOException | HeadlessException | InterruptedException e) {
-                new ErrorJDialog(this.luggageControl, true, "Error: " + e.getMessage(), e.getStackTrace());
-
-            }
-
-            /*
-             System.out.println(line);
-             Runtime rt = Runtime.getRuntime();
-             try {
-             /*String[] exec = {"CMD /", "cd /", "dir /s *mysqldump.exe*"};
-               
-             String line;
-             BufferedReader in = new BufferedReader(
-             new InputStreamReader(rt.exec(exec).getInputStream()) );
-             while ((line = in.readLine()) != null) {
-             System.out.println(line);
-       
-             in.close();
-             }
-             rt.exec("CMD /C " + locatie + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
-             rt.exec("CMD /C mysqldump luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
-            
-
-             } catch (IOException ex) {
-             System.out.println(ex.getMessage());
-             }        
-        
-        
-
-             this.userNotAFK();
-             */
-        }
+        DatabaseMan.exportDatabase(luggageControl);
     }//GEN-LAST:event_buttonDatabaseExportActionPerformed
 
     private void buttonDeleteFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFlight
