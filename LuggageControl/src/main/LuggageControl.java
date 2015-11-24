@@ -65,6 +65,7 @@ public class LuggageControl extends javax.swing.JFrame {
         secman = new SecurityMan(this);
         
         conman = new ConfigurationMan(this);
+        System.out.println(conman.getMysqlDumpLocationWindows(this));
         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
