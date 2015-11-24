@@ -212,43 +212,43 @@ public class SearchLuggage extends SwitchingJPanel {
         try {
             if(textFieldLuggageID.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
                 String[] values = {textFieldLuggageID.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage WHERE luggage_id = ? ;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage WHERE luggage_id = ? ;", values);
             }
             if(textFieldFlightNumber.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage_flights;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage_flights;", values);
             }
             else {
                 String[] values = {textFieldFlightNumber.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage_flights WHERE flight_id = ? ;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage_flights WHERE flight_id = ? ;", values);
             }
             if(textFieldOwnerID.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.client_luggage;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.client_luggage;", values);
             }
             else {
                 String[] values = {textFieldOwnerID.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.client_luggage WHERE client_id = ? ;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.client_luggage WHERE client_id = ? ;", values);
             }
             /*if(((String)comboBoxLuggageStatus.getSelectedItem()).equals("Status")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
                 String[] values = {(String)comboBoxLuggageStatus.getSelectedItem()z};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
             }*/
             if(textFieldLocation.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
                 String[] values = {textFieldLocation.getText()};
-                result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
+                result = db.query("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableLuggageSearch.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {

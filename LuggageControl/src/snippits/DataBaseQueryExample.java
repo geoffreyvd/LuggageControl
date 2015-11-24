@@ -16,42 +16,42 @@ import managers.DatabaseMan;
 public class DataBaseQueryExample {
 
     public static void main(String[] args) {
-        //example 1: selecting all values from ws.database.cijfer, those values are printed in console
-        System.out.println("Example 1: ");
-
-        DatabaseMan DB1 = new DatabaseMan();
-
-        //ResulSet result is a table wth values
-        ResultSet result = DB1.query("select * from users");
-        try {
-            //This while loop, loops trough every row in result
-            while (result.next()) {
-                //print the first 3 columns of every row
-                System.out.println(result.getString("adress") + " " + result.getString(2) + " " + result.getString(3));
-            }
-        } catch (SQLException ex) {
-            System.out.println("An error occured while querying the database");
-        }
-
-        
-        //example 2: selecting all values from ws.database.cijfer, those values are printed in console
-        System.out.println("\nExample 2: ");
-
-        DatabaseMan DB2 = new DatabaseMan();
-
-        //This query will return a string, it only returns 1 value!
-        String result1 = DB2.queryOneResult("select * from users");
-        System.out.println(result1);
-
-        
-        //example 3 user log in
-        System.out.println("Example 3");
-        DatabaseMan DB3 = new DatabaseMan();
-
-        String result2 = DB3.queryOneResult("select users.permissions from users where username = \"geoffreyvd\" and password = \"gucciguc\"");
-        System.out.println(result2);
-
-        
+//        //example 1: selecting all values from ws.database.cijfer, those values are printed in console
+//        System.out.println("Example 1: ");
+//
+//        DatabaseMan DB1 = new DatabaseMan();
+//
+//        //ResulSet result is a table wth values
+//        ResultSet result = DB1.query("select * from users");
+//        try {
+//            //This while loop, loops trough every row in result
+//            while (result.next()) {
+//                //print the first 3 columns of every row
+//                System.out.println(result.getString("adress") + " " + result.getString(2) + " " + result.getString(3));
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println("An error occured while querying the database");
+//        }
+//
+//        
+//        //example 2: selecting all values from ws.database.cijfer, those values are printed in console
+//        System.out.println("\nExample 2: ");
+//
+//        DatabaseMan DB2 = new DatabaseMan();
+//
+//        //This query will return a string, it only returns 1 value!
+//        String result1 = DB2.queryOneResult("select * from users");
+//        System.out.println(result1);
+//
+//        
+//        //example 3 user log in
+//        System.out.println("Example 3");
+//        DatabaseMan DB3 = new DatabaseMan();
+//
+//        String result2 = DB3.queryOneResult("select users.permissions from users where username = \"geoffreyvd\" and password = \"gucciguc\"");
+//        System.out.println(result2);
+//
+//        
 //        //example 4 insert query example
 //        System.out.println("example 4:");
 //        DatabaseMan DB4 = new DatabaseMan();
@@ -102,15 +102,16 @@ public class DataBaseQueryExample {
         // example 5 prepared statement query
         System.out.println("example 5");
         DatabaseMan DB5 = new DatabaseMan();
+        ResultSet result5;
         
         String[] values1 = new String[1];
         values1[0] = "geoffreyvd4";        
         String query = "select * from users where username = ?";
         
         try {
-            result = DB5.queryPrepared(query, values1);
-            while (result.next()) {
-                System.out.println(result.getString("password") + " " + result.getString("firstname") + " " + result.getString(3));
+            result5 = DB5.query(query, values1);
+            while (result5.next()) {
+                System.out.println(result5.getString("password") + " " + result5.getString("firstname") + " " + result5.getString(3));
             }
 
         } catch (SQLException e) {
