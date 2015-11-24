@@ -162,9 +162,14 @@ public class SecurityMan {
      * @return true if successful, false when failed.
      */
     public boolean logInUser(String username, String password) {
+        String[] values1 = new String[2];
+        values1[0] = username;
+        values1[1] = password;
+        String query = "select users.permissions from users where username = ? and password = ?";
+        
         //This query will return a string, it only returns 1 value!
-        String result = databaseMan.queryOneResult("select users.permissions from users where username = \""
-                                            + username + "\" and password = \"" + password + "\"");
+        String result = databaseMan.queryOneResult(query, values1);
+        
         username = null;
         password = null;
         if (result != null) {

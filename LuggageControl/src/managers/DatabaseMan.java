@@ -18,7 +18,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Box;
@@ -31,9 +30,9 @@ import javax.swing.JTextField;
 import main.LuggageControl;
 
 /**
- * DataBaseManager is an class with predefined credentials for the database. It
+ * DataBaseManager is a class with predefined credentials for the database. It
  * also provides query methods which can be used to query directly to the
- * database.
+ * database. All query's are with prepared statements.
  *
  * @author geoffrey
  */
@@ -156,38 +155,26 @@ public class DatabaseMan {
         }
     }
 
-    /**
-     * Simple select query
-     *
-     * @param query
-     * @return ResultSet result
-     */
-    public ResultSet query(String query) {
-        try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://" + HOST_NAME + "/" + DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(query);
-            return result;
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
+    
     /**
      * This query will return one value, a string: It returns the value from the
      * first column and the first row.
      *
      * @param query
+     * @param values
      * @return String value
      */
-    public String queryOneResult(String query) {
+    public String queryOneResult(String query, String[] values) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
-            Connection connection = DriverManager.getConnection(
+            connection = DriverManager.getConnection(
                     "jdbc:mysql://" + HOST_NAME + "/" + DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD);
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(query);
+            preparedStatement = connection.prepareStatement(query);
+            for (int i = 0; i < values.length; i++) {
+                preparedStatement.setString((i + 1), values[i]);
+            }
+            ResultSet result = preparedStatement.executeQuery();
             result.next();
             return result.getString(1);
         } catch (SQLException ex) {
@@ -202,7 +189,7 @@ public class DatabaseMan {
      * @param values values to be used in query, place ? at value spots
      * @return ResultSet
      */
-    public ResultSet queryPrepared(String query, String[] values) {
+    public ResultSet query(String query, String[] values) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -228,7 +215,7 @@ public class DatabaseMan {
      * @param types the value types, supported: String, Int
      * @throws SQLException
      */
-    public void queryPreparedManipulation(String query, String[] values, String[] types) throws SQLException {
+    public void queryManipulation(String query, String[] values, String[] types) throws SQLException {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         try {
