@@ -25,8 +25,6 @@ public class LoginScreen extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUsername);
         PromptSupport.setPrompt("Password", textFieldPassword);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPassword);
-        DatabaseMan db = new DatabaseMan();
-        db.exportDatabase("henk");
     }
 
     /**

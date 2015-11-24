@@ -170,6 +170,7 @@ public class DeleteFlight extends SwitchingJPanel {
      */
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
         this.userNotAFK();
+        new ErrorJDialog(this.luggageControl, true);
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBack
 

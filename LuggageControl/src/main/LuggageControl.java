@@ -7,14 +7,8 @@ import java.awt.GraphicsEnvironment;
 import managers.SecurityMan;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
-import constants.Styling;
-import java.awt.Color;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicBoolean;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import managers.ConfigurationMan;
 
 /**
  * Root class off application creates the main windows
@@ -59,6 +53,9 @@ public class LuggageControl extends javax.swing.JFrame {
     // security manager and event interface
     private SecurityMan secman;
     
+    // configuration manager
+    private ConfigurationMan conman;
+    
     /**
      *
      */
@@ -66,6 +63,8 @@ public class LuggageControl extends javax.swing.JFrame {
         // parse the refernence of our interface to the security manager class
         // so it can call us.
         secman = new SecurityMan(this);
+        
+        conman = new ConfigurationMan(this);
         
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future

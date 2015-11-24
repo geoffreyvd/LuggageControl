@@ -163,11 +163,11 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        // TODO add your handling code here:
+        this.luggageControl.switchJPanel(ScreenNames.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
-        // TODO add your handling code here:
+        this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonSearchLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggageActionPerformed
@@ -175,7 +175,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearchLuggageActionPerformed
 
     private void buttonSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomerActionPerformed
-        // TODO add your handling code here:
+        this.luggageControl.switchJPanel(ScreenNames.SEARCH_CUSTOMER);
     }//GEN-LAST:event_buttonSearchCustomerActionPerformed
 
     private void buttonAddLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddLuggageActionPerformed
@@ -183,7 +183,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }//GEN-LAST:event_buttonAddLuggageActionPerformed
 
     private void buttonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCustomerActionPerformed
-        // TODO add your handling code here:
+        this.luggageControl.switchJPanel(ScreenNames.ADD_CUSTOMER);
     }//GEN-LAST:event_buttonAddCustomerActionPerformed
 
 

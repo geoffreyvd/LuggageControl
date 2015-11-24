@@ -5,7 +5,13 @@
  */
 package managers;
 
+import baseClasses.ErrorJDialog;
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +21,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import main.LuggageControl;
 
 /**
  * DataBaseManager is an class with predefined credentials for the database. It
@@ -37,10 +51,10 @@ public class DatabaseMan {
 
     }
 
-    public void exportDatabase(String file) {
+    public static void exportDatabase(LuggageControl luggageControl) {
         if (System.getProperty("os.name").equals("Linux")) {
             Runtime rt = Runtime.getRuntime();
-            String[] commands = {"/bin/sh", "-c", "mysqldump -u lugcontroluser -p -r gucci.sql LuggageControlData", "verysecure"};
+            String[] commands = {"/bin/sh", "-c", "mysqldump -u lugcontroluser -p -r gucci.sql luggagecontroldata", "verysecure"};
             Process proc;
             try {
                 proc = rt.exec(commands);
@@ -53,7 +67,92 @@ public class DatabaseMan {
             }
         }
         else {
-            // MICHIE put your windows export thing a ma jig here!
+            JTextField username = new JTextField(5);
+            JPasswordField password = new JPasswordField(5);
+            JPanel myPanel = new JPanel();
+            myPanel.add(new JLabel("Username:"));
+            myPanel.add(username);
+            myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+            myPanel.add(new JLabel("Password:"));
+            myPanel.add(password);
+
+            int result = JOptionPane.showConfirmDialog(null, myPanel,
+                    "Please Enter your mysql username and password", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.CANCEL_OPTION) {
+
+            } else {
+
+                JFileChooser fileChooser = new JFileChooser();
+
+                int returnValue = fileChooser.showSaveDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        FileWriter fw = new FileWriter(fileChooser.getSelectedFile() + ".sql");
+                        fw.close();
+                    } catch (Exception e) {
+                        new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+                    }
+                }
+                String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
+                ProcessBuilder pb = new ProcessBuilder(command);
+                char schijf;
+                String line = null;
+                for (schijf = 'A';
+                        schijf <= 'Z'; schijf++) {
+                    pb.directory(new File(schijf + ":\\"));
+                    try {
+                        Process process = pb.start();
+
+                        InputStream is = process.getInputStream();
+                        InputStreamReader isr = new InputStreamReader(is);
+                        BufferedReader br = new BufferedReader(isr);
+
+                        String tempLine;
+                        while ((tempLine = br.readLine()) != null && line == null) {
+                            if (!tempLine.contains("Directory of")) {
+                            } else {
+                                line = (tempLine.replace("Directory of", ""));
+                                line = (line.trim());
+                            }
+                        }
+
+                        if (line != null) {
+                            schijf = 'Z';
+                        }
+
+                    } catch (java.io.IOException e) {
+                       new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+                    }
+                }
+
+                try {
+                    line = line + "/mysqldump.exe";
+                    Process process2 = Runtime.getRuntime().exec("CMD /C " + line + " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + fileChooser.getSelectedFile() + ".sql");
+                    BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
+                    BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
+                    while ((line = bri.readLine()) != null) {
+                        
+                    }
+                    bri.close();
+
+                    while ((line = bre.readLine()) != null) {
+                        if (line.startsWith("mysqldump: Got error:")) {
+                            JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
+                            File fileCreator = new File(fileChooser.getSelectedFile() + ".sql");
+                            System.out.println(fileChooser.getSelectedFile() + ".sql");
+                            if(!fileCreator.delete()){
+                                new ErrorJDialog(luggageControl, true, "Error: trying to remove file", new Throwable().getStackTrace());
+                            }
+                        }
+                    }
+                    bre.close();
+                    process2.waitFor();
+
+                } catch (IOException | HeadlessException | InterruptedException e) {
+                    new ErrorJDialog(luggageControl, true, "Error: " + e.getMessage(), e.getStackTrace());
+
+                }
+            }
         }
     }
 
