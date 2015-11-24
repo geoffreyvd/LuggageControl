@@ -6,6 +6,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
 import main.LuggageControl;
 
 /**
@@ -43,28 +44,28 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         buttonAddCustomer.setText("Add customer");
         buttonAddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addsCustomer(evt);
+                buttonAddCustomerActionPerformed(evt);
             }
         });
 
         buttonAddLuggage.setText("Add luggage");
         buttonAddLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addsLuggage(evt);
+                buttonAddLuggageActionPerformed(evt);
             }
         });
 
         buttonSearchCustomer.setText("Search customer");
         buttonSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchesCustomer(evt);
+                buttonSearchCustomerActionPerformed(evt);
             }
         });
 
         buttonSearchLuggage.setText("Search luggage");
         buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchesLuggage(evt);
+                buttonSearchLuggageActionPerformed(evt);
             }
         });
 
@@ -77,14 +78,14 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         buttonHelp.setText("Help");
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goesToHelpFinding(evt);
+                buttonHelpActionPerformed(evt);
             }
         });
 
         buttonChangeSettings.setText("Change settings");
         buttonChangeSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goesToChangeSettingsScreen(evt);
+                buttonChangeSettingsActionPerformed(evt);
             }
         });
 
@@ -161,29 +162,29 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addsCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addsCustomer
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addsCustomer
+    }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void addsLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addsLuggage
+    private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addsLuggage
+    }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
-    private void searchesCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchesCustomer
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchesCustomer
+    private void buttonSearchLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggageActionPerformed
+        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
+    }//GEN-LAST:event_buttonSearchLuggageActionPerformed
 
-    private void searchesLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchesLuggage
+    private void buttonSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchesLuggage
+    }//GEN-LAST:event_buttonSearchCustomerActionPerformed
 
-    private void goesToHelpFinding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpFinding
-        // TODO add your handling code here:
-    }//GEN-LAST:event_goesToHelpFinding
+    private void buttonAddLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddLuggageActionPerformed
+        this.luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
+    }//GEN-LAST:event_buttonAddLuggageActionPerformed
 
-    private void goesToChangeSettingsScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToChangeSettingsScreen
+    private void buttonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_goesToChangeSettingsScreen
+    }//GEN-LAST:event_buttonAddCustomerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
