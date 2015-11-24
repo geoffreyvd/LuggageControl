@@ -90,21 +90,21 @@ public class CustomerDetails extends SwitchingJPanel {
         buttonRemoveFlightNumber.setText("Remove");
         buttonRemoveFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeFlightNumber(evt);
+                buttonRemoveActionPerformed(evt);
             }
         });
 
         buttonUpdateCustomer.setText("Update");
         buttonUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updates(evt);
+                buttonUpdateActionPerformed(evt);
             }
         });
 
         buttonCancelChanges.setText("Cancel");
         buttonCancelChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                canceles(evt);
+                buttonCancelActionPerformed(evt);
             }
         });
 
@@ -143,14 +143,14 @@ public class CustomerDetails extends SwitchingJPanel {
         buttonSearchLuggage.setText("Search");
         buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searches(evt);
+                buttonSearchActionPerformed(evt);
             }
         });
 
         buttonHelp.setText("Help");
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goesToHelpAdding(evt);
+                buttonHelpActionPerformed(evt);
             }
         });
 
@@ -266,40 +266,40 @@ public class CustomerDetails extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textFieldCellphoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCellphoneNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldCellphoneNumberActionPerformed
 
-    private void removeFlightNumber(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFlightNumber
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeFlightNumber
-
-    private void updates(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updates
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updates
-
-    private void canceles(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canceles
-        // TODO add your handling code here:
-    }//GEN-LAST:event_canceles
-
     private void textFieldLuggageIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLuggageIdActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldLuggageIdActionPerformed
 
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
-    private void searches(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searches
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searches
-
-    private void goesToHelpAdding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpAdding
-        // TODO add your handling code here:
-    }//GEN-LAST:event_goesToHelpAdding
-
     private void backToSearchCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToSearchCustomer
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_backToSearchCustomer
+
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonHelpActionPerformed
+
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonCancelActionPerformed
+
+    private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonUpdateActionPerformed
+
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRemoveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

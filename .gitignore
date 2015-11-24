@@ -1,3 +1,6 @@
 /LuggageControl/nbproject/private/
 *.class
+/LuggageControl/dist/
 LuggageControl/build/built-jar.properties
+/LuggageControl/build/
+LuggageControl/dist/LuggageControl.jar
