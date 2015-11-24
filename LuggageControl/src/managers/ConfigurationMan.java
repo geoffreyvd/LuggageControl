@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -120,7 +121,10 @@ public class ConfigurationMan {
             }
         }
         try {
-            writer.write(MYSQL_DUMP_LOCATION + line);
+            FileWriter fw = new FileWriter(new File(CONFIG_NAME).getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
+            bw.close();
             return true;
         }
         catch(Exception e) {
