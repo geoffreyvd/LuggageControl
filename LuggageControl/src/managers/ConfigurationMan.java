@@ -1,13 +1,14 @@
 package managers;
 
 import baseClasses.ErrorJDialog;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import main.LuggageControl;
 
@@ -18,31 +19,112 @@ import main.LuggageControl;
 public class ConfigurationMan {
     
     // Configuration file name
-    private final String configName = "config.ini";
+    private static final String CONFIG_NAME = "config.ini";
     
-    private final LuggageControl LuggageControl;
+    private final LuggageControl luggageControl;
+    
+    private static final String OS = System.getProperty("os.name");
+    
+    private static final String MYSQL_DUMP_LOCATION = "mysql_dump_location:";
     
     // Our file writer
     Writer writer;
     
+    BufferedReader br;
+    
     public ConfigurationMan(LuggageControl luggageControl) {
-        this.LuggageControl = luggageControl;
+        this.luggageControl = luggageControl;
         
-        if(!checkConfigFile()) {
-            try {
-                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(configName), "utf-8"));
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
+            if(!checkConfigFile()) {
+                System.out.println("Created configurationfile: " + CONFIG_NAME);
             }
-            catch(Exception e) {
-                new ErrorJDialog(this.LuggageControl, true, e.getMessage(), e.getStackTrace(), true);
-            }
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace(), true);
+        }       
+
+        if(getMysqlDumpLocationWindows(this.luggageControl).equals("")) {
+            this.findMysqlDumpLocationWindows();
         }
     }
     
     private boolean checkConfigFile() {
-        if(new File(configName).isFile()){
+        if(new File(CONFIG_NAME).isFile()){
             return true;
         }
         else {
+            return false;
+        }
+    }
+    
+    /**
+     * Reads the mysqldump location and returns a absolute path
+     * @return absolute path to <file>mysqldump.exe</file>
+     */
+    public static String getMysqlDumpLocationWindows(LuggageControl luggageControl) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(CONFIG_NAME));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                if(line.contains("mysql_dump_location:")) {
+                    return line;
+                }
+            }
+        }
+        catch(Exception e) {
+            new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+        
+        System.out.println("Could not find mysqldump location configuration");
+        return "";
+    }
+    
+    public boolean findMysqlDumpLocationWindows() {
+        if(OS.equals("Linux")) {
+            return false; 
+        }
+        
+        String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
+        ProcessBuilder pb = new ProcessBuilder(command);
+        char schijf;
+        String line = null;
+        for (schijf = 'A';
+                schijf <= 'Z'; schijf++) {
+            pb.directory(new File(schijf + ":\\"));
+            try {
+                Process process = pb.start();
+
+                InputStream is = process.getInputStream();
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader br = new BufferedReader(isr);
+
+                String tempLine;
+                while ((tempLine = br.readLine()) != null && line == null) {
+                    if (!tempLine.contains("Directory of")) {
+                    } else {
+                        line = (tempLine.replace("Directory of", ""));
+                        line = (line.trim());
+                    }
+                }
+
+                if (line != null) {
+                    schijf = 'Z';
+                }
+
+            } catch (java.io.IOException e) {
+               new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+               return false;
+            }
+        }
+        try {
+            writer.write(MYSQL_DUMP_LOCATION + line);
+            return true;
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
             return false;
         }
     }

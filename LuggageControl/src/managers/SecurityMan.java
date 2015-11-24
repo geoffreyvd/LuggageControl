@@ -112,7 +112,7 @@ public class SecurityMan {
      * @param originalInt
      * @param minimumInt
      * @param maximumInt
-     * @return 
+     * @return filtered int between the specified minimum and maximum value or 0
      */
     public static int filteredInt(int originalInt, int minimumInt, int maximumInt) {
         return originalInt;
@@ -123,7 +123,7 @@ public class SecurityMan {
      * @param originalInt
      * @param minimumInt
      * @param maximumInt
-     * @return 
+     * @return Filtered string as int between the specified minimum and maximu value or 0
      */
     public static String filteredInt(String originalInt, int minimumInt, int maximumInt) {
         return originalInt;
