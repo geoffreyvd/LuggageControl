@@ -7,10 +7,6 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import main.LuggageControl;
 import managers.DatabaseMan;
 
@@ -155,30 +151,9 @@ public class DeleteLuggage extends SwitchingJPanel {
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         DatabaseMan db = new DatabaseMan();
-        textFieldCustomerId.getText();
-        textFieldCustomerName.getText();
-        ResultSet resultsTableClientLuggage = db.query("select luggage_id, "
-                + "clients_id from luggagecontroldata.client_luggage;");
-        ResultSet resultsTableFlights = db.query("select flight_id, origin, "
-                + "destination from luggagecontroldata.flights");
-        ResultSet resultsTableLuggage = db.query("select status, location from "
-                + "luggagecontroldata.luggage");
-            try {
-                while(resultsTableClientLuggage.next() && 
-                        resultsTableFlights.next() && 
-                        resultsTableLuggage.next()) {
-                    int luggageId = resultsTableClientLuggage.getInt("luggage_id");
-                    int flightnumber = resultsTableFlights.getInt("flight_id");
-                    int ownerId = resultsTableClientLuggage.getInt("clients_id");
-                    String status = resultsTableLuggage.getString("status");
-                    String location = resultsTableLuggage.getString("location");
-                    String origin = resultsTableFlights.getString("origin");
-                    String destination = resultsTableFlights.getString("destination");
-                    }  
-            
-            } catch (SQLException ex) {
-                Logger.getLogger(DeleteLuggage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
+        
+        
         
     }//GEN-LAST:event_buttonSearchActionPerformed
 
