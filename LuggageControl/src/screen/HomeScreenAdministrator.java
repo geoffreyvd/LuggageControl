@@ -1,5 +1,6 @@
 package screen;
 
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.awt.HeadlessException;
@@ -241,6 +242,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 try {
                     FileWriter fw = new FileWriter(fileChooser.getSelectedFile() + ".sql");
+                    //fw.close();
                     System.out.println(fileChooser.getSelectedFile());
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -300,15 +302,18 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
                     if (line.startsWith("mysqldump: Got error:")) {
                         JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
                         File file = new File(fileChooser.getSelectedFile() + ".sql");
-                        System.out.println(fileChooser.getSelectedFile() + ".sql");  
-
+                        System.out.println(fileChooser.getSelectedFile() + ".sql");
+                        if(!file.delete()){
+                            new ErrorJDialog(this.luggageControl, true, "Error: trying to remove file", new Throwable().getStackTrace());
+                        }
+                        
                     }
                 }
                 bre.close();
                 process2.waitFor();
 
             } catch (IOException | HeadlessException | InterruptedException e) {
-                System.out.println(e.getMessage());
+                new ErrorJDialog(this.luggageControl, true, "Error: " + e.getMessage(), e.getStackTrace());
 
             }
 
