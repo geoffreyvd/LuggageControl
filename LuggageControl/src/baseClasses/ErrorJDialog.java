@@ -128,6 +128,9 @@ public class ErrorJDialog extends PopUpJDialog {
         if(this.critical) {
             System.exit(1);
         }
+        else {
+            this.dispose();
+        }
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     /**

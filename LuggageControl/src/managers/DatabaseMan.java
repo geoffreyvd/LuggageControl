@@ -40,7 +40,7 @@ public class DatabaseMan {
     public void exportDatabase(String file) {
         if (System.getProperty("os.name").equals("Linux")) {
             Runtime rt = Runtime.getRuntime();
-            String[] commands = {"/bin/sh", "-c", "mysqldump -u lugcontroluser -p -r gucci.sql LuggageControlData", "verysecure"};
+            String[] commands = {"/bin/sh", "-c", "mysqldump -u lugcontroluser -p -r gucci.sql luggagecontroldata", "verysecure"};
             Process proc;
             try {
                 proc = rt.exec(commands);
