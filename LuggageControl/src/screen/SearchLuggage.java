@@ -162,9 +162,9 @@ public class SearchLuggage extends SwitchingJPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(buttonHelpLinking))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 48, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearch)
                     .addComponent(buttonCancel))
@@ -234,14 +234,14 @@ public class SearchLuggage extends SwitchingJPanel {
                 String[] values = {textFieldOwnerID.getText()};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.client_luggage WHERE client_id = ? ;", values);
             }
-            if(((String)comboBoxLuggageStatus.getSelectedItem()).equals("")) {
+            /*if(((String)comboBoxLuggageStatus.getSelectedItem()).equals("Status")) {
                 String[] values = {};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
-                String[] values = {textFieldLocation.getText()};
+                String[] values = {(String)comboBoxLuggageStatus.getSelectedItem()z};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
-            }
+            }*/
             if(textFieldLocation.getText().equals("")) {
                 String[] values = {};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
@@ -255,7 +255,7 @@ public class SearchLuggage extends SwitchingJPanel {
                 datamodel.removeRow(i);
             }
             while(result.next()) {
-                System.out.println(result.getString("origin"));
+                System.out.println(result.getString("flightnumber"));
                 Object[] data = {result.getString("luggage_id"), result.getString("flightnumber"), result.getString("client_id"), result.getString("status"), result.getString("location")};
                 datamodel.addRow(data);
             }
