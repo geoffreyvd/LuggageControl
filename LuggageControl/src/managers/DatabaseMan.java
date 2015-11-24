@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import main.LuggageControl;
 
 /**
@@ -64,8 +65,7 @@ public class DatabaseMan {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             JTextField username = new JTextField(5);
             JPasswordField password = new JPasswordField(5);
             JPanel myPanel = new JPanel();
@@ -74,20 +74,29 @@ public class DatabaseMan {
             myPanel.add(Box.createHorizontalStrut(15)); // a spacer
             myPanel.add(new JLabel("Password:"));
             myPanel.add(password);
+            File file = null;
+            String file2 = "";
 
             int result = JOptionPane.showConfirmDialog(null, myPanel,
                     "Please Enter your mysql username and password", JOptionPane.OK_CANCEL_OPTION);
-            if (result == JOptionPane.CANCEL_OPTION) {
+            if (result == JOptionPane.OK_OPTION) {
+                JFileChooser fileSaver = new JFileChooser();
+                fileSaver.setFileFilter(new FileNameExtensionFilter("Mysqldump File (.sql)", "sql"));
+                fileSaver.setAcceptAllFileFilterUsed(false);
+                fileSaver.setSelectedFile(new File(".sql"));
 
-            } else {
-
-                JFileChooser fileChooser = new JFileChooser();
-
-                int returnValue = fileChooser.showSaveDialog(null);
+                int returnValue = fileSaver.showSaveDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     try {
-                        FileWriter fw = new FileWriter(fileChooser.getSelectedFile() + ".sql");
-                        fw.close();
+                        file = fileSaver.getSelectedFile();
+                        if(!file.getAbsolutePath().endsWith(".sql")){
+                            file = new File(fileSaver.getSelectedFile() + ".sql");
+                        }
+
+
+                        FileWriter fileWriter = new FileWriter(file);
+                        fileWriter.close();
+                        
                     } catch (Exception e) {
                         new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
                     }
@@ -96,12 +105,10 @@ public class DatabaseMan {
                 ProcessBuilder pb = new ProcessBuilder(command);
                 char schijf;
                 String line = null;
-                for (schijf = 'A';
-                        schijf <= 'Z'; schijf++) {
+                for (schijf = 'A'; schijf <= 'Z'; schijf++) {
                     pb.directory(new File(schijf + ":\\"));
                     try {
                         Process process = pb.start();
-
                         InputStream is = process.getInputStream();
                         InputStreamReader isr = new InputStreamReader(is);
                         BufferedReader br = new BufferedReader(isr);
@@ -114,33 +121,27 @@ public class DatabaseMan {
                                 line = (line.trim());
                             }
                         }
-
                         if (line != null) {
                             schijf = 'Z';
                         }
-
                     } catch (java.io.IOException e) {
-                       new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+                        // new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+                        System.out.println("could not find disc: " + schijf);
                     }
                 }
-
                 try {
-                    line = line + "/mysqldump.exe";
-                    Process process2 = Runtime.getRuntime().exec("CMD /C " + line + " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + fileChooser.getSelectedFile() + ".sql");
+                    line += "/mysqldump.exe";
+                    Process process2 = Runtime.getRuntime().exec("CMD /C " + line + " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file);
                     BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
                     BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
-                    while ((line = bri.readLine()) != null) {
-                        
-                    }
                     bri.close();
-
                     while ((line = bre.readLine()) != null) {
                         if (line.startsWith("mysqldump: Got error:")) {
                             JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
-                            File fileCreator = new File(fileChooser.getSelectedFile() + ".sql");
-                            System.out.println(fileChooser.getSelectedFile() + ".sql");
-                            if(!fileCreator.delete()){
-                                new ErrorJDialog(luggageControl, true, "Error: trying to remove file", new Throwable().getStackTrace());
+
+                            
+                            if (!file.delete()) {
+                                // new ErrorJDialog(luggageControl, true, "Error: trying to remove file", new Throwable().getStackTrace());
                             }
                         }
                     }
@@ -185,6 +186,7 @@ public class DatabaseMan {
 
     /**
      * used for select queries while using user input
+     *
      * @param query String with select query
      * @param values values to be used in query, place ? at value spots
      * @return ResultSet
@@ -251,5 +253,5 @@ public class DatabaseMan {
                 dbConnection.close();
             }
         }
-    }    
+    }
 }
