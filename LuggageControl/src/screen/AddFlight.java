@@ -147,8 +147,41 @@ public class AddFlight extends SwitchingJPanel {
      * @param evt 
      */
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-        DatabaseMan db = new DatabaseMan();
-        db.query(" INSERT INTO `luggagecontroldata`.`luggage` (`location`) VALUES ('help');");
+         DatabaseMan db = new DatabaseMan();
+        if (!("".equals(textFieldFlightnumber.getText()) || "".equals(textFieldArivalTime.getText())
+                || "".equals(textFieldDepartureTime.getText()) || "".equals(textFieldDestination.getText())
+                || "".equals(textFieldOrigin.getText()))) {
+
+            String query = "INSERT INTO `luggagecontroldata`.`flights`"
+                    + "(`flight_id`, `origin`, `destination`, `departure`, `arrival`) "
+                    + "VALUES(?,?,?,?,?)";
+
+            String[] values = new String[5];
+            String[] types = new String[5];
+
+            values[0] = textFieldFlightnumber.getText();
+            values[1] = textFieldOrigin.getText();
+            values[2] = textFieldDestination.getText();
+            values[3] = textFieldDepartureTime.getText();
+            values[4] = textFieldArivalTime.getText();
+
+            types[0] = "String";
+            types[1] = "String";
+            types[2] = "String";
+            types[3] = "String";
+            types[4] = "String";
+
+            try {
+
+                db.queryPreparedManipulation(query, values, types);
+
+            } catch (Exception e) {
+
+            }
+            System.out.println("work");
+        } else {
+            System.out.println("not work");
+        }
         this.userNotAFK();
 
     }//GEN-LAST:event_buttonConfirmActionPerformed

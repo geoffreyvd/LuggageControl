@@ -63,7 +63,7 @@ public class SearchLuggage extends SwitchingJPanel {
         labelSearchLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchLuggage.setText("Search luggage");
 
-        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
+        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found", "Not returend" }));
 
         tableLuggageSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -234,14 +234,14 @@ public class SearchLuggage extends SwitchingJPanel {
                 String[] values = {textFieldOwnerID.getText()};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.client_luggage WHERE client_id = ? ;", values);
             }
-            /*if(((String)comboBoxLuggageStatus.getSelectedItem()).equals("Status")) {
+            if(((String)comboBoxLuggageStatus.getSelectedItem()).equals("Status")) {
                 String[] values = {};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
-                String[] values = {(String)comboBoxLuggageStatus.getSelectedItem()z};
+                String[] values = {(String)comboBoxLuggageStatus.getSelectedItem()};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage WHERE location = ? ;", values);
-            }*/
+            }
             if(textFieldLocation.getText().equals("")) {
                 String[] values = {};
                 result = db.queryPrepared("SELECT * FROM luggagecontroldata.luggage;", values);
