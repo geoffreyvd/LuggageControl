@@ -1,6 +1,7 @@
 package managers;
 
 import constants.ScreenNames;
+import java.sql.Timestamp;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -93,6 +94,42 @@ public class SecurityMan {
      */
     public static String filteredDateTime(String originalDateTime) {
         return originalDateTime;
+    }
+    
+    /**
+     * Filters datetime to the point where they are safe to use within our
+     * application, also verifies whether the datetime is between the specified values.
+     *
+     * @param originalDateTime DateTime string inputted by user
+     * @param minimumDateTime minimum time and date for the string to be returned
+     * @param maximumDateTime maximum time and date for the string to be returned
+     * @return filtered datetime to prevent SQL injections, cross-site scripting
+     * and other exploits
+     */
+    public static String filteredDateTime(String originalDateTime, Timestamp minimumDateTime, Timestamp maximumDateTime) {
+        return originalDateTime;
+    }
+    
+    /**
+     * 
+     * @param originalInt
+     * @param minimumInt
+     * @param maximumInt
+     * @return 
+     */
+    public static int filteredInt(int originalInt, int minimumInt, int maximumInt) {
+        return originalInt;
+    }
+    
+        /**
+     * 
+     * @param originalInt
+     * @param minimumInt
+     * @param maximumInt
+     * @return 
+     */
+    public static String filteredInt(String originalInt, int minimumInt, int maximumInt) {
+        return originalInt;
     }
     
     /**

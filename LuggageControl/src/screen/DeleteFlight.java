@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -18,6 +19,8 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class DeleteFlight extends SwitchingJPanel {
     
     private DatabaseMan db = new DatabaseMan();
+    
+    private SecurityMan sc;
 
     public DeleteFlight(LuggageControl luggageControl) {
         super(luggageControl);
@@ -247,7 +250,8 @@ public class DeleteFlight extends SwitchingJPanel {
                 result = db.queryPrepared("SELECT * FROM flights;", values);
             }
             else {
-                String[] values = {textFieldFlightNumber.getText()};
+                // always filter user input with securitymanager
+                String[] values = {sc.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
                 result = db.queryPrepared("SELECT * FROM flights WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
