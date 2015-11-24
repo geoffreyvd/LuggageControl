@@ -9,12 +9,10 @@ import baseClasses.EmptyResultSet;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -23,6 +21,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  */
 public class SearchLuggage extends SwitchingJPanel {
 
+    private SecurityMan sc;
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
@@ -215,8 +214,8 @@ public class SearchLuggage extends SwitchingJPanel {
                 result = db.query("SELECT * FROM luggagecontroldata.luggage;", values);
             }
             else {
-                String[] values = {textFieldLuggageID.getText()};
-                result = db.query("SELECT * FROM luggagecontroldata.luggage WHERE luggage_id = ? ;", values);
+                String[] values = {sc.filteredInt(textFieldLuggageID.getText(), 1, 12)};
+                result = db.query("SELECT * FROM luggagecontroldata.luggage WHERE luggage_id = ?;", values);
             }
             if(textFieldFlightNumber.getText().equals("")) {
                 String[] values = {};
