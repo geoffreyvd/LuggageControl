@@ -36,10 +36,10 @@ public class ConfigurationMan {
     
     public ConfigurationMan(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
-        
+
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
             if(!checkConfigFile()) {
+                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
                 System.out.println("Created configurationfile: " + CONFIG_NAME);
             }
         }

@@ -2,3 +2,4 @@
 *.class
 /LuggageControl/dist/*
 LuggageControl/build/*
+LuggageControl/config.ini
