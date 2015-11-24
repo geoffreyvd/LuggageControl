@@ -95,31 +95,30 @@ public class ConfigurationMan {
         ProcessBuilder pb = new ProcessBuilder(command);
         char schijf;
         String line = null;
-        for (schijf = 'A';
-                schijf <= 'Z'; schijf++) {
-            pb.directory(new File(schijf + ":\\"));
-            try {
-                Process process = pb.start();
+        boolean found = false;
+        for (schijf = 'A'; schijf <= 'Z'; schijf++) {
+            if(!found) {
+                pb.directory(new File(schijf + ":\\"));
+                try {
+                    Process process = pb.start();
 
-                InputStream is = process.getInputStream();
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader br = new BufferedReader(isr);
+                    InputStream is = process.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader br = new BufferedReader(isr);
 
-                String tempLine;
-                while ((tempLine = br.readLine()) != null && line == null) {
-                    if (!tempLine.contains("Directory of")) {
-                    } else {
-                        line = (tempLine.replace("Directory of", ""));
-                        line = (line.trim());
+                    String tempLine;
+                    while ((tempLine = br.readLine()) != null && line == null) {
+                        if (!tempLine.contains("Directory of")) {
+                        } else {
+                            line = (tempLine.replace("Directory of", ""));
+                            line = (line.trim());
+                            found = true;
+                        }
                     }
-                }
 
-                if (line != null) {
-                    schijf = 'Z';
+                } catch (java.io.IOException e) {
+                    System.out.println("Drive " + schijf + " does not exist");
                 }
-
-            } catch (java.io.IOException e) {
-                System.out.println("Drive " + schijf + " does not exist");
             }
         }
         try {
