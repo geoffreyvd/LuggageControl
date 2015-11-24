@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import main.LuggageControl;
 
 /**
@@ -27,16 +26,11 @@ public class ConfigurationMan {
     
     private static final String MYSQL_DUMP_LOCATION = "mysql_dump_location:";
     
-    // Our file writer
-    Writer writer;
-    
-    BufferedReader br;
-    
     public ConfigurationMan(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
         
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
             if(!checkConfigFile()) {
                 System.out.println("Created configurationfile: " + CONFIG_NAME);
             }
@@ -115,12 +109,14 @@ public class ConfigurationMan {
                 }
 
             } catch (java.io.IOException e) {
-               new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
-               return false;
+               //new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+               //return false;
             }
         }
         try {
-            writer.write(MYSQL_DUMP_LOCATION + line);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
+            //writer.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
+            writer.write(MYSQL_DUMP_LOCATION);
             return true;
         }
         catch(Exception e) {
