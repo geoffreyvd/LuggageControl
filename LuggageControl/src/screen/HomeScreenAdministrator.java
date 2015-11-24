@@ -1,18 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
+import java.awt.HeadlessException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import javax.swing.Box;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import main.LuggageControl;
 
 /**
  *
  * @author user
  */
-public class HomeScreenAdministrator extends SwitchingJPanel{
+public class HomeScreenAdministrator extends SwitchingJPanel {
 
     public HomeScreenAdministrator(LuggageControl luggageControl) {
         super(luggageControl);
@@ -28,76 +38,84 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
+        labelHome = new javax.swing.JLabel();
+        buttonHelp = new javax.swing.JButton();
+        buttonChangeSettings = new javax.swing.JButton();
+        buttonDeleteCustomer = new javax.swing.JButton();
+        buttonDeleteLuggage = new javax.swing.JButton();
+        buttonUserManagement = new javax.swing.JButton();
+        buttonAddUser = new javax.swing.JButton();
+        labelDatabaseManagement = new javax.swing.JLabel();
+        buttonDatabaseImport = new javax.swing.JButton();
+        buttonDatabaseExport = new javax.swing.JButton();
+        buttonDeleteFlight = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setText("Home");
+        labelHome.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelHome.setText("Home");
 
-        jButton17.setText("Help");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        buttonHelp.setText("Help");
+        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                buttonHelpActionPerformed(evt);
             }
         });
 
-        jButton18.setText("Change settings");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        buttonChangeSettings.setText("Change settings");
+        buttonChangeSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                buttonChangeSettingsActionPerformed(evt);
             }
         });
 
-        jButton19.setText("Delete costumer");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        buttonDeleteCustomer.setText("Delete costumer");
+        buttonDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                buttonDeleteCustomerActionPerformed(evt);
             }
         });
 
-        jButton20.setText("Delete luggage");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        buttonDeleteLuggage.setText("Delete luggage");
+        buttonDeleteLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                buttonDeleteLuggageActionPerformed(evt);
             }
         });
 
-        jButton21.setText("User management");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
+        buttonUserManagement.setText("User management");
+        buttonUserManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
+                buttonUserManagementActionPerformed(evt);
             }
         });
 
-        jButton22.setText("Add user");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
+        buttonAddUser.setText("Add user");
+        buttonAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
+                buttonAddUserActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel2.setText("Database management");
+        labelDatabaseManagement.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelDatabaseManagement.setText("Database management");
 
-        jButton23.setText("Database import");
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
+        buttonDatabaseImport.setText("Database import");
+        buttonDatabaseImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
+                buttonDatabaseImportActionPerformed(evt);
             }
         });
 
-        jButton24.setText("Database export");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
+        buttonDatabaseExport.setText("Database export");
+        buttonDatabaseExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
+                buttonDatabaseExportActionPerformed(evt);
+            }
+        });
+
+        buttonDeleteFlight.setText("Delete flight");
+        buttonDeleteFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteFlight(evt);
             }
         });
 
@@ -109,23 +127,24 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(labelHome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addComponent(labelDatabaseManagement)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(buttonChangeSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonDeleteLuggage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDeleteCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonUserManagement, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDeleteFlight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonDatabaseExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDatabaseImport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 369, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
@@ -135,71 +154,210 @@ public class HomeScreenAdministrator extends SwitchingJPanel{
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton17)
+                        .addComponent(buttonHelp)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton18))
+                        .addComponent(buttonChangeSettings))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(labelHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDatabaseManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton19)
-                    .addComponent(jButton23))
+                    .addComponent(buttonDeleteCustomer)
+                    .addComponent(buttonDatabaseImport))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton20)
-                    .addComponent(jButton24))
+                    .addComponent(buttonDeleteLuggage)
+                    .addComponent(buttonDatabaseExport))
+                .addGap(13, 13, 13)
+                .addComponent(buttonDeleteFlight)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonUserManagement)
                 .addGap(18, 18, 18)
-                .addComponent(jButton21)
-                .addGap(18, 18, 18)
-                .addComponent(jButton22)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addComponent(buttonAddUser)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.HELP);
+    }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+    private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
+    }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
+    private void buttonDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteCustomerActionPerformed
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.DELETE_CUSTOMER);
+    }//GEN-LAST:event_buttonDeleteCustomerActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    private void buttonDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteLuggageActionPerformed
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.DELETE_LUGGAGE);
+    }//GEN-LAST:event_buttonDeleteLuggageActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
+    private void buttonUserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserManagementActionPerformed
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.USER_MANAGEMENT);
+    }//GEN-LAST:event_buttonUserManagementActionPerformed
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
+    private void buttonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddUserActionPerformed
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.ADD_USER);
+    }//GEN-LAST:event_buttonAddUserActionPerformed
 
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
+    private void buttonDatabaseImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseImportActionPerformed
+        this.userNotAFK();
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File databaseImport = fileChooser.getSelectedFile();
+            System.out.println(fileChooser.getSelectedFile());
+        }
+    }//GEN-LAST:event_buttonDatabaseImportActionPerformed
 
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton24ActionPerformed
+    private void buttonDatabaseExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseExportActionPerformed
+
+        JTextField username = new JTextField(5);
+        JPasswordField password = new JPasswordField(5);
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("Username:"));
+        myPanel.add(username);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Password:"));
+        myPanel.add(password);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+                "Please Enter your mysql username and password", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.CANCEL_OPTION) {
+
+        } else {
+
+            JFileChooser fileChooser = new JFileChooser();
+
+            int returnValue = fileChooser.showSaveDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                try {
+                    FileWriter fw = new FileWriter(fileChooser.getSelectedFile() + ".sql");
+                    System.out.println(fileChooser.getSelectedFile());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
+            ProcessBuilder pb = new ProcessBuilder(command);
+            char schijf;
+            String line = null;
+            for (schijf = 'A';
+                    schijf <= 'Z'; schijf++) {
+                pb.directory(new File(schijf + ":\\"));
+                try {
+                    Process process = pb.start();
+                    //System.out.println(process.getInputStream());
+
+                    InputStream is = process.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader br = new BufferedReader(isr);
+                    
+
+                    String tempLine;
+                    while ((tempLine = br.readLine()) != null && line == null) {
+
+                        if (!tempLine.contains("Directory of")) {
+
+                        } else {
+                            line = (tempLine.replace("Directory of", ""));
+                            line = (line.trim());
+                            System.out.println(line);
+                        }
+                    }
+
+                    if (line != null) {
+                        schijf = 'Z';
+                    }
+
+                } catch (java.io.IOException e) {
+                    //System.out.println(e.getMessage());
+                }
+            }
+
+            try {
+                line = line + "/mysqldump.exe";
+                // Runtime rt = Runtime.getRuntime();
+                // rt.exec("CMD /C " + line + " luggagecontroldata -u"+ username.getText()+ " -p"+ password.getText()+ " -r"+ fileChooser.getSelectedFile() + ".sql");
+
+                Process process2 = Runtime.getRuntime().exec("CMD /C " + line + " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + fileChooser.getSelectedFile() + ".sql");
+                BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
+                BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
+                while ((line = bri.readLine()) != null) {
+                    System.out.println(line);
+                }
+                bri.close();
+               
+                while ((line = bre.readLine()) != null) {
+                    if (line.startsWith("mysqldump: Got error:")) {
+                        JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
+                        File file = new File(fileChooser.getSelectedFile() + ".sql");
+                        System.out.println(fileChooser.getSelectedFile() + ".sql");  
+
+                    }
+                }
+                bre.close();
+                process2.waitFor();
+
+            } catch (IOException | HeadlessException | InterruptedException e) {
+                System.out.println(e.getMessage());
+
+            }
+
+            /*
+             System.out.println(line);
+             Runtime rt = Runtime.getRuntime();
+             try {
+             /*String[] exec = {"CMD /", "cd /", "dir /s *mysqldump.exe*"};
+               
+             String line;
+             BufferedReader in = new BufferedReader(
+             new InputStreamReader(rt.exec(exec).getInputStream()) );
+             while ((line = in.readLine()) != null) {
+             System.out.println(line);
+       
+             in.close();
+             }
+             rt.exec("CMD /C " + locatie + " luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
+             rt.exec("CMD /C mysqldump luggagecontroldata -uroot -pVjdo1v!! -r " + fileChooser.getSelectedFile() + ".sql");
+            
+
+             } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+             }        
+        
+        
+
+             this.userNotAFK();
+             */
+        }
+    }//GEN-LAST:event_buttonDatabaseExportActionPerformed
+
+    private void buttonDeleteFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFlight
+        this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.DELETE_FLIGHT);
+    }//GEN-LAST:event_buttonDeleteFlight
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton buttonAddUser;
+    private javax.swing.JButton buttonChangeSettings;
+    private javax.swing.JButton buttonDatabaseExport;
+    private javax.swing.JButton buttonDatabaseImport;
+    private javax.swing.JButton buttonDeleteCustomer;
+    private javax.swing.JButton buttonDeleteFlight;
+    private javax.swing.JButton buttonDeleteLuggage;
+    private javax.swing.JButton buttonHelp;
+    private javax.swing.JButton buttonUserManagement;
+    private javax.swing.JLabel labelDatabaseManagement;
+    private javax.swing.JLabel labelHome;
     // End of variables declaration//GEN-END:variables
 }

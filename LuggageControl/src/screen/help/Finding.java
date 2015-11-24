@@ -1,6 +1,6 @@
 package screen.help;
 
-import baseClasses.ErrorJFrame;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import main.LuggageControl;
 
@@ -11,10 +11,10 @@ import main.LuggageControl;
 public class Finding extends SwitchingJPanel {
     
     // static variables used to identify tabs
-    public static final String CUSTOMER_TO_FLIGHTS = "CUSTOMER_TO_FLIGHTS";
-    public static final String CUSTOMER_TO_LUGGAGE = "CUSTOMER_TO_LUGGAGE";
-    public static final String FLIGHTS_TO_LUGGAGE = "FLIGHTS_TO_LUGGAGE";
-    public static final String LUGGAGE_TO_LUGGAGE = "LUGGAGE_TO_LUGGAGE";
+    public static final String FIND_CUSTOMER = "FIND_CUSTOMER";
+    public static final String FIND_FLIGHTS = "FIND_FLIGHTS";
+    public static final String FIND_LUGGAGE = "FIND_LUGGAGE";
+    public static final String FIND_LINKS = "FIND_LINKS";
 
     public Finding(LuggageControl luggageControl) {
         super(luggageControl);
@@ -24,24 +24,24 @@ public class Finding extends SwitchingJPanel {
     /**
      * Tells the screen to switch to a specific tab
      * Use the jPanel class its static strings to identify the tab.
-     * @param String string of the tab identifying constants.
+     * @param tabName string of the tab identifying constants.
      */
     public void selectTab(String tabName) {
-        if(tabName.equals(CUSTOMER_TO_FLIGHTS)) {
-            linkingTab.setSelectedComponent(customerFlightsP);
+        if(tabName.equals(FIND_CUSTOMER)) {
+            linkingTab.setSelectedComponent(panelFindCustomer);
         }
-        else if(tabName.equals(CUSTOMER_TO_LUGGAGE)) {
-            linkingTab.setSelectedComponent(customerLuggageP);
+        else if(tabName.equals(FIND_FLIGHTS)) {
+            linkingTab.setSelectedComponent(panelFindFlights);
         }
-        else if(tabName.equals(FLIGHTS_TO_LUGGAGE)) {
-            linkingTab.setSelectedComponent(flightLuggageP);
+        else if(tabName.equals(FIND_LUGGAGE)) {
+            linkingTab.setSelectedComponent(panelFindLuggage);
         }
-        else if(tabName.equals(LUGGAGE_TO_LUGGAGE)) {
-            linkingTab.setSelectedComponent(lostFoundLuggageP);
+        else if(tabName.equals(FIND_LINKS)) {
+            linkingTab.setSelectedComponent(panelFindLinks);
         }
         else {
             // does not display errors yet.
-            new ErrorJFrame();
+            new ErrorJDialog(this.luggageControl, true, "Error: tab does not exist", (new Throwable()).getStackTrace());
         }
     }
 
@@ -55,10 +55,11 @@ public class Finding extends SwitchingJPanel {
 
         screenName = new javax.swing.JLabel();
         linkingTab = new javax.swing.JTabbedPane();
-        customerFlightsP = new javax.swing.JPanel();
-        customerLuggageP = new javax.swing.JPanel();
-        flightLuggageP = new javax.swing.JPanel();
-        lostFoundLuggageP = new javax.swing.JPanel();
+        panelFindCustomer = new javax.swing.JPanel();
+        panelFindFlights = new javax.swing.JPanel();
+        panelFindLuggage = new javax.swing.JPanel();
+        panelFindLinks = new javax.swing.JPanel();
+        buttonBack = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
@@ -66,57 +67,64 @@ public class Finding extends SwitchingJPanel {
         screenName.setText("Help - finding");
         screenName.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        javax.swing.GroupLayout customerFlightsPLayout = new javax.swing.GroupLayout(customerFlightsP);
-        customerFlightsP.setLayout(customerFlightsPLayout);
-        customerFlightsPLayout.setHorizontalGroup(
-            customerFlightsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelFindCustomerLayout = new javax.swing.GroupLayout(panelFindCustomer);
+        panelFindCustomer.setLayout(panelFindCustomerLayout);
+        panelFindCustomerLayout.setHorizontalGroup(
+            panelFindCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1852, Short.MAX_VALUE)
+        );
+        panelFindCustomerLayout.setVerticalGroup(
+            panelFindCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 849, Short.MAX_VALUE)
+        );
+
+        linkingTab.addTab("Find customers", panelFindCustomer);
+
+        javax.swing.GroupLayout panelFindFlightsLayout = new javax.swing.GroupLayout(panelFindFlights);
+        panelFindFlights.setLayout(panelFindFlightsLayout);
+        panelFindFlightsLayout.setHorizontalGroup(
+            panelFindFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1855, Short.MAX_VALUE)
         );
-        customerFlightsPLayout.setVerticalGroup(
-            customerFlightsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelFindFlightsLayout.setVerticalGroup(
+            panelFindFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 781, Short.MAX_VALUE)
         );
 
-        linkingTab.addTab("Customer to flights", customerFlightsP);
+        linkingTab.addTab("Find flights", panelFindFlights);
 
-        javax.swing.GroupLayout customerLuggagePLayout = new javax.swing.GroupLayout(customerLuggageP);
-        customerLuggageP.setLayout(customerLuggagePLayout);
-        customerLuggagePLayout.setHorizontalGroup(
-            customerLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelFindLuggageLayout = new javax.swing.GroupLayout(panelFindLuggage);
+        panelFindLuggage.setLayout(panelFindLuggageLayout);
+        panelFindLuggageLayout.setHorizontalGroup(
+            panelFindLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1855, Short.MAX_VALUE)
         );
-        customerLuggagePLayout.setVerticalGroup(
-            customerLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelFindLuggageLayout.setVerticalGroup(
+            panelFindLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 781, Short.MAX_VALUE)
         );
 
-        linkingTab.addTab("Customer to luggage", customerLuggageP);
+        linkingTab.addTab("Find luggage", panelFindLuggage);
 
-        javax.swing.GroupLayout flightLuggagePLayout = new javax.swing.GroupLayout(flightLuggageP);
-        flightLuggageP.setLayout(flightLuggagePLayout);
-        flightLuggagePLayout.setHorizontalGroup(
-            flightLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelFindLinksLayout = new javax.swing.GroupLayout(panelFindLinks);
+        panelFindLinks.setLayout(panelFindLinksLayout);
+        panelFindLinksLayout.setHorizontalGroup(
+            panelFindLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1855, Short.MAX_VALUE)
         );
-        flightLuggagePLayout.setVerticalGroup(
-            flightLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelFindLinksLayout.setVerticalGroup(
+            panelFindLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 781, Short.MAX_VALUE)
         );
 
-        linkingTab.addTab("Flights to luggage", flightLuggageP);
+        linkingTab.addTab("Find links", panelFindLinks);
 
-        javax.swing.GroupLayout lostFoundLuggagePLayout = new javax.swing.GroupLayout(lostFoundLuggageP);
-        lostFoundLuggageP.setLayout(lostFoundLuggagePLayout);
-        lostFoundLuggagePLayout.setHorizontalGroup(
-            lostFoundLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1855, Short.MAX_VALUE)
-        );
-        lostFoundLuggagePLayout.setVerticalGroup(
-            lostFoundLuggagePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
-        );
-
-        linkingTab.addTab("Lost luggage to found luggage", lostFoundLuggageP);
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackbackToPreviousScreen(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,30 +133,41 @@ public class Finding extends SwitchingJPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(linkingTab))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(linkingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 1860, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(linkingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(linkingTab)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         linkingTab.getAccessibleContext().setAccessibleName("Linking Luggage");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonBackbackToPreviousScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackbackToPreviousScreen
+        this.userNotAFK();
+        luggageControl.switchPreviousPanel();
+    }//GEN-LAST:event_buttonBackbackToPreviousScreen
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel customerFlightsP;
-    private javax.swing.JPanel customerLuggageP;
-    private javax.swing.JPanel flightLuggageP;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JTabbedPane linkingTab;
-    private javax.swing.JPanel lostFoundLuggageP;
+    private javax.swing.JPanel panelFindCustomer;
+    private javax.swing.JPanel panelFindFlights;
+    private javax.swing.JPanel panelFindLinks;
+    private javax.swing.JPanel panelFindLuggage;
     private javax.swing.JLabel screenName;
     // End of variables declaration//GEN-END:variables
 }
