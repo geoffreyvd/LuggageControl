@@ -6,37 +6,17 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import main.LuggageControl;
-import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- * This JPanel changes the data from the corresponding luggage into the database
+ *
  * @author Admin
  */
 public class LuggageDetails extends SwitchingJPanel {
 
-    /**
-     * Creates new form AddFlight and sets a prompt on all the textfields
-     */
     public LuggageDetails(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
-        PromptSupport.setPrompt("Location", textFieldUpdateLocation);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateLocation);
-        PromptSupport.setPrompt("OwnerID", textFieldUpdateOwnerID);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateOwnerID);
-        PromptSupport.setPrompt("Size", textFieldUpdateSize);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateSize);
-        PromptSupport.setPrompt("Color", textFieldUpdateColor);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateColor);
-        PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
-        PromptSupport.setPrompt("Content", textFieldUpdateContent);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateContent);
-        PromptSupport.setPrompt("Name", textFieldSearchName);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSearchName);
-        
     }
 
     /**
@@ -48,58 +28,103 @@ public class LuggageDetails extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelLuggageDetails = new javax.swing.JLabel();
-        labelFlightnumber = new javax.swing.JLabel();
-        labelFlightnumberNumber = new javax.swing.JLabel();
-        labelOrigin = new javax.swing.JLabel();
-        labelOriginPlace = new javax.swing.JLabel();
-        labelDestination = new javax.swing.JLabel();
-        labelDestinationPlace = new javax.swing.JLabel();
-        textFieldUpdateLocation = new javax.swing.JFormattedTextField();
-        textFieldUpdateOwnerID = new javax.swing.JFormattedTextField();
-        comboBoxLuggageStatus = new javax.swing.JComboBox();
-        textFieldUpdateColor = new javax.swing.JFormattedTextField();
-        textFieldUpdateWeight = new javax.swing.JFormattedTextField();
-        textFieldUpdateSize = new javax.swing.JFormattedTextField();
-        textFieldUpdateContent = new javax.swing.JFormattedTextField();
-        separatorCenter = new javax.swing.JSeparator();
-        labelCustomerSearch = new javax.swing.JLabel();
-        textFieldSearchName = new javax.swing.JFormattedTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jButton9 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        jFormattedTextField6 = new javax.swing.JFormattedTextField();
+        jFormattedTextField7 = new javax.swing.JFormattedTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jFormattedTextField8 = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableCustomerSearch = new javax.swing.JTable();
-        buttonUpdate = new javax.swing.JButton();
-        buttonCancel = new javax.swing.JButton();
-        buttonSearch = new javax.swing.JButton();
-        buttonBack = new javax.swing.JButton();
-        buttonHelp = new javax.swing.JButton();
+        jTable1 = new javax.swing.JTable();
+        jButton10 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
 
-        labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        labelLuggageDetails.setText("Luggage details");
+        jFormattedTextField1.setText("Flightnumber");
 
-        labelFlightnumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelFlightnumber.setText("Flightnumber: ");
+        jButton9.setText("Example");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
-        labelFlightnumberNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelFlightnumberNumber.setText(" XXXXXXXXX");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setText("Luggage details");
 
-        labelOrigin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOrigin.setText("Origin: ");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Flightnumber: ");
 
-        labelOriginPlace.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOriginPlace.setText(" XXXXXXXXXX");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText(" XXXXXXXXX");
 
-        labelDestination.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelDestination.setText("Destination: ");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Origin: ");
 
-        labelDestinationPlace.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelDestinationPlace.setText(" XXXXXXXXX");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText(" XXXXXXXXXX");
 
-        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Destination: ");
 
-        labelCustomerSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        labelCustomerSearch.setText("Customer Search");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText(" XXXXXXXXX");
 
-        tableCustomerSearch.setModel(new javax.swing.table.DefaultTableModel(
+        jFormattedTextField2.setText("Location");
+
+        jFormattedTextField3.setText("Owner ID");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Item 2", "Item 3", "Item 4" }));
+
+        jFormattedTextField4.setText("Color");
+        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField4ActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField5.setText("Weight");
+
+        jFormattedTextField6.setText("Size");
+        jFormattedTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField6ActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField7.setText("Size");
+        jFormattedTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField7ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel8.setText("Costumer Search");
+
+        jFormattedTextField8.setText("Name");
+        jFormattedTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField8ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"", null, null},
                 {null, null, null},
@@ -112,40 +137,40 @@ public class LuggageDetails extends SwitchingJPanel {
                 "Customer ID", "Name", "Last flight"
             }
         ));
-        jScrollPane1.setViewportView(tableCustomerSearch);
+        jScrollPane1.setViewportView(jTable1);
 
-        buttonUpdate.setText("Update");
-        buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
+        jButton10.setText("Update");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonUpdateActionPerformed(evt);
+                jButton10ActionPerformed(evt);
             }
         });
 
-        buttonCancel.setText("Cancel");
-        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
+        jButton14.setText("Cancel");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonCancelActionPerformed(evt);
+                jButton14ActionPerformed(evt);
             }
         });
 
-        buttonSearch.setText("Search");
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+        jButton15.setText("Search");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchActionPerformed(evt);
+                jButton15ActionPerformed(evt);
             }
         });
 
-        buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+        jButton16.setText("Back");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
+                jButton16ActionPerformed(evt);
             }
         });
 
-        buttonHelp.setText("Help");
-        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
+        jButton17.setText("Help");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonHelpActionPerformed(evt);
+                jButton17ActionPerformed(evt);
             }
         });
 
@@ -159,177 +184,172 @@ public class LuggageDetails extends SwitchingJPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textFieldUpdateContent))
+                            .addComponent(jFormattedTextField7))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textFieldUpdateSize, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelOrigin)
+                            .addComponent(jLabel4)
                             .addGap(0, 0, 0)
-                            .addComponent(labelOriginPlace))
+                            .addComponent(jLabel5))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelFlightnumber)
+                            .addComponent(jLabel2)
                             .addGap(0, 0, 0)
-                            .addComponent(labelFlightnumberNumber))
-                        .addComponent(labelLuggageDetails)
+                            .addComponent(jLabel3))
+                        .addComponent(jLabel1)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelDestination)
+                            .addComponent(jLabel6)
                             .addGap(0, 0, 0)
-                            .addComponent(labelDestinationPlace)))
+                            .addComponent(jLabel7)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
-                .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelCustomerSearch)
+                        .addComponent(jLabel8)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(textFieldSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(separatorCenter)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelLuggageDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelFlightnumber)
-                            .addComponent(labelFlightnumberNumber))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelOrigin)
-                            .addComponent(labelOriginPlace))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelDestination)
-                            .addComponent(labelDestinationPlace))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldUpdateSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textFieldUpdateContent, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(11, 11, 11)
-                                .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
+                                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 40, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonUpdate)
-                            .addComponent(buttonCancel)))
+                            .addComponent(jButton10)
+                            .addComponent(jButton14)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelCustomerSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(textFieldSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonHelp)
+                                .addComponent(jButton17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonBack)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                                .addComponent(jButton16)))
+                        .addGap(34, 34, 34)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonSearch)))
+                        .addComponent(jButton15)))
                 .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
-        this.userNotAFK();
-    }//GEN-LAST:event_buttonUpdateActionPerformed
+    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
 
-    /**
-     * sets the user as not afk and changes to panel home screen
-     * @param evt 
-     */
-    private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
-        this.userNotAFK();
-        textFieldUpdateLocation.setText("");
-        textFieldUpdateOwnerID.setText("");
-        textFieldUpdateColor.setText("");
-        comboBoxLuggageStatus.setSelectedIndex(0);
-        textFieldUpdateWeight.setText("");
-        textFieldUpdateSize.setText("");
-        textFieldUpdateContent.setText("");
-        textFieldSearchName.setText("");
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-    }//GEN-LAST:event_butonCancelActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
-    /**
-     * searches through the database with the given variables
-     * @param evt 
-     */
-    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        this.userNotAFK();
-    }//GEN-LAST:event_buttonSearchActionPerformed
+    private void jFormattedTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField6ActionPerformed
 
-    /**
-     * sets the user as not afk and changes to panel searchLuggage
-     * @param evt 
-     */
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
-    }//GEN-LAST:event_buttonBackActionPerformed
+    private void jFormattedTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField7ActionPerformed
 
-    /**
-     * sets the user as not afk and changes to panel help_linking
-     * @param evt 
-     */
-    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.LINKING);
-    }//GEN-LAST:event_buttonHelpActionPerformed
+    private void jFormattedTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField8ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
-    private javax.swing.JButton buttonCancel;
-    private javax.swing.JButton buttonHelp;
-    private javax.swing.JButton buttonSearch;
-    private javax.swing.JButton buttonUpdate;
-    private javax.swing.JComboBox comboBoxLuggageStatus;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JFormattedTextField jFormattedTextField5;
+    private javax.swing.JFormattedTextField jFormattedTextField6;
+    private javax.swing.JFormattedTextField jFormattedTextField7;
+    private javax.swing.JFormattedTextField jFormattedTextField8;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCustomerSearch;
-    private javax.swing.JLabel labelDestination;
-    private javax.swing.JLabel labelDestinationPlace;
-    private javax.swing.JLabel labelFlightnumber;
-    private javax.swing.JLabel labelFlightnumberNumber;
-    private javax.swing.JLabel labelLuggageDetails;
-    private javax.swing.JLabel labelOrigin;
-    private javax.swing.JLabel labelOriginPlace;
-    private javax.swing.JSeparator separatorCenter;
-    private javax.swing.JTable tableCustomerSearch;
-    private javax.swing.JFormattedTextField textFieldSearchName;
-    private javax.swing.JFormattedTextField textFieldUpdateColor;
-    private javax.swing.JFormattedTextField textFieldUpdateContent;
-    private javax.swing.JFormattedTextField textFieldUpdateLocation;
-    private javax.swing.JFormattedTextField textFieldUpdateOwnerID;
-    private javax.swing.JFormattedTextField textFieldUpdateSize;
-    private javax.swing.JFormattedTextField textFieldUpdateWeight;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

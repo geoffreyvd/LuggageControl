@@ -6,13 +6,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import main.LuggageControl;
-import managers.DatabaseMan;
 
 /**
  *
@@ -41,19 +35,19 @@ public class DeleteLuggage extends SwitchingJPanel {
         textFieldCustomerId = new javax.swing.JFormattedTextField();
         buttonSearchLuggage = new javax.swing.JButton();
         scrollPaneLuggageTable = new javax.swing.JScrollPane();
-        tableDeleteLuggage = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
 
         buttonHelp.setText("Help");
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonHelpActionPerformed(evt);
+                goesToHelpFinding(evt);
             }
         });
 
         buttonBack.setText("Back");
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
+                backToEmployeeScreen(evt);
             }
         });
 
@@ -67,11 +61,11 @@ public class DeleteLuggage extends SwitchingJPanel {
         buttonSearchLuggage.setText("Search");
         buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchActionPerformed(evt);
+                searches(evt);
             }
         });
 
-        tableDeleteLuggage.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -90,7 +84,7 @@ public class DeleteLuggage extends SwitchingJPanel {
                 return types [columnIndex];
             }
         });
-        scrollPaneLuggageTable.setViewportView(tableDeleteLuggage);
+        scrollPaneLuggageTable.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -143,53 +137,26 @@ public class DeleteLuggage extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
-    }//GEN-LAST:event_buttonHelpActionPerformed
+    private void goesToHelpFinding(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goesToHelpFinding
+        // TODO add your handling code here:
+    }//GEN-LAST:event_goesToHelpFinding
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
-    }//GEN-LAST:event_buttonBackActionPerformed
+    private void backToEmployeeScreen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToEmployeeScreen
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backToEmployeeScreen
 
-    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        DatabaseMan db = new DatabaseMan();
-        textFieldCustomerId.getText();
-        textFieldCustomerName.getText();
-        ResultSet resultsTableClientLuggage = db.query("select luggage_id, "
-                + "clients_id from luggagecontroldata.client_luggage;");
-        ResultSet resultsTableFlights = db.query("select flight_id, origin, "
-                + "destination from luggagecontroldata.flights");
-        ResultSet resultsTableLuggage = db.query("select status, location from "
-                + "luggagecontroldata.luggage");
-            try {
-                while(resultsTableClientLuggage.next() && 
-                        resultsTableFlights.next() && 
-                        resultsTableLuggage.next()) {
-                    int luggageId = resultsTableClientLuggage.getInt("luggage_id");
-                    int flightnumber = resultsTableFlights.getInt("flight_id");
-                    int ownerId = resultsTableClientLuggage.getInt("clients_id");
-                    String status = resultsTableLuggage.getString("status");
-                    String location = resultsTableLuggage.getString("location");
-                    String origin = resultsTableFlights.getString("origin");
-                    String destination = resultsTableFlights.getString("destination");
-                    }  
-            
-            } catch (SQLException ex) {
-                Logger.getLogger(DeleteLuggage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-    }//GEN-LAST:event_buttonSearchActionPerformed
+    private void searches(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searches
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searches
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearchLuggage;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelHeader;
     private javax.swing.JScrollPane scrollPaneLuggageTable;
-    private javax.swing.JTable tableDeleteLuggage;
     private javax.swing.JFormattedTextField textFieldCustomerId;
     private javax.swing.JFormattedTextField textFieldCustomerName;
     // End of variables declaration//GEN-END:variables

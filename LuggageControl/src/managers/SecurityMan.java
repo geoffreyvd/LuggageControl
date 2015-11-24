@@ -1,11 +1,8 @@
 package managers;
 
 import constants.ScreenNames;
-import java.sql.Timestamp;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import main.LuggageControl;
 
 /**
@@ -13,17 +10,9 @@ import main.LuggageControl;
  *
  * @author Dantali0n
  */
-public class SecurityMan { 
-
-    // reference to defined version of securityupdates
+public class SecurityMan {
+    
     private LuggageControl luggageControl;
-    
-    // used to manage a connection to the database
-    private DatabaseMan databaseMan;
-    
-    private AtomicInteger userPermissions = new AtomicInteger(0);
-    
-    private AtomicBoolean userLoggedIn = new AtomicBoolean(false);
 
     // <editor-fold defaultstate="collapsed" desc="time out, timertask, timer and default time out time">
     // Custom timertask which contains reference to the securityupdate event interface.
@@ -31,20 +20,13 @@ public class SecurityMan {
 
         LuggageControl luggageControlTimer;
 
-        public timeOutTimerTask(LuggageControl luggageControl) {
+        public timeOutTimerTask(LuggageControl luggageControlTimer) {
+            this.luggageControlTimer = luggageControlTimer;
         }
 
         @Override
         public void run() {
-            if(userAFK.get()) {
-                userPermissions.set(0);
-                userLoggedIn.set(false);
-                luggageControl.userTimeOut();
-                this.cancel();
-            }
-            else {
-                userAFK.set(true);
-            }
+            luggageControlTimer.userTimeOut();
         }
     }
 
@@ -52,8 +34,6 @@ public class SecurityMan {
     private int defaultTimeOutTime = 300000;
 
     private int timeOutTime = defaultTimeOutTime;
-    
-    private AtomicBoolean userAFK = new AtomicBoolean(true);
 
     // timer to manage when the user has timed out.
     private Timer timeOut;
@@ -63,169 +43,41 @@ public class SecurityMan {
 
     // </editor-fold>
     /**
-     * Manage logging in automatic time outs and other security aspects
+     * You probably don't need to create an object of this class, but just for
+     * kicks I put this here anyway just kidding I'm stupid where using a timer,
+     * yes you need to create an object of this class.
      *
-     * @param luggageControl reference to main class push events
+     * @param LuggageControl reference to main class
+     * push events
      */
     public SecurityMan(LuggageControl luggageControl) {
 
-        // pass the defined class reference to the event interface
-        // now we can call our abstract functions
+        // our reference to luggagecontrol
         this.luggageControl = luggageControl;
         
-        // our constant connection to the database
-        this.databaseMan = new DatabaseMan();
-
         // create the timer and start the userTimeOut task
-        timeOut = new Timer("userTimeOutTimer");
-        fireTimeOut = new timeOutTimerTask(this.luggageControl);
+        timeOut = new Timer();
+        fireTimeOut = new timeOutTimerTask(luggageControl);
+
+        //  start the timer with the timertask
+        timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
     }
-    
+
     /**
-     * Filters datetime to the point where they are safe to use within our
-     * application This class is mostly used for filtering user input
+     * Resets the timeout timer to zero.
      *
-     * @param originalDateTime 
-     * @return filtered datetime to prevent SQL injections, cross-site scripting
-     * and other exploits
+     * @return true if succeeded, false when failed.
      */
-    public static String filteredDateTime(String originalDateTime) {
-        return originalDateTime;
-    }
-    
-    /**
-     * Filters datetime to the point where they are safe to use within our
-     * application, also verifies whether the datetime is between the specified values.
-     *
-     * @param originalDateTime DateTime string inputted by user
-     * @param minimumDateTime minimum time and date for the string to be returned
-     * @param maximumDateTime maximum time and date for the string to be returned
-     * @return filtered datetime to prevent SQL injections, cross-site scripting
-     * and other exploits
-     */
-    public static String filteredDateTime(String originalDateTime, Timestamp minimumDateTime, Timestamp maximumDateTime) {
-        return originalDateTime;
-    }
-    
-    /**
-     * 
-     * @param originalInt
-     * @param minimumInt
-     * @param maximumInt
-     * @return 
-     */
-    public static int filteredInt(int originalInt, int minimumInt, int maximumInt) {
-        return originalInt;
-    }
-    
-    /**
-     * 
-     * @param originalInt
-     * @param minimumInt
-     * @param maximumInt
-     * @return 
-     */
-    public static String filteredInt(String originalInt, int minimumInt, int maximumInt) {
-        return originalInt;
-    }
-    
-    /**
-     * Filters strings based on a array of characters which either are allowed or disallowed
-     *
-     * @param originalString the string to be filtered
-     * @param characters array of characters which depending on the <code>whitelist</code> boolean are allowed or disallowed
-     * @param whitelist if true array of characters is applied as whitelist, default is blacklist
-     * @return filtered string to prevent SQL injections, cross-site scripting
-     * and other exploits
-     */
-    public static String filteredString(String originalString, char[] characters, boolean whitelist) {
-        return originalString;
-    }
-    
-    /**
-     * Filters strings to the point where they are safe to use within our
-     * application This class is mostly used for filtering user input
-     *
-     * @param originalString
-     * @return filtered string to prevent SQL injections, cross-site scripting
-     * and other exploits
-     */
-    public static String filteredString(String originalString) {
-        return originalString;
-    }
-    
-    /**
-     * Log the user in and handle session and permissions
-     *
-     * @param username username as described in database
-     * @param password password as described in database
-     * @return true if successful, false when failed.
-     */
-    public boolean logInUser(String username, String password) {
-        //This query will return a string, it only returns 1 value!
-        String result = databaseMan.queryOneResult("select users.permissions from users where username = \""
-                                            + username + "\" and password = \"" + password + "\"");
-        username = null;
-        password = null;
-        if (result != null) {
-            System.out.println("succesful query");
-            int resultInt = Byte.parseByte(result);
-            if (resultInt == 0) {
-                //oude gebruiker gegevens zonder inlog
-                return false;
-            }else if (resultInt == 1) {
-                //gebruiker
-                this.userPermissions.set(1);
-                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-            }else if (resultInt == 2) {
-                //manager
-                this.userPermissions.set(2);
-                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
-            }else if (resultInt == 3) {
-                //admin
-                this.userPermissions.set(3);
-                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
-            }
-            // set the user permission and start the time out timer.
-            this.resetTimer();
-            this.userLoggedIn.set(true);
-            return true;
-        } else {
-            System.out.println("De opgegeven gebruiker niet gevonden in de database");
+    public boolean resetTimer() {
+        try {
+            timeOut.cancel();
+            timeOut.purge();
+            timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
-    }
-    
-    /**
-     * 
-     * @return user permissions level 
-     */
-    public int getPermissions() {
-        return userPermissions.get();
-    }
-    
-    /**
-     * 
-     * @return true if the user is logged in, false if the user is not.
-     */
-    public boolean getLoggedIn() {
-        return userLoggedIn.get();
-    }
-    
-    /**
-     * 
-     * @return true if the user is afk, false if not
-     */
-    public boolean getUserAFK() {
-        return this.userAFK.get();
-    }
-    
-    /**
-     * Sets the user afk this is used to trigger the user timeout
-     * @param useAFK true if the user is afk false if he's not
-     */
-    public void setUserAFK(boolean useAFK) {
-        this.userAFK.set(useAFK);
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="set, get, reset timeout time">
@@ -238,43 +90,6 @@ public class SecurityMan {
     public int getTimeOutTime() {
         return timeOutTime;
     }
-    
-    /**
-     * Resets the timeout time to the default time Please note that the timer
-     * time does not change until you reset the timer.
-     * @return true if succeeded, false when failed.
-     */
-    public boolean resetTimeOutTime(boolean resetTimer) {
-        try {
-            timeOutTime = defaultTimeOutTime;
-            if(resetTimer) {
-                this.resetTimer();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * Resets the timeout timer to zero.
-     * @return true if succeeded, false when failed.
-     */
-    public boolean resetTimer() {
-        try {
-            timeOut.cancel();
-            timeOut.purge();
-            timeOut = null;
-            timeOut = new Timer("userTimeOutTimer");
-            fireTimeOut = new timeOutTimerTask(luggageControl);
-            this.startTimer();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
-    }
 
     /**
      * Sets the timeout time to the new specified time Please note that the
@@ -283,22 +98,48 @@ public class SecurityMan {
      * @param newTimeOutTime
      * @return true if succeeded, false when failed.
      */
-    public boolean setTimeOutTime(int newTimeOutTime, boolean resetTimer) {
+    public boolean setTimeOutTime(int newTimeOutTime) {
         try {
             timeOutTime = newTimeOutTime;
-            if(resetTimer) {
-                this.resetTimer();
-            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
         return true;
     }
-    
-    public void startTimer() {
-        //  start the timer with the timertask
-        timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);
+
+    /**
+     * Resets the timeout time to the default time Please note that the timer
+     * time does not change until you reset the timer.
+     *
+     * @return true if succeeded, false when failed.
+     */
+    public boolean resetTimeOutTime() {
+        try {
+            timeOutTime = defaultTimeOutTime;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
     // </editor-fold>
+
+    /**
+     * Filters strings to the point where they are safe to use within our
+     * application This class is mostly used for filtering user input
+     *
+     * @param originalString
+     * @return filtered string to prevent SQL injections, cross-site scripting
+     * and other exploits
+     */
+    public static String filteredString(String originalString) {
+        return originalString;
+    }
+
+    public void logInUser(String username, String password) {
+        if (username.equals(password)) {
+            luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
+        }
+    }
 }

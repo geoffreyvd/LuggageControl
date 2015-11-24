@@ -16,7 +16,6 @@ public class DeleteCustomer extends SwitchingJPanel {
 
     public DeleteCustomer(LuggageControl luggageControl) {
         super(luggageControl);
-        initComponents();
     }
 
     /**
@@ -133,15 +132,15 @@ public class DeleteCustomer extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        this.userNotAFK();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        this.userNotAFK();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        this.userNotAFK();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
 
 
