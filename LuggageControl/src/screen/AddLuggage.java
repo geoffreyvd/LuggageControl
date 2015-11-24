@@ -226,10 +226,10 @@ public class AddLuggage extends SwitchingJPanel {
             types[5] = "String";
 
             try {
-
                 db.queryPreparedManipulation(query, values, types);
 
             } catch (Exception e) {
+
 
             }
             System.out.println("work");

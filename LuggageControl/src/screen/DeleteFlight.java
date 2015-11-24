@@ -228,7 +228,7 @@ public class DeleteFlight extends SwitchingJPanel {
         }
         
         try {
-            db.queryPreparedManipulation(query, data.toArray(new String[data.size()]), types.toArray(new String[types.size()]));
+            db.queryManipulation(query, data.toArray(new String[data.size()]), types.toArray(new String[types.size()]));
         }
         catch(Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
@@ -248,12 +248,12 @@ public class DeleteFlight extends SwitchingJPanel {
         try {
             if(textFieldFlightNumber.getText().equals("")) {
                 String[] values = {};
-                result = db.queryPrepared("SELECT * FROM flights;", values);
+                result = db.query("SELECT * FROM flights;", values);
             }
             else {
                 // always filter user input with securitymanager
                 String[] values = {sc.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
-                result = db.queryPrepared("SELECT * FROM flights WHERE flight_id = ? ;", values);
+                result = db.query("SELECT * FROM flights WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
