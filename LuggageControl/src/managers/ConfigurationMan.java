@@ -116,8 +116,8 @@ public class ConfigurationMan {
                 }
 
             } catch (java.io.IOException e) {
-               new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
-               return false;
+               //new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+               //return false;
             }
         }
         try {
