@@ -1,6 +1,7 @@
 package managers;
 
 import baseClasses.ErrorJDialog;
+import baseClasses.PopUpJDialog;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -70,8 +71,8 @@ public class ConfigurationMan {
 
             String line;
             while ((line = br.readLine()) != null) {
-                if(line.contains("mysql_dump_location:")) {
-                    return line;
+                if(line.contains(MYSQL_DUMP_LOCATION)) {
+                    return line.replace(MYSQL_DUMP_LOCATION, "");
                 }
             }
         }
@@ -87,6 +88,8 @@ public class ConfigurationMan {
         if(OS.equals("Linux")) {
             return false; 
         }
+        
+        new PopUpJDialog(luggageControl, true);
         
         String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
         ProcessBuilder pb = new ProcessBuilder(command);
@@ -116,8 +119,7 @@ public class ConfigurationMan {
                 }
 
             } catch (java.io.IOException e) {
-               new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
-               return false;
+                System.out.println("Drive " + schijf + " does not exist");
             }
         }
         try {
