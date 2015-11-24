@@ -222,7 +222,6 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
 
         JTextField username = new JTextField(5);
         JPasswordField password = new JPasswordField(5);
-        boolean export = true;
         JPanel myPanel = new JPanel();
         myPanel.add(new JLabel("Username:"));
         myPanel.add(username);
@@ -261,6 +260,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
                     InputStream is = process.getInputStream();
                     InputStreamReader isr = new InputStreamReader(is);
                     BufferedReader br = new BufferedReader(isr);
+                    
 
                     String tempLine;
                     while ((tempLine = br.readLine()) != null && line == null) {
@@ -299,7 +299,6 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
                 while ((line = bre.readLine()) != null) {
                     if (line.startsWith("mysqldump: Got error:")) {
                         JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
-
                         File file = new File(fileChooser.getSelectedFile() + ".sql");
                         System.out.println(fileChooser.getSelectedFile() + ".sql");  
 

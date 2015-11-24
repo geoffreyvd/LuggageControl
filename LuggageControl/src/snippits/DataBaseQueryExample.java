@@ -27,7 +27,7 @@ public class DataBaseQueryExample {
             //This while loop, loops trough every row in result
             while (result.next()) {
                 //print the first 3 columns of every row
-                System.out.println(result.getString(1) + " " + result.getString(2) + " " + result.getString(3));
+                System.out.println(result.getString("adress") + " " + result.getString(2) + " " + result.getString(3));
             }
         } catch (SQLException ex) {
             System.out.println("An error occured while querying the database");
