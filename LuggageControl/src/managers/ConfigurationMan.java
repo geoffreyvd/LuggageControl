@@ -2,6 +2,7 @@ package managers;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.PopUpJDialog;
+import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +13,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
 import main.LuggageControl;
 
 /**
@@ -28,6 +32,20 @@ public class ConfigurationMan {
     private static final String OS = System.getProperty("os.name");
     
     private static final String MYSQL_DUMP_LOCATION = "mysql_dump_location:";
+    
+    class FindMysqlJDialog extends PopUpJDialog {
+
+        public FindMysqlJDialog(Frame parent, boolean modal) {
+            super(parent, modal);
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            JTextPane text = new JTextPane();
+            this.setTitle("Configuring mysql export");
+            text.setText("Locating mysqldump.exe please wait");
+            text.setVisible(true);
+            this.add(text);
+            this.setVisible(true);
+        }
+    }
     
     // Our file writer
     Writer writer;
@@ -86,10 +104,11 @@ public class ConfigurationMan {
     
     public boolean findMysqlDumpLocationWindows() {
         if(OS.equals("Linux")) {
-            return false; 
+            new FindMysqlJDialog(luggageControl, false);
         }
         
-        new PopUpJDialog(luggageControl, true);
+        // Fix this
+        new JOptionPane().setVisible(true);
         
         String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
         ProcessBuilder pb = new ProcessBuilder(command);
@@ -122,11 +141,16 @@ public class ConfigurationMan {
             }
         }
         try {
-            FileWriter fw = new FileWriter(new File(CONFIG_NAME).getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
-            bw.close();
-            return true;
+            if(line != null) {
+                FileWriter fw = new FileWriter(new File(CONFIG_NAME).getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
+                bw.close();
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         catch(Exception e) {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());

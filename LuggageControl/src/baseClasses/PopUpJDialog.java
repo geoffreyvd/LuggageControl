@@ -4,6 +4,7 @@ import constants.Styling;
 import static java.awt.Dialog.DEFAULT_MODALITY_TYPE;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -13,7 +14,7 @@ public class PopUpJDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form PopUpJdDialog
-     */
+     */    
     public PopUpJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
