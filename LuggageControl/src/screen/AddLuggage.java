@@ -3,10 +3,14 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import org.apache.commons.codec.binary.Base64;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -188,8 +192,28 @@ public class AddLuggage extends SwitchingJPanel {
 
             ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
             pic.setIcon(image);
-            this.setVisible(true);
+            
+            File file = new File(selectedFile.getAbsolutePath());
+            try {
+                // Reading a Image file from file system
+                FileInputStream imageInFile = new FileInputStream(file);
+                byte imageData[] = new byte[(int) file.length()];
+                imageInFile.read(imageData);
+
+                // Converting Image byte array into Base64 String
+                String imageDataString = encodeImage(imageData);
+                imageInFile.close();
+                System.out.println(imageDataString);
+
+                System.out.println("Image Successfully Manipulated!");
+            } catch (FileNotFoundException e) {
+                System.out.println("Image not found" + e);
+            } catch (IOException ioe) {
+                System.out.println("Exception while reading the Image " + ioe);
+            }
         }
+        
+        
     }//GEN-LAST:event_buttonUploadsImageActionPerformed
 
     /**
@@ -230,7 +254,6 @@ public class AddLuggage extends SwitchingJPanel {
 
             } catch (Exception e) {
 
-
             }
             System.out.println("work");
         } else {
@@ -270,6 +293,13 @@ public class AddLuggage extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
+ 
+
+    public static String encodeImage(byte[] imageByteArray) {
+            return Base64.encodeBase64URLSafeString(imageByteArray);
+	}
+
+	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;

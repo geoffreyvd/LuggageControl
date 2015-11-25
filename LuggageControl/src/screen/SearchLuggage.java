@@ -199,11 +199,11 @@ public class SearchLuggage extends SwitchingJPanel {
      * @param evt 
      */
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        this.fillFlightTable();
+        this.fillSearchLuggageTable();
         this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
-    private void fillFlightTable() {
+    private void fillSearchLuggageTable() {
         DatabaseMan db = new DatabaseMan();
         //String[] types = {db.PS_TYPE_STRING};
         //String[] values = {"danta"};
@@ -265,3 +265,46 @@ public class SearchLuggage extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldOwnerID;
     // End of variables declaration//GEN-END:variables
 }
+
+//ResultSet result = new EmptyResultSet();
+//        
+//        String[] textFieldsLuggage = new String[3];
+//        
+//        textFieldsLuggage[0] = textFieldLuggageID.getText();
+//        textFieldsLuggage[1] = (String)comboBoxLuggageStatus.getSelectedItem();
+//        textFieldsLuggage[2] = textFieldLocation.getText();
+//        
+//        String query = "SELECT * FROM luggagecontroldata.luggage ";
+//        String[] values = new String[3];
+//        boolean check = true;
+//        
+//        for(int i = 0; i<textFieldsLuggage.length; i++) {
+//            if(!(textFieldsLuggage[i].equals(""))) {
+//                if(check) {
+//                    query += "WHERE ";
+//                    check = false;
+//                }
+//                values[i] = sc.filteredInt(textFieldsLuggage[i], 1, Integer.MAX_VALUE);
+//                query += textFieldsLuggage[i]+" = ?";
+//            }
+//        }
+//        query += ";";
+//        
+//        try {
+//              
+//            result = db.query(query, values);
+//            
+//            DefaultTableModel datamodel = (DefaultTableModel)tableLuggageSearch.getModel();
+//            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+//                datamodel.removeRow(i);
+//            }
+//            while(result.next()) {
+//                System.out.println(result.getString("flightnumber"));
+//                Object[] data = {result.getString("luggage_id"), result.getString("flightnumber"), result.getString("client_id"), result.getString("status"), result.getString("location")};
+//                datamodel.addRow(data);
+//            }
+//            tableLuggageSearch.setModel(datamodel);
+//        }
+//        catch(Exception e) {
+//            
+//        }
