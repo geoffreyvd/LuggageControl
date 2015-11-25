@@ -29,6 +29,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import main.LuggageControl;
+import static managers.ConfigurationMan.getMysqlDumpLocationWindows;
 
 /**
  * DataBaseManager is a class with predefined credentials for the database. It
@@ -101,37 +102,37 @@ public class DatabaseMan {
                         new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
                     }
                 }
-                String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
-                ProcessBuilder pb = new ProcessBuilder(command);
-                char schijf;
-                String line = null;
-                for (schijf = 'A'; schijf <= 'Z'; schijf++) {
-                    pb.directory(new File(schijf + ":\\"));
-                    try {
-                        Process process = pb.start();
-                        InputStream is = process.getInputStream();
-                        InputStreamReader isr = new InputStreamReader(is);
-                        BufferedReader br = new BufferedReader(isr);
-
-                        String tempLine;
-                        while ((tempLine = br.readLine()) != null && line == null) {
-                            if (!tempLine.contains("Directory of")) {
-                            } else {
-                                line = (tempLine.replace("Directory of", ""));
-                                line = (line.trim());
-                            }
-                        }
-                        if (line != null) {
-                            schijf = 'Z';
-                        }
-                    } catch (java.io.IOException e) {
-                        // new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
-                        System.out.println("could not find disc: " + schijf);
-                    }
-                }
+//                String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
+//                ProcessBuilder pb = new ProcessBuilder(command);
+//                char schijf;
+//                String line = null;
+//                for (schijf = 'A'; schijf <= 'Z'; schijf++) {
+//                    pb.directory(new File(schijf + ":\\"));
+//                    try {
+//                        Process process = pb.start();
+//                        InputStream is = process.getInputStream();
+//                        InputStreamReader isr = new InputStreamReader(is);
+//                        BufferedReader br = new BufferedReader(isr);
+//
+//                        String tempLine;
+//                        while ((tempLine = br.readLine()) != null && line == null) {
+//                            if (!tempLine.contains("Directory of")) {
+//                            } else {
+//                                line = (tempLine.replace("Directory of", ""));
+//                                line = (line.trim());
+//                            }
+//                        }
+//                        if (line != null) {
+//                            schijf = 'Z';
+//                        }
+//                    } catch (java.io.IOException e) {
+//                        // new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+//                        System.out.println("could not find disc: " + schijf);
+//                    }
+//                }
                 try {
-                    line += "/mysqldump.exe";
-                    Process process2 = Runtime.getRuntime().exec("CMD /C " + line + " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file);
+                    String line = null;
+                    Process process2 = Runtime.getRuntime().exec("CMD /C " + ConfigurationMan.getMysqlDumpLocationWindows(luggageControl)+ " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file);
                     BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
                     BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
                     bri.close();
