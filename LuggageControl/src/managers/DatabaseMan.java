@@ -83,8 +83,10 @@ public class DatabaseMan {
             if (result == JOptionPane.OK_OPTION) {
                 JFileChooser fileSaver = new JFileChooser();
                 fileSaver.setFileFilter(new FileNameExtensionFilter("Mysqldump File (.sql)", "sql"));
+                
                 fileSaver.setAcceptAllFileFilterUsed(false);
                 fileSaver.setSelectedFile(new File(".sql"));
+                
 
                 int returnValue = fileSaver.showSaveDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -102,34 +104,10 @@ public class DatabaseMan {
                         new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
                     }
                 }
-//                String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
-//                ProcessBuilder pb = new ProcessBuilder(command);
-//                char schijf;
-//                String line = null;
-//                for (schijf = 'A'; schijf <= 'Z'; schijf++) {
-//                    pb.directory(new File(schijf + ":\\"));
-//                    try {
-//                        Process process = pb.start();
-//                        InputStream is = process.getInputStream();
-//                        InputStreamReader isr = new InputStreamReader(is);
-//                        BufferedReader br = new BufferedReader(isr);
-//
-//                        String tempLine;
-//                        while ((tempLine = br.readLine()) != null && line == null) {
-//                            if (!tempLine.contains("Directory of")) {
-//                            } else {
-//                                line = (tempLine.replace("Directory of", ""));
-//                                line = (line.trim());
-//                            }
-//                        }
-//                        if (line != null) {
-//                            schijf = 'Z';
-//                        }
-//                    } catch (java.io.IOException e) {
-//                        // new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
-//                        System.out.println("could not find disc: " + schijf);
-//                    }
-//                }
+                else{
+                    return;
+                }
+
                 try {
                     String line = null;
                     Process process2 = Runtime.getRuntime().exec("CMD /C " + ConfigurationMan.getMysqlDumpLocationWindows(luggageControl)+ " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file);
@@ -138,6 +116,7 @@ public class DatabaseMan {
                     bri.close();
                     while ((line = bre.readLine()) != null) {
                         if (line.startsWith("mysqldump: Got error:")) {
+                            System.out.println(line);
                             JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
 
                             
