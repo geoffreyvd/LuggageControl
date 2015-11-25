@@ -260,6 +260,52 @@ public class AddUser extends SwitchingJPanel {
     }//GEN-LAST:event_buttonUploadImageActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
+//        //example 4 insert query example
+//        System.out.println("example 4:");
+//        DatabaseMan DB4 = new DatabaseMan();
+//
+//        String query = "INSERT INTO users"
+//                + "(username,password,firstname,surname,cellphone,birthday,gender,nationality,adress,city,postcode,permissions) VALUES"
+//                + "(?,?,?,?,?,?,?,?,?,?,?,?)";
+//
+//        String[] values = new String[12];
+//        String[] types = new String[12];
+//
+//        values[0] = "geoffreyvd4";
+//        values[1] = "gucciguc";
+//        values[2] = "geoffrey";
+//        values[3] = "geoffrey";
+//        values[4] = "56465464";
+//        values[5] = "1996-12-12";
+//        values[6] = "male";
+//        values[7] = "dutchy";
+//        values[8] = "sduyfgi";
+//        values[9] = "haarlem";
+//        values[10] = "2033v";
+//        values[11] = "1";
+//
+//        types[0] = "String";
+//        types[1] = "String";
+//        types[2] = "String";
+//        types[3] = "String";
+//        types[4] = "Int";
+//        types[5] = "String";
+//        types[6] = "String";
+//        types[7] = "String";
+//        types[8] = "String";
+//        types[9] = "String";
+//        types[10] = "String";
+//        types[11] = "Int";
+//
+//        try {
+//
+//            DB4.queryInsert(query, values, types);
+//
+//        } catch (SQLException e) {
+//
+//            System.out.println(e.getMessage());
+//
+//        }
         this.userNotAFK();
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
