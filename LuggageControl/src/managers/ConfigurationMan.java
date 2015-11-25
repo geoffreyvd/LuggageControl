@@ -2,6 +2,7 @@ package managers;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.PopUpJDialog;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,9 +14,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
-import javax.swing.WindowConstants;
 import main.LuggageControl;
 
 /**
@@ -27,23 +25,42 @@ public class ConfigurationMan {
     // Configuration file name
     private static final String CONFIG_NAME = "config.ini";
     
-    private final LuggageControl luggageControl;
-    
     private static final String OS = System.getProperty("os.name");
     
     private static final String MYSQL_DUMP_LOCATION = "mysql_dump_location:";
+    
+    private final LuggageControl luggageControl;
+    
+    private FindMysqlJDialog msqlDialog;
     
     class FindMysqlJDialog extends PopUpJDialog {
 
         public FindMysqlJDialog(Frame parent, boolean modal) {
             super(parent, modal);
-            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            JTextPane text = new JTextPane();
+            
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            javax.swing.JTextPane text = new javax.swing.JTextPane();
+            
+            this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             this.setTitle("Configuring mysql export");
+            this.getContentPane().setLayout(layout);
+
             text.setText("Locating mysqldump.exe please wait");
-            text.setVisible(true);
+            text.setEditable(false);
+            text.setPreferredSize(new Dimension(1920, 1080));
+            
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            );
+            
             this.add(text);
             this.setVisible(true);
+            this.pack();
         }
     }
     
@@ -104,12 +121,10 @@ public class ConfigurationMan {
     
     public boolean findMysqlDumpLocationWindows() {
         if(OS.equals("Linux")) {
-            new FindMysqlJDialog(luggageControl, false);
+            return false;
         }
         
-        // Fix this
-        new JOptionPane().setVisible(true);
-        
+        msqlDialog = new FindMysqlJDialog(luggageControl, false);
         String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
         ProcessBuilder pb = new ProcessBuilder(command);
         char schijf;
@@ -146,13 +161,16 @@ public class ConfigurationMan {
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
                 bw.close();
+                msqlDialog.dispose();
                 return true;
             }
             else {
+                msqlDialog.dispose();
                 return false;
             }
         }
         catch(Exception e) {
+            msqlDialog.dispose();
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
             return false;
         }
