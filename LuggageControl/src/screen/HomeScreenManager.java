@@ -9,7 +9,9 @@ import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.awt.BorderLayout;
 import main.LuggageControl;
-import org.jfree.ui.RefineryUtilities;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 import snippits.PieChart_AWT;
 
 /**
@@ -38,7 +40,7 @@ public class HomeScreenManager extends SwitchingJPanel {
         buttonExportStatistics = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
         buttonChangeSettings = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelChart = new javax.swing.JPanel();
 
         labelHome.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHome.setText("Home");
@@ -73,14 +75,14 @@ public class HomeScreenManager extends SwitchingJPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
+        panelChart.setLayout(panelChartLayout);
+        panelChartLayout.setHorizontalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 513, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelChartLayout.setVerticalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 227, Short.MAX_VALUE)
         );
 
@@ -100,7 +102,7 @@ public class HomeScreenManager extends SwitchingJPanel {
                             .addComponent(buttonChangeSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonGenerateStatistics, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,20 +127,36 @@ public class HomeScreenManager extends SwitchingJPanel {
                         .addComponent(buttonGenerateStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(buttonExportStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGenerateStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerateStatisticsActionPerformed
         this.userNotAFK();
-        PieChart_AWT demo = new PieChart_AWT("gebruiker");
+        
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        // create a dataset with dataset.setValue and give the dataset a name with a new value 
+        dataset.setValue("IPhone 5s", new Double(20));
+        dataset.setValue("SamSung Grand", new Double(20));
+        dataset.setValue("MotoG", new Double(40));
+        dataset.setValue("Nokia Lumia", new Double(10));
+        
+        JFreeChart chart = ChartFactory.createPieChart( // creates the chart as chart
+                "Mobile Sales", // chart title 
+                dataset, // data    
+                true, // include legend   
+                true, // include tooltips
+                false);
+        
+        PieChart_AWT demo = new PieChart_AWT(chart);
+        
         demo.setSize(560, 367);  // makes the demo with a preset size
-        jPanel1.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(demo, BorderLayout.CENTER);
+        panelChart.setLayout(new java.awt.BorderLayout());
+        panelChart.add(demo, BorderLayout.CENTER);
         demo.setVisible(true); // makes the demo visible
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        panelChart.revalidate();
+        panelChart.repaint();
     }//GEN-LAST:event_buttonGenerateStatisticsActionPerformed
 
     private void buttonExportStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExportStatisticsActionPerformed
@@ -162,7 +180,7 @@ public class HomeScreenManager extends SwitchingJPanel {
     private javax.swing.JButton buttonGenerateStatistics;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JComboBox comboBoxStatistics;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelHome;
+    private javax.swing.JPanel panelChart;
     // End of variables declaration//GEN-END:variables
 }
