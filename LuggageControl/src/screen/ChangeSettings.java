@@ -1,6 +1,7 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
+import constants.ScreenNames;
 import main.LuggageControl;
 
 /**
@@ -112,10 +113,12 @@ public class ChangeSettings extends SwitchingJPanel {
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
         this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void comboBoxParagraphFontSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxParagraphFontSizeActionPerformed
