@@ -32,6 +32,7 @@ public class FirstStart extends SwitchingJPanel {
         progressBarConfig = new javax.swing.JProgressBar();
         layeredPaneSubScreens = new javax.swing.JLayeredPane();
         panelOne = new javax.swing.JPanel();
+        buttonPOneNext = new javax.swing.JButton();
         panelTwo = new javax.swing.JPanel();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
@@ -44,15 +45,28 @@ public class FirstStart extends SwitchingJPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel1.setText("Initial configuration");
 
+        buttonPOneNext.setText("Next");
+        buttonPOneNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPOneNextActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelOneLayout = new javax.swing.GroupLayout(panelOne);
         panelOne.setLayout(panelOneLayout);
         panelOneLayout.setHorizontalGroup(
             panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 381, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonPOneNext)
+                .addContainerGap())
         );
         panelOneLayout.setVerticalGroup(
             panelOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 159, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOneLayout.createSequentialGroup()
+                .addContainerGap(118, Short.MAX_VALUE)
+                .addComponent(buttonPOneNext)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelTwoLayout = new javax.swing.GroupLayout(panelTwo);
@@ -92,7 +106,7 @@ public class FirstStart extends SwitchingJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(layeredPaneSubScreens)
                     .addComponent(progressBarConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -108,8 +122,14 @@ public class FirstStart extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonPOneNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPOneNextActionPerformed
+        this.userNotAFK();
+        this.panelOne.setVisible(false);
+    }//GEN-LAST:event_buttonPOneNextActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonPOneNext;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;

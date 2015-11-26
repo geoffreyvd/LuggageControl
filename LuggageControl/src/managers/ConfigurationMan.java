@@ -88,7 +88,8 @@ public class ConfigurationMan {
         
         // test if initial configuration of database and user is complete
         if(!this.getInitialConfiguration()) {
-            this.luggageControl.switchJPanel(ScreenNames.FIRST_START);
+            // go to initial config
+            //this.luggageControl.switchJPanel(ScreenNames.FIRST_START);
         }
 
         // windows test for mysqldump.exe location and if our file still exists
