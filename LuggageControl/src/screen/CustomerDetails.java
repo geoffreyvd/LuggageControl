@@ -282,7 +282,8 @@ public class CustomerDetails extends SwitchingJPanel {
     }//GEN-LAST:event_backToSearchCustomer
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
+        this.luggageControl.switchHomeScreen();
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed

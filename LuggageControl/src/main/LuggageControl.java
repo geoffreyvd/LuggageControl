@@ -200,7 +200,8 @@ public class LuggageControl extends javax.swing.JFrame {
     }
     
     /**
-     * Switch to the previously displayed panel.
+     * Switch to the previously displayed panel,
+     * This does not work!
      */
     public void switchPreviousPanel() {
         String tempSwitchString = this.previousPanel.getClass().getSimpleName();
@@ -287,6 +288,24 @@ public class LuggageControl extends javax.swing.JFrame {
         }
         else if(this.currentPanel instanceof screen.UserManagement) {
             this.remove(userManagement);
+        }
+    }
+    
+    /**
+     * Go to home screen based on current permissions.
+     */
+    public void switchHomeScreen() {
+        if(secman.getPermissions() == 1) {
+            this.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        }
+        else if(secman.getPermissions() == 2) {
+            this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+        }
+        else if(secman.getPermissions() == 3) {
+            this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+        }
+        else {
+            this.switchJPanel(ScreenNames.LOGINSCREEN);
         }
     }
     
