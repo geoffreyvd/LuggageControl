@@ -18,6 +18,7 @@ import org.jfree.ui.RefineryUtilities;
  * creates a pie chart with the selfmade datasets, the displays the pie chart.
  * needed libaries from the JFreeChart folder in resource\libaries
  * @author KonradLL
+ * org.jfree.ui.DrawablePanel
  */
 public class PieChart_AWT extends ApplicationFrame {
 
