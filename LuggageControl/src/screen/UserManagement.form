@@ -20,39 +20,45 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="textFieldAdress" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Component id="textFieldCity" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="textFieldAdress" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldZipcode" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="comboBoxProfession" alignment="0" max="32767" attributes="0"/>
+                  <Component id="textFieldCellphoneNumber" alignment="0" max="32767" attributes="0"/>
+                  <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
+                  <Component id="textFieldCity" alignment="1" max="32767" attributes="0"/>
+                  <Component id="labelUserDetails" alignment="0" pref="287" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="buttonUpdate" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="buttonDelete" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="LabelUserId" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldZipcode" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="comboBoxProfession" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                  <Component id="textFieldCellphoneNumber" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                  <Component id="labelName" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelUserDetails" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonUpdate" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="buttonDelete" min="-2" pref="80" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="LabelUserId" min="-2" max="-2" attributes="0"/>
-                  <Component id="textFieldEmail" min="-2" pref="155" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelUserSearch" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                      <Component id="labelUserSearch" pref="302" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonHelp" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="buttonBack" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="textboxUserId" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                  <Component id="table" alignment="0" min="-2" pref="338" max="-2" attributes="0"/>
-                  <Component id="buttonSearch" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                  <Component id="textboxName" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Component id="table" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="buttonSearch" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="textboxName" alignment="0" max="32767" attributes="0"/>
+                  <Component id="textboxUserId" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -82,7 +88,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="textFieldCity" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonDelete" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -90,11 +96,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelUserSearch" min="-2" pref="49" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="textboxUserId" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="labelUserSearch" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -102,10 +104,12 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="textboxUserId" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="textboxName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="table" min="-2" pref="123" max="-2" attributes="0"/>
-                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                      <Component id="table" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -132,14 +136,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldEmail">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Email"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCellphoneNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cellphone number"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCellphoneNumberActionPerformed"/>
       </Events>
@@ -147,32 +145,18 @@
     <Component class="javax.swing.JComboBox" name="comboBoxProfession">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Profession"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldAdress">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Adress"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCity">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="City"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCityActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldZipcode">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Zipcode"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldZipcodeActionPerformed"/>
       </Events>
@@ -186,9 +170,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textboxUserId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="User ID"/>
-      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="table">
       <AuxValues>
@@ -200,17 +181,10 @@
         <Component class="javax.swing.JTable" name="tableUserSearch">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="6">
-                <Column editable="true" title="User ID" type="java.lang.Object">
-                  <Data value=""/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Name" type="java.lang.Object"/>
-                <Column editable="true" title="Location" type="java.lang.Object"/>
+              <Table columnCount="3" rowCount="0">
+                <Column editable="false" title="User ID" type="java.lang.Object"/>
+                <Column editable="false" title="Name" type="java.lang.Object"/>
+                <Column editable="false" title="Location" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -280,9 +254,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textboxName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Name"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelName">
       <Properties>
