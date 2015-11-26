@@ -128,11 +128,13 @@ public class DatabaseMan {
                 }
 
                 try {
-                    Process process2 = Runtime.getRuntime().exec("CMD /C " + ConfigurationMan.getMysqlDumpLocationWindows(luggageControl)+ " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file);
+                    String[] commands = {"CMD", ConfigurationMan.getMysqlDumpLocationWindows(luggageControl)+ " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file, password.getText()};
+                    Process process2 = Runtime.getRuntime().exec(commands);
                     BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
                     BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
                     bri.close();
                     while ((line = bre.readLine()) != null) {
+                        System.out.println(line);
                         if (line.startsWith("mysqldump: Got error:")) {
                             System.out.println(line);
                             JOptionPane.showMessageDialog(null, "U heeft het verkeerde gebruikersnaam of wachtwoordingevuld.", "Er ging iets fout", JOptionPane.WARNING_MESSAGE);
@@ -175,7 +177,13 @@ public class DatabaseMan {
             }
             ResultSet result = preparedStatement.executeQuery();
             result.next();
-            return result.getString(1);
+            // check if we are not trying to return a empty resultset
+            if(result.getRow() > 0) {
+                return result.getString(1);
+            }
+            else {
+                return "";
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
             return null;

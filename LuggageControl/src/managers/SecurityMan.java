@@ -139,6 +139,24 @@ public class SecurityMan {
      * and other exploits
      */
     public static String filteredString(String originalString, char[] characters, boolean whitelist) {
+        for(char character: characters) {
+            if(whitelist) {
+                boolean checkChar = false;
+                for(char stringChar: originalString.toCharArray()) {
+                    if(stringChar == character) {
+                        checkChar = true;
+                    }
+                }
+                if(!checkChar) {
+                    return "";
+                }
+            }
+            else {
+                if(originalString.contains(character + "")) {
+                    return "";
+                }
+            }
+        }
         return originalString;
     }
     
@@ -172,7 +190,7 @@ public class SecurityMan {
         
         username = null;
         password = null;
-        if (result != null) {
+        if (!result.equals("")) {
             System.out.println("succesful query");
             int resultInt = Byte.parseByte(result);
             if (resultInt == 0) {
