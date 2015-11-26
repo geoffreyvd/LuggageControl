@@ -2,6 +2,7 @@ package managers;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.PopUpJDialog;
+import constants.ScreenNames;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.BufferedReader;
@@ -61,6 +62,8 @@ public class ConfigurationMan {
             this.add(text);
             this.setVisible(true);
             this.pack();
+            this.revalidate();
+            this.repaint();
         }
     }
     
@@ -72,6 +75,7 @@ public class ConfigurationMan {
     public ConfigurationMan(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
 
+        // test for if config file exists
         try {
             if(!checkConfigFile()) {
                 writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_NAME), "utf-8"));
@@ -80,9 +84,15 @@ public class ConfigurationMan {
         }
         catch(Exception e) {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace(), true);
-        }       
+        }      
+        
+        // test if initial configuration of database and user is complete
+        if(!this.getInitialConfiguration()) {
+            this.luggageControl.switchJPanel(ScreenNames.FIRST_START);
+        }
 
-        if(getMysqlDumpLocationWindows(this.luggageControl).equals("")) {
+        // windows test for mysqldump.exe location and if our file still exists
+        if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists()) {
             this.findMysqlDumpLocationWindows();
         }
     }
@@ -97,10 +107,24 @@ public class ConfigurationMan {
     }
     
     /**
+     * Tests if the initial configuration sequence has been performed
+     * @return true if initial configuration is complete, false otherwise. 
+     */
+    public boolean getInitialConfiguration() {
+        return false;
+    }
+    
+    /**
      * Reads the mysqldump location and returns a absolute path
-     * @return absolute path to <file>mysqldump.exe</file>
+     * @return absolute path to <file>mysqldump.exe</file> or Linux if on linux, empty when no path exists
      */
     public static String getMysqlDumpLocationWindows(LuggageControl luggageControl) {
+       
+        // skip this if we are linux
+        if(OS.equals("Linux")) {
+            return "Linux";
+        }
+        
         try {
             BufferedReader br = new BufferedReader(new FileReader(CONFIG_NAME));
 
@@ -117,6 +141,17 @@ public class ConfigurationMan {
         
         System.out.println("Could not find mysqldump location configuration");
         return "";
+    }
+    
+    /**
+     * Check if our reference to the <code>mysqldump.exe</code> on windows still exists.
+     * @return true if the file exists, false if it does not.
+     */
+    public static boolean mysqlDumpExists() {
+        if(OS.equals("Linux")) {
+            return true;
+        }
+        return false;
     }
     
     public boolean findMysqlDumpLocationWindows() {

@@ -26,6 +26,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.DeleteFlight deleteFlight;
     private screen.DeleteLuggage deleteLuggage;
     private screen.Example example;
+    private screen.FirstStart firstStart;
     private screen.GenerateStatistics generateStatistics;
     private screen.Help help;
     private screen.help.Adding helpAdding;
@@ -65,9 +66,6 @@ public class LuggageControl extends javax.swing.JFrame {
         // so it can call us.
         secman = new SecurityMan(this);
         
-        conman = new ConfigurationMan(this);
-        System.out.println(conman.getMysqlDumpLocationWindows(this));
-        
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
         graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -77,6 +75,10 @@ public class LuggageControl extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         initComponents();
+        
+        // ConfigurationMan must be initialized after initComponents
+        conman = new ConfigurationMan(this);
+        System.out.println(conman.getMysqlDumpLocationWindows(this));
 
         // start fullscreen
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -102,7 +104,7 @@ public class LuggageControl extends javax.swing.JFrame {
      */
     private void initComponents() {
         
-        // <editor-fold defaultstate="collapsed" desc="Screen objects">
+        // <editor-fold defaultstate="collapsed" desc="Screen objects initialazations">
         addCustomer = new screen.AddCustomer(this);
         addFlight = new screen.AddFlight(this);
         addLuggage = new screen.AddLuggage(this);
@@ -113,6 +115,7 @@ public class LuggageControl extends javax.swing.JFrame {
         deleteFlight = new screen.DeleteFlight(this);
         deleteLuggage = new screen.DeleteLuggage(this);
         example = new screen.Example(this);
+        firstStart = new screen.FirstStart(this);
         generateStatistics = new screen.GenerateStatistics(this);
         help = new screen.Help(this);
         helpAdding = new screen.help.Adding(this);
@@ -129,6 +132,7 @@ public class LuggageControl extends javax.swing.JFrame {
         userManagement = new screen.UserManagement(this);
         // </editor-fold>
         
+        //<editor-fold defaultstate="collapsed" desc="Screen objects configurations">
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
         addFlight.setSize(monitorSize);
@@ -149,6 +153,8 @@ public class LuggageControl extends javax.swing.JFrame {
         deleteLuggage.setVisible(true);
         example.setSize(monitorSize);
         example.setVisible(true);
+        firstStart.setSize(monitorSize);
+        firstStart.setVisible(true);
         generateStatistics.setSize(monitorSize);
         generateStatistics.setVisible(true);
         help.setSize(monitorSize);
@@ -169,6 +175,7 @@ public class LuggageControl extends javax.swing.JFrame {
         searchLuggage.setVisible(true);
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
+        //</editor-fold>
         
         /* Corendon red menubar
         menuBar = new JMenuBar();
@@ -235,6 +242,9 @@ public class LuggageControl extends javax.swing.JFrame {
         }    
         else if(this.currentPanel instanceof screen.Example) {
             this.remove(example);  
+        }
+        else if(this.currentPanel instanceof screen.FirstStart) {
+            this.remove(firstStart);  
         }
         else if(this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
@@ -357,6 +367,22 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = deleteLuggage;
+                break;
+            case ScreenNames.EXAMPLE:
+                this.removeCurrentJPanel();
+                this.add(example);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = example;
+                break;
+            case ScreenNames.FIRST_START:
+                this.removeCurrentJPanel();
+                this.add(firstStart);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = firstStart;
                 break;
             case ScreenNames.HELP:
                 this.removeCurrentJPanel();
@@ -535,7 +561,7 @@ public class LuggageControl extends javax.swing.JFrame {
     
     /**
      * Parse to login to the security manager and attempt a login sequence
-     * This method is more secure since it uses a char array instead of a String which is easier deleted.
+     * This method is more secure since it uses a <code>char[]</code> instead of a String which is easier deleted.
      * @param username the username as described in the database
      * @param password array of characters which together are the password as described in the database
      */
@@ -548,6 +574,10 @@ public class LuggageControl extends javax.swing.JFrame {
 //        }
     }
     
+    /**
+     * Sets the user afk to true or false and parses this through to the security manager
+     * @param userAFK true if the user is afk, false if he is not.
+     */
     public void setUserAFK(boolean userAFK) {
         this.secman.setUserAFK(false);
     }

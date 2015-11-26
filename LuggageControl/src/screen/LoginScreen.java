@@ -5,6 +5,7 @@
  */
 package screen;
 
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
@@ -98,17 +99,7 @@ public class LoginScreen extends SwitchingJPanel {
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         this.userNotAFK();
-        try {
-            if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
-                    
-            }
-            else {
-                this.labelLoginError.setText("Username or password incorrect!");
-                this.resetLabel(5000, labelLoginError);
-            }
-        }
-        catch(Exception e) {
-        }
+        this.loginUser();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textFieldUserKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldUserKeyPress
@@ -119,17 +110,7 @@ public class LoginScreen extends SwitchingJPanel {
     private void textFieldPassKeyPress(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldPassKeyPress
         this.userNotAFK();
         if(evt.getKeyCode() == evt.VK_ENTER) {
-            try {
-                if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
-                    
-                }
-                else {
-                    this.labelLoginError.setText("Username or password incorrect!");
-                    this.resetLabel(5000, labelLoginError);
-                }
-            }
-            catch(Exception e) {
-            }
+            this.loginUser();
         }
     }//GEN-LAST:event_textFieldPassKeyPress
 
@@ -137,6 +118,24 @@ public class LoginScreen extends SwitchingJPanel {
         // this.userNotAFK();
     }//GEN-LAST:event_panelMouseMoved
 
+    private boolean loginUser() {
+        try {
+            if(this.luggageControl.loginUser(textFieldUsername.getText(), textFieldPassword.getText())) {
+                this.textFieldPassword.setText("");
+                return true;
+            }
+            else {
+                this.labelLoginError.setText("Username or password incorrect!");
+                this.resetLabel(5000, labelLoginError);
+            }        
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+        this.textFieldPassword.setText("");
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
     private javax.swing.JLabel labelLoginError;
