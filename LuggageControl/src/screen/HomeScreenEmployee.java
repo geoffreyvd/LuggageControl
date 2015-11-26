@@ -40,6 +40,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         textFieldFlightNumber = new javax.swing.JTextField();
         scrollPaneQuickSearchTable = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        buttonAddFlight = new javax.swing.JButton();
 
         buttonAddCustomer.setText("Add customer");
         buttonAddCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +105,13 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         ));
         scrollPaneQuickSearchTable.setViewportView(jTable1);
 
+        buttonAddFlight.setText("Add flight");
+        buttonAddFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddFlightActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +123,8 @@ public class HomeScreenEmployee extends SwitchingJPanel {
                         .addComponent(buttonAddLuggage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonSearchCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonSearchLuggage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonAddCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonAddCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonAddFlight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(labelHeaderLeftSide))
                 .addGap(204, 204, 204)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,14 +160,16 @@ public class HomeScreenEmployee extends SwitchingJPanel {
                     .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneQuickSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonAddLuggage)
                         .addGap(18, 18, 18)
+                        .addComponent(buttonAddFlight)
+                        .addGap(18, 18, 18)
                         .addComponent(buttonSearchCustomer)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonSearchLuggage))
-                    .addComponent(scrollPaneQuickSearchTable, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonSearchLuggage)))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,9 +197,14 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.ADD_CUSTOMER);
     }//GEN-LAST:event_buttonAddCustomerActionPerformed
 
+    private void buttonAddFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddFlightActionPerformed
+        this.luggageControl.switchJPanel(ScreenNames.ADD_FLIGHT);
+    }//GEN-LAST:event_buttonAddFlightActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddCustomer;
+    private javax.swing.JButton buttonAddFlight;
     private javax.swing.JButton buttonAddLuggage;
     private javax.swing.JButton buttonChangeSettings;
     private javax.swing.JButton buttonHelp;

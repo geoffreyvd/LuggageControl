@@ -20,6 +20,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  */
 public class AddLuggage extends SwitchingJPanel {
 
+    private String imageBase64;
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
@@ -203,6 +204,7 @@ public class AddLuggage extends SwitchingJPanel {
                 // Converting Image byte array into Base64 String
                 String imageDataString = encodeImage(imageData);
                 imageInFile.close();
+                imageBase64 = imageDataString;
                 System.out.println(imageDataString);
 
                 System.out.println("Image Successfully Manipulated!");
@@ -229,11 +231,11 @@ public class AddLuggage extends SwitchingJPanel {
                 || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))) {
 
             String query = "INSERT INTO `luggagecontroldata`.`luggage`"
-                    + "(`location`, `color`, `weight`, `size`, `status`, `content`)  "
-                    + "VALUES(?,?,?,?,?,?)";
+                    + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
+                    + "VALUES(?,?,?,?,?,?,?)";
 
-            String[] values = new String[6];
-            String[] types = new String[6];
+            String[] values = new String[7];
+            String[] types = new String[7];
 
             values[0] = textFieldLocation.getText();
             values[1] = textFieldColor.getText();
@@ -241,6 +243,7 @@ public class AddLuggage extends SwitchingJPanel {
             values[3] = textFieldSize.getText();
             values[4] = comboBoxLuggageStatus.getSelectedItem().toString();
             values[5] = textFieldContent.getText();
+            values[6] = imageBase64;
 
             types[0] = "String";
             types[1] = "String";
@@ -248,6 +251,7 @@ public class AddLuggage extends SwitchingJPanel {
             types[3] = "String";
             types[4] = "String";
             types[5] = "String";
+            types[6] = "String";
 
             try {
                 db.queryManipulation(query, values, types);
@@ -294,7 +298,11 @@ public class AddLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonHelpActionPerformed
 
  
-
+    /** 
+     * encodes the image into a base64 string
+     * @param imageByteArray
+     * @return base64 string
+     */
     public static String encodeImage(byte[] imageByteArray) {
             return Base64.encodeBase64URLSafeString(imageByteArray);
 	}

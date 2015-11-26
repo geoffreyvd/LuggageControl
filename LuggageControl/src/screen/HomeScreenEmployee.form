@@ -24,6 +24,7 @@
                       <Component id="buttonSearchCustomer" alignment="0" max="32767" attributes="0"/>
                       <Component id="buttonSearchLuggage" alignment="1" max="32767" attributes="0"/>
                       <Component id="buttonAddCustomer" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonAddFlight" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="labelHeaderLeftSide" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -73,16 +74,18 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Component id="scrollPaneQuickSearchTable" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="buttonAddLuggage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="buttonAddFlight" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonSearchCustomer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonSearchLuggage" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="scrollPaneQuickSearchTable" min="-2" pref="91" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="106" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -178,5 +181,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="buttonAddFlight">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add flight"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddFlightActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

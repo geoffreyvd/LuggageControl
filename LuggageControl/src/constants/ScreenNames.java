@@ -38,6 +38,7 @@ public class ScreenNames {
     // it makes a unique identifieng string available to each and every class in the program
     // that will make the ScreenMan aware of the screen you're referencing to.
     public static final String ADD_CUSTOMER = "AddCustomer";
+    public static final String ADD_FLIGHT = "AddFlight";
     public static final String ADD_LUGGAGE = "AddLuggage";
     public static final String ADD_USER = "AddUser";
     public static final String CHANGE_SETTINGS = "ChangeSettings";

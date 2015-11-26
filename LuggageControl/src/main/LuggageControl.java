@@ -17,6 +17,7 @@ import managers.ConfigurationMan;
 public class LuggageControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Screen objects">
     private screen.AddCustomer addCustomer;
+    private screen.AddFlight addFlight;
     private screen.AddLuggage addLuggage;
     private screen.AddUser addUser;
     private screen.ChangeSettings changeSettings;
@@ -103,6 +104,7 @@ public class LuggageControl extends javax.swing.JFrame {
         
         // <editor-fold defaultstate="collapsed" desc="Screen objects">
         addCustomer = new screen.AddCustomer(this);
+        addFlight = new screen.AddFlight(this);
         addLuggage = new screen.AddLuggage(this);
         addUser = new screen.AddUser(this);
         changeSettings = new screen.ChangeSettings(this);
@@ -129,6 +131,8 @@ public class LuggageControl extends javax.swing.JFrame {
         
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
+        addFlight.setSize(monitorSize);
+        addFlight.setVisible(true);
         addLuggage.setSize(monitorSize);
         addLuggage.setVisible(true);
         addUser.setSize(monitorSize);
@@ -204,6 +208,9 @@ public class LuggageControl extends javax.swing.JFrame {
         // this giant if statement needs to be converted to a switch statement
         if(this.currentPanel instanceof screen.AddCustomer) {
             this.remove(addCustomer);
+        }
+        else if(this.currentPanel instanceof screen.AddFlight) {
+            this.remove(addFlight);
         }
         else if(this.currentPanel instanceof screen.AddLuggage) {
             this.remove(addLuggage);
@@ -286,6 +293,14 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = addCustomer;
+                break;
+            case ScreenNames.ADD_FLIGHT:
+                this.removeCurrentJPanel();
+                this.add(addFlight);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = addFlight;
                 break;
             case ScreenNames.ADD_LUGGAGE:
                 this.removeCurrentJPanel();
