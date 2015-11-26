@@ -25,7 +25,7 @@ public class DataBaseQueryExample {
 
         String[] values1 = new String[1];
         values1[0] = "geoffreyvd4";
-        String query = "select * from users where username = ?";
+        String query = "select * from user where username = ?";
 
         try {
             result5 = DB5.query(query, values1);
@@ -38,7 +38,7 @@ public class DataBaseQueryExample {
 
         
         
-//        query example inner join
+//        query example inner join // werkt niet meer na database patch
         
 //        select * 
 //        from clients 
