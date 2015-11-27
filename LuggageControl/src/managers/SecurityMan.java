@@ -1,6 +1,7 @@
 package managers;
 
 import constants.ScreenNames;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -9,6 +10,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.LuggageControl;
 
 /**
@@ -91,9 +94,15 @@ public class SecurityMan {
      * @return 
      */
     public String[] encodePassword(String password) {
-        SecureRandom number = SecureRandom.getInstance("SHA1PRNG");
-        byte[] salt = new byte[47];
-        number.nextBytes(salt);
+        SecureRandom number;
+        try {
+            number = SecureRandom.getInstance("SHA1PRNG");
+            byte[] salt = new byte[47];
+            number.nextBytes(salt);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SecurityMan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return new String[]{"This", "Gonna suck"};
     }
     
