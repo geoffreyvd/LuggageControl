@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.print.attribute.DateTimeSyntax;
 import main.LuggageControl;
 
 /**
@@ -82,15 +83,29 @@ public class SecurityMan {
     }
     
     /**
-     * Filters datetime to the point where they are safe to use within our
-     * application This class is mostly used for filtering user input
+     * 
+     * @param originalDate
+     * @return 
+     */
+    public static String filteredDate(String originalDate) {
+        return "";
+    }
+    
+    /**
+     * Filters string to datetime their by verifying that the string does contain a datetime format.
      *
      * @param originalDateTime 
      * @return filtered datetime to prevent SQL injections, cross-site scripting
      * and other exploits
      */
     public static String filteredDateTime(String originalDateTime) {
-        return originalDateTime;
+        try {
+            java.sql.Timestamp.valueOf(originalDateTime);
+            return originalDateTime;
+        }
+        catch(Exception e) {
+            return "";
+        }
     }
     
     /**
@@ -163,9 +178,25 @@ public class SecurityMan {
     }
     
     /**
+     * Filters strings with a minimum and maximum length
+     *
+     * @param originalString string to be filtered based on length
+     * @param minLength the minimal length of the string inclusive
+     * @param maxLength the maximum length of the string inclusive
+     * @return filtered string to prevent SQL injections, cross-site scripting
+     * and other exploits
+     */
+    public static String filteredString(String originalString, int minLength, int maxLength) {
+        if(originalString.length() >= minLength && originalString.length() <= maxLength) {
+            return originalString;
+        }
+        return "";
+    }
+    
+    /**
      * Filters strings to the point where they are safe to use within our
      * application This class is mostly used for filtering user input
-     *
+     * This method does nothing.
      * @param originalString
      * @return filtered string to prevent SQL injections, cross-site scripting
      * and other exploits
