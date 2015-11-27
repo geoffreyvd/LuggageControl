@@ -138,11 +138,11 @@ public class SecurityMan {
      * @return filtered string to prevent SQL injections, cross-site scripting
      * and other exploits
      */
-    public static String filteredString(String originalString, char[] characters, boolean whitelist) {
-        for(char character: characters) {
-            if(whitelist) {
+    public static String filteredString(String originalString, char[] characters, boolean whitelist) {      
+        if(whitelist) {
+            for(char stringChar: originalString.toCharArray()) {
                 boolean checkChar = false;
-                for(char stringChar: originalString.toCharArray()) {
+                for(char character: characters) {
                     if(stringChar == character) {
                         checkChar = true;
                     }
@@ -151,7 +151,9 @@ public class SecurityMan {
                     return "";
                 }
             }
-            else {
+        }
+        else {
+            for(char character: characters) {
                 if(originalString.contains(character + "")) {
                     return "";
                 }
