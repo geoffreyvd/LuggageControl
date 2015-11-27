@@ -1,22 +1,9 @@
 package screen;
 
-import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
-import java.awt.HeadlessException;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import javax.swing.Box;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import main.LuggageControl;
 import managers.DatabaseMan;
 

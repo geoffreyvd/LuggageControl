@@ -59,7 +59,7 @@ public class Removing extends SwitchingJPanel {
         screenName.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         textPaneEntries.setEditable(false);
-        textPaneEntries.setText("Only the administrator can remove database entries, employees or managers must supply the primary key ID to the database entry in order for it to be removed. The following entries can be removed: Customers, Flights, Luggage, Users.");
+        textPaneEntries.setText("Only the administrator can remove database entries, employees or managers must supply the primary key ID to the database entry in order for it to be removed. The following entries can be removed: Customers, Flights, Luggage, Users. Removing entries also removes any links to other entries for instance: removing a suitcase also removes every reference to users finding or losing this suitcase it will be as if the never lost or found it. Removing entries will effect statistics generated for manager type users.");
         scrollPaneEntries.setViewportView(textPaneEntries);
 
         javax.swing.GroupLayout panelRemoveEntriesLayout = new javax.swing.GroupLayout(panelRemoveEntries);

@@ -1,12 +1,14 @@
 package managers;
 
 import constants.ScreenNames;
+import java.security.SecureRandom;
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import javax.print.attribute.DateTimeSyntax;
 import main.LuggageControl;
 
 /**
@@ -63,6 +65,7 @@ public class SecurityMan {
     private timeOutTimerTask fireTimeOut;
 
     // </editor-fold>
+    
     /**
      * Manage logging in automatic time outs and other security aspects
      *
@@ -84,10 +87,35 @@ public class SecurityMan {
     
     /**
      * 
-     * @param originalDate
+     * @param password
      * @return 
      */
-    public static String filteredDate(String originalDate) {
+    public String[] encodePassword(String password) {
+        SecureRandom number = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[47];
+        number.nextBytes(salt);
+        return new String[]{"This", "Gonna suck"};
+    }
+    
+    /**
+     * Checks if the string is a valid according to the supplied date format
+     * @param originalDate string to be checked for containing date string or empty string for default yyyy-MM-dd dateformat.
+     * @return the string if it is valid or a empty string if it is not
+     */
+    public static String filteredDate(String originalDate, String dateFormat) {
+        Date date = null;
+        if(dateFormat.equals("")) {
+            dateFormat = "yyyy-MM-dd";
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+            date = sdf.parse(originalDate);
+        } catch (Exception ex) {
+            
+        }
+        if(date.before(new Date())) {
+            return originalDate;
+        }
         return "";
     }
     
@@ -120,6 +148,15 @@ public class SecurityMan {
      */
     public static String filteredDateTime(String originalDateTime, Timestamp minimumDateTime, Timestamp maximumDateTime) {
         return originalDateTime;
+    }
+    
+    /**
+     * 
+     * @param originalEmail
+     * @return 
+     */
+    public static String filteredEmail(String originalEmail) {
+        return originalEmail;
     }
     
     /**

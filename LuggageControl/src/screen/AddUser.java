@@ -3,6 +3,9 @@ package screen;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
@@ -18,18 +21,20 @@ public class AddUser extends SwitchingJPanel {
     public AddUser(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
-        PromptSupport.setPrompt("First name", textFieldFirstname);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstname);
-        PromptSupport.setPrompt("Last name", textFieldLastname);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLastname);
+        PromptSupport.setPrompt("Adress", textFieldAdress);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAdress);
         PromptSupport.setPrompt("Birthday(yyyy-mm-dd)", textFieldBirthday);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldBirthday);
         PromptSupport.setPrompt("Cellphone", textFieldCellphone);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
+        PromptSupport.setPrompt("Email", textFieldEmail);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
+        PromptSupport.setPrompt("First name", textFieldFirstname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstname);
+        PromptSupport.setPrompt("Last name", textFieldSurname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSurname);
         PromptSupport.setPrompt("Nationality", textFieldNationality);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldNationality);
-        PromptSupport.setPrompt("Adress", textFieldAdress);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAdress);
         PromptSupport.setPrompt("Postalcode", textFieldPostalcode);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPostalcode);
         PromptSupport.setPrompt("Username", textFieldUsername);
@@ -54,7 +59,7 @@ public class AddUser extends SwitchingJPanel {
         comboBoxGender = new javax.swing.JComboBox();
         textFieldFirstname = new javax.swing.JFormattedTextField();
         textFieldBirthday = new javax.swing.JFormattedTextField();
-        textFieldLastname = new javax.swing.JFormattedTextField();
+        textFieldSurname = new javax.swing.JFormattedTextField();
         labelAddUser = new javax.swing.JLabel();
         buttonUploadImage = new javax.swing.JButton();
         buttonConfirm = new javax.swing.JButton();
@@ -68,6 +73,7 @@ public class AddUser extends SwitchingJPanel {
         textFieldUsername = new javax.swing.JFormattedTextField();
         textFieldPassword = new javax.swing.JFormattedTextField();
         labelStatus = new javax.swing.JLabel();
+        textFieldEmail = new javax.swing.JFormattedTextField();
 
         buttonHelp.setText("Help");
         buttonHelp.addActionListener(new java.awt.event.ActionListener() {
@@ -87,11 +93,14 @@ public class AddUser extends SwitchingJPanel {
         comboBoxGender.setToolTipText("Gender");
         comboBoxGender.setMaximumSize(new java.awt.Dimension(120, 120));
 
+        textFieldFirstname.setText("placeholdfirstname");
         textFieldFirstname.setMaximumSize(new java.awt.Dimension(120, 120));
 
+        textFieldBirthday.setText("1994-01-30");
         textFieldBirthday.setMaximumSize(new java.awt.Dimension(120, 120));
 
-        textFieldLastname.setMaximumSize(new java.awt.Dimension(120, 120));
+        textFieldSurname.setText("placeholdlastname");
+        textFieldSurname.setMaximumSize(new java.awt.Dimension(120, 120));
 
         labelAddUser.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddUser.setText("Add user");
@@ -117,12 +126,16 @@ public class AddUser extends SwitchingJPanel {
             }
         });
 
+        textFieldNationality.setText("murica");
         textFieldNationality.setMaximumSize(new java.awt.Dimension(250, 250));
 
+        textFieldAdress.setText("londonlane 2");
         textFieldAdress.setMaximumSize(new java.awt.Dimension(250, 250));
 
+        textFieldPostalcode.setText("63784SFR");
         textFieldPostalcode.setMaximumSize(new java.awt.Dimension(250, 250));
 
+        textFieldCellphone.setText("1234");
         textFieldCellphone.setMaximumSize(new java.awt.Dimension(250, 250));
         textFieldCellphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +146,7 @@ public class AddUser extends SwitchingJPanel {
         comboBoxProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Employee", "Manager", "Administrator" }));
         comboBoxProfession.setMaximumSize(new java.awt.Dimension(250, 250));
 
+        textFieldUsername.setText("notused");
         textFieldUsername.setMaximumSize(new java.awt.Dimension(120, 120));
         textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +154,16 @@ public class AddUser extends SwitchingJPanel {
             }
         });
 
+        textFieldPassword.setText("verysecure");
         textFieldPassword.setMaximumSize(new java.awt.Dimension(120, 120));
+
+        textFieldEmail.setText("1234");
+        textFieldEmail.setMaximumSize(new java.awt.Dimension(250, 250));
+        textFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldEmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -149,33 +172,36 @@ public class AddUser extends SwitchingJPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldNationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboBoxProfession, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(textFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelAddUser)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(textFieldAdress, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldPostalcode, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textFieldFirstname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldLastname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textFieldBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(280, 280, 280))
+                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textFieldNationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxProfession, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textFieldAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldPostalcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                     .addComponent(buttonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -205,15 +231,19 @@ public class AddUser extends SwitchingJPanel {
                 .addComponent(labelAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldLastname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldSurname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(comboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(textFieldBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(textFieldCellphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(textFieldNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +255,7 @@ public class AddUser extends SwitchingJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(1, 1, 1)
                 .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -256,8 +286,9 @@ public class AddUser extends SwitchingJPanel {
         if( textFieldAdress.getText().equals("") || 
             textFieldBirthday.getText().equals("") || 
             textFieldCellphone.getText().equals("") || 
+            textFieldEmail.getText().equals("") || 
             textFieldFirstname.getText().equals("") ||
-            textFieldLastname.getText().equals("") ||
+            textFieldSurname.getText().equals("") ||
             textFieldNationality.getText().equals("") ||
             textFieldPassword.getText().equals("") ||   
             textFieldPostalcode.getText().equals("") || 
@@ -277,65 +308,101 @@ public class AddUser extends SwitchingJPanel {
             return;
         }
         
-        // check if our date is a actual date
-        if(SecurityMan.filteredDateTime(textFieldBirthday.getText()).equals("")) {
-            labelStatus.setText("Invalid date format for birthday");
+        // check if the email does not yet exist
+        if(!db.queryOneResult("SELECT `email` FROM user WHERE email = ?", new String[]{textFieldEmail.getText()}).equals("")) {
+            labelStatus.setText("Email already taken!");
             this.resetLabel(5000, labelStatus);
             return;
         }
         
         // check if our cellphone only contains numbers
         if(SecurityMan.filteredString(textFieldCellphone.getText(), new char[]{'0','1','2','3','4','5','6','7','8','9'}, true).equals("")) {
-            labelStatus.setText("Invalid characters in cellphone");
+            labelStatus.setText("Invalid characters in cellphone, can only contain numbers");
             this.resetLabel(5000, labelStatus);
             return;
         }
-//        //example 4 insert query example
-//        System.out.println("example 4:");
-//        DatabaseMan DB4 = new DatabaseMan();
-//
-//        String query = "INSERT INTO users"
-//                + "(username,password,firstname,surname,cellphone,birthday,gender,nationality,adress,city,postcode,permissions) VALUES"
-//                + "(?,?,?,?,?,?,?,?,?,?,?,?)";
-//
-//        String[] values = new String[12];
-//        String[] types = new String[12];
-//
-//        values[0] = "geoffreyvd4";
-//        values[1] = "gucciguc";
-//        values[2] = "geoffrey";
-//        values[3] = "geoffrey";
-//        values[4] = "56465464";
-//        values[5] = "1996-12-12";
-//        values[6] = "male";
-//        values[7] = "dutchy";
-//        values[8] = "sduyfgi";
-//        values[9] = "haarlem";
-//        values[10] = "2033v";
-//        values[11] = "1";
-//
-//        types[0] = "String";
-//        types[1] = "String";
-//        types[2] = "String";
-//        types[3] = "String";
-//        types[4] = "Int";
-//        types[5] = "String";
-//        types[6] = "String";
-//        types[7] = "String";
-//        types[8] = "String";
-//        types[9] = "String";
-//        types[10] = "String";
-//        types[11] = "Int";
-//
-//        try {
-//
-//            DB4.queryInsert(query, values, types);
-//
-//        } catch (SQLException e) {
-//
-//            System.out.println(e.getMessage());
-//
-//        }
+        
+        // check if our birthday is a date and in the past
+        if(SecurityMan.filteredDate(textFieldBirthday.getText(), "yyyy-MM-dd").equals("")) {
+            labelStatus.setText("Birthday needs to be valid date in the past");
+            this.resetLabel(5000, labelStatus);
+            return;
+        }
+        
+        // check if our email is valid
+        if(SecurityMan.filteredEmail(textFieldEmail.getText()).equals("")) {
+            labelStatus.setText("Needs to be valid email adress");
+            this.resetLabel(5000, labelStatus);
+            return;
+        }
+        
+        int tempPermission = 0;
+        if(comboBoxProfession.getSelectedItem().toString() == "Employee") {
+            tempPermission = 1;
+        }
+        else if(comboBoxProfession.getSelectedItem().toString() == "Manager") {
+            tempPermission = 2;
+        }
+        else if(comboBoxProfession.getSelectedItem().toString() == "Manager") {
+            tempPermission = 3;
+        }
+        
+        String[] userData = {
+            textFieldUsername.getText(), 
+            textFieldPassword.getText(), 
+            textFieldEmail.getText(), 
+            textFieldFirstname.getText(), 
+            textFieldSurname.getText(), 
+            textFieldCellphone.getText(),
+            textFieldBirthday.getText(),
+            comboBoxGender.getSelectedItem().toString(),
+            textFieldNationality.getText(),
+            textFieldAdress.getText(),
+            textFieldPostalcode.getText(),
+            tempPermission + ""
+        };
+        
+        String[] userTypes = {
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "Int",
+        };
+        
+        try {
+            db.queryManipulation(
+                    "INSERT INTO user "+
+                            "(username,password,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,permissions)" +
+                            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    userData, userTypes
+            );
+        } catch (SQLException ex) {
+            Logger.getLogger(AddUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        labelStatus.setText("User succesfully added");
+        this.resetLabel(10000, labelStatus);
+
+        textFieldUsername.setText("");
+        textFieldPassword.setText(""); 
+        textFieldFirstname.setText(""); 
+        textFieldSurname.setText(""); 
+        textFieldCellphone.setText("");
+        textFieldBirthday.setText("");
+        comboBoxGender.setSelectedIndex(0);
+        textFieldNationality.setText("");
+        textFieldAdress.setText("");
+        textFieldPostalcode.setText("");
+        comboBoxProfession.setSelectedIndex(0);
+        
         this.userNotAFK();
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
@@ -355,6 +422,10 @@ public class AddUser extends SwitchingJPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldUsernameActionPerformed
 
+    private void textFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldEmailActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
@@ -370,11 +441,12 @@ public class AddUser extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldAdress;
     private javax.swing.JFormattedTextField textFieldBirthday;
     private javax.swing.JFormattedTextField textFieldCellphone;
+    private javax.swing.JFormattedTextField textFieldEmail;
     private javax.swing.JFormattedTextField textFieldFirstname;
-    private javax.swing.JFormattedTextField textFieldLastname;
     private javax.swing.JFormattedTextField textFieldNationality;
     private javax.swing.JFormattedTextField textFieldPassword;
     private javax.swing.JFormattedTextField textFieldPostalcode;
+    private javax.swing.JFormattedTextField textFieldSurname;
     private javax.swing.JFormattedTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
 }
