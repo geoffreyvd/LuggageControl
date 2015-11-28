@@ -262,7 +262,7 @@ public class SecurityMan {
         String[] values1 = new String[2];
         values1[0] = username;
         values1[1] = password;
-        String query = "select permissions from user where username = ? and password = ?";
+        String query = "select permission from user where username = ? and password = ?";
         
         //This query will return a string, it only returns 1 value!
         String result = databaseMan.queryOneResult(query, values1);

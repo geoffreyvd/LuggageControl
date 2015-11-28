@@ -78,7 +78,9 @@ public class SearchCustomer extends SwitchingJPanel {
             }
             
             if(!textFieldFlightnumber.getText().equals("")) {
-                query += "INNER JOIN `customer_flight`.`customer_id` ON `customer`.`customer_id`";
+                query += "UNION SELECT * FROM `customer_flight` INNER JOIN `customer_flight`.`customer_id` ON `customer`.`customer_id` ";
+                query += "WHERE `customer_flight`.`flight_id` = ?";
+                values.add(sc.filteredString(textFieldFlightnumber.getText()));
             }
             
             result = db.query(query + ";", values.toArray(new String[values.size()]));
