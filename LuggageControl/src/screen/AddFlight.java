@@ -9,6 +9,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * This JPanel adds a flight into the database
+ *
  * @author Konrad
  */
 public class AddFlight extends SwitchingJPanel {
@@ -16,7 +17,7 @@ public class AddFlight extends SwitchingJPanel {
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
-    public AddFlight(LuggageControl luggageControl ) {
+    public AddFlight(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
         PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
@@ -29,7 +30,7 @@ public class AddFlight extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDepartureTime);
         PromptSupport.setPrompt("Arival time", textFieldArivalTime);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArivalTime);
-        
+
     }
 
     /**
@@ -135,7 +136,8 @@ public class AddFlight extends SwitchingJPanel {
 
     /**
      * sets the user as not afk and changes to panel help_adding
-     * @param evt 
+     *
+     * @param evt
      */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
@@ -144,10 +146,11 @@ public class AddFlight extends SwitchingJPanel {
 
     /**
      * puts all the strings from the texgtfields into the database
-     * @param evt 
+     *
+     * @param evt
      */
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-         DatabaseMan db = new DatabaseMan();
+        DatabaseMan db = new DatabaseMan();
         if (!("".equals(textFieldFlightnumber.getText()) || "".equals(textFieldArivalTime.getText())
                 || "".equals(textFieldDepartureTime.getText()) || "".equals(textFieldDestination.getText())
                 || "".equals(textFieldOrigin.getText()))) {
@@ -178,6 +181,12 @@ public class AddFlight extends SwitchingJPanel {
             } catch (Exception e) {
 
             }
+            textFieldFlightnumber.setText("");
+            textFieldDestination.setText("");
+            textFieldOrigin.setText("");
+            textFieldDepartureTime.setText("");
+            textFieldArivalTime.setText("");
+            this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
             System.out.println("work");
         } else {
             System.out.println("not work");
@@ -187,8 +196,10 @@ public class AddFlight extends SwitchingJPanel {
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     /**
-     * sets the user as not afk, resets all the text fields and changes to panel home screen
-     * @param evt 
+     * sets the user as not afk, resets all the text fields and changes to panel
+     * home screen
+     *
+     * @param evt
      */
     private void butonCancelbuttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelbuttonCancelActionPerformed
         this.userNotAFK();

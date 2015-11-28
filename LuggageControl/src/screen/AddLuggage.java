@@ -21,6 +21,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class AddLuggage extends SwitchingJPanel {
 
     private String imageBase64;
+
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
@@ -193,7 +194,7 @@ public class AddLuggage extends SwitchingJPanel {
 
             ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
             pic.setIcon(image);
-            
+
             File file = new File(selectedFile.getAbsolutePath());
             try {
                 // Reading a Image file from file system
@@ -214,8 +215,8 @@ public class AddLuggage extends SwitchingJPanel {
                 System.out.println("Exception while reading the Image " + ioe);
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_buttonUploadsImageActionPerformed
 
     /**
@@ -230,12 +231,27 @@ public class AddLuggage extends SwitchingJPanel {
                 || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
                 || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))) {
 
-            String query = "INSERT INTO `luggagecontroldata`.`luggage`"
-                    + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
+            String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage`"
+                    + "(`location`, `color`, `weight`, `size`, `status`, `contents`, `image`)  "
                     + "VALUES(?,?,?,?,?,?,?)";
+            String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
+                    + "(`flight_id`, `luggage_id`)  "
+                    + "VALUES(?,?)";
+            String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer_lggage`"
+                    + "(`customer_id`, `luggage_id`)  "
+                    + "VALUES(?,?)";
+            String querySearchLuggage = "SELECT MAX(luggage_id) FROM luggage";
+
+            String[] luggageID = {};
 
             String[] values = new String[7];
             String[] types = new String[7];
+
+            String[] values2 = new String[2];
+            String[] types2 = new String[2];
+
+            String[] values3 = new String[2];
+            String[] types3 = new String[2];
 
             values[0] = textFieldLocation.getText();
             values[1] = textFieldColor.getText();
@@ -254,11 +270,37 @@ public class AddLuggage extends SwitchingJPanel {
             types[6] = "String";
 
             try {
-                db.queryManipulation(query, values, types);
-
+                db.queryManipulation(queryInsertLuggage, values, types);
+                System.out.println("hey");
+                values2[0] = textFieldFlightnumber.getText();
+                values2[1] = db.queryOneResult(querySearchLuggage, luggageID);
+                types2[0] = "String";
+                types2[1] = "String";
+                System.out.println("hey2");
+                values3[0] = textFieldOwnerID.getText();
+                System.out.println("hey2");
+                values3[1] = db.queryOneResult(querySearchLuggage, luggageID);
+                System.out.println("yoyo");
+                types3[0] = "String";
+                types3[1] = "String";
+                System.out.println("yo");
+                db.queryManipulation(queryInsertFlight, values2, types2);
+                System.out.println("hey3");
+                db.queryManipulation(queryInsertCustomer, values3, types3);
             } catch (Exception e) {
+                System.out.println("hey3");
 
             }
+            textFieldFlightnumber.setText("");
+            textFieldLocation.setText("");
+            textFieldOwnerID.setText("");
+            comboBoxLuggageStatus.setSelectedIndex(0);
+            textFieldWeight.setText("");
+            textFieldColor.setText("");
+            textFieldSize.setText("");
+            textFieldContent.setText("");
+            pic.setIcon(null);
+            this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
             System.out.println("work");
         } else {
             System.out.println("not work");
@@ -284,6 +326,7 @@ public class AddLuggage extends SwitchingJPanel {
         textFieldColor.setText("");
         textFieldSize.setText("");
         textFieldContent.setText("");
+        pic.setIcon(null);
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
@@ -297,17 +340,16 @@ public class AddLuggage extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
- 
-    /** 
+    /**
      * encodes the image into a base64 string
+     *
      * @param imageByteArray
      * @return base64 string
      */
     public static String encodeImage(byte[] imageByteArray) {
-            return Base64.encodeBase64URLSafeString(imageByteArray);
-	}
+        return Base64.encodeBase64URLSafeString(imageByteArray);
+    }
 
-	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;

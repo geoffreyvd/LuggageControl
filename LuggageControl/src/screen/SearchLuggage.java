@@ -17,11 +17,14 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * Searches through the database with the given data for luggage
+ *
  * @author Konrad
  */
 public class SearchLuggage extends SwitchingJPanel {
 
+    private DatabaseMan db = new DatabaseMan();
     private SecurityMan sc;
+
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
@@ -163,7 +166,7 @@ public class SearchLuggage extends SwitchingJPanel {
                     .addComponent(buttonHelpLinking))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearch)
                     .addComponent(buttonCancel))
@@ -173,7 +176,8 @@ public class SearchLuggage extends SwitchingJPanel {
 
     /**
      * sets the user as not afk and changes to panel help_fingding
-     * @param evt 
+     *
+     * @param evt
      */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
@@ -181,8 +185,10 @@ public class SearchLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     /**
-     * sets the user as not afk, resets all the textfields and combobox, and changes to panel home screen
-     * @param evt 
+     * sets the user as not afk, resets all the textfields and combobox, and
+     * changes to panel home screen
+     *
+     * @param evt
      */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
@@ -196,7 +202,8 @@ public class SearchLuggage extends SwitchingJPanel {
 
     /**
      * Searches through the database with the given data for luggage
-     * @param evt 
+     *
+     * @param evt
      */
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         this.fillSearchLuggageTable();
@@ -204,53 +211,57 @@ public class SearchLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void fillSearchLuggageTable() {
-        DatabaseMan db = new DatabaseMan();
+
         //String[] types = {db.PS_TYPE_STRING};
         //String[] values = {"danta"};
         ResultSet result = new EmptyResultSet();
-        
+
         String[] textFieldsLuggage = new String[3];
-        
+
         textFieldsLuggage[0] = textFieldLuggageID.getText();
-        textFieldsLuggage[1] = (String)comboBoxLuggageStatus.getSelectedItem();
+        textFieldsLuggage[1] = (String) comboBoxLuggageStatus.getSelectedItem();
         textFieldsLuggage[2] = textFieldLocation.getText();
-        
+
         String query = "SELECT * FROM luggagecontroldata.luggage ";
+        String queryInnerJoin = "SELECT `luggage_id` "
+                + "FROM `luggage_flight`"
+                + "INNER JOIN `luggage`"
+                + "ON luggage_flight.luggage_id=luggage.luggage_id"
+                + "ORDER BY luggage.luggage_id";
         String[] values = new String[3];
         boolean check = true;
-        
-        for(int i = 0; i<textFieldsLuggage.length; i++) {
-            if(!(textFieldsLuggage[i].equals(""))) {
-                if(check) {
+
+        for (int i = 0; i < textFieldsLuggage.length; i++) {
+            if (!(textFieldsLuggage[i].equals(""))) {
+                if (check) {
                     query += "WHERE ";
                     check = false;
                 }
                 values[i] = sc.filteredInt(textFieldsLuggage[i], 1, Integer.MAX_VALUE);
-                query += textFieldsLuggage[i]+" = ?";
+                query += textFieldsLuggage[i] + " = ?";
             }
         }
         query += ";";
-        
+
         try {
-              
+
             result = db.query(query, values);
-            
-            DefaultTableModel datamodel = (DefaultTableModel)tableLuggageSearch.getModel();
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableLuggageSearch.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
                 datamodel.removeRow(i);
             }
-            while(result.next()) {
+            while (result.next()) {
                 System.out.println(result.getString("flightnumber"));
-                Object[] data = {result.getString("luggage_id"), result.getString("flightnumber"), result.getString("client_id"), result.getString("status"), result.getString("location")};
+                Object[] data = {result.getString("luggage_id"), result.getString("flightnumber"), result.getString("client_id"), result.getString("status"), result.getString("location"), false};
                 datamodel.addRow(data);
             }
             tableLuggageSearch.setModel(datamodel);
-        }
-        catch(Exception e) {
-            
+        } catch (Exception e) {
+
         }
     }
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelpLinking;
