@@ -82,17 +82,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCustomerName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Customer name"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCustomerNameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCustomerId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Customer ID"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonSearch">
       <Properties>

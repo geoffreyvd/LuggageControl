@@ -9,20 +9,29 @@ import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import managers.SecurityMan;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
  * @author Gebruiker
  */
 public class DeleteCustomer extends SwitchingJPanel {
-
+  
+    private SecurityMan sc;
+    
     public DeleteCustomer(LuggageControl luggageControl) {
         super(luggageControl);        
         initComponents();
+        PromptSupport.setPrompt("Customer Name", textFieldCustomerName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerName);
+        PromptSupport.setPrompt("Customer ID", textFieldCustomerId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerId);
+        buildTable();
     }
 
     /**
@@ -48,14 +57,11 @@ public class DeleteCustomer extends SwitchingJPanel {
         labelHeader.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHeader.setText("Delete Customer");
 
-        textFieldCustomerName.setText("Customer name");
         textFieldCustomerName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCustomerNameActionPerformed(evt);
             }
         });
-
-        textFieldCustomerId.setText("Customer ID");
 
         buttonSearch.setText("Search");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +166,29 @@ public class DeleteCustomer extends SwitchingJPanel {
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         this.userNotAFK();
+        ArrayList<String> values = new ArrayList<String>();
+        String query = "SELECT * FROM luggagecontroldata.customer";
+        if (!textFieldCustomerId.getText().equals("") || !textFieldCustomerName.getText().equals("")) {
+             query+= " WHERE 1 = 0";
+        }
+        if (!textFieldCustomerId.getText().equals("")) {
+            query+= " OR customer_id = ?";
+            values.add(sc.filteredString(textFieldCustomerId.getText()));
+        }
+        if (!textFieldCustomerName.getText().equals("")) {
+            query+= " OR firstname = ?";
+            values.add(sc.filteredString(textFieldCustomerName.getText()));
+        }
+//        String[] values = {
+//        textFieldCustomerName.getText(),
+//        textFieldCustomerId.getText()};
+        
+        query+= " order by customer_id desc limit 4;";
+        buildTable(query, values.toArray(new String[values.size()]));
+    }//GEN-LAST:event_buttonSearchActionPerformed
+
+
+    private void buildTable(){
         DatabaseMan db = new DatabaseMan();
         ResultSet result;
         String query = "SELECT * FROM luggagecontroldata.customer order by customer_id desc limit 4;";
@@ -187,11 +216,36 @@ public class DeleteCustomer extends SwitchingJPanel {
             System.out.println(e.getMessage());
             new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
         }
+    }
+    
+    private void buildTable(String query, String[] values){
+        DatabaseMan db = new DatabaseMan();
+        ResultSet result;
         
-        db.query(query, values);
-    }//GEN-LAST:event_buttonSearchActionPerformed
+        try {
+            result = db.query(query, values);
+            DefaultTableModel datamodel = (DefaultTableModel)tableDeleteCustomer.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while(result.next()) {
 
-
+                Object[] data = {
+                    result.getString("customer_id"), 
+                    result.getString("firstname")
+                };
+                
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableDeleteCustomer.setModel(datamodel);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonHelp;
