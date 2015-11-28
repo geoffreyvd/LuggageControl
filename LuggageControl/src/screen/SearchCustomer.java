@@ -5,9 +5,15 @@
  */
 package screen;
 
+import baseClasses.EmptyResultSet;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
+import managers.DatabaseMan;
+import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -15,6 +21,9 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author Konrad
  */
 public class SearchCustomer extends SwitchingJPanel {
+    
+    private DatabaseMan db = new DatabaseMan();
+    private SecurityMan sc;
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
@@ -32,6 +41,46 @@ public class SearchCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphoneNumber);
         PromptSupport.setPrompt("Email", textFieldEmail);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
+    }
+    
+    public void fillCustomerTable() {
+        ResultSet result = new EmptyResultSet();
+        try {
+            if(textFieldFirstName.getText().equals("")) {
+                String[] values = {};
+                result = db.query("SELECT * FROM customer;", values);
+            }
+            else {
+                // always filter user input with securitymanager
+                String[] values = {sc.filteredString(textFieldFirstName.getText())};
+                result = db.query("SELECT * FROM customer WHERE firstname = ? ;", values);
+            }
+            DefaultTableModel datamodel = (DefaultTableModel)tableCustomer.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while(result.next()) {
+
+                Object[] data = {
+                    result.getString("customer_id"), 
+                    result.getString("firstname"), 
+                    result.getString("surname"), 
+                    result.getString("email"), 
+                    result.getString("cellphone"), 
+                    result.getString("birthday"), 
+                    result.getString("gender"), 
+                    result.getString("adress"), 
+                    result.getString("postcode")
+                };
+                
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableCustomer.setModel(datamodel);
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
+        }
     }
 
     /**
@@ -52,11 +101,26 @@ public class SearchCustomer extends SwitchingJPanel {
         buttonSearch = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableSearchCustomer = new javax.swing.JTable();
+        scrollPaneTable = new javax.swing.JScrollPane();
+        tableCustomer = new javax.swing.JTable();
 
         labelSearchCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchCustomer.setText("Search Customer");
+
+        textFieldFirstName.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        textFieldLastName.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        textFieldCellphoneNumber.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        textFieldEmail.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        textFieldFlightnumber.setMaximumSize(new java.awt.Dimension(6, 20));
+        textFieldFlightnumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldFlightnumberKeyPressed(evt);
+            }
+        });
 
         buttonSearch.setText("Search");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -79,19 +143,31 @@ public class SearchCustomer extends SwitchingJPanel {
             }
         });
 
-        tableSearchCustomer.setModel(new javax.swing.table.DefaultTableModel(
+        tableCustomer.setAutoCreateRowSorter(true);
+        tableCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Luggage ID", "Flight number", "Owner ID", "Status", "Location", "Origin", "Destination"
+                "customer id", "firstname", "surname", "email", "cellphone", "birthday", "gender", "adress", "postcode"
             }
-        ));
-        jScrollPane2.setViewportView(tableSearchCustomer);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPaneTable.setViewportView(tableCustomer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,26 +179,26 @@ public class SearchCustomer extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(labelSearchCustomer)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30))))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(textFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(textFieldLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                                .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(117, 117, 117)
+                            .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,13 +214,13 @@ public class SearchCustomer extends SwitchingJPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(buttonHelp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearch)
                     .addComponent(buttonCancel))
@@ -158,6 +234,7 @@ public class SearchCustomer extends SwitchingJPanel {
      */
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         this.userNotAFK();
+        this.fillCustomerTable();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     /**
@@ -183,14 +260,22 @@ public class SearchCustomer extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
+    private void textFieldFlightnumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldFlightnumberKeyPressed
+        this.userNotAFK();
+        // identify the pressed key
+        if(evt.getKeyCode() == evt.VK_ENTER) {
+            this.fillCustomerTable();
+        }
+    }//GEN-LAST:event_textFieldFlightnumberKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearch;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelSearchCustomer;
-    private javax.swing.JTable tableSearchCustomer;
+    private javax.swing.JScrollPane scrollPaneTable;
+    private javax.swing.JTable tableCustomer;
     private javax.swing.JFormattedTextField textFieldCellphoneNumber;
     private javax.swing.JFormattedTextField textFieldEmail;
     private javax.swing.JFormattedTextField textFieldFirstName;

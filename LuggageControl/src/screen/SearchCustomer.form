@@ -23,33 +23,33 @@
                       <Component id="buttonSearch" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="buttonCancel" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="525" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelSearchCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="textFieldFirstName" min="-2" pref="155" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="textFieldCellphoneNumber" min="-2" pref="155" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="textFieldLastName" min="-2" pref="155" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="textFieldEmail" min="-2" pref="155" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="textFieldFlightnumber" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="scrollPaneTable" pref="525" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelSearchCustomer" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textFieldFirstName" pref="155" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textFieldCellphoneNumber" pref="155" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="textFieldLastName" pref="155" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textFieldEmail" pref="155" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="textFieldFlightnumber" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                          <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,14 +70,14 @@
                           <Component id="textFieldLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldFlightnumber" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="buttonHelp" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="108" max="-2" attributes="0"/>
-              <EmptySpace type="separate" pref="40" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="textFieldFlightnumber" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="scrollPaneTable" pref="108" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -97,14 +97,42 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFirstName">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[6, 20]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLastName">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[6, 20]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldCellphoneNumber">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[6, 20]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldEmail">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[6, 20]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightnumber">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[6, 20]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldFlightnumberKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonSearch">
       <Properties>
@@ -130,34 +158,41 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHelpActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+    <Container class="javax.swing.JScrollPane" name="scrollPaneTable">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tableSearchCustomer">
+        <Component class="javax.swing.JTable" name="tableCustomer">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="5">
-                <Column editable="true" title="Luggage ID" type="java.lang.Object">
-                  <Data value=""/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Flight number" type="java.lang.Object"/>
-                <Column editable="true" title="Owner ID" type="java.lang.Object"/>
-                <Column editable="true" title="Status" type="java.lang.Object"/>
-                <Column editable="true" title="Location" type="java.lang.Object"/>
-                <Column editable="true" title="Origin" type="java.lang.Object"/>
-                <Column editable="true" title="Destination" type="java.lang.Object"/>
+              <Table columnCount="9" rowCount="0">
+                <Column editable="false" title="customer id" type="java.lang.Integer"/>
+                <Column editable="false" title="firstname" type="java.lang.String"/>
+                <Column editable="false" title="surname" type="java.lang.String"/>
+                <Column editable="false" title="email" type="java.lang.String"/>
+                <Column editable="false" title="cellphone" type="java.lang.String"/>
+                <Column editable="false" title="birthday" type="java.lang.String"/>
+                <Column editable="false" title="gender" type="java.lang.String"/>
+                <Column editable="false" title="adress" type="java.lang.String"/>
+                <Column editable="false" title="postcode" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

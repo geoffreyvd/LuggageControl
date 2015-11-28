@@ -26,8 +26,8 @@ public class CustomerDetails extends SwitchingJPanel {
         initComponents();
         PromptSupport.setPrompt("Flightnumber", textFieldAddFlightNumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAddFlightNumber);
-        PromptSupport.setPrompt("Cellphone", textFieldCellphoneNumber);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphoneNumber);
+        PromptSupport.setPrompt("Cellphone", textFieldCellphone);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
         PromptSupport.setPrompt("Email", textFieldEmail);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
         PromptSupport.setPrompt("Flightnumber", textFieldFlightNumber);
@@ -68,10 +68,10 @@ public class CustomerDetails extends SwitchingJPanel {
         labelSurnameDisplay = new javax.swing.JLabel();
         labelOwnerId = new javax.swing.JLabel();
         labelOwnerIdDisplay = new javax.swing.JLabel();
-        textFieldCellphoneNumber = new javax.swing.JFormattedTextField();
+        textFieldCellphone = new javax.swing.JFormattedTextField();
         textFieldEmail = new javax.swing.JFormattedTextField();
         textFieldAddFlightNumber = new javax.swing.JFormattedTextField();
-        comboBoxFlightNumbersList = new javax.swing.JComboBox();
+        comboBoxFlightNumber = new javax.swing.JComboBox();
         buttonRemoveFlightNumber = new javax.swing.JButton();
         buttonUpdateCustomer = new javax.swing.JButton();
         buttonCancelChanges = new javax.swing.JButton();
@@ -107,10 +107,10 @@ public class CustomerDetails extends SwitchingJPanel {
         labelOwnerIdDisplay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelOwnerIdDisplay.setText(" XXXXXXXXX");
 
-        textFieldCellphoneNumber.setMaximumSize(new java.awt.Dimension(150, 150));
-        textFieldCellphoneNumber.addActionListener(new java.awt.event.ActionListener() {
+        textFieldCellphone.setMaximumSize(new java.awt.Dimension(150, 150));
+        textFieldCellphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldCellphoneNumberActionPerformed(evt);
+                textFieldCellphoneActionPerformed(evt);
             }
         });
 
@@ -118,7 +118,7 @@ public class CustomerDetails extends SwitchingJPanel {
 
         textFieldAddFlightNumber.setMaximumSize(new java.awt.Dimension(150, 150));
 
-        comboBoxFlightNumbersList.setMaximumSize(new java.awt.Dimension(150, 150));
+        comboBoxFlightNumber.setMaximumSize(new java.awt.Dimension(150, 150));
 
         buttonRemoveFlightNumber.setText("Remove");
         buttonRemoveFlightNumber.addActionListener(new java.awt.event.ActionListener() {
@@ -233,8 +233,8 @@ public class CustomerDetails extends SwitchingJPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(textFieldAddFlightNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textFieldEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboBoxFlightNumbersList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(textFieldCellphone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxFlightNumber, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(buttonRemoveFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
@@ -276,10 +276,10 @@ public class CustomerDetails extends SwitchingJPanel {
                             .addComponent(labelOwnerIdDisplay))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboBoxFlightNumbersList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonRemoveFlightNumber))
                         .addGap(11, 11, 11)
-                        .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldCellphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -309,9 +309,9 @@ public class CustomerDetails extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldCellphoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCellphoneNumberActionPerformed
+    private void textFieldCellphoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCellphoneActionPerformed
         this.userNotAFK();
-    }//GEN-LAST:event_textFieldCellphoneNumberActionPerformed
+    }//GEN-LAST:event_textFieldCellphoneActionPerformed
 
     private void textFieldLuggageIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLuggageIdActionPerformed
         this.userNotAFK();
@@ -355,7 +355,7 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JButton buttonRemoveFlightNumber;
     private javax.swing.JButton buttonSearchLuggage;
     private javax.swing.JButton buttonUpdateCustomer;
-    private javax.swing.JComboBox comboBoxFlightNumbersList;
+    private javax.swing.JComboBox comboBoxFlightNumber;
     private javax.swing.JComboBox comboBoxStatusList;
     private javax.swing.JLabel labelHeaderLeftSide;
     private javax.swing.JLabel labelHeaderRightSide;
@@ -369,7 +369,7 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JSeparator separatorScreenDefider;
     private javax.swing.JTable tableSearch;
     private javax.swing.JFormattedTextField textFieldAddFlightNumber;
-    private javax.swing.JFormattedTextField textFieldCellphoneNumber;
+    private javax.swing.JFormattedTextField textFieldCellphone;
     private javax.swing.JFormattedTextField textFieldEmail;
     private javax.swing.JFormattedTextField textFieldFlightNumber;
     private javax.swing.JFormattedTextField textFieldLuggageId;

@@ -54,8 +54,8 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="textFieldAddFlightNumber" alignment="0" max="32767" attributes="0"/>
                           <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldCellphoneNumber" alignment="0" max="32767" attributes="0"/>
-                          <Component id="comboBoxFlightNumbersList" max="32767" attributes="0"/>
+                          <Component id="textFieldCellphone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comboBoxFlightNumber" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonRemoveFlightNumber" min="-2" pref="80" max="-2" attributes="0"/>
@@ -108,11 +108,11 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="comboBoxFlightNumbersList" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonRemoveFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="textFieldCellphoneNumber" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldCellphone" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -206,14 +206,14 @@
         <Property name="text" type="java.lang.String" value=" XXXXXXXXX"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldCellphoneNumber">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldCellphone">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 150]"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCellphoneNumberActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCellphoneActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldEmail">
@@ -230,7 +230,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboBoxFlightNumbersList">
+    <Component class="javax.swing.JComboBox" name="comboBoxFlightNumber">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
