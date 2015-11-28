@@ -302,7 +302,7 @@ public class LuggageControl extends javax.swing.JFrame {
             this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
         }
         else if(secman.getPermissions() == 3) {
-            this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+            this.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
         }
         else {
             this.switchJPanel(ScreenNames.LOGINSCREEN);
