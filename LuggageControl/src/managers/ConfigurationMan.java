@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import static java.lang.Thread.sleep;
 import main.LuggageControl;
 
 /**

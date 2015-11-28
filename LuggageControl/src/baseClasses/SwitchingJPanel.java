@@ -2,10 +2,9 @@ package baseClasses;
 
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import main.LuggageControl;
 
@@ -75,25 +74,30 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
      * @param label 
      */
     protected synchronized void resetLabel(final int time, final JLabel label) {
-        
-        // my very first iterator
-        // turns out you can't access a arraylist while you are looping through it with for / while etc
-        // ConcurrentModificationException
-        for(Iterator<LabelThread> labelIter = resetLabels.iterator(); labelIter.hasNext(); ) {
-            LabelThread resetLabel = labelIter.next();
-            if(resetLabel.getLabel() == label) {
-                resetLabel.setCanceled(true);
-                // resetLabels.remove(resetLabel);
+        try {
+            // my very first iterator
+            // turns out you can't access a arraylist while you are looping through it with for / while etc
+            // ConcurrentModificationException
+            for(Iterator<LabelThread> labelIter = resetLabels.iterator(); labelIter.hasNext(); ) {
+                LabelThread resetLabel = labelIter.next();
+                if(resetLabel.getLabel() == label) {
+                    resetLabel.setCanceled(true);
+                    // resetLabels.remove(resetLabel);
+                }
+                if(!resetLabel.isAlive()) {
+                    resetLabels.remove(resetLabel);
+                }
             }
-            if(!resetLabel.isAlive()) {
-                resetLabels.remove(resetLabel);
-            }
+
+            LabelThread resetText = new LabelThread("resetText-" + label.getClass().getSimpleName(), time, label);
+
+            resetLabels.add(resetText);
+
+            resetText.start();
         }
-        
-        LabelThread resetText = new LabelThread("resetText-" + label.getClass().getSimpleName(), time, label);
-        
-        resetLabels.add(resetText);
-        
-        resetText.start();
+        catch(ConcurrentModificationException e) {
+            System.err.println("Multiple modifcations of array list at the same time see issue: #75");
+            System.err.println("https://github.com/geoffreyvd/LuggageControl/issues/75");
+        }
     }
 }
