@@ -5,6 +5,7 @@
  */
 package screen;
 
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
@@ -20,6 +21,8 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author Admin
  */
 public class CustomerDetails extends SwitchingJPanel {
+    
+    private int currentCustomerId = 0; 
 
     public CustomerDetails(LuggageControl luggageControl) {
         super(luggageControl);
@@ -44,11 +47,16 @@ public class CustomerDetails extends SwitchingJPanel {
         try {
             DatabaseMan db = new DatabaseMan();
             ResultSet result = db.query("SELECT * FROM customer WHERE customer_id = ?", new String[]{customerID + ""});
-            labelNameDisplay.setText(result.getString("firstname"));
-            labelSurnameDisplay.setText(result.getString("surname"));
-            labelOwnerIdDisplay.setText(result.getString("customer_id"));
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
+            // get the first row result
+            while(result.next()) {
+                labelNameDisplay.setText(result.getString("firstname"));
+                labelSurnameDisplay.setText(result.getString("surname"));
+                labelOwnerIdDisplay.setText(result.getString("customer_id"));
+                currentCustomerId = Integer.parseInt(result.getString("customer_id"));
+            }
+        } 
+        catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
     }
     
@@ -102,7 +110,7 @@ public class CustomerDetails extends SwitchingJPanel {
         labelSurnameDisplay.setText(" XXXXXXXXX");
 
         labelOwnerId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelOwnerId.setText("Owner ID: ");
+        labelOwnerId.setText("Customer id");
 
         labelOwnerIdDisplay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelOwnerIdDisplay.setText(" XXXXXXXXX");
@@ -221,7 +229,7 @@ public class CustomerDetails extends SwitchingJPanel {
                                         .addComponent(labelNameDisplay))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(labelOwnerId)
-                                        .addGap(0, 0, 0)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(labelOwnerIdDisplay))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(labelSurname)
@@ -332,19 +340,19 @@ public class CustomerDetails extends SwitchingJPanel {
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_buttonRemoveActionPerformed
 
 

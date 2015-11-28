@@ -11,6 +11,8 @@ import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
@@ -131,6 +133,7 @@ public class SearchCustomer extends SwitchingJPanel {
      */
     public void switchCustomerDetails(int customerId) {
         this.luggageControl.prefillPanel(ScreenNames.CUSTOMER_DETAILS, customerId);
+        this.luggageControl.switchJPanel(ScreenNames.CUSTOMER_DETAILS);
     }
 
     /**
@@ -330,7 +333,17 @@ public class SearchCustomer extends SwitchingJPanel {
     }//GEN-LAST:event_textFieldFlightnumberKeyPressed
 
     private void tableCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableCustomerKeyPressed
-        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER) {
+            JTable tempTable = new JTable();
+            try {
+                tempTable = (JTable)evt.getComponent();
+            }
+            catch(Exception e) {
+                new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+            }
+            // look at this one liner
+            switchCustomerDetails(Integer.parseInt((String)tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
+        }
     }//GEN-LAST:event_tableCustomerKeyPressed
 
     private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked

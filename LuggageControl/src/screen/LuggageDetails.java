@@ -46,6 +46,7 @@ public class LuggageDetails extends SwitchingJPanel {
     
     /**
      * Prepares the screen with data based on the supplied customer id
+     * This does absolutly nothing yet
      * @param customerID the customer id get this from the database
      */
     public void loadLuggage(int customerID) {

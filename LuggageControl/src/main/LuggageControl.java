@@ -570,6 +570,7 @@ public class LuggageControl extends javax.swing.JFrame {
             customerDetails.loadCustomer(id);
         }
         else if(panelName.equals(ScreenNames.LUGGAGE_DETAILS)) {
+            // does not work!
             luggageDetails.loadLuggage(id);
         }
         else {
