@@ -302,7 +302,7 @@ public class LuggageControl extends javax.swing.JFrame {
             this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
         }
         else if(secman.getPermissions() == 3) {
-            this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+            this.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
         }
         else {
             this.switchJPanel(ScreenNames.LOGINSCREEN);
@@ -524,19 +524,19 @@ public class LuggageControl extends javax.swing.JFrame {
     /**
      * Switch a screen.help panel to a specific tab.
      * @param tabName the name of the tab
-     * @param helpScreen the help screen must be of package screen.help
+     * @param panelName the help screen must be of package screen.help
      */
-    public void switchTab(String tabName, String helpScreen) {
-        if(helpScreen == ScreenNames.Help.ADDING) {
+    public void switchTab(String tabName, String panelName) {
+        if(panelName == ScreenNames.Help.ADDING) {
             helpAdding.selectTab(tabName);
         }
-        else if(helpScreen == ScreenNames.Help.FINDING) {
+        else if(panelName == ScreenNames.Help.FINDING) {
             helpFinding.selectTab(tabName);
         }
-        else if(helpScreen == ScreenNames.Help.LINKING) {
+        else if(panelName == ScreenNames.Help.LINKING) {
             helpLinking.selectTab(tabName);
         }
-        else if(helpScreen == ScreenNames.Help.REMOVING) {
+        else if(panelName == ScreenNames.Help.REMOVING) {
             helpRemoving.selectTab(tabName);
         }
         else {
@@ -558,8 +558,27 @@ public class LuggageControl extends javax.swing.JFrame {
             }
         }
     }
-    // </editor-fold>
     
+    /**
+     * Special function to prefill detail panels with information based on a specific ID
+     * When supplying a panelName make sure this is a details panel.
+     * @param panelName the panelName from the screen constants, this must be a details screen in order to work 
+     * @param id the specific ID
+     */
+    public void prefillPanel(String panelName, int id) {
+        if(panelName.equals(ScreenNames.CUSTOMER_DETAILS)) {
+            customerDetails.loadCustomer(id);
+        }
+        else if(panelName.equals(ScreenNames.LUGGAGE_DETAILS)) {
+            // does not work!
+            luggageDetails.loadLuggage(id);
+        }
+        else {
+            new ErrorJDialog(this, true, "Error: Trying to prefill detail panel which does not exist", (new Throwable()).getStackTrace());
+        }
+    }
+    
+    // <editor-fold defaultstate="collapsed" desc="user management methods">
     /**
      * Parse to login to the security manager and attempt a login sequence.
      * @param username the username as described in the database
@@ -607,4 +626,5 @@ public class LuggageControl extends javax.swing.JFrame {
     public void userTimeOut() {
         this.switchJPanel(ScreenNames.LOGINSCREEN);
     }
+    // </editor-fold>
 }

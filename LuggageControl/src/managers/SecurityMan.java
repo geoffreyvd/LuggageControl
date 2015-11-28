@@ -1,12 +1,17 @@
 package managers;
 
 import constants.ScreenNames;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import javax.print.attribute.DateTimeSyntax;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.LuggageControl;
 
 /**
@@ -63,6 +68,7 @@ public class SecurityMan {
     private timeOutTimerTask fireTimeOut;
 
     // </editor-fold>
+    
     /**
      * Manage logging in automatic time outs and other security aspects
      *
@@ -84,10 +90,41 @@ public class SecurityMan {
     
     /**
      * 
-     * @param originalDate
+     * @param password
      * @return 
      */
-    public static String filteredDate(String originalDate) {
+    public String[] encodePassword(String password) {
+        SecureRandom number;
+        try {
+            number = SecureRandom.getInstance("SHA1PRNG");
+            byte[] salt = new byte[47];
+            number.nextBytes(salt);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SecurityMan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return new String[]{"This", "Gonna suck"};
+    }
+    
+    /**
+     * Checks if the string is a valid according to the supplied date format
+     * @param originalDate string to be checked for containing date string or empty string for default yyyy-MM-dd dateformat.
+     * @return the string if it is valid or a empty string if it is not
+     */
+    public static String filteredDate(String originalDate, String dateFormat) {
+        Date date = null;
+        if(dateFormat.equals("")) {
+            dateFormat = "yyyy-MM-dd";
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+            date = sdf.parse(originalDate);
+        } catch (Exception ex) {
+            
+        }
+        if(date.before(new Date())) {
+            return originalDate;
+        }
         return "";
     }
     
@@ -120,6 +157,15 @@ public class SecurityMan {
      */
     public static String filteredDateTime(String originalDateTime, Timestamp minimumDateTime, Timestamp maximumDateTime) {
         return originalDateTime;
+    }
+    
+    /**
+     * 
+     * @param originalEmail
+     * @return 
+     */
+    public static String filteredEmail(String originalEmail) {
+        return originalEmail;
     }
     
     /**
@@ -216,7 +262,7 @@ public class SecurityMan {
         String[] values1 = new String[2];
         values1[0] = username;
         values1[1] = password;
-        String query = "select permissions from user where username = ? and password = ?";
+        String query = "select permission from user where username = ? and password = ?";
         
         //This query will return a string, it only returns 1 value!
         String result = databaseMan.queryOneResult(query, values1);

@@ -35,7 +35,7 @@ public class SwitchingJPanel extends javax.swing.JPanel{
             try {
                 sleep(time);
                 if(!canceled.get()) {
-                    label.setText("");
+                    this.label.setText("");
                 }
             } catch (InterruptedException ex) {
             }
@@ -45,7 +45,7 @@ public class SwitchingJPanel extends javax.swing.JPanel{
             canceled.set(cancel);
         }
 
-        public synchronized JLabel getLabel() {
+        public  JLabel getLabel() {
             return label;
         } 
     }
