@@ -35,10 +35,10 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="textFieldFirstName" pref="155" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldCellphoneNumber" pref="155" max="32767" attributes="0"/>
+                                  <Component id="textFieldCellphone" pref="155" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="textFieldLastName" pref="155" max="32767" attributes="0"/>
+                                  <Component id="textFieldSurName" pref="155" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                   <Component id="textFieldEmail" pref="155" max="32767" attributes="0"/>
                               </Group>
@@ -63,11 +63,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="textFieldFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldCellphoneNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCellphone" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldSurName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -103,14 +103,14 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldLastName">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldSurName">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[6, 20]"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldCellphoneNumber">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldCellphone">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[6, 20]"/>
