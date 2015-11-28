@@ -7,7 +7,12 @@ package screen;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.LuggageControl;
+import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -37,6 +42,22 @@ public class LuggageDetails extends SwitchingJPanel {
         PromptSupport.setPrompt("Name", textFieldSearchName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSearchName);
         
+    }
+    
+    /**
+     * Prepares the screen with data based on the supplied customer id
+     * @param customerID the customer id get this from the database
+     */
+    public void loadLuggage(int customerID) {
+//        try {
+//            DatabaseMan db = new DatabaseMan();
+//            ResultSet result = db.query("SELECT * FROM customer WHERE customer_id = ?", new String[]{customerID + ""});
+//            labelNameDisplay.setText(result.getString("firstname"));
+//            labelSurnameDisplay.setText(result.getString("surname"));
+//            labelOwnerIdDisplay.setText(result.getString("customer_id"));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**

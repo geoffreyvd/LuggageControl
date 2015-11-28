@@ -44,6 +44,12 @@ public class SearchCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
     }
     
+    /**
+     * Fill our table with data based on the user provided dataset,
+     * currently filtering is not really present
+     * but atleast the UNION and INNER JOIN work so i am quite happy ~Corne Lukken.
+     * 
+     */
     public void fillCustomerTable() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT * FROM customer";
@@ -116,6 +122,15 @@ public class SearchCustomer extends SwitchingJPanel {
         catch(Exception e) {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
+    }
+    
+    /**
+     * Go to the customer details screen based on the selected customer id
+     * This method is best used in conjunction with the fillTableCustomers.
+     * @param customerId The specific database customer id from the customer table
+     */
+    public void switchCustomerDetails(int customerId) {
+        this.luggageControl.prefillPanel(ScreenNames.CUSTOMER_DETAILS, customerId);
     }
 
     /**
@@ -200,6 +215,17 @@ public class SearchCustomer extends SwitchingJPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tableCustomer.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCustomerMouseClicked(evt);
+            }
+        });
+        tableCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableCustomerKeyPressed(evt);
             }
         });
         scrollPaneTable.setViewportView(tableCustomer);
@@ -302,6 +328,14 @@ public class SearchCustomer extends SwitchingJPanel {
             this.fillCustomerTable();
         }
     }//GEN-LAST:event_textFieldFlightnumberKeyPressed
+
+    private void tableCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableCustomerKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableCustomerKeyPressed
+
+    private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableCustomerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
