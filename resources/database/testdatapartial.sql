@@ -60,7 +60,7 @@ CREATE TABLE `customer_flight` (
   PRIMARY KEY (`flight_id`,`customer_id`),
   KEY `fk_client_flights_clients1_idx` (`customer_id`),
   CONSTRAINT `fk_client_flights_clients1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_client_flights_flights` FOREIGN KEY (`flight_id`) REFERENCES `flights` (`flight_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_client_flights_flights` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,17 +97,18 @@ CREATE TABLE `customer_luggage` (
 
 LOCK TABLES `customer_luggage` WRITE;
 /*!40000 ALTER TABLE `customer_luggage` DISABLE KEYS */;
+INSERT INTO `customer_luggage` VALUES (1,1);
 /*!40000 ALTER TABLE `customer_luggage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `flights`
+-- Table structure for table `flight`
 --
 
-DROP TABLE IF EXISTS `flights`;
+DROP TABLE IF EXISTS `flight`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `flights` (
+CREATE TABLE `flight` (
   `flight_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `origin` varchar(45) DEFAULT NULL,
   `destination` varchar(45) DEFAULT NULL,
@@ -119,13 +120,13 @@ CREATE TABLE `flights` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `flights`
+-- Dumping data for table `flight`
 --
 
-LOCK TABLES `flights` WRITE;
-/*!40000 ALTER TABLE `flights` DISABLE KEYS */;
-INSERT INTO `flights` VALUES (1,'New york','Las Vegas','1700-01-01 00:00:00','1700-01-01 12:00:00'),(2,'Las Vegas','New york','1700-01-02 00:00:00','1700-01-02 12:00:00');
-/*!40000 ALTER TABLE `flights` ENABLE KEYS */;
+LOCK TABLES `flight` WRITE;
+/*!40000 ALTER TABLE `flight` DISABLE KEYS */;
+INSERT INTO `flight` VALUES (1,'New york','Las Vegas','1700-01-01 00:00:00','1700-01-01 12:00:00'),(2,'Las Vegas','New york','1700-01-02 00:00:00','1700-01-02 12:00:00');
+/*!40000 ALTER TABLE `flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -146,7 +147,7 @@ CREATE TABLE `luggage` (
   `image` blob,
   PRIMARY KEY (`luggage_id`),
   UNIQUE KEY `id_UNIQUE` (`luggage_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +156,7 @@ CREATE TABLE `luggage` (
 
 LOCK TABLES `luggage` WRITE;
 /*!40000 ALTER TABLE `luggage` DISABLE KEYS */;
-INSERT INTO `luggage` VALUES (1,'Las Vegas','pink',1337,'Large','Dildo, Dildo, Amphetamine 2 gram, Xanax 5 gram, Arkasia ethereality cd ','Found',NULL);
+INSERT INTO `luggage` VALUES (1,'Las Vegas','pink',1337,'Large','Dildo, Dildo, Amphetamine 2 gram, Xanax 5 gram, Arkasia ethereality cd ','Lost',NULL),(2,'Las Vegas','pink',1335,'Large','Dildo, Amphetamine, Xanax, Arkasia cd','Found',NULL);
 /*!40000 ALTER TABLE `luggage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +172,7 @@ CREATE TABLE `luggage_flight` (
   `luggage_id` int(10) unsigned NOT NULL,
   KEY `fk_luggage_flights_flights1_idx` (`flight_id`),
   KEY `fk_luggage_flights_luggage1_idx` (`luggage_id`),
-  CONSTRAINT `fk_luggage_flights_flights1` FOREIGN KEY (`flight_id`) REFERENCES `flights` (`flight_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_luggage_flights_flights1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_luggage_flights_luggage1` FOREIGN KEY (`luggage_id`) REFERENCES `luggage` (`luggage_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -182,6 +183,7 @@ CREATE TABLE `luggage_flight` (
 
 LOCK TABLES `luggage_flight` WRITE;
 /*!40000 ALTER TABLE `luggage_flight` DISABLE KEYS */;
+INSERT INTO `luggage_flight` VALUES (2,1);
 /*!40000 ALTER TABLE `luggage_flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-28 13:14:12
+-- Dump completed on 2015-11-28 15:06:12

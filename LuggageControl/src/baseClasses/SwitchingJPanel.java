@@ -1,8 +1,11 @@
 package baseClasses;
 
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import main.LuggageControl;
 
@@ -10,7 +13,7 @@ import main.LuggageControl;
  * Extension JPanel with event to switch screens
  * @author Corne Lukken
  */
-public class SwitchingJPanel extends javax.swing.JPanel{    
+public abstract class SwitchingJPanel extends javax.swing.JPanel{    
     
     protected LuggageControl luggageControl;
     
@@ -45,7 +48,7 @@ public class SwitchingJPanel extends javax.swing.JPanel{
             canceled.set(cancel);
         }
 
-        public  JLabel getLabel() {
+        public JLabel getLabel() {
             return label;
         } 
     }
@@ -53,6 +56,11 @@ public class SwitchingJPanel extends javax.swing.JPanel{
     public SwitchingJPanel(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
     }
+    
+    /**
+     * method to update the panel with new database information, called when luggagecontrol switches to this panel.
+     */
+    // protected abstract void updatePanel();
     
     /**
      * Make luggagecontrol aware that the user is not afk and has moved.
@@ -85,6 +93,7 @@ public class SwitchingJPanel extends javax.swing.JPanel{
         LabelThread resetText = new LabelThread("resetText-" + label.getClass().getSimpleName(), time, label);
         
         resetLabels.add(resetText);
+        
         resetText.start();
     }
 }

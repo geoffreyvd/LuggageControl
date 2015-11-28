@@ -16,58 +16,68 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="labelHeaderLeftSide" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="buttonUpdateCustomer" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="buttonCancelChanges" min="-2" pref="80" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="labelName" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="labelNameDisplay" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="buttonRemoveFlightNumber" min="-2" pref="80" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="labelHeaderLeftSide" alignment="0" pref="287" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelOwnerId" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="labelOwnerIdDisplay" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelSurname" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="labelSurnameDisplay" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="buttonUpdateCustomer" min="-2" pref="80" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="buttonCancelChanges" min="-2" pref="80" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="labelName" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Component id="labelNameDisplay" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="labelOwnerId" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="labelOwnerIdDisplay" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="labelSurname" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Component id="labelSurnameDisplay" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace pref="72" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelStatus" min="-2" pref="349" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textFieldAddFlight" max="32767" attributes="0"/>
+                                  <Component id="textFieldEmail" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="textFieldCellphone" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="comboBoxFlight" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="textFieldAddFlightNumber" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldCellphone" alignment="0" max="32767" attributes="0"/>
-                          <Component id="comboBoxFlightNumber" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="buttonRemoveFlightNumber" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="separatorScreenDefider" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="separatorScreenDefider" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="buttonSearchLuggage" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelHeaderRightSide" max="32767" attributes="0"/>
+                      <Component id="labelHeaderRightSide" pref="304" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonHelp" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
@@ -75,9 +85,9 @@
                       </Group>
                   </Group>
                   <Component id="scrollPaneSearchTable" alignment="1" pref="0" max="32767" attributes="0"/>
-                  <Component id="comboBoxStatusList" alignment="0" max="32767" attributes="0"/>
+                  <Component id="comboBoxStatus" alignment="0" max="32767" attributes="0"/>
                   <Component id="textFieldLuggageId" alignment="0" max="32767" attributes="0"/>
-                  <Component id="textFieldFlightNumber" alignment="0" max="32767" attributes="0"/>
+                  <Component id="textFieldFlight" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -106,9 +116,9 @@
                           <Component id="labelOwnerId" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelOwnerIdDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="comboBoxFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxFlight" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonRemoveFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -116,8 +126,10 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldAddFlightNumber" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Component id="textFieldAddFlight" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelStatus" min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonUpdateCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonCancelChanges" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -135,11 +147,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldLuggageId" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldFlightNumber" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldFlight" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="comboBoxStatusList" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBoxStatus" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="scrollPaneSearchTable" pref="0" max="32767" attributes="0"/>
+                      <Component id="scrollPaneSearchTable" pref="213" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonSearchLuggage" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -223,14 +235,14 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldAddFlightNumber">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldAddFlight">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 150]"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboBoxFlightNumber">
+    <Component class="javax.swing.JComboBox" name="comboBoxFlight">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -284,17 +296,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldLuggageIdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldFlightNumber">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldFlight">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 150]"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldFlightNumberActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldFlightActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboBoxStatusList">
+    <Component class="javax.swing.JComboBox" name="comboBoxStatus">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -369,6 +381,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backToSearchCustomer"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelStatus">
     </Component>
   </SubComponents>
 </Form>

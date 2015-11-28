@@ -11,7 +11,6 @@ import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
@@ -46,11 +45,14 @@ public class SearchCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
     }
     
+    private void resetCustomerTableSelection() {
+        tableCustomer.clearSelection();
+    }
+    
     /**
      * Fill our table with data based on the user provided dataset,
      * currently filtering is not really present
      * but atleast the UNION and INNER JOIN work so i am quite happy ~Corne Lukken.
-     * 
      */
     public void fillCustomerTable() {
         ResultSet result = new EmptyResultSet();
@@ -343,6 +345,8 @@ public class SearchCustomer extends SwitchingJPanel {
             }
             // look at this one liner
             switchCustomerDetails(Integer.parseInt((String)tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
+            
+            this.resetCustomerTableSelection();
         }
     }//GEN-LAST:event_tableCustomerKeyPressed
 

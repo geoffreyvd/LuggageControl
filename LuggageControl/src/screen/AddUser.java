@@ -310,7 +310,7 @@ public class AddUser extends SwitchingJPanel {
         
         // check if the email does not yet exist
         if(!db.queryOneResult("SELECT `email` FROM user WHERE email = ?", new String[]{textFieldEmail.getText()}).equals("")) {
-            labelStatus.setText("Email already taken!");
+            labelStatus.setText("Email adress already taken!");
             this.resetLabel(5000, labelStatus);
             return;
         }
