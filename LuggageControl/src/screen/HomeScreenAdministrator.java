@@ -169,7 +169,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed

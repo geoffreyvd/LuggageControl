@@ -161,7 +161,7 @@ public class DeleteCustomer extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
@@ -179,11 +179,8 @@ public class DeleteCustomer extends SwitchingJPanel {
             query+= " OR firstname = ?";
             values.add(sc.filteredString(textFieldCustomerName.getText()));
         }
-//        String[] values = {
-//        textFieldCustomerName.getText(),
-//        textFieldCustomerId.getText()};
         
-        query+= " order by customer_id desc limit 4;";
+        query+= " limit 4;";
         buildTable(query, values.toArray(new String[values.size()]));
     }//GEN-LAST:event_buttonSearchActionPerformed
 
