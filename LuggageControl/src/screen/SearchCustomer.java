@@ -77,9 +77,14 @@ public class SearchCustomer extends SwitchingJPanel {
                 values.add(sc.filteredString(textFieldCellphone.getText()));
             }
             
+            
+            // If you get a mysql error saying: not unique table/alias look here 
+            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
+            // You need to create a mysql alias if you select multiple times from the same table!
             if(!textFieldFlightnumber.getText().equals("")) {
-                query += "UNION SELECT * FROM `customer_flight` INNER JOIN `customer_flight`.`customer_id` ON `customer`.`customer_id` ";
-                query += "WHERE `customer_flight`.`flight_id` = ?";
+                query += "UNION SELECT customer.customer_id, firstname, surname, email, cellphone, birthday, gender, adress, postcode ";
+                query += "FROM `customer_flight` INNER JOIN `customer` ON `customer`.`customer_id` ";
+                query += "WHERE `customer_flight`.`flight_id` = ? AND `customer`.`customer_id` = `customer_flight`.`customer_id`";
                 values.add(sc.filteredString(textFieldFlightnumber.getText()));
             }
             

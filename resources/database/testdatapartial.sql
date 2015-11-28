@@ -34,7 +34,7 @@ CREATE TABLE `customer` (
   `postcode` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `id_UNIQUE` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,18 +43,18 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'henk','henk','henk','123','1996-12-20','Male','henklaan 2','23845GFE');
+INSERT INTO `customer` VALUES (1,'henk','tank','lovetanks@aol.com','06638638638','1822-04-22','Androgenous','tanklane 1337','1337TANK'),(2,'mary','currie','uranium@hotmail.com','06238','1922-03-17','fEMALE','cesiumlane 13','84572OP');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `customer_flights`
+-- Table structure for table `customer_flight`
 --
 
-DROP TABLE IF EXISTS `customer_flights`;
+DROP TABLE IF EXISTS `customer_flight`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customer_flights` (
+CREATE TABLE `customer_flight` (
   `flight_id` int(10) unsigned NOT NULL,
   `customer_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`flight_id`,`customer_id`),
@@ -65,12 +65,13 @@ CREATE TABLE `customer_flights` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customer_flights`
+-- Dumping data for table `customer_flight`
 --
 
-LOCK TABLES `customer_flights` WRITE;
-/*!40000 ALTER TABLE `customer_flights` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customer_flights` ENABLE KEYS */;
+LOCK TABLES `customer_flight` WRITE;
+/*!40000 ALTER TABLE `customer_flight` DISABLE KEYS */;
+INSERT INTO `customer_flight` VALUES (2,1);
+/*!40000 ALTER TABLE `customer_flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `flights` (
 
 LOCK TABLES `flights` WRITE;
 /*!40000 ALTER TABLE `flights` DISABLE KEYS */;
-INSERT INTO `flights` VALUES (1,'Las Vegas','New York','1993-10-10 12:00:00','1993-10-12 01:00:00'),(2,'New York','Las Vegas','1993-10-12 03:00:00','1993-10-13 18:00:00');
+INSERT INTO `flights` VALUES (1,'New york','Las Vegas','1700-01-01 00:00:00','1700-01-01 12:00:00'),(2,'Las Vegas','New york','1700-01-02 00:00:00','1700-01-02 12:00:00');
 /*!40000 ALTER TABLE `flights` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +146,7 @@ CREATE TABLE `luggage` (
   `image` blob,
   PRIMARY KEY (`luggage_id`),
   UNIQUE KEY `id_UNIQUE` (`luggage_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,17 +155,18 @@ CREATE TABLE `luggage` (
 
 LOCK TABLES `luggage` WRITE;
 /*!40000 ALTER TABLE `luggage` DISABLE KEYS */;
+INSERT INTO `luggage` VALUES (1,'Las Vegas','pink',1337,'Large','Dildo, Dildo, Amphetamine 2 gram, Xanax 5 gram, Arkasia ethereality cd ','Found',NULL);
 /*!40000 ALTER TABLE `luggage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `luggage_flights`
+-- Table structure for table `luggage_flight`
 --
 
-DROP TABLE IF EXISTS `luggage_flights`;
+DROP TABLE IF EXISTS `luggage_flight`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `luggage_flights` (
+CREATE TABLE `luggage_flight` (
   `flight_id` int(10) unsigned NOT NULL,
   `luggage_id` int(10) unsigned NOT NULL,
   KEY `fk_luggage_flights_flights1_idx` (`flight_id`),
@@ -175,12 +177,12 @@ CREATE TABLE `luggage_flights` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `luggage_flights`
+-- Dumping data for table `luggage_flight`
 --
 
-LOCK TABLES `luggage_flights` WRITE;
-/*!40000 ALTER TABLE `luggage_flights` DISABLE KEYS */;
-/*!40000 ALTER TABLE `luggage_flights` ENABLE KEYS */;
+LOCK TABLES `luggage_flight` WRITE;
+/*!40000 ALTER TABLE `luggage_flight` DISABLE KEYS */;
+/*!40000 ALTER TABLE `luggage_flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -237,8 +239,9 @@ CREATE TABLE `user` (
   `permission` int(1) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `id_UNIQUE` (`user_id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +250,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (7,'danta1','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1),(8,'danta2','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2),(9,'danta3','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3);
+INSERT INTO `user` VALUES (7,'user1','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1),(8,'user2','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2),(9,'user3','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3),(10,'user0','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -260,4 +263,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-28 12:36:26
+-- Dump completed on 2015-11-28 13:14:12
