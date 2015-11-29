@@ -9,6 +9,7 @@ import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
@@ -21,16 +22,19 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author Gebruiker
  */
 public class DeleteCustomer extends SwitchingJPanel {
-  
+
     private SecurityMan sc;
-    
+    DatabaseMan db = new DatabaseMan();
+
     public DeleteCustomer(LuggageControl luggageControl) {
-        super(luggageControl);        
+        super(luggageControl);
         initComponents();
         PromptSupport.setPrompt("Customer Name", textFieldCustomerName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerName);
         PromptSupport.setPrompt("Customer ID", textFieldCustomerId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerId);
+        PromptSupport.setPrompt("Customer ID", textFieldDeleteCustomerId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDeleteCustomerId);
         buildTable();
     }
 
@@ -51,6 +55,8 @@ public class DeleteCustomer extends SwitchingJPanel {
         tableDeleteCustomer = new javax.swing.JTable();
         buttonBack = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
+        textFieldDeleteCustomerId = new javax.swing.JTextField();
 
         setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
 
@@ -72,17 +78,17 @@ public class DeleteCustomer extends SwitchingJPanel {
 
         tableDeleteCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Customer ID", "Customer name", "Remove"
+                "Customer ID", "Customer first name", "Customer surname", "Customer email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,6 +111,20 @@ public class DeleteCustomer extends SwitchingJPanel {
             }
         });
 
+        buttonDelete.setText("Delete");
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteActionPerformed(evt);
+            }
+        });
+
+        textFieldDeleteCustomerId.setPreferredSize(new java.awt.Dimension(6, 20));
+        textFieldDeleteCustomerId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldDeleteCustomerIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,18 +132,23 @@ public class DeleteCustomer extends SwitchingJPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelHeader)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(buttonSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textFieldCustomerId, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textFieldCustomerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+                        .addComponent(labelHeader)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(buttonSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldCustomerId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldCustomerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(161, 161, 161)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textFieldDeleteCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -136,22 +161,26 @@ public class DeleteCustomer extends SwitchingJPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
-                        .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonSearch))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDeleteCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonSearch)
+                            .addComponent(buttonDelete)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonBack)))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void textFieldCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCustomerNameActionPerformed
         this.userNotAFK();
-        
+
     }//GEN-LAST:event_textFieldCustomerNameActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
@@ -166,85 +195,90 @@ public class DeleteCustomer extends SwitchingJPanel {
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         this.userNotAFK();
+        
+        buildTable();
+    }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void textFieldDeleteCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDeleteCustomerIdActionPerformed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldDeleteCustomerIdActionPerformed
+
+    private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
+        this.userNotAFK();
+        if (!textFieldDeleteCustomerId.getText().equals("")) {
+            String query = "DELETE FROM `luggagecontroldata`.`customer_flight` WHERE `customer_id`= ?; ";
+            String[] values = {
+                sc.filteredString(textFieldDeleteCustomerId.getText())
+            };
+            String[] types = {
+                "String"
+            };
+            
+            try {
+                db.queryManipulation(query, values, types);
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            
+            query = "DELETE FROM `luggagecontroldata`.`customer` WHERE `customer_id`= ?;";
+            try {
+                db.queryManipulation(query, values, types);
+                textFieldDeleteCustomerId.setText("");
+                buildTable();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void buildTable() {
         ArrayList<String> values = new ArrayList<String>();
         String query = "SELECT * FROM luggagecontroldata.customer";
         if (!textFieldCustomerId.getText().equals("") || !textFieldCustomerName.getText().equals("")) {
-             query+= " WHERE 1 = 0";
+            query += " WHERE 1 = 0";
+        }else{
+            query += " order by customer_id desc";
         }
         if (!textFieldCustomerId.getText().equals("")) {
-            query+= " OR customer_id = ?";
+            query += " OR customer_id = ?";
             values.add(sc.filteredString(textFieldCustomerId.getText()));
         }
         if (!textFieldCustomerName.getText().equals("")) {
-            query+= " OR firstname = ?";
+            query += " OR firstname = ?";
             values.add(sc.filteredString(textFieldCustomerName.getText()));
         }
+
+        query += " limit 4;";
         
-        query+= " limit 4;";
-        buildTable(query, values.toArray(new String[values.size()]));
-    }//GEN-LAST:event_buttonSearchActionPerformed
-
-
-    private void buildTable(){
-        DatabaseMan db = new DatabaseMan();
         ResultSet result;
-        String query = "SELECT * FROM luggagecontroldata.customer order by customer_id desc limit 4;";
-        String[] values = new String[0];
-        
         try {
-            result = db.query(query, values);
-            DefaultTableModel datamodel = (DefaultTableModel)tableDeleteCustomer.getModel();
+            result = db.query(query, values.toArray(new String[values.size()]));
+            DefaultTableModel datamodel = (DefaultTableModel) tableDeleteCustomer.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
                 datamodel.removeRow(i);
             }
-            while(result.next()) {
+            while (result.next()) {
 
                 Object[] data = {
-                    result.getString("customer_id"), 
-                    result.getString("firstname")
+                    result.getString("customer_id"),
+                    result.getString("firstname"),
+                    result.getString("surname"),
+                    result.getString("email")
                 };
-                
+
                 // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
             tableDeleteCustomer.setModel(datamodel);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
         }
     }
-    
-    private void buildTable(String query, String[] values){
-        DatabaseMan db = new DatabaseMan();
-        ResultSet result;
-        
-        try {
-            result = db.query(query, values);
-            DefaultTableModel datamodel = (DefaultTableModel)tableDeleteCustomer.getModel();
-            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-                datamodel.removeRow(i);
-            }
-            while(result.next()) {
 
-                Object[] data = {
-                    result.getString("customer_id"), 
-                    result.getString("firstname")
-                };
-                
-                // datamodel.addRow is skipped problaby exception
-                datamodel.addRow(data);
-            }
-            tableDeleteCustomer.setModel(datamodel);
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
-        }
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
+    private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JLabel labelHeader;
@@ -252,6 +286,7 @@ public class DeleteCustomer extends SwitchingJPanel {
     private javax.swing.JTable tableDeleteCustomer;
     private javax.swing.JFormattedTextField textFieldCustomerId;
     private javax.swing.JFormattedTextField textFieldCustomerName;
+    private javax.swing.JTextField textFieldDeleteCustomerId;
     // End of variables declaration//GEN-END:variables
 
 }
