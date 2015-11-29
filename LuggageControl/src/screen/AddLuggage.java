@@ -230,14 +230,15 @@ public class AddLuggage extends SwitchingJPanel {
                 || "".equals(textFieldOwnerID.getText()) || "Status".equals(comboBoxLuggageStatus.getSelectedItem().toString())
                 || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
                 || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))) {
-
+            
+            System.out.println(comboBoxLuggageStatus.getSelectedItem().toString());
             String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage`"
-                    + "(`location`, `color`, `weight`, `size`, `status`, `contents`, `image`)  "
+                    + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
                     + "VALUES(?,?,?,?,?,?,?)";
             String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
                     + "(`flight_id`, `luggage_id`)  "
                     + "VALUES(?,?)";
-            String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer_lggage`"
+            String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer_luggage`"
                     + "(`customer_id`, `luggage_id`)  "
                     + "VALUES(?,?)";
             String querySearchLuggage = "SELECT MAX(luggage_id) FROM luggage";
