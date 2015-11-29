@@ -376,8 +376,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="scrollPaneLuggageTable" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="comboBoxLug" alignment="1" pref="407" max="32767" attributes="0"/>
-                          <Component id="textFieldLug" alignment="1" max="32767" attributes="0"/>
+                          <Component id="comboBoxLugStatus" alignment="1" pref="407" max="32767" attributes="0"/>
+                          <Component id="textFieldLugContent" alignment="1" max="32767" attributes="0"/>
                           <Component id="textFieldLuggageId" alignment="1" pref="407" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="buttonSearchLuggage" min="-2" pref="110" max="-2" attributes="0"/>
@@ -394,9 +394,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="textFieldLuggageId" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldLug" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldLugContent" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="comboBoxLug" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBoxLugStatus" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="scrollPaneLuggageTable" pref="221" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -417,14 +417,32 @@
                 <Component class="javax.swing.JTable" name="tableLugSearchLuggage">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="0">
-                        <Column editable="true" title="Luggage ID" type="java.lang.String"/>
-                        <Column editable="true" title="Flightnumber" type="java.lang.Integer"/>
-                        <Column editable="true" title="Status" type="java.lang.String"/>
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="false" title="Luggage ID" type="java.lang.Integer"/>
+                        <Column editable="false" title="Content" type="java.lang.String"/>
+                        <Column editable="false" title="Color" type="java.lang.String"/>
+                        <Column editable="false" title="Size" type="java.lang.String"/>
+                        <Column editable="false" title="Status" type="java.lang.String"/>
+                        <Column editable="false" title="Image" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -449,7 +467,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JComboBox" name="comboBoxLug">
+            <Component class="javax.swing.JComboBox" name="comboBoxLugStatus">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -459,7 +477,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="textFieldLug">
+            <Component class="javax.swing.JFormattedTextField" name="textFieldLugContent">
               <Properties>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[150, 150]"/>

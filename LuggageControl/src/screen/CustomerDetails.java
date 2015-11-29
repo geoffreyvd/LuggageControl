@@ -30,8 +30,8 @@ public class CustomerDetails extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
         PromptSupport.setPrompt("Email", textFieldEmail);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
-        PromptSupport.setPrompt("Flightnumber", textFieldLug);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLug);
+        PromptSupport.setPrompt("Flightnumber", textFieldLugContent);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLugContent);
         PromptSupport.setPrompt("Luggage ID", textFieldLuggageId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageId);
         PromptSupport.setPrompt("Postalcode", textFieldPostcode);
@@ -62,7 +62,7 @@ public class CustomerDetails extends SwitchingJPanel {
         textFieldPostcode.setText("");
         textFieldCellphone.setText("");
         textFieldEmail.setText("");
-        textFieldLug.setText("");
+        textFieldLugContent.setText("");
         textFieldLuggageId.setText("");
     }
     
@@ -340,8 +340,8 @@ public class CustomerDetails extends SwitchingJPanel {
         panelSearchLuggage = new javax.swing.JPanel();
         scrollPaneLuggageTable = new javax.swing.JScrollPane();
         tableLugSearchLuggage = new javax.swing.JTable();
-        comboBoxLug = new javax.swing.JComboBox();
-        textFieldLug = new javax.swing.JFormattedTextField();
+        comboBoxLugStatus = new javax.swing.JComboBox();
+        textFieldLugContent = new javax.swing.JFormattedTextField();
         textFieldLuggageId = new javax.swing.JFormattedTextField();
         buttonSearchLuggage = new javax.swing.JButton();
         panelSearchFlight = new javax.swing.JPanel();
@@ -439,22 +439,29 @@ public class CustomerDetails extends SwitchingJPanel {
 
             },
             new String [] {
-                "Luggage ID", "Flightnumber", "Status"
+                "Luggage ID", "Content", "Color", "Size", "Status", "Image"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         scrollPaneLuggageTable.setViewportView(tableLugSearchLuggage);
 
-        comboBoxLug.setMaximumSize(new java.awt.Dimension(150, 150));
+        comboBoxLugStatus.setMaximumSize(new java.awt.Dimension(150, 150));
 
-        textFieldLug.setMaximumSize(new java.awt.Dimension(150, 150));
+        textFieldLugContent.setMaximumSize(new java.awt.Dimension(150, 150));
 
         textFieldLuggageId.setMaximumSize(new java.awt.Dimension(150, 150));
 
@@ -473,8 +480,8 @@ public class CustomerDetails extends SwitchingJPanel {
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(comboBoxLug, javax.swing.GroupLayout.Alignment.TRAILING, 0, 407, Short.MAX_VALUE)
-                    .addComponent(textFieldLug, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxLugStatus, javax.swing.GroupLayout.Alignment.TRAILING, 0, 407, Short.MAX_VALUE)
+                    .addComponent(textFieldLugContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldLuggageId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                         .addComponent(buttonSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,9 +494,9 @@ public class CustomerDetails extends SwitchingJPanel {
                 .addContainerGap()
                 .addComponent(textFieldLuggageId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldLug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldLugContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboBoxLug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboBoxLugStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -753,7 +760,7 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JComboBox comboBoxFli;
     private javax.swing.JComboBox comboBoxFlight;
     private javax.swing.JComboBox comboBoxGender;
-    private javax.swing.JComboBox comboBoxLug;
+    private javax.swing.JComboBox comboBoxLugStatus;
     private javax.swing.JLabel labeBirthday;
     private javax.swing.JLabel labelBirthdayDisplay;
     private javax.swing.JLabel labelHeaderLeftSide;
@@ -779,7 +786,7 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldEmail;
     private javax.swing.JFormattedTextField textFieldFli;
     private javax.swing.JFormattedTextField textFieldFlightId;
-    private javax.swing.JFormattedTextField textFieldLug;
+    private javax.swing.JFormattedTextField textFieldLugContent;
     private javax.swing.JFormattedTextField textFieldLuggageId;
     private javax.swing.JFormattedTextField textFieldPostcode;
     // End of variables declaration//GEN-END:variables

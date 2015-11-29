@@ -74,14 +74,14 @@ public class SearchLuggage extends SwitchingJPanel {
 
             },
             new String [] {
-                "Luggage ID", "Flight number", "Owner ID", "Status", "Location"
+                "Luggage ID", "Location", "Color", "Weight", "Size", "Content", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -214,14 +214,14 @@ public class SearchLuggage extends SwitchingJPanel {
 
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT * FROM luggage";
+        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldLuggageID.getText().equals("") || !textFieldFlightNumber.getText().equals("")
-                || !textFieldOwnerID.getText().equals("") || !textFieldLocation.getText().equals("")
-                || !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
-            query += " WHERE 1=0 ";
+        if (!textFieldLuggageID.getText().equals("") || !textFieldFlightNumber.getText().equals("") ||
+            !textFieldOwnerID.getText().equals("") || !textFieldLocation.getText().equals("") || 
+            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+            query += "WHERE 1=0 ";
         }
 
         try {
@@ -231,30 +231,37 @@ public class SearchLuggage extends SwitchingJPanel {
             }
 
             if (!textFieldLocation.getText().equals("")) {
-                query += "OR surname = ? ";
+                query += "OR location = ? ";
                 values.add(sc.filteredString(textFieldLocation.getText()));
             }
 
-            if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("")) {
-                query += "OR email = ? ";
+            if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+                query += "OR status = ? ";
                 values.add(sc.filteredString(comboBoxLuggageStatus.getSelectedItem().toString()));
             }
 
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
+            
+            /*
+            query += "UNION SELECT `luggage`.`luggage_id`, flight_id, status, location ";
+            query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
             if (!textFieldFlightNumber.getText().equals("")) {
-                query += "UNION SELECT luggage.luggage_id, location, status ";
-                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` ";
-                query += "WHERE `luggage_flight`.`flight_id` = ? AND `luggage`.`luggage_id` = `luggage_flight`.`lugagge_id`";
+                query += "`luggage_flight`.`flight_id` = ? AND ";
                 values.add(sc.filteredString(textFieldFlightNumber.getText()));
             }
+            query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
+            
+            query += "UNION SELECT `luggage`.`luggage_id`, customer_id, status, location ";
+            query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
             if (!textFieldOwnerID.getText().equals("")) {
-                query += "UNION SELECT luggage.luggage_id, location, status ";
-                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` ";
-                query += "WHERE `customer_luggage`.`customer_id` = ? AND `luggage`.`luggage_id` = `customer_luggage`.`lugagge_id`";
+                query += "`customer_luggage`.`customer_id` = ? AND ";
                 values.add(sc.filteredString(textFieldFlightNumber.getText()));
             }
+            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
+                    
+            */
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
@@ -266,10 +273,12 @@ public class SearchLuggage extends SwitchingJPanel {
 
                 Object[] data = {
                     result.getString("luggage_id"),
-                    result.getString("flightnumber"),
-                    result.getString("customer_id"),
-                    result.getString("status"),
-                    result.getString("location")
+                    result.getString("location"),
+                    result.getString("color"),
+                    result.getString("weight"),
+                    result.getString("size"),
+                    result.getString("content"),
+                    result.getString("status")
                 };
 
                 // datamodel.addRow is skipped problaby exception
