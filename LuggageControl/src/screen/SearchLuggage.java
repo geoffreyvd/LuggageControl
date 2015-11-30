@@ -275,7 +275,7 @@ public class SearchLuggage extends SwitchingJPanel {
             query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
             if (!textFieldFlightNumber.getText().equals("")) {
                 query += "`luggage_flight`.`flight_id` = ? AND ";
-                values.add(sc.filteredString(textFieldFlightNumber.getText()));
+                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
             }
             query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
             
@@ -283,7 +283,7 @@ public class SearchLuggage extends SwitchingJPanel {
             query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
             if (!textFieldOwnerID.getText().equals("")) {
                 query += "`customer_luggage`.`customer_id` = ? AND ";
-                values.add(sc.filteredString(textFieldFlightNumber.getText()));
+                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
             }
             query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
                     
