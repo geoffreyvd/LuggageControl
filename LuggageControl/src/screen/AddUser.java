@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
 import managers.DatabaseMan;
-import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 /**
  *
@@ -93,13 +92,10 @@ public class AddUser extends SwitchingJPanel {
         comboBoxGender.setToolTipText("Gender");
         comboBoxGender.setMaximumSize(new java.awt.Dimension(120, 120));
 
-        textFieldFirstname.setText("placeholdfirstname");
         textFieldFirstname.setMaximumSize(new java.awt.Dimension(120, 120));
 
-        textFieldBirthday.setText("1994-01-30");
         textFieldBirthday.setMaximumSize(new java.awt.Dimension(120, 120));
 
-        textFieldSurname.setText("placeholdlastname");
         textFieldSurname.setMaximumSize(new java.awt.Dimension(120, 120));
 
         labelAddUser.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
@@ -126,16 +122,12 @@ public class AddUser extends SwitchingJPanel {
             }
         });
 
-        textFieldNationality.setText("murica");
         textFieldNationality.setMaximumSize(new java.awt.Dimension(250, 250));
 
-        textFieldAdress.setText("londonlane 2");
         textFieldAdress.setMaximumSize(new java.awt.Dimension(250, 250));
 
-        textFieldPostalcode.setText("63784SFR");
         textFieldPostalcode.setMaximumSize(new java.awt.Dimension(250, 250));
 
-        textFieldCellphone.setText("1234");
         textFieldCellphone.setMaximumSize(new java.awt.Dimension(250, 250));
         textFieldCellphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +138,6 @@ public class AddUser extends SwitchingJPanel {
         comboBoxProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Employee", "Manager", "Administrator" }));
         comboBoxProfession.setMaximumSize(new java.awt.Dimension(250, 250));
 
-        textFieldUsername.setText("notused");
         textFieldUsername.setMaximumSize(new java.awt.Dimension(120, 120));
         textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,10 +145,8 @@ public class AddUser extends SwitchingJPanel {
             }
         });
 
-        textFieldPassword.setText("verysecure");
         textFieldPassword.setMaximumSize(new java.awt.Dimension(120, 120));
 
-        textFieldEmail.setText("1234");
         textFieldEmail.setMaximumSize(new java.awt.Dimension(250, 250));
         textFieldEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,14 +164,6 @@ public class AddUser extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelAddUser)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldFirstname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(280, 280, 280))
@@ -190,14 +171,22 @@ public class AddUser extends SwitchingJPanel {
                     .addComponent(textFieldNationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxProfession, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(textFieldAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldPostalcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldFirstname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -205,9 +194,9 @@ public class AddUser extends SwitchingJPanel {
                     .addComponent(buttonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonHelp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -316,21 +305,21 @@ public class AddUser extends SwitchingJPanel {
         }
         
         // check if our cellphone only contains numbers
-        if(SecurityMan.filteredString(textFieldCellphone.getText(), new char[]{'0','1','2','3','4','5','6','7','8','9'}, true).equals("")) {
+        if(helpers.Filters.filteredCellphone(textFieldCellphone.getText()).equals("")) {
             labelStatus.setText("Invalid characters in cellphone, can only contain numbers");
             this.resetLabel(5000, labelStatus);
             return;
         }
         
         // check if our birthday is a date and in the past
-        if(SecurityMan.filteredDate(textFieldBirthday.getText(), "yyyy-MM-dd").equals("")) {
+        if(helpers.Filters.filteredDate(textFieldBirthday.getText(), "yyyy-MM-dd").equals("")) {
             labelStatus.setText("Birthday needs to be valid date in the past");
             this.resetLabel(5000, labelStatus);
             return;
         }
         
         // check if our email is valid
-        if(SecurityMan.filteredEmail(textFieldEmail.getText()).equals("")) {
+        if(helpers.Filters.filteredEmail(textFieldEmail.getText()).equals("")) {
             labelStatus.setText("Needs to be valid email adress");
             this.resetLabel(5000, labelStatus);
             return;

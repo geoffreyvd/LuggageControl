@@ -19,8 +19,6 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class DeleteFlight extends SwitchingJPanel {
     
     private DatabaseMan db = new DatabaseMan();
-    
-    private SecurityMan sc;
 
     public DeleteFlight(LuggageControl luggageControl) {
         super(luggageControl);
@@ -251,7 +249,7 @@ public class DeleteFlight extends SwitchingJPanel {
             }
             else {
                 // always filter user input with securitymanager
-                String[] values = {sc.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
+                String[] values = {helpers.Filters.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
                 result = db.query("SELECT * FROM flights WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();

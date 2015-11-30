@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen;
 
 import baseClasses.EmptyResultSet;
@@ -25,7 +20,6 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class SearchLuggage extends SwitchingJPanel {
 
     private DatabaseMan db = new DatabaseMan();
-    private SecurityMan sc;
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
@@ -227,17 +221,17 @@ public class SearchLuggage extends SwitchingJPanel {
         try {
             if (!textFieldLuggageID.getText().equals("")) {
                 query += "OR luggage_id = ? ";
-                values.add(sc.filteredString(textFieldLuggageID.getText()));
+                values.add(helpers.Filters.filteredString(textFieldLuggageID.getText()));
             }
 
             if (!textFieldLocation.getText().equals("")) {
                 query += "OR location = ? ";
-                values.add(sc.filteredString(textFieldLocation.getText()));
+                values.add(helpers.Filters.filteredString(textFieldLocation.getText()));
             }
 
             if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
                 query += "OR status = ? ";
-                values.add(sc.filteredString(comboBoxLuggageStatus.getSelectedItem().toString()));
+                values.add(helpers.Filters.filteredString(comboBoxLuggageStatus.getSelectedItem().toString()));
             }
 
             // If you get a mysql error saying: not unique table/alias look here 

@@ -23,8 +23,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  */
 public class DeleteCustomer extends SwitchingJPanel {
 
-    private SecurityMan sc;
-    DatabaseMan db = new DatabaseMan();
+    private DatabaseMan db = new DatabaseMan();
 
     public DeleteCustomer(LuggageControl luggageControl) {
         super(luggageControl);
@@ -208,7 +207,7 @@ public class DeleteCustomer extends SwitchingJPanel {
         if (!textFieldDeleteCustomerId.getText().equals("")) {
             String query = "DELETE FROM `luggagecontroldata`.`customer_flight` WHERE `customer_id`= ?; ";
             String[] values = {
-                sc.filteredString(textFieldDeleteCustomerId.getText())
+                helpers.Filters.filteredString(textFieldDeleteCustomerId.getText())
             };
             String[] types = {
                 "String"
@@ -241,11 +240,11 @@ public class DeleteCustomer extends SwitchingJPanel {
         }
         if (!textFieldCustomerId.getText().equals("")) {
             query += " OR customer_id = ?";
-            values.add(sc.filteredString(textFieldCustomerId.getText()));
+            values.add(helpers.Filters.filteredString(textFieldCustomerId.getText()));
         }
         if (!textFieldCustomerName.getText().equals("")) {
             query += " OR firstname = ?";
-            values.add(sc.filteredString(textFieldCustomerName.getText()));
+            values.add(helpers.Filters.filteredString(textFieldCustomerName.getText()));
         }
 
         query += " limit 4;";

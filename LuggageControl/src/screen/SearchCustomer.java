@@ -15,7 +15,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
-import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -25,7 +24,6 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class SearchCustomer extends SwitchingJPanel {
     
     private DatabaseMan db = new DatabaseMan();
-    private SecurityMan sc;
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
@@ -45,8 +43,11 @@ public class SearchCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
     }
     
-    private void resetCustomerTableSelection() {
-        tableCustomer.clearSelection();
+    private void clearCustomerTable() {
+        DefaultTableModel datamodel = (DefaultTableModel)tableCustomer.getModel();
+        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+            datamodel.removeRow(i);
+        }
     }
     
     /**
@@ -69,22 +70,22 @@ public class SearchCustomer extends SwitchingJPanel {
         try {
             if(!textFieldFirstName.getText().equals("")) {
                 query += "OR firstname = ? ";
-                values.add(sc.filteredString(textFieldFirstName.getText()));
+                values.add(helpers.Filters.filteredString(textFieldFirstName.getText()));
             }
             
             if(!textFieldSurName.getText().equals("")) {
                 query += "OR surname = ? ";
-                values.add(sc.filteredString(textFieldSurName.getText()));
+                values.add(helpers.Filters.filteredString(textFieldSurName.getText()));
             }
             
             if(!textFieldEmail.getText().equals("")) {
                 query += "OR email = ? ";
-                values.add(sc.filteredString(textFieldEmail.getText()));
+                values.add(helpers.Filters.filteredString(textFieldEmail.getText()));
             }
             
-            if(!textFieldCellphone.getText().equals("")) {
+            if(!helpers.Filters.filteredCellphone(textFieldCellphone.getText()).equals("")) {
                 query += "OR cellphone = ? ";
-                values.add(sc.filteredString(textFieldCellphone.getText()));
+                values.add(textFieldCellphone.getText());
             }
             
             
@@ -95,15 +96,14 @@ public class SearchCustomer extends SwitchingJPanel {
                 query += "UNION SELECT customer.customer_id, firstname, surname, email, cellphone, birthday, gender, adress, postcode ";
                 query += "FROM `customer_flight` INNER JOIN `customer` ON `customer`.`customer_id` ";
                 query += "WHERE `customer_flight`.`flight_id` = ? AND `customer`.`customer_id` = `customer_flight`.`customer_id`";
-                values.add(sc.filteredString(textFieldFlightnumber.getText()));
+                values.add(helpers.Filters.filteredString(textFieldFlightnumber.getText()));
             }
             
             result = db.query(query + ";", values.toArray(new String[values.size()]));
                         
             DefaultTableModel datamodel = (DefaultTableModel)tableCustomer.getModel();
-            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-                datamodel.removeRow(i);
-            }
+            this.clearCustomerTable();
+            
             while(result.next()) {
 
                 Object[] data = {
@@ -158,6 +158,16 @@ public class SearchCustomer extends SwitchingJPanel {
         buttonHelp = new javax.swing.JButton();
         scrollPaneTable = new javax.swing.JScrollPane();
         tableCustomer = new javax.swing.JTable();
+
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         labelSearchCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchCustomer.setText("Search Customer");
@@ -243,27 +253,27 @@ public class SearchCustomer extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labelSearchCustomer)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textFieldSurName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                                .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(117, 117, 117)
-                            .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelSearchCustomer)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textFieldCellphone, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textFieldSurName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(117, 117, 117)
+                        .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
@@ -346,13 +356,21 @@ public class SearchCustomer extends SwitchingJPanel {
             // look at this one liner
             switchCustomerDetails(Integer.parseInt((String)tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
             
-            this.resetCustomerTableSelection();
+            this.clearCustomerTable();
         }
     }//GEN-LAST:event_tableCustomerKeyPressed
 
     private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tableCustomerMouseClicked
+
+    /**
+     * This event fires when the screen is displayed use this to update when the screen is drawn.
+     * @param evt 
+     */
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        this.fillCustomerTable();
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen;
 
 import baseClasses.EmptyResultSet;
@@ -24,7 +19,6 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class UserManagement extends SwitchingJPanel {
     
     private DatabaseMan db = new DatabaseMan();
-    private SecurityMan sc;
     
     public UserManagement(LuggageControl luggageControl) {
         super(luggageControl);
@@ -266,7 +260,7 @@ public class UserManagement extends SwitchingJPanel {
             }
             else {
                 // always filter user input with securitymanager
-                String[] values = {sc.filteredInt(textFieldUserId.getText(),0,1)};
+                String[] values = {helpers.Filters.filteredInt(textFieldUserId.getText(),0,1)};
                 result = db.query("SELECT * FROM user WHERE user_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableUserSearch.getModel();

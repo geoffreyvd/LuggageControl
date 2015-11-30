@@ -19,7 +19,6 @@ public class CustomerDetails extends SwitchingJPanel {
     private int currentCustomerId = 0; 
     
     private DatabaseMan db = new DatabaseMan();
-    private SecurityMan sc;
 
     public CustomerDetails(LuggageControl luggageControl) {
         super(luggageControl);
@@ -158,7 +157,7 @@ public class CustomerDetails extends SwitchingJPanel {
             // check if our email is not taken yet
             if(db.queryOneResult("SELECT `email` FROM user WHERE email = ?", new String[]{textFieldEmail.getText()}).equals("")) {
                 query += "email = ?,";
-                values.add(sc.filteredString(textFieldEmail.getText()));
+                values.add(helpers.Filters.filteredString(textFieldEmail.getText()));
                 types.add("String");
             }
             else {
@@ -168,9 +167,9 @@ public class CustomerDetails extends SwitchingJPanel {
             }
             
             // check if our cellphone number is still a actual cellphone number
-            if(!SecurityMan.filteredString(textFieldCellphone.getText(), new char[]{'0','1','2','3','4','5','6','7','8','9'}, true).equals("")) {
+            if(!helpers.Filters.filteredString(textFieldCellphone.getText(), new char[]{'0','1','2','3','4','5','6','7','8','9'}, true).equals("")) {
                 query += " cellphone = ?,";
-                values.add(sc.filteredString(textFieldCellphone.getText()));
+                values.add(helpers.Filters.filteredString(textFieldCellphone.getText()));
                 types.add("String");
             }
             else {
@@ -185,7 +184,7 @@ public class CustomerDetails extends SwitchingJPanel {
                 comboBoxGender.getSelectedItem().toString().equals("Androgenous")
             ) {
                 query += " gender = ?,";
-                values.add(sc.filteredString(comboBoxGender.getSelectedItem().toString()));
+                values.add(helpers.Filters.filteredString(comboBoxGender.getSelectedItem().toString()));
                 types.add("String");
             }
             else {
@@ -197,7 +196,7 @@ public class CustomerDetails extends SwitchingJPanel {
             // validate postcode placeholder
             if(!textFieldPostcode.getText().equals("")) {
                 query += " postcode = ?,";
-                values.add(sc.filteredString(textFieldPostcode.getText()));
+                values.add(helpers.Filters.filteredString(textFieldPostcode.getText()));
                 types.add("String");
             }
             else {
@@ -209,7 +208,7 @@ public class CustomerDetails extends SwitchingJPanel {
             // validate adress placeholder
             if(!textFieldAdress.getText().equals("")) {
                 query += " adress = ?,";
-                values.add(sc.filteredString(textFieldAdress.getText()));
+                values.add(helpers.Filters.filteredString(textFieldAdress.getText()));
                 types.add("String");
             }
             else {
@@ -247,9 +246,9 @@ public class CustomerDetails extends SwitchingJPanel {
                         }
                     ).equals("")) {
                         query = "INSERT INTO customer_flight (flight_id, customer_id) VALUES (?, ?)";
-                        values.add(sc.filteredInt(textFieldAddFlight.getText(), 1, Integer.MAX_VALUE));
+                        values.add(helpers.Filters.filteredInt(textFieldAddFlight.getText(), 1, Integer.MAX_VALUE));
                         // int + "" is my favorite java conversion hack, its so dirty lol
-                        values.add(sc.filteredInt(currentCustomerId + "", 1, Integer.MAX_VALUE));
+                        values.add(helpers.Filters.filteredInt(currentCustomerId + "", 1, Integer.MAX_VALUE));
                         types.add("Int");
                         types.add("Int");
                     }
