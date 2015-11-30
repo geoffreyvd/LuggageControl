@@ -11,6 +11,7 @@ import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
@@ -43,6 +44,16 @@ public class SearchLuggage extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLocation);
     }
 
+    /**
+     * Go to the luggage details screen based on the selected lugggage id
+     * This method is best used in conjunction with the fillTableLuggage.
+     * @param luggageId The specific database luggage id from the luggage table
+     */
+    public void switchLuggageDetails(int luggageId) {
+        this.luggageControl.prefillPanel(ScreenNames.LUGGAGE_DETAILS, luggageId);
+        this.luggageControl.switchJPanel(ScreenNames.LUGGAGE_DETAILS);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,6 +101,11 @@ public class SearchLuggage extends SwitchingJPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tableLuggageSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableLuggageSearchKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(tableLuggageSearch);
@@ -211,6 +227,22 @@ public class SearchLuggage extends SwitchingJPanel {
         this.fillSearchLuggageTable();
         this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void tableLuggageSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableLuggageSearchKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER) {
+            JTable tempTable = new JTable();
+            try {
+                tempTable = (JTable)evt.getComponent();
+            }
+            catch(Exception e) {
+                new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+            }
+            // look at this one liner
+            switchLuggageDetails(Integer.parseInt((String)tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
+            
+            tableLuggageSearch.clearSelection();
+        }
+    }//GEN-LAST:event_tableLuggageSearchKeyPressed
 
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();

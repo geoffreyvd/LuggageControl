@@ -18,49 +18,47 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="textFieldUpdateColor" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="textFieldUpdateWeight" min="-2" pref="155" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="textFieldUpdateContent" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="comboBoxLuggageStatus" min="-2" pref="155" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="textFieldUpdateSize" min="-2" pref="120" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="textFieldUpdateOwnerID" min="-2" pref="155" max="-2" attributes="0"/>
-                      <Component id="textFieldUpdateLocation" min="-2" pref="155" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="labelOrigin" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="labelDisplayOrigin" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="labelFlightnumber" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="labelDisplayFlightnumber" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="labelLuggageDetails" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelDestination" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="labelDisplayDestination" min="-2" max="-2" attributes="0"/>
-                      </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="comboBoxLuggageStatus" min="-2" pref="155" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textFieldUpdateSize" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="textFieldUpdateOwnerID" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Component id="textFieldUpdateLocation" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="labelOrigin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelDisplayOrigin" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="labelFlightnumber" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelDisplayFlightnumber" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="labelLuggageDetails" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labelDestination" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelDisplayDestination" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="buttonUpdate" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonCancel" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="textFieldUpdateColor" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="textFieldUpdateWeight" min="-2" pref="155" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="textFieldUpdateContent" min="-2" pref="173" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Component id="separatorCenter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="labelSearch" min="-2" max="-2" attributes="0"/>
@@ -213,11 +211,10 @@
     <Component class="javax.swing.JComboBox" name="comboBoxLuggageStatus">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Status"/>
-            <StringItem index="1" value="Lost"/>
-            <StringItem index="2" value="Found"/>
-            <StringItem index="3" value="Returned"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Lost"/>
+            <StringItem index="1" value="Found"/>
+            <StringItem index="2" value="Returned"/>
           </StringArray>
         </Property>
       </Properties>

@@ -29,14 +29,9 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="labelOwnerId" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelOwnerId" min="-2" pref="82" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="labelOwnerIdDisplay" pref="207" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="labeBirthday" min="-2" pref="55" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="labelBirthdayDisplay" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="buttonUpdateCustomer" min="-2" pref="80" max="-2" attributes="0"/>
@@ -49,9 +44,15 @@
                                               <Component id="labelNameDisplay" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="labelSurname" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="labeBirthday" max="32767" attributes="0"/>
+                                                  <Component id="labelSurname" max="32767" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="labelSurnameDisplay" min="-2" pref="211" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="labelSurnameDisplay" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
+                                                  <Component id="labelBirthdayDisplay" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -323,7 +324,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="birthday"/>
+        <Property name="text" type="java.lang.String" value="birthday:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldPostcode">
@@ -345,7 +346,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Customer id"/>
+        <Property name="text" type="java.lang.String" value="Customer id:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelBirthdayDisplay">

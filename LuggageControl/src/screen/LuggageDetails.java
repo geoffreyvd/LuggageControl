@@ -103,8 +103,10 @@ public class LuggageDetails extends SwitchingJPanel {
 //        ArrayList<String> values = new ArrayList<String>();
 //        ArrayList<String> types = new ArrayList<String>();
 //        
-//        // If Some text fields are not empty we add the WHERE clause
-//        if(!textFieldEmail.getText().equals("") || !textFieldCellphone.getText().equals("")) {
+//        // If Some text fields are not empty we add the SET clause
+//        if(!textFieldUpdateLocation.getText().equals("") || !textFieldUpdateColor.getText().equals("") ||
+//            !textFieldUpdateWeight.getText().equals("")|| !textFieldUpdateSize.getText().equals("") ||
+//            !textFieldUpdateContent.getText().equals("")){
 //            query += " SET ";
 //        }
 //        
@@ -231,8 +233,9 @@ public class LuggageDetails extends SwitchingJPanel {
 //            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
 //        }
 //        
-//        loadCustomer(currentCustomerId);
+//        loadLuggage(currentLuggageId);
 //    }
+    
     /**
      * Prepares the comboBox with the data from the database
      * @param status the status from the luggage tkaen from the database
@@ -307,7 +310,7 @@ public class LuggageDetails extends SwitchingJPanel {
         labelDisplayDestination.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDisplayDestination.setText(" XXXXXXXXX");
 
-        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found", "Returned" }));
+        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lost", "Found", "Returned" }));
 
         labelSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearch.setText("Customer Search");
@@ -368,40 +371,39 @@ public class LuggageDetails extends SwitchingJPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textFieldUpdateContent))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textFieldUpdateSize, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelOrigin)
-                            .addGap(0, 0, 0)
-                            .addComponent(labelDisplayOrigin))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelFlightnumber)
-                            .addGap(0, 0, 0)
-                            .addComponent(labelDisplayFlightnumber))
-                        .addComponent(labelLuggageDetails)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelDestination)
-                            .addGap(0, 0, 0)
-                            .addComponent(labelDisplayDestination)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldUpdateSize))
+                    .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelOrigin)
+                        .addGap(0, 0, 0)
+                        .addComponent(labelDisplayOrigin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelFlightnumber)
+                        .addGap(0, 0, 0)
+                        .addComponent(labelDisplayFlightnumber))
+                    .addComponent(labelLuggageDetails)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelDestination)
+                        .addGap(0, 0, 0)
+                        .addComponent(labelDisplayDestination))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldUpdateContent, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelSearch)
