@@ -244,8 +244,8 @@ public class SearchLuggage extends SwitchingJPanel {
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
             
-            /*
-            query += "UNION SELECT `luggage`.`luggage_id`, flight_id, status, location ";
+            
+            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
             query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
             if (!textFieldFlightNumber.getText().equals("")) {
                 query += "`luggage_flight`.`flight_id` = ? AND ";
@@ -253,7 +253,7 @@ public class SearchLuggage extends SwitchingJPanel {
             }
             query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
             
-            query += "UNION SELECT `luggage`.`luggage_id`, customer_id, status, location ";
+            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
             query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
             if (!textFieldOwnerID.getText().equals("")) {
                 query += "`customer_luggage`.`customer_id` = ? AND ";
@@ -261,7 +261,7 @@ public class SearchLuggage extends SwitchingJPanel {
             }
             query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
                     
-            */
+            
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
