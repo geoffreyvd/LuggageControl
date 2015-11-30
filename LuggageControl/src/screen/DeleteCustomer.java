@@ -220,6 +220,13 @@ public class DeleteCustomer extends SwitchingJPanel {
                 System.out.println(e.getMessage());
             }
             
+            query = "DELETE FROM `luggagecontroldata`.`customer_luggage` WHERE `customer_id`= ?; ";
+            try {
+                db.queryManipulation(query, values, types);
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            
             query = "DELETE FROM `luggagecontroldata`.`customer` WHERE `customer_id`= ?;";
             try {
                 db.queryManipulation(query, values, types);
