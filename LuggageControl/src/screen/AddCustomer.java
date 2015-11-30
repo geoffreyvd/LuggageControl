@@ -1,9 +1,14 @@
 package screen;
 
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -11,6 +16,9 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author root
  */
 public class AddCustomer extends SwitchingJPanel {
+
+    private SecurityMan sc;
+    DatabaseMan db = new DatabaseMan();
 
     public AddCustomer(LuggageControl luggageControl) {
         super(luggageControl);
@@ -30,9 +38,10 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setPrompt("Adress", textFieldAdress);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAdress);
         PromptSupport.setPrompt("Postalcode", textFieldPostcode);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPostcode);        
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPostcode);
         PromptSupport.setPrompt("Flight number", textFieldQuickSearchFlightNumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldQuickSearchFlightNumber);
+        this.buildTable("SELECT * FROM luggagecontroldata.luggage");
     }
 
     /**
@@ -94,6 +103,17 @@ public class AddCustomer extends SwitchingJPanel {
             }
         ));
         table.setViewportView(tableCustomer);
+
+        textFieldQuickSearchFlightNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldQuickSearchFlightNumberActionPerformed(evt);
+            }
+        });
+        textFieldQuickSearchFlightNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldQuickSearchFlightNumberKeyPressed(evt);
+            }
+        });
 
         butonCancel.setText("Cancel");
         butonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -204,55 +224,97 @@ public class AddCustomer extends SwitchingJPanel {
 
     private void butonCancelbuttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelbuttonCancelActionPerformed
         this.userNotAFK();
-        
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_butonCancelbuttonCancelActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-        DatabaseMan db = new DatabaseMan();
         if (!("".equals(textFieldName.getText()) || "".equals(textFieldSurName.getText())
-            || "".equals(textFieldEmail.getText()) || "".equals(textFieldCellphoneNumber.getText())
-            || "".equals(textFieldBirthday.getText()) || "".equals(textFieldGender.getText())
-            || "".equals(textFieldAdress.getText()) ||"".equals(textFieldPostcode.getText()))) {
+                || "".equals(textFieldEmail.getText()) || "".equals(textFieldCellphoneNumber.getText())
+                || "".equals(textFieldBirthday.getText()) || "".equals(textFieldGender.getText())
+                || "".equals(textFieldAdress.getText()) || "".equals(textFieldPostcode.getText()))) {
 
-        String query = "INSERT INTO `luggagecontroldata`.`customer`"
-        + "(`firstname`, `surname`, `email`, `cellphone`, `birthday`, `gender`, `adress`, `postcode`)"
-        + "VALUES(?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO `luggagecontroldata`.`customer`"
+                    + "(`firstname`, `surname`, `email`, `cellphone`, `birthday`, `gender`, `adress`, `postcode`)"
+                    + "VALUES(?,?,?,?,?,?,?,?)";
 
-        String[] values = new String[8];
-        String[] types = new String[8];
+            String[] values = new String[8];
+            String[] types = new String[8];
 
-        values[0] = textFieldName.getText();
-        values[1] = textFieldSurName.getText();
-        values[2] = textFieldEmail.getText();
-        values[3] = textFieldCellphoneNumber.getText();
-        values[4] = textFieldBirthday.getText();
-        values[5] = textFieldGender.getText();
-        values[6] = textFieldAdress.getText();
-        values[7] = textFieldPostcode.getText();
+            values[0] = textFieldName.getText();
+            values[1] = textFieldSurName.getText();
+            values[2] = textFieldEmail.getText();
+            values[3] = textFieldCellphoneNumber.getText();
+            values[4] = textFieldBirthday.getText();
+            values[5] = textFieldGender.getText();
+            values[6] = textFieldAdress.getText();
+            values[7] = textFieldPostcode.getText();
 
-        types[0] = "String";
-        types[1] = "String";
-        types[2] = "String";
-        types[3] = "Int";
-        types[4] = "String";
-        types[5] = "String";
-        types[6] = "String";
-        types[7] = "String";
+            types[0] = "String";
+            types[1] = "String";
+            types[2] = "String";
+            types[3] = "Int";
+            types[4] = "String";
+            types[5] = "String";
+            types[6] = "String";
+            types[7] = "String";
 
-        try {
-            db.queryManipulation(query, values, types);
-
-        } catch (Exception e) {
-
-        }
-        System.out.println("work");
+            try {
+                db.queryManipulation(query, values, types);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                new ErrorJDialog(this.luggageControl, true, "Error: retrieving inserting customer", (new Throwable()).getStackTrace());
+            }
+            System.out.println("work");
         } else {
             System.out.println("not work");
         }
 
         this.userNotAFK();
     }//GEN-LAST:event_buttonConfirmActionPerformed
+
+    private void buildTable(String query) {
+        String[] values = {
+            //sc.filteredString(textFieldQuickSearchFlightNumber.getText())
+        };
+
+        query += " limit 4;";
+
+        ResultSet result;
+        try {
+            result = db.query(query, values);
+            DefaultTableModel datamodel = (DefaultTableModel) tableCustomer.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("luggage_id"),
+                    result.getString("location"),
+                    result.getString("location"),
+                    result.getString("status")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableCustomer.setModel(datamodel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
+        }
+    }
+    private void textFieldQuickSearchFlightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldQuickSearchFlightNumberKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            if (!textFieldQuickSearchFlightNumber.getText().equals("")) {
+                this.buildTable("SELECT * FROM luggagecontroldata.luggage");
+            }
+        }
+    }//GEN-LAST:event_textFieldQuickSearchFlightNumberKeyPressed
+
+    private void textFieldQuickSearchFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldQuickSearchFlightNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldQuickSearchFlightNumberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

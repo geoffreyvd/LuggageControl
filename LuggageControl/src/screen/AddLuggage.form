@@ -130,7 +130,7 @@
             <StringItem index="0" value="Status"/>
             <StringItem index="1" value="Lost"/>
             <StringItem index="2" value="Found"/>
-            <StringItem index="3" value="Not returned"/>
+            <StringItem index="3" value="Returned"/>
           </StringArray>
         </Property>
       </Properties>

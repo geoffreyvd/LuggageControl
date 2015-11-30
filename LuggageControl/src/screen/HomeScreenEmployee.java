@@ -5,9 +5,14 @@
  */
 package screen;
 
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
+import managers.DatabaseMan;
+import managers.SecurityMan;
 
 /**
  *
@@ -15,9 +20,13 @@ import main.LuggageControl;
  */
 public class HomeScreenEmployee extends SwitchingJPanel {
 
+    private SecurityMan sc;
+    DatabaseMan db = new DatabaseMan();
+
     public HomeScreenEmployee(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        this.buildTable("SELECT * FROM luggagecontroldata.luggage");
     }
 
     /**
@@ -39,7 +48,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         buttonChangeSettings = new javax.swing.JButton();
         textFieldFlightNumber = new javax.swing.JTextField();
         scrollPaneQuickSearchTable = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableLuggage = new javax.swing.JTable();
         buttonAddFlight = new javax.swing.JButton();
 
         buttonAddCustomer.setText("Add customer");
@@ -91,8 +100,13 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         });
 
         textFieldFlightNumber.setText("Flightnumber");
+        textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldFlightNumberActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableLuggage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -103,7 +117,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
                 "Luggage ID", "Origin", "Location", "Flightnumber"
             }
         ));
-        scrollPaneQuickSearchTable.setViewportView(jTable1);
+        scrollPaneQuickSearchTable.setViewportView(tableLuggage);
 
         buttonAddFlight.setText("Add flight");
         buttonAddFlight.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +215,41 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.ADD_FLIGHT);
     }//GEN-LAST:event_buttonAddFlightActionPerformed
 
+    private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldFlightNumberActionPerformed
+
+    private void buildTable(String query) {
+        String[] values = { //sc.filteredString(textFieldQuickSearchFlightNumber.getText())
+        };
+
+        query += " limit 4;";
+
+        ResultSet result;
+        try {
+            result = db.query(query, values);
+            DefaultTableModel datamodel = (DefaultTableModel) tableLuggage.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("luggage_id"),
+                    result.getString("location"),
+                    result.getString("location"),
+                    result.getString("status")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableLuggage.setModel(datamodel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddCustomer;
@@ -210,10 +259,10 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearchCustomer;
     private javax.swing.JButton buttonSearchLuggage;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelHeaderLeftSide;
     private javax.swing.JLabel labelHeaderRightSide;
     private javax.swing.JScrollPane scrollPaneQuickSearchTable;
+    private javax.swing.JTable tableLuggage;
     private javax.swing.JTextField textFieldFlightNumber;
     // End of variables declaration//GEN-END:variables
 }
