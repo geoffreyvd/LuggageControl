@@ -16,15 +16,15 @@ import managers.ConfigurationMan;
  */
 public class LuggageControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Screen objects">
-    private screen.AddCustomer addCustomer;
-    private screen.AddFlight addFlight;
-    private screen.AddLuggage addLuggage;
-    private screen.AddUser addUser;
+    private screen.add.AddCustomer addCustomer;
+    private screen.add.AddFlight addFlight;
+    private screen.add.AddLuggage addLuggage;
+    private screen.add.AddUser addUser;
     private screen.ChangeSettings changeSettings;
-    private screen.CustomerDetails customerDetails;   
-    private screen.DeleteCustomer deleteCustomer;
-    private screen.DeleteFlight deleteFlight;
-    private screen.DeleteLuggage deleteLuggage;
+    private screen.details.CustomerDetails customerDetails;   
+    private screen.delete.DeleteCustomer deleteCustomer;
+    private screen.delete.DeleteFlight deleteFlight;
+    private screen.delete.DeleteLuggage deleteLuggage;
     private screen.Example example;
     private screen.FirstStart firstStart;
     private screen.GenerateStatistics generateStatistics;
@@ -33,14 +33,14 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.help.Finding helpFinding;
     private screen.help.Linking helpLinking;
     private screen.help.Removing helpRemoving;
-    private screen.HomeScreenAdministrator homeScreenAdministrator;
-    private screen.HomeScreenEmployee homeScreenEmployee;
-    private screen.HomeScreenManager homeScreenManager;
+    private screen.home.HomeScreenAdministrator homeScreenAdministrator;
+    private screen.home.HomeScreenEmployee homeScreenEmployee;
+    private screen.home.HomeScreenManager homeScreenManager;
     private screen.LoginScreen loginScreen;
-    private screen.LuggageDetails luggageDetails;
-    private screen.SearchCustomer searchCustomer;
-    private screen.SearchLuggage searchLuggage;
-    private screen.UserManagement userManagement;
+    private screen.details.LuggageDetails luggageDetails;
+    private screen.search.SearchCustomer searchCustomer;
+    private screen.search.SearchLuggage searchLuggage;
+    private screen.details.UserDetails userManagement;
     // </editor-fold>
 
     private JMenuBar menuBar;
@@ -105,15 +105,15 @@ public class LuggageControl extends javax.swing.JFrame {
     private void initComponents() {
         
         // <editor-fold defaultstate="collapsed" desc="Screen objects initialazations">
-        addCustomer = new screen.AddCustomer(this);
-        addFlight = new screen.AddFlight(this);
-        addLuggage = new screen.AddLuggage(this);
-        addUser = new screen.AddUser(this);
+        addCustomer = new screen.add.AddCustomer(this);
+        addFlight = new screen.add.AddFlight(this);
+        addLuggage = new screen.add.AddLuggage(this);
+        addUser = new screen.add.AddUser(this);
         changeSettings = new screen.ChangeSettings(this);
-        customerDetails = new screen.CustomerDetails(this);
-        deleteCustomer = new screen.DeleteCustomer(this);
-        deleteFlight = new screen.DeleteFlight(this);
-        deleteLuggage = new screen.DeleteLuggage(this);
+        customerDetails = new screen.details.CustomerDetails(this);
+        deleteCustomer = new screen.delete.DeleteCustomer(this);
+        deleteFlight = new screen.delete.DeleteFlight(this);
+        deleteLuggage = new screen.delete.DeleteLuggage(this);
         example = new screen.Example(this);
         firstStart = new screen.FirstStart(this);
         generateStatistics = new screen.GenerateStatistics(this);
@@ -122,14 +122,14 @@ public class LuggageControl extends javax.swing.JFrame {
         helpFinding = new screen.help.Finding(this);
         helpLinking = new screen.help.Linking(this);
         helpRemoving = new screen.help.Removing(this);
-        homeScreenAdministrator = new screen.HomeScreenAdministrator(this);
-        homeScreenEmployee = new screen.HomeScreenEmployee(this);
-        homeScreenManager = new screen.HomeScreenManager(this);
+        homeScreenAdministrator = new screen.home.HomeScreenAdministrator(this);
+        homeScreenEmployee = new screen.home.HomeScreenEmployee(this);
+        homeScreenManager = new screen.home.HomeScreenManager(this);
         loginScreen = new screen.LoginScreen(this);
-        luggageDetails = new screen.LuggageDetails(this);
-        searchCustomer = new screen.SearchCustomer(this);
-        searchLuggage = new screen.SearchLuggage(this);
-        userManagement = new screen.UserManagement(this);
+        luggageDetails = new screen.details.LuggageDetails(this);
+        searchCustomer = new screen.search.SearchCustomer(this);
+        searchLuggage = new screen.search.SearchLuggage(this);
+        userManagement = new screen.details.UserDetails(this);
         // </editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Screen objects configurations">
@@ -214,31 +214,31 @@ public class LuggageControl extends javax.swing.JFrame {
     private void removeCurrentJPanel() {
         
         // this giant if statement needs to be converted to a switch statement
-        if(this.currentPanel instanceof screen.AddCustomer) {
+        if(this.currentPanel instanceof screen.add.AddCustomer) {
             this.remove(addCustomer);
         }
-        else if(this.currentPanel instanceof screen.AddFlight) {
+        else if(this.currentPanel instanceof screen.add.AddFlight) {
             this.remove(addFlight);
         }
-        else if(this.currentPanel instanceof screen.AddLuggage) {
+        else if(this.currentPanel instanceof screen.add.AddLuggage) {
             this.remove(addLuggage);
         }
-        else if(this.currentPanel instanceof screen.AddUser) {
+        else if(this.currentPanel instanceof screen.add.AddUser) {
             this.remove(addUser);
         }
         else if(this.currentPanel instanceof screen.ChangeSettings) {
             this.remove(changeSettings);
         }
-        else if(this.currentPanel instanceof screen.CustomerDetails) {
+        else if(this.currentPanel instanceof screen.details.CustomerDetails) {
             this.remove(customerDetails);
         }
-        else if(this.currentPanel instanceof screen.DeleteCustomer) {
+        else if(this.currentPanel instanceof screen.delete.DeleteCustomer) {
             this.remove(deleteCustomer);
         }
-        else if(this.currentPanel instanceof screen.DeleteFlight) {
+        else if(this.currentPanel instanceof screen.delete.DeleteFlight) {
             this.remove(deleteFlight);
         }
-        else if(this.currentPanel instanceof screen.DeleteLuggage) {
+        else if(this.currentPanel instanceof screen.delete.DeleteLuggage) {
             this.remove(deleteLuggage);
         }    
         else if(this.currentPanel instanceof screen.Example) {
@@ -265,28 +265,28 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.help.Removing) {
             this.remove(helpRemoving);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenAdministrator) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenAdministrator) {
             this.remove(homeScreenAdministrator);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenManager) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenManager) {
             this.remove(homeScreenManager);
         }
         else if(this.currentPanel instanceof screen.LoginScreen) {
             this.remove(loginScreen);
         }
-        else if(this.currentPanel instanceof screen.LuggageDetails) {
+        else if(this.currentPanel instanceof screen.details.LuggageDetails) {
             this.remove(luggageDetails);
         }
-        else if(this.currentPanel instanceof screen.SearchCustomer) {
+        else if(this.currentPanel instanceof screen.search.SearchCustomer) {
             this.remove(searchCustomer);
         }
-        else if(this.currentPanel instanceof screen.SearchLuggage) {
+        else if(this.currentPanel instanceof screen.search.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof screen.UserManagement) {
+        else if(this.currentPanel instanceof screen.details.UserDetails) {
             this.remove(userManagement);
         }
     }

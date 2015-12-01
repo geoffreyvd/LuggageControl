@@ -8,23 +8,18 @@ import java.util.Date;
  * Data type filters 
  * @author Corne Lukken
  */
-public class Filters {
+public final class Filters {
     private Filters() {
         
     }
     
     /**
-     * Filters a string and validates that it is a email.
-     * @return filteredEmail with email or empty string if invalid.
+     * Filters a string and validates that it is a adress.
+     * @param originalString String to be checked for adress validity
+     * @return String with adress number or empty string if did not validate
      */
-    public static String filteredEmail(String originaString) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(originaString);
-        if(m.matches()) {
-            return originaString;
-        }
-        return "";
+    public static String filteredAdress(String originalString) {
+        return originalString;
     }
     
     /**
@@ -34,6 +29,30 @@ public class Filters {
      */
     public static String filteredCellphone(String originalString) {
         return filteredString(originalString, new char[]{'0','1','2','3','4','5','6','7','8','9'}, true);
+    }
+    
+    /**
+     * Filters a string and validates that it is a email.
+     * @param originalString String to be checked for email validity
+     * @return filteredEmail with email or empty string if invalid.
+     */
+    public static String filteredEmail(String originalString) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(originalString);
+        if(m.matches()) {
+            return originalString;
+        }
+        return "";
+    }
+    
+    /**
+     * Filters a string and validates that it is a postcode.
+     * @param originalString String to be checked for postcode validity
+     * @return filteredPostcode with postcode or empty string if invalid.
+     */
+    public static String fitleredPostcode(String originalString) {
+        return originalString;
     }
     
     //<editor-fold defaultstate="collapsed" desc="Base filter classes for data, datetime, int and string">
