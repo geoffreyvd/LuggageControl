@@ -88,15 +88,15 @@
                           <Component id="textFieldWeight" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="textFieldContent" pref="207" max="32767" attributes="0"/>
+                      <Component id="textFieldContent" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="buttonUploadImage" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="pic" min="-2" pref="219" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="pic" pref="219" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>

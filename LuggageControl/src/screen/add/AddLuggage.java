@@ -2,10 +2,8 @@ package screen.add;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.awt.Image;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
@@ -164,14 +162,14 @@ public class AddLuggage extends SwitchingJPanel {
                             .addComponent(textFieldSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(textFieldContent, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                        .addComponent(textFieldContent))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
                         .addGap(59, 59, 59)
                         .addComponent(buttonUploadImage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonConfirm)
                             .addComponent(butonCancel))))
@@ -191,29 +189,14 @@ public class AddLuggage extends SwitchingJPanel {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
+            System.out.println(String.valueOf(labelAddLuggage.getWidth()) + " here");
+            ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(pic.getWidth(), pic.getHeight(), java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            imageIcon = new ImageIcon(newimg);  // transform it back
+            pic.setIcon(imageIcon);
 
-            ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
-            pic.setIcon(image);
-
-            File file = new File(selectedFile.getAbsolutePath());
-            try {
-                // Reading a Image file from file system
-                FileInputStream imageInFile = new FileInputStream(file);
-                byte imageData[] = new byte[(int) file.length()];
-                imageInFile.read(imageData);
-
-                // Converting Image byte array into Base64 String
-                String imageDataString = encodeImage(imageData);
-                imageInFile.close();
-                imageBase64 = imageDataString;
-                System.out.println(imageDataString);
-
-                System.out.println("Image Successfully Manipulated!");
-            } catch (FileNotFoundException e) {
-                System.out.println("Image not found" + e);
-            } catch (IOException ioe) {
-                System.out.println("Exception while reading the Image " + ioe);
-            }
+            imageBase64 = helpers.Base64Encoder.encode(selectedFile.getAbsolutePath());
         }
 
 
@@ -230,7 +213,7 @@ public class AddLuggage extends SwitchingJPanel {
                 || "".equals(textFieldOwnerID.getText()) || "Status".equals(comboBoxLuggageStatus.getSelectedItem().toString())
                 || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
                 || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))) {
-            
+
             System.out.println(comboBoxLuggageStatus.getSelectedItem().toString());
             String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage`"
                     + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
