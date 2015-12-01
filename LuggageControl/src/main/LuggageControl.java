@@ -83,6 +83,9 @@ public class LuggageControl extends javax.swing.JFrame {
         // start fullscreen
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(monitorSize);
+        
+        System.out.println(secman.createPassword("test"));
+        System.out.println(secman.createPassword("test"));
     }
 
     /**

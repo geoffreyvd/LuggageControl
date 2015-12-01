@@ -19,14 +19,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textFieldUpdateOwnerID" pref="335" max="32767" attributes="0"/>
+                  <Component id="textFieldUpdateOwnerID" pref="340" max="32767" attributes="0"/>
                   <Component id="textFieldUpdateLocation" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldUpdateColor" alignment="1" max="32767" attributes="0"/>
-                          <Component id="comboBoxUpdateStatus" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="comboBoxUpdateStatus" pref="160" max="32767" attributes="0"/>
+                          <Component id="textFieldUpdateColor" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="textFieldUpdateWeight" alignment="1" max="32767" attributes="0"/>
                           <Component id="textFieldUpdateSize" max="32767" attributes="0"/>
@@ -63,11 +63,11 @@
               </Group>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="separatorCenter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="labelSearch" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace pref="68" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
