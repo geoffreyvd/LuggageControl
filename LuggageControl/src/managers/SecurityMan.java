@@ -1,11 +1,10 @@
 package managers;
 
+import baseClasses.ErrorJDialog;
 import constants.ScreenNames;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -13,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.LuggageControl;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Manage security aspects such as user input filtering and login management
@@ -88,22 +88,45 @@ public class SecurityMan {
         fireTimeOut = new timeOutTimerTask(this.luggageControl);
     }
     
-    /**
-     * 
-     * @param password
-     * @return 
-     */
-    public String[] encodePassword(String password) {
+    public String[] createPassword(String password) {
+        String saltString = createSalt();
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            
+            byte[] salt = saltString.getBytes();
+            byte[] passarray = new byte[password.getBytes().length + salt.length];
+            
+            System.arraycopy(password.getBytes(), 0, passarray, 0, password.getBytes().length);
+            System.arraycopy(salt, 0, passarray, password.getBytes().length, salt.length);
+            
+            password = new String(Base64.encodeBase64(md.digest(passarray)));
+        } 
+        catch (NoSuchAlgorithmException e) {
+            new ErrorJDialog(luggageControl, true, "Algorithm not supported", "Your computer operating system does not support a neccesarry algorithm.");
+        }
+        catch(Exception e) {
+            new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+        
+        return new String[]{password, saltString};
+    }
+    
+    private String createSalt() {
         SecureRandom number;
         try {
             number = SecureRandom.getInstance("SHA1PRNG");
             byte[] salt = new byte[47];
             number.nextBytes(salt);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SecurityMan.class.getName()).log(Level.SEVERE, null, ex);
+            return new String(Base64.encodeBase64(salt));
+            
+        } 
+        catch (NoSuchAlgorithmException e) {
+            new ErrorJDialog(luggageControl, true, "Algorithm not supported", "Your computer operating system does not support a neccesarry algorithm.");
         }
-
-        return new String[]{"This", "Gonna suck"};
+        catch(Exception e) {
+            new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+        return "";
     }
     
     /**

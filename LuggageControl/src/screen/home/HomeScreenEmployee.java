@@ -53,6 +53,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         scrollPaneQuickSearchTable = new javax.swing.JScrollPane();
         tableLuggage = new javax.swing.JTable();
         buttonAddFlight = new javax.swing.JButton();
+        buttonSearchFlight = new javax.swing.JButton();
 
         buttonAddCustomer.setText("Add customer");
         buttonAddCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +129,13 @@ public class HomeScreenEmployee extends SwitchingJPanel {
             }
         });
 
+        buttonSearchFlight.setText("Search flight");
+        buttonSearchFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchFlightActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,7 +148,8 @@ public class HomeScreenEmployee extends SwitchingJPanel {
                         .addComponent(buttonSearchCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonSearchLuggage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonAddCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonAddFlight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonAddFlight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSearchFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(labelHeaderLeftSide))
                 .addGap(204, 204, 204)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +194,9 @@ public class HomeScreenEmployee extends SwitchingJPanel {
                         .addComponent(buttonSearchCustomer)
                         .addGap(18, 18, 18)
                         .addComponent(buttonSearchLuggage)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(buttonSearchFlight)
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,6 +231,10 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
+
+    private void buttonSearchFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchFlightActionPerformed
+        this.luggageControl.switchJPanel(ScreenNames.SEARCH_FLIGHT);
+    }//GEN-LAST:event_buttonSearchFlightActionPerformed
 
     private void buildTable(String query) {
         String[] values = { //sc.filteredString(textFieldQuickSearchFlightNumber.getText())
@@ -260,6 +275,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     private javax.swing.JButton buttonChangeSettings;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearchCustomer;
+    private javax.swing.JButton buttonSearchFlight;
     private javax.swing.JButton buttonSearchLuggage;
     private javax.swing.JLabel labelHeaderLeftSide;
     private javax.swing.JLabel labelHeaderRightSide;

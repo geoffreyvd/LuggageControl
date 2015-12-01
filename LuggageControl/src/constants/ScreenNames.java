@@ -48,6 +48,7 @@ public class ScreenNames {
     public static final String DELETE_LUGGAGE = "DeleteLuggage";
     public static final String EXAMPLE = "Example";
     public static final String FIRST_START = "FirstStart";
+    public static final String FLIGHT_DETAILS = "FlightDetails";
     public static final String GENERATE_STATISTICS =  "GenerateStatistics";
     public static final String HELP = "Help";
     public static final String HOME_SCREEN_ADMINISTRATOR = "HomeScreenAdministrator";
@@ -56,6 +57,7 @@ public class ScreenNames {
     public static final String LOGINSCREEN = "LoginScreen";
     public static final String LUGGAGE_DETAILS = "LuggageDetails";
     public static final String SEARCH_CUSTOMER = "SearchCustomer";
+    public static final String SEARCH_FLIGHT = "SearchFlight";
     public static final String SEARCH_LUGGAGE = "SearchLuggage";
     public static final String USER_MANAGEMENT = "UserManagement";
     
