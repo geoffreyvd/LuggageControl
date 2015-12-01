@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import managers.SecurityMan;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  *
@@ -26,6 +27,8 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     public HomeScreenEmployee(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Flight number", textFieldFlightNumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
         this.buildTable("SELECT * FROM luggagecontroldata.luggage");
     }
 
@@ -99,7 +102,6 @@ public class HomeScreenEmployee extends SwitchingJPanel {
             }
         });
 
-        textFieldFlightNumber.setText("Flightnumber");
         textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldFlightNumberActionPerformed(evt);
