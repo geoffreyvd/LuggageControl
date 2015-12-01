@@ -46,8 +46,6 @@ public class LuggageDetails extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateColor);
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
-        PromptSupport.setPrompt("Content", textPaneUpdateContent);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textPaneUpdateContent);
         PromptSupport.setPrompt("Firstname", textFieldSearchFirstname);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSearchFirstname);
         PromptSupport.setPrompt("Surname", textFieldSearchSurname);
