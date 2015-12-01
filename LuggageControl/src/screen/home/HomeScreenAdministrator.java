@@ -1,4 +1,4 @@
-package screen;
+package screen.home;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;

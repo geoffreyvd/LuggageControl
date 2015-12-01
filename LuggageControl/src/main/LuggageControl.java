@@ -33,14 +33,14 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.help.Finding helpFinding;
     private screen.help.Linking helpLinking;
     private screen.help.Removing helpRemoving;
-    private screen.HomeScreenAdministrator homeScreenAdministrator;
-    private screen.HomeScreenEmployee homeScreenEmployee;
-    private screen.HomeScreenManager homeScreenManager;
+    private screen.home.HomeScreenAdministrator homeScreenAdministrator;
+    private screen.home.HomeScreenEmployee homeScreenEmployee;
+    private screen.home.HomeScreenManager homeScreenManager;
     private screen.LoginScreen loginScreen;
     private screen.details.LuggageDetails luggageDetails;
     private screen.search.SearchCustomer searchCustomer;
     private screen.search.SearchLuggage searchLuggage;
-    private screen.UserManagement userManagement;
+    private screen.details.UserDetails userManagement;
     // </editor-fold>
 
     private JMenuBar menuBar;
@@ -122,14 +122,14 @@ public class LuggageControl extends javax.swing.JFrame {
         helpFinding = new screen.help.Finding(this);
         helpLinking = new screen.help.Linking(this);
         helpRemoving = new screen.help.Removing(this);
-        homeScreenAdministrator = new screen.HomeScreenAdministrator(this);
-        homeScreenEmployee = new screen.HomeScreenEmployee(this);
-        homeScreenManager = new screen.HomeScreenManager(this);
+        homeScreenAdministrator = new screen.home.HomeScreenAdministrator(this);
+        homeScreenEmployee = new screen.home.HomeScreenEmployee(this);
+        homeScreenManager = new screen.home.HomeScreenManager(this);
         loginScreen = new screen.LoginScreen(this);
         luggageDetails = new screen.details.LuggageDetails(this);
         searchCustomer = new screen.search.SearchCustomer(this);
         searchLuggage = new screen.search.SearchLuggage(this);
-        userManagement = new screen.UserManagement(this);
+        userManagement = new screen.details.UserDetails(this);
         // </editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="Screen objects configurations">
@@ -265,13 +265,13 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.help.Removing) {
             this.remove(helpRemoving);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenAdministrator) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenAdministrator) {
             this.remove(homeScreenAdministrator);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenManager) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenManager) {
             this.remove(homeScreenManager);
         }
         else if(this.currentPanel instanceof screen.LoginScreen) {
@@ -286,7 +286,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.search.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof screen.UserManagement) {
+        else if(this.currentPanel instanceof screen.details.UserDetails) {
             this.remove(userManagement);
         }
     }

@@ -1,4 +1,4 @@
-package screen;
+package screen.details;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
@@ -16,11 +16,11 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author user
  */
 
-public class UserManagement extends SwitchingJPanel {
+public class UserDetails extends SwitchingJPanel {
     
     private DatabaseMan db = new DatabaseMan();
     
-    public UserManagement(LuggageControl luggageControl) {
+    public UserDetails(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
         PromptSupport.setPrompt("Adress", textFieldAdress);
