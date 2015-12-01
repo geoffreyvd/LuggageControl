@@ -275,22 +275,21 @@ public class AddLuggage extends SwitchingJPanel {
                 System.out.println("hey");
                 values2[0] = textFieldFlightnumber.getText();
                 values2[1] = db.queryOneResult(querySearchLuggage, luggageID);
-                types2[0] = "String";
-                types2[1] = "String";
+                types2[0] = "Int";
+                types2[1] = "Int";
                 System.out.println("hey2");
                 values3[0] = textFieldOwnerID.getText();
                 System.out.println("hey2");
                 values3[1] = db.queryOneResult(querySearchLuggage, luggageID);
                 System.out.println("yoyo");
-                types3[0] = "String";
-                types3[1] = "String";
+                types3[0] = "Int";
+                types3[1] = "Int";
                 System.out.println("yo");
                 db.queryManipulation(queryInsertFlight, values2, types2);
                 System.out.println("hey3");
                 db.queryManipulation(queryInsertCustomer, values3, types3);
             } catch (Exception e) {
                 System.out.println("hey3");
-
             }
             textFieldFlightnumber.setText("");
             textFieldLocation.setText("");
