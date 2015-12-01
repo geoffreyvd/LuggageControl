@@ -27,6 +27,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.delete.DeleteLuggage deleteLuggage;
     private screen.Example example;
     private screen.FirstStart firstStart;
+    private screen.details.FlightDetails flightDetails;
     private screen.GenerateStatistics generateStatistics;
     private screen.Help help;
     private screen.help.Adding helpAdding;
@@ -39,6 +40,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.LoginScreen loginScreen;
     private screen.details.LuggageDetails luggageDetails;
     private screen.search.SearchCustomer searchCustomer;
+    private screen.search.SearchFlight searchFlight;
     private screen.search.SearchLuggage searchLuggage;
     private screen.details.UserDetails userManagement;
     // </editor-fold>
@@ -116,6 +118,7 @@ public class LuggageControl extends javax.swing.JFrame {
         deleteLuggage = new screen.delete.DeleteLuggage(this);
         example = new screen.Example(this);
         firstStart = new screen.FirstStart(this);
+        flightDetails = new screen.details.FlightDetails(this);
         generateStatistics = new screen.GenerateStatistics(this);
         help = new screen.Help(this);
         helpAdding = new screen.help.Adding(this);
@@ -128,6 +131,7 @@ public class LuggageControl extends javax.swing.JFrame {
         loginScreen = new screen.LoginScreen(this);
         luggageDetails = new screen.details.LuggageDetails(this);
         searchCustomer = new screen.search.SearchCustomer(this);
+        searchFlight = new screen.search.SearchFlight(this);
         searchLuggage = new screen.search.SearchLuggage(this);
         userManagement = new screen.details.UserDetails(this);
         // </editor-fold>
@@ -155,6 +159,8 @@ public class LuggageControl extends javax.swing.JFrame {
         example.setVisible(true);
         firstStart.setSize(monitorSize);
         firstStart.setVisible(true);
+        flightDetails.setSize(monitorSize);
+        flightDetails.setVisible(true);
         generateStatistics.setSize(monitorSize);
         generateStatistics.setVisible(true);
         help.setSize(monitorSize);
@@ -171,6 +177,8 @@ public class LuggageControl extends javax.swing.JFrame {
         luggageDetails.setVisible(true);
         searchCustomer.setSize(monitorSize);
         searchCustomer.setVisible(true);
+        searchFlight.setSize(monitorSize);
+        searchFlight.setVisible(true);
         searchLuggage.setSize(monitorSize);
         searchLuggage.setVisible(true);
         userManagement.setSize(monitorSize);
@@ -247,6 +255,9 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.FirstStart) {
             this.remove(firstStart);  
         }
+        else if(this.currentPanel instanceof screen.details.FlightDetails) {
+            this.remove(flightDetails);  
+        }
         else if(this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
         }
@@ -282,6 +293,9 @@ public class LuggageControl extends javax.swing.JFrame {
         }
         else if(this.currentPanel instanceof screen.search.SearchCustomer) {
             this.remove(searchCustomer);
+        }
+        else if(this.currentPanel instanceof screen.search.SearchFlight) {
+            this.remove(searchFlight);
         }
         else if(this.currentPanel instanceof screen.search.SearchLuggage) {
             this.remove(searchLuggage);
@@ -403,6 +417,14 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = firstStart;
                 break;
+            case ScreenNames.FLIGHT_DETAILS:
+                this.removeCurrentJPanel();
+                this.add(flightDetails);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = flightDetails;
+                break;
             case ScreenNames.HELP:
                 this.removeCurrentJPanel();
                 this.add(help);
@@ -498,6 +520,14 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = searchCustomer;
+                break;
+            case ScreenNames.SEARCH_FLIGHT:
+                this.removeCurrentJPanel();
+                this.add(searchFlight);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = searchFlight;
                 break;
             case ScreenNames.SEARCH_LUGGAGE:
                 this.removeCurrentJPanel();
