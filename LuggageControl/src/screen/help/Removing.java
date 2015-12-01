@@ -47,6 +47,8 @@ public class Removing extends SwitchingJPanel {
         screenName = new javax.swing.JLabel();
         linkingTab = new javax.swing.JTabbedPane();
         panelRemoveEntries = new javax.swing.JPanel();
+        scrollPaneEntries = new javax.swing.JScrollPane();
+        textPaneEntries = new javax.swing.JTextPane();
         panelRemoveLinks = new javax.swing.JPanel();
         buttonBack = new javax.swing.JButton();
 
@@ -56,15 +58,23 @@ public class Removing extends SwitchingJPanel {
         screenName.setText("Help - removing");
         screenName.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
+        textPaneEntries.setEditable(false);
+        textPaneEntries.setText("Only the administrator can remove database entries, employees or managers must supply the primary key ID to the database entry in order for it to be removed. The following entries can be removed: Customers, Flights, Luggage, Users. Removing entries also removes any links to other entries for instance: removing a suitcase also removes every reference to users finding or losing this suitcase it will be as if the never lost or found it. Removing entries will effect statistics generated for manager type users.");
+        scrollPaneEntries.setViewportView(textPaneEntries);
+
         javax.swing.GroupLayout panelRemoveEntriesLayout = new javax.swing.GroupLayout(panelRemoveEntries);
         panelRemoveEntries.setLayout(panelRemoveEntriesLayout);
         panelRemoveEntriesLayout.setHorizontalGroup(
             panelRemoveEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1852, Short.MAX_VALUE)
+            .addGroup(panelRemoveEntriesLayout.createSequentialGroup()
+                .addComponent(scrollPaneEntries, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1508, Short.MAX_VALUE))
         );
         panelRemoveEntriesLayout.setVerticalGroup(
             panelRemoveEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 849, Short.MAX_VALUE)
+            .addGroup(panelRemoveEntriesLayout.createSequentialGroup()
+                .addComponent(scrollPaneEntries, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 796, Short.MAX_VALUE))
         );
 
         linkingTab.addTab("remove entries", panelRemoveEntries);
@@ -77,7 +87,7 @@ public class Removing extends SwitchingJPanel {
         );
         panelRemoveLinksLayout.setVerticalGroup(
             panelRemoveLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
 
         linkingTab.addTab("remove links", panelRemoveLinks);
@@ -112,7 +122,7 @@ public class Removing extends SwitchingJPanel {
                     .addComponent(buttonBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(linkingTab)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         linkingTab.getAccessibleContext().setAccessibleName("Linking Luggage");
@@ -130,5 +140,7 @@ public class Removing extends SwitchingJPanel {
     private javax.swing.JPanel panelRemoveEntries;
     private javax.swing.JPanel panelRemoveLinks;
     private javax.swing.JLabel screenName;
+    private javax.swing.JScrollPane scrollPaneEntries;
+    private javax.swing.JTextPane textPaneEntries;
     // End of variables declaration//GEN-END:variables
 }

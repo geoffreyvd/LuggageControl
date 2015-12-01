@@ -7,14 +7,8 @@ import java.awt.GraphicsEnvironment;
 import managers.SecurityMan;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
-import constants.Styling;
-import java.awt.Color;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicBoolean;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import managers.ConfigurationMan;
 
 /**
  * Root class off application creates the main windows
@@ -22,29 +16,31 @@ import javax.swing.JMenuItem;
  */
 public class LuggageControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Screen objects">
-    private screen.AddCustomer addCustomer;
-    private screen.AddLuggage addLuggage;
-    private screen.AddUser addUser;
+    private screen.add.AddCustomer addCustomer;
+    private screen.add.AddFlight addFlight;
+    private screen.add.AddLuggage addLuggage;
+    private screen.add.AddUser addUser;
     private screen.ChangeSettings changeSettings;
-    private screen.CustomerDetails customerDetails;   
-    private screen.DeleteCustomer deleteCustomer;
-    private screen.DeleteFlight deleteFlight;
-    private screen.DeleteLuggage deleteLuggage;
+    private screen.details.CustomerDetails customerDetails;   
+    private screen.delete.DeleteCustomer deleteCustomer;
+    private screen.delete.DeleteFlight deleteFlight;
+    private screen.delete.DeleteLuggage deleteLuggage;
     private screen.Example example;
+    private screen.FirstStart firstStart;
     private screen.GenerateStatistics generateStatistics;
     private screen.Help help;
     private screen.help.Adding helpAdding;
     private screen.help.Finding helpFinding;
     private screen.help.Linking helpLinking;
     private screen.help.Removing helpRemoving;
-    private screen.HomeScreenAdministrator homeScreenAdministrator;
-    private screen.HomeScreenEmployee homeScreenEmployee;
-    private screen.HomeScreenManager homeScreenManager;
+    private screen.home.HomeScreenAdministrator homeScreenAdministrator;
+    private screen.home.HomeScreenEmployee homeScreenEmployee;
+    private screen.home.HomeScreenManager homeScreenManager;
     private screen.LoginScreen loginScreen;
-    private screen.LuggageDetails luggageDetails;
-    private screen.SearchCustomer searchCustomer;
-    private screen.SearchLuggage searchLuggage;
-    private screen.UserManagement userManagement;
+    private screen.details.LuggageDetails luggageDetails;
+    private screen.search.SearchCustomer searchCustomer;
+    private screen.search.SearchLuggage searchLuggage;
+    private screen.details.UserDetails userManagement;
     // </editor-fold>
 
     private JMenuBar menuBar;
@@ -58,6 +54,9 @@ public class LuggageControl extends javax.swing.JFrame {
     
     // security manager and event interface
     private SecurityMan secman;
+    
+    // configuration manager
+    private ConfigurationMan conman;
     
     /**
      *
@@ -76,6 +75,10 @@ public class LuggageControl extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         initComponents();
+        
+        // ConfigurationMan must be initialized after initComponents
+        conman = new ConfigurationMan(this);
+        System.out.println(conman.getMysqlDumpLocationWindows(this));
 
         // start fullscreen
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -101,34 +104,39 @@ public class LuggageControl extends javax.swing.JFrame {
      */
     private void initComponents() {
         
-        // <editor-fold defaultstate="collapsed" desc="Screen objects">
-        addCustomer = new screen.AddCustomer(this);
-        addLuggage = new screen.AddLuggage(this);
-        addUser = new screen.AddUser(this);
+        // <editor-fold defaultstate="collapsed" desc="Screen objects initialazations">
+        addCustomer = new screen.add.AddCustomer(this);
+        addFlight = new screen.add.AddFlight(this);
+        addLuggage = new screen.add.AddLuggage(this);
+        addUser = new screen.add.AddUser(this);
         changeSettings = new screen.ChangeSettings(this);
-        customerDetails = new screen.CustomerDetails(this);
-        deleteCustomer = new screen.DeleteCustomer(this);
-        deleteFlight = new screen.DeleteFlight(this);
-        deleteLuggage = new screen.DeleteLuggage(this);
+        customerDetails = new screen.details.CustomerDetails(this);
+        deleteCustomer = new screen.delete.DeleteCustomer(this);
+        deleteFlight = new screen.delete.DeleteFlight(this);
+        deleteLuggage = new screen.delete.DeleteLuggage(this);
         example = new screen.Example(this);
+        firstStart = new screen.FirstStart(this);
         generateStatistics = new screen.GenerateStatistics(this);
         help = new screen.Help(this);
         helpAdding = new screen.help.Adding(this);
         helpFinding = new screen.help.Finding(this);
         helpLinking = new screen.help.Linking(this);
         helpRemoving = new screen.help.Removing(this);
-        homeScreenAdministrator = new screen.HomeScreenAdministrator(this);
-        homeScreenEmployee = new screen.HomeScreenEmployee(this);
-        homeScreenManager = new screen.HomeScreenManager(this);
+        homeScreenAdministrator = new screen.home.HomeScreenAdministrator(this);
+        homeScreenEmployee = new screen.home.HomeScreenEmployee(this);
+        homeScreenManager = new screen.home.HomeScreenManager(this);
         loginScreen = new screen.LoginScreen(this);
-        luggageDetails = new screen.LuggageDetails(this);
-        searchCustomer = new screen.SearchCustomer(this);
-        searchLuggage = new screen.SearchLuggage(this);
-        userManagement = new screen.UserManagement(this);
+        luggageDetails = new screen.details.LuggageDetails(this);
+        searchCustomer = new screen.search.SearchCustomer(this);
+        searchLuggage = new screen.search.SearchLuggage(this);
+        userManagement = new screen.details.UserDetails(this);
         // </editor-fold>
         
+        //<editor-fold defaultstate="collapsed" desc="Screen objects configurations">
         addCustomer.setSize(monitorSize);
         addCustomer.setVisible(true);
+        addFlight.setSize(monitorSize);
+        addFlight.setVisible(true);
         addLuggage.setSize(monitorSize);
         addLuggage.setVisible(true);
         addUser.setSize(monitorSize);
@@ -145,6 +153,8 @@ public class LuggageControl extends javax.swing.JFrame {
         deleteLuggage.setVisible(true);
         example.setSize(monitorSize);
         example.setVisible(true);
+        firstStart.setSize(monitorSize);
+        firstStart.setVisible(true);
         generateStatistics.setSize(monitorSize);
         generateStatistics.setVisible(true);
         help.setSize(monitorSize);
@@ -165,6 +175,7 @@ public class LuggageControl extends javax.swing.JFrame {
         searchLuggage.setVisible(true);
         userManagement.setSize(monitorSize);
         userManagement.setVisible(true);
+        //</editor-fold>
         
         /* Corendon red menubar
         menuBar = new JMenuBar();
@@ -189,7 +200,8 @@ public class LuggageControl extends javax.swing.JFrame {
     }
     
     /**
-     * Switch to the previously displayed panel.
+     * Switch to the previously displayed panel,
+     * This does not work!
      */
     public void switchPreviousPanel() {
         String tempSwitchString = this.previousPanel.getClass().getSimpleName();
@@ -202,32 +214,38 @@ public class LuggageControl extends javax.swing.JFrame {
     private void removeCurrentJPanel() {
         
         // this giant if statement needs to be converted to a switch statement
-        if(this.currentPanel instanceof screen.AddCustomer) {
+        if(this.currentPanel instanceof screen.add.AddCustomer) {
             this.remove(addCustomer);
         }
-        else if(this.currentPanel instanceof screen.AddLuggage) {
+        else if(this.currentPanel instanceof screen.add.AddFlight) {
+            this.remove(addFlight);
+        }
+        else if(this.currentPanel instanceof screen.add.AddLuggage) {
             this.remove(addLuggage);
         }
-        else if(this.currentPanel instanceof screen.AddUser) {
+        else if(this.currentPanel instanceof screen.add.AddUser) {
             this.remove(addUser);
         }
         else if(this.currentPanel instanceof screen.ChangeSettings) {
             this.remove(changeSettings);
         }
-        else if(this.currentPanel instanceof screen.CustomerDetails) {
+        else if(this.currentPanel instanceof screen.details.CustomerDetails) {
             this.remove(customerDetails);
         }
-        else if(this.currentPanel instanceof screen.DeleteCustomer) {
+        else if(this.currentPanel instanceof screen.delete.DeleteCustomer) {
             this.remove(deleteCustomer);
         }
-        else if(this.currentPanel instanceof screen.DeleteFlight) {
+        else if(this.currentPanel instanceof screen.delete.DeleteFlight) {
             this.remove(deleteFlight);
         }
-        else if(this.currentPanel instanceof screen.DeleteLuggage) {
+        else if(this.currentPanel instanceof screen.delete.DeleteLuggage) {
             this.remove(deleteLuggage);
         }    
         else if(this.currentPanel instanceof screen.Example) {
             this.remove(example);  
+        }
+        else if(this.currentPanel instanceof screen.FirstStart) {
+            this.remove(firstStart);  
         }
         else if(this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
@@ -247,29 +265,47 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.help.Removing) {
             this.remove(helpRemoving);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenAdministrator) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenAdministrator) {
             this.remove(homeScreenAdministrator);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenEmployee) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
         }
-        else if(this.currentPanel instanceof screen.HomeScreenManager) {
+        else if(this.currentPanel instanceof screen.home.HomeScreenManager) {
             this.remove(homeScreenManager);
         }
         else if(this.currentPanel instanceof screen.LoginScreen) {
             this.remove(loginScreen);
         }
-        else if(this.currentPanel instanceof screen.LoginScreen) {
+        else if(this.currentPanel instanceof screen.details.LuggageDetails) {
             this.remove(luggageDetails);
         }
-        else if(this.currentPanel instanceof screen.SearchCustomer) {
+        else if(this.currentPanel instanceof screen.search.SearchCustomer) {
             this.remove(searchCustomer);
         }
-        else if(this.currentPanel instanceof screen.SearchLuggage) {
+        else if(this.currentPanel instanceof screen.search.SearchLuggage) {
             this.remove(searchLuggage);
         }
-        else if(this.currentPanel instanceof screen.UserManagement) {
+        else if(this.currentPanel instanceof screen.details.UserDetails) {
             this.remove(userManagement);
+        }
+    }
+    
+    /**
+     * Go to home screen based on current permissions.
+     */
+    public void switchHomeScreen() {
+        if(secman.getPermissions() == 1) {
+            this.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        }
+        else if(secman.getPermissions() == 2) {
+            this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+        }
+        else if(secman.getPermissions() == 3) {
+            this.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        }
+        else {
+            this.switchJPanel(ScreenNames.LOGINSCREEN);
         }
     }
     
@@ -286,6 +322,14 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = addCustomer;
+                break;
+            case ScreenNames.ADD_FLIGHT:
+                this.removeCurrentJPanel();
+                this.add(addFlight);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = addFlight;
                 break;
             case ScreenNames.ADD_LUGGAGE:
                 this.removeCurrentJPanel();
@@ -342,6 +386,22 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.repaint();
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = deleteLuggage;
+                break;
+            case ScreenNames.EXAMPLE:
+                this.removeCurrentJPanel();
+                this.add(example);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = example;
+                break;
+            case ScreenNames.FIRST_START:
+                this.removeCurrentJPanel();
+                this.add(firstStart);
+                this.revalidate();
+                this.repaint();
+                this.previousPanel = this.currentPanel;
+                this.currentPanel = firstStart;
                 break;
             case ScreenNames.HELP:
                 this.removeCurrentJPanel();
@@ -464,19 +524,19 @@ public class LuggageControl extends javax.swing.JFrame {
     /**
      * Switch a screen.help panel to a specific tab.
      * @param tabName the name of the tab
-     * @param helpScreen the help screen must be of package screen.help
+     * @param panelName the help screen must be of package screen.help
      */
-    public void switchTab(String tabName, String helpScreen) {
-        if(helpScreen == ScreenNames.Help.ADDING) {
+    public void switchTab(String tabName, String panelName) {
+        if(panelName == ScreenNames.Help.ADDING) {
             helpAdding.selectTab(tabName);
         }
-        else if(helpScreen == ScreenNames.Help.FINDING) {
+        else if(panelName == ScreenNames.Help.FINDING) {
             helpFinding.selectTab(tabName);
         }
-        else if(helpScreen == ScreenNames.Help.LINKING) {
+        else if(panelName == ScreenNames.Help.LINKING) {
             helpLinking.selectTab(tabName);
         }
-        else if(helpScreen == ScreenNames.Help.REMOVING) {
+        else if(panelName == ScreenNames.Help.REMOVING) {
             helpRemoving.selectTab(tabName);
         }
         else {
@@ -498,8 +558,27 @@ public class LuggageControl extends javax.swing.JFrame {
             }
         }
     }
-    // </editor-fold>
     
+    /**
+     * Special function to prefill detail panels with information based on a specific ID
+     * When supplying a panelName make sure this is a details panel.
+     * @param panelName the panelName from the screen constants, this must be a details screen in order to work 
+     * @param id the specific ID
+     */
+    public void prefillPanel(String panelName, int id) {
+        if(panelName.equals(ScreenNames.CUSTOMER_DETAILS)) {
+            customerDetails.loadCustomer(id);
+        }
+        else if(panelName.equals(ScreenNames.LUGGAGE_DETAILS)) {
+            // does not work!
+            luggageDetails.loadLuggage(id);
+        }
+        else {
+            new ErrorJDialog(this, true, "Error: Trying to prefill detail panel which does not exist", (new Throwable()).getStackTrace());
+        }
+    }
+    
+    // <editor-fold defaultstate="collapsed" desc="user management methods">
     /**
      * Parse to login to the security manager and attempt a login sequence.
      * @param username the username as described in the database
@@ -520,7 +599,7 @@ public class LuggageControl extends javax.swing.JFrame {
     
     /**
      * Parse to login to the security manager and attempt a login sequence
-     * This method is more secure since it uses a char array instead of a String which is easier deleted.
+     * This method is more secure since it uses a <code>char[]</code> instead of a String which is easier deleted.
      * @param username the username as described in the database
      * @param password array of characters which together are the password as described in the database
      */
@@ -533,6 +612,10 @@ public class LuggageControl extends javax.swing.JFrame {
 //        }
     }
     
+    /**
+     * Sets the user afk to true or false and parses this through to the security manager
+     * @param userAFK true if the user is afk, false if he is not.
+     */
     public void setUserAFK(boolean userAFK) {
         this.secman.setUserAFK(false);
     }
@@ -543,4 +626,5 @@ public class LuggageControl extends javax.swing.JFrame {
     public void userTimeOut() {
         this.switchJPanel(ScreenNames.LOGINSCREEN);
     }
+    // </editor-fold>
 }

@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package baseClasses;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 
 /**
  *
@@ -45,7 +35,7 @@ public class ErrorJDialog extends PopUpJDialog {
     /**
      *  Display a error with a dialog and present the user with a stracktrace.
      * @param title Title of the dialog
-     * @param strackTrace array of calls which led to the point the error occured.
+     * @param stackTrace array of calls which led to the point the error occured.
      */
     public ErrorJDialog(java.awt.Frame parent, boolean modal, String title, StackTraceElement[] stackTrace) {
         this(parent, modal, title, stackTrace, false);
@@ -55,7 +45,7 @@ public class ErrorJDialog extends PopUpJDialog {
      *  Display a error with a dialog and present the user with a stracktrace.
      * @param title Title of the dialog
      * @param strackTrace array of calls which led to the point the error occured.
-     * @param critcal true if critical error and application should quit.
+     * @param critical true if critical error and application should quit.
      */
     public ErrorJDialog(java.awt.Frame parent, boolean modal, String title, StackTraceElement[] strackTrace, boolean critical) {
         super(parent, modal);
@@ -127,6 +117,9 @@ public class ErrorJDialog extends PopUpJDialog {
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         if(this.critical) {
             System.exit(1);
+        }
+        else {
+            this.dispose();
         }
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
