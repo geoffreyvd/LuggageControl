@@ -46,6 +46,17 @@ public class SearchCustomer extends SwitchingJPanel {
     }
     
     /**
+     * Clears all textfields
+     */
+    public void clearSearchCustomer() {
+        textFieldFlightnumber.setText("");
+        textFieldFirstName.setText("");
+        textFieldSurName.setText("");
+        textFieldCellphone.setText("");
+        textFieldEmail.setText("");
+    }
+    
+    /**
      * Fill our table with data based on the user provided dataset,
      * currently filtering is not really present
      * but atleast the UNION and INNER JOIN work so i am quite happy ~Corne Lukken.
@@ -314,11 +325,7 @@ public class SearchCustomer extends SwitchingJPanel {
      */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
-        textFieldFlightnumber.setText("");
-        textFieldFirstName.setText("");
-        textFieldSurName.setText("");
-        textFieldCellphone.setText("");
-        textFieldEmail.setText("");
+        clearSearchCustomer();
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 

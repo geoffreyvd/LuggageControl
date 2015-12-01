@@ -39,6 +39,17 @@ public class SearchLuggage extends SwitchingJPanel {
     }
 
     /**
+     * Clears all textfields
+     */
+    public void clearSearchLuggage() {
+        textFieldFlightNumber.setText("");
+        textFieldLocation.setText("");
+        textFieldOwnerID.setText("");
+        comboBoxLuggageStatus.setSelectedIndex(0);
+        textFieldLuggageID.setText("");
+    }
+    
+    /**
      * Go to the luggage details screen based on the selected lugggage id
      * This method is best used in conjunction with the fillTableLuggage.
      * @param luggageId The specific database luggage id from the luggage table
@@ -297,12 +308,8 @@ public class SearchLuggage extends SwitchingJPanel {
      * @param evt
      */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        this.userNotAFK();
-        textFieldFlightNumber.setText("");
-        textFieldLocation.setText("");
-        textFieldOwnerID.setText("");
-        comboBoxLuggageStatus.setSelectedIndex(0);
-        textFieldLuggageID.setText("");
+        this.userNotAFK(); 
+        clearSearchLuggage();
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
