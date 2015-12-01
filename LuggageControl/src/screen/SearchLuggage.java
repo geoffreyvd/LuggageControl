@@ -69,6 +69,16 @@ public class SearchLuggage extends SwitchingJPanel {
         buttonCancel = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
 
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         labelSearchLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchLuggage.setText("Search luggage");
 
@@ -237,6 +247,10 @@ public class SearchLuggage extends SwitchingJPanel {
             tableLuggageSearch.clearSelection();
         }
     }//GEN-LAST:event_tableLuggageSearchKeyPressed
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        this.fillSearchLuggageTable();
+    }//GEN-LAST:event_formAncestorAdded
 
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
