@@ -1,4 +1,4 @@
-package screen;
+package screen.delete;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;

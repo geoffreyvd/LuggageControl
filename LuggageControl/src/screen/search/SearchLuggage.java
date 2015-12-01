@@ -1,4 +1,4 @@
-package screen;
+package screen.search;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;

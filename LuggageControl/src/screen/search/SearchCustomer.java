@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package screen;
+package screen.search;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
@@ -194,7 +189,7 @@ public class SearchCustomer extends SwitchingJPanel {
             }
         });
 
-        buttonCancel.setText("Cancel");
+        buttonCancel.setText("Back");
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelActionPerformed(evt);
