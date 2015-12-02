@@ -58,7 +58,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonConfirm" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="buttonUploadImage" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="buttonUploadImage" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                   <Component id="pic" pref="414" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>

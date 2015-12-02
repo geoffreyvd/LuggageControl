@@ -10,16 +10,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+
 /**
  *
  * @author Admin
  */
 public class AddUser extends SwitchingJPanel {
+    
+    private SecurityMan secman;
 
     public AddUser(LuggageControl luggageControl) {
         super(luggageControl);
+        
         initComponents();
+        
         PromptSupport.setPrompt("Adress", textFieldAdress);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAdress);
         PromptSupport.setPrompt("Birthday(yyyy-mm-dd)", textFieldBirthday);
@@ -41,7 +47,7 @@ public class AddUser extends SwitchingJPanel {
         PromptSupport.setPrompt("Password", textFieldPassword);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPassword);
         
-
+        this.secman = new SecurityMan(luggageControl);
     }
 
     /**
@@ -179,7 +185,7 @@ public class AddUser extends SwitchingJPanel {
                         .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
@@ -331,9 +337,13 @@ public class AddUser extends SwitchingJPanel {
             tempPermission = 3;
         }
         
+        String salt = secman.createSalt();
+        String password = secman.encodePassword(textFieldPassword.getText(), salt);
+        
         String[] userData = {
             textFieldUsername.getText(), 
-            textFieldPassword.getText(), 
+            password, 
+            salt,
             textFieldEmail.getText(), 
             textFieldFirstname.getText(), 
             textFieldSurname.getText(), 
@@ -358,14 +368,15 @@ public class AddUser extends SwitchingJPanel {
             "String",
             "String",
             "String",
+            "String",
             "Int",
         };
         
         try {
             db.queryManipulation(
                     "INSERT INTO user "+
-                            "(username,password,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,permissions)" +
-                            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                            "(username,password,salt,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,permissions)" +
+                            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     userData, userTypes
             );
         } catch (SQLException ex) {
