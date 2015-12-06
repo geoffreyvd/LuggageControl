@@ -18,44 +18,46 @@
       <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelAddLuggage" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
+                  <Component id="textFieldContent" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelAddLuggage" min="-2" pref="203" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="textFieldFlightnumber" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="comboBoxLuggageStatus" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textFieldLocation" alignment="0" pref="130" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="textFieldWeight" min="-2" pref="130" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textFieldOwnerID" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="textFieldSize" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="textFieldColor" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="buttonHelp" min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldContent" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textFieldFlightnumber" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="comboBoxLuggageStatus" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="textFieldLocation" alignment="0" pref="130" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="textFieldWeight" min="-2" pref="130" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textFieldOwnerID" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Component id="textFieldSize" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Component id="textFieldColor" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="94" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
                               <Component id="butonCancel" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="pic" max="32767" attributes="0"/>
                           <Component id="buttonUploadImage" max="32767" attributes="0"/>
+                          <Component id="pic" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -66,7 +68,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="labelAddLuggage" min="-2" pref="49" max="-2" attributes="0"/>
@@ -96,7 +98,7 @@
                       <Component id="buttonUploadImage" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pic" pref="219" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -105,6 +107,7 @@
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
+          <Component id="jSeparator1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -177,10 +180,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="pic">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
   </SubComponents>
 </Form>

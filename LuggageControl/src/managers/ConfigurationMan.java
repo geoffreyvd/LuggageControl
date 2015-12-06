@@ -91,9 +91,9 @@ public class ConfigurationMan {
         }
 
         // windows test for mysqldump.exe location and if our file still exists
-//        if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists()) {
-//            this.findMysqlDumpLocationWindows();
-//        }
+        if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists()) {
+            this.findMysqlDumpLocationWindows();
+        }
     }
     
     private boolean checkConfigFile() {
