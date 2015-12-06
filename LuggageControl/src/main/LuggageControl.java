@@ -85,9 +85,6 @@ public class LuggageControl extends javax.swing.JFrame {
         // start fullscreen
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(monitorSize);
-        
-        System.out.println(secman.createPassword("test"));
-        System.out.println(secman.createPassword("test"));
     }
 
     /**
@@ -205,9 +202,9 @@ public class LuggageControl extends javax.swing.JFrame {
         
         this.currentPanel = loginScreen;
         this.switchJPanel(ScreenNames.LOGINSCREEN);
-        // testing if I can switch to a specific tab
-        // and yes that works
-        // helpLinking.selectTab("Not available");
+        
+        //this.currentPanel = firstStart;
+        //this.switchJPanel(ScreenNames.FIRST_START);
     }
     
     /**

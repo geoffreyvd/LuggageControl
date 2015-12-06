@@ -88,8 +88,7 @@ public class SecurityMan {
         fireTimeOut = new timeOutTimerTask(this.luggageControl);
     }
     
-    public String[] createPassword(String password) {
-        String saltString = createSalt();
+    public String encodePassword(String password, String saltString) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             
@@ -108,10 +107,10 @@ public class SecurityMan {
             new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
         }
         
-        return new String[]{password, saltString};
+        return password;
     }
     
-    private String createSalt() {
+    public String createSalt() {
         SecureRandom number;
         try {
             number = SecureRandom.getInstance("SHA1PRNG");
@@ -137,10 +136,20 @@ public class SecurityMan {
      * @return true if successful, false when failed.
      */
     public boolean logInUser(String username, String password) {
+        
+        // get the salt, try catch in case our user does not exist
+        try {
+            String salt = databaseMan.queryOneResult("SELECT salt FROM user WHERE username = ?", new String[]{username});
+            password = this.encodePassword(password, salt);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         String[] values1 = new String[2];
         values1[0] = username;
         values1[1] = password;
-        String query = "select permission from user where username = ? and password = ?";
+        String query = "SELECT permission FROM user WHERE username = ? AND password = ?";
         
         //This query will return a string, it only returns 1 value!
         String result = databaseMan.queryOneResult(query, values1);
@@ -148,7 +157,6 @@ public class SecurityMan {
         username = null;
         password = null;
         if (!result.equals("")) {
-            System.out.println("succesful query");
             int resultInt = Byte.parseByte(result);
             if (resultInt == 0) {
                 //oude gebruiker gegevens zonder inlog
@@ -171,7 +179,7 @@ public class SecurityMan {
             this.userLoggedIn.set(true);
             return true;
         } else {
-            System.out.println("De opgegeven gebruiker niet gevonden in de database");
+            System.out.println("User was not found in the database");
             return false;
         }
     }
