@@ -231,6 +231,9 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.add.AddLuggageOld) {
             this.remove(addLuggage);
         }
+        else if(this.currentPanel instanceof screen.add.AddLuggage) {
+            this.remove(addLuggage);
+        }
         else if(this.currentPanel instanceof screen.add.AddUser) {
             this.remove(addUser);
         }
