@@ -2,6 +2,7 @@ package managers;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.PopUpJDialog;
+import constants.ScreenNames;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.BufferedReader;
@@ -21,6 +22,9 @@ import main.LuggageControl;
  * @author Corne Lukken
  */
 public class ConfigurationMan {
+    
+    // used to determine if we can start initialization immediately
+    private boolean proceedInitialization = true;
     
     // Configuration file name
     private static final String CONFIG_NAME = "config.ini";
@@ -86,16 +90,28 @@ public class ConfigurationMan {
         
         // test if initial configuration of database and user is complete
         if(!this.getInitialConfiguration()) {
+            
+            // do not immediatly initialize
+            proceedInitialization = false;
+            
             // go to initial config
-            //this.luggageControl.switchJPanel(ScreenNames.FIRST_START);
+            this.luggageControl.switchJPanel(ScreenNames.FIRST_START);
         }
 
         // windows test for mysqldump.exe location and if our file still exists
         if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists()) {
             this.findMysqlDumpLocationWindows();
+        } 
+        
+        if(proceedInitialization) {
+            this.luggageControl.initComponents();
         }
     }
     
+    /**
+     * check if our config file exists
+     * @return true if the file exists, otherwise false
+     */
     private boolean checkConfigFile() {
         if(new File(CONFIG_NAME).isFile()){
             return true;
@@ -110,7 +126,7 @@ public class ConfigurationMan {
      * @return true if initial configuration is complete, false otherwise. 
      */
     public boolean getInitialConfiguration() {
-        return false;
+        return true;
     }
     
     /**
@@ -150,7 +166,7 @@ public class ConfigurationMan {
         if(OS.equals("Linux")) {
             return true;
         }
-        return false;
+        return true;
     }
     
     public boolean findMysqlDumpLocationWindows() {

@@ -114,7 +114,7 @@ public class SecurityMan {
         SecureRandom number;
         try {
             number = SecureRandom.getInstance("SHA1PRNG");
-            byte[] salt = new byte[47];
+            byte[] salt = new byte[12];
             number.nextBytes(salt);
             return new String(Base64.encodeBase64(salt));
             

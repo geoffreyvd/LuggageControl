@@ -1,6 +1,7 @@
 package managers;
 
 import baseClasses.ErrorJDialog;
+import com.mysql.jdbc.CommunicationsException;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -176,9 +177,17 @@ public class DatabaseMan {
             else {
                 return "";
             }
-        } catch (SQLException ex) {
+        } 
+        catch(CommunicationsException ex) {
+            
+            // this could be used to determine that the database is offline
+            return "";
+        }
+        catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            
+            // please dont return NULL this will create errors everywhere
+            return "";
         }
     }
 

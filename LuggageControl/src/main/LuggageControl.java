@@ -44,6 +44,9 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.search.SearchLuggage searchLuggage;
     private screen.details.UserDetails userManagement;
     // </editor-fold>
+    
+    // Used to determine if components have been initialized
+    private boolean componentsInitialized = false;
 
     private JMenuBar menuBar;
     
@@ -75,8 +78,10 @@ public class LuggageControl extends javax.swing.JFrame {
         
         // Exits the application on closing this JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        initComponents();
+        
+        firstStart = new screen.FirstStart(this);
+        firstStart.setSize(monitorSize);
+        firstStart.setVisible(true);
         
         // ConfigurationMan must be initialized after initComponents
         conman = new ConfigurationMan(this);
@@ -84,7 +89,7 @@ public class LuggageControl extends javax.swing.JFrame {
 
         // start fullscreen
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.setSize(monitorSize);
+        this.setPreferredSize(monitorSize);
     }
 
     /**
@@ -104,107 +109,107 @@ public class LuggageControl extends javax.swing.JFrame {
      * performance and memory consumption, chosen to favor performance over
      * memory consumption.
      */
-    private void initComponents() {
+    public void initComponents() {
+        if(!componentsInitialized) {
+            componentsInitialized = true;
         
-        // <editor-fold defaultstate="collapsed" desc="Screen objects initialazations">
-        addCustomer = new screen.add.AddCustomer(this);
-        addFlight = new screen.add.AddFlight(this);
-        addLuggage = new screen.add.AddLuggage(this);
-        addUser = new screen.add.AddUser(this);
-        changeSettings = new screen.ChangeSettings(this);
-        customerDetails = new screen.details.CustomerDetails(this);
-        deleteCustomer = new screen.delete.DeleteCustomer(this);
-        deleteFlight = new screen.delete.DeleteFlight(this);
-        deleteLuggage = new screen.delete.DeleteLuggage(this);
-        example = new screen.Example(this);
-        firstStart = new screen.FirstStart(this);
-        flightDetails = new screen.details.FlightDetails(this);
-        generateStatistics = new screen.GenerateStatistics(this);
-        help = new screen.Help(this);
-        helpAdding = new screen.help.Adding(this);
-        helpFinding = new screen.help.Finding(this);
-        helpLinking = new screen.help.Linking(this);
-        helpRemoving = new screen.help.Removing(this);
-        homeScreenAdministrator = new screen.home.HomeScreenAdministrator(this);
-        homeScreenEmployee = new screen.home.HomeScreenEmployee(this);
-        homeScreenManager = new screen.home.HomeScreenManager(this);
-        loginScreen = new screen.LoginScreen(this);
-        luggageDetails = new screen.details.LuggageDetails(this);
-        searchCustomer = new screen.search.SearchCustomer(this);
-        searchFlight = new screen.search.SearchFlight(this);
-        searchLuggage = new screen.search.SearchLuggage(this);
-        userManagement = new screen.details.UserDetails(this);
-        // </editor-fold>
-        
-        //<editor-fold defaultstate="collapsed" desc="Screen objects configurations">
-        addCustomer.setSize(monitorSize);
-        addCustomer.setVisible(true);
-        addFlight.setSize(monitorSize);
-        addFlight.setVisible(true);
-        addLuggage.setSize(monitorSize);
-        addLuggage.setVisible(true);
-        addUser.setSize(monitorSize);
-        addUser.setVisible(true);
-        changeSettings.setSize(monitorSize);
-        changeSettings.setVisible(true);
-        customerDetails.setSize(monitorSize);
-        customerDetails.setVisible(true);
-        deleteCustomer.setSize(monitorSize);
-        deleteCustomer.setVisible(true);
-        deleteFlight.setSize(monitorSize);
-        deleteFlight.setVisible(true);
-        deleteLuggage.setSize(monitorSize);
-        deleteLuggage.setVisible(true);
-        example.setSize(monitorSize);
-        example.setVisible(true);
-        firstStart.setSize(monitorSize);
-        firstStart.setVisible(true);
-        flightDetails.setSize(monitorSize);
-        flightDetails.setVisible(true);
-        generateStatistics.setSize(monitorSize);
-        generateStatistics.setVisible(true);
-        help.setSize(monitorSize);
-        help.setVisible(true);
-        homeScreenAdministrator.setSize(monitorSize);
-        homeScreenAdministrator.setVisible(true);
-        homeScreenEmployee.setSize(monitorSize);
-        homeScreenEmployee.setVisible(true);
-        homeScreenManager.setSize(monitorSize);
-        homeScreenManager.setVisible(true);
-        loginScreen.setSize(monitorSize);
-        loginScreen.setVisible(true);
-        luggageDetails.setSize(monitorSize);
-        luggageDetails.setVisible(true);
-        searchCustomer.setSize(monitorSize);
-        searchCustomer.setVisible(true);
-        searchFlight.setSize(monitorSize);
-        searchFlight.setVisible(true);
-        searchLuggage.setSize(monitorSize);
-        searchLuggage.setVisible(true);
-        userManagement.setSize(monitorSize);
-        userManagement.setVisible(true);
-        //</editor-fold>
-        
-        /* Corendon red menubar
-        menuBar = new JMenuBar();
-        menuBar.setSize(1920, 50);
-        menuBar.setBackground(Styling.CORENDON_RED);
-        menuBar.setVisible(true);
-        
-        JMenuItem menuItem = new JMenuItem();
-        menuItem.setText("Test item");
-        menuItem.setForeground(Color.WHITE);
-        menuItem.setBackground(Styling.CORENDON_RED);
-        menuBar.add(menuItem);
-        
-        this.add(menuBar);
-        */
-        
-        this.currentPanel = loginScreen;
-        this.switchJPanel(ScreenNames.LOGINSCREEN);
-        
-        //this.currentPanel = firstStart;
-        //this.switchJPanel(ScreenNames.FIRST_START);
+            // <editor-fold defaultstate="collapsed" desc="Screen objects initialazations">
+            addCustomer = new screen.add.AddCustomer(this);
+            addFlight = new screen.add.AddFlight(this);
+            addLuggage = new screen.add.AddLuggage(this);
+            addUser = new screen.add.AddUser(this);
+            changeSettings = new screen.ChangeSettings(this);
+            customerDetails = new screen.details.CustomerDetails(this);
+            deleteCustomer = new screen.delete.DeleteCustomer(this);
+            deleteFlight = new screen.delete.DeleteFlight(this);
+            deleteLuggage = new screen.delete.DeleteLuggage(this);
+            example = new screen.Example(this);
+            flightDetails = new screen.details.FlightDetails(this);
+            generateStatistics = new screen.GenerateStatistics(this);
+            help = new screen.Help(this);
+            helpAdding = new screen.help.Adding(this);
+            helpFinding = new screen.help.Finding(this);
+            helpLinking = new screen.help.Linking(this);
+            helpRemoving = new screen.help.Removing(this);
+            homeScreenAdministrator = new screen.home.HomeScreenAdministrator(this);
+            homeScreenEmployee = new screen.home.HomeScreenEmployee(this);
+            homeScreenManager = new screen.home.HomeScreenManager(this);
+            loginScreen = new screen.LoginScreen(this);
+            luggageDetails = new screen.details.LuggageDetails(this);
+            searchCustomer = new screen.search.SearchCustomer(this);
+            searchFlight = new screen.search.SearchFlight(this);
+            searchLuggage = new screen.search.SearchLuggage(this);
+            userManagement = new screen.details.UserDetails(this);
+            // </editor-fold>
+
+            //<editor-fold defaultstate="collapsed" desc="Screen objects configurations">
+            addCustomer.setSize(monitorSize);
+            addCustomer.setVisible(true);
+            addFlight.setSize(monitorSize);
+            addFlight.setVisible(true);
+            addLuggage.setSize(monitorSize);
+            addLuggage.setVisible(true);
+            addUser.setSize(monitorSize);
+            addUser.setVisible(true);
+            changeSettings.setSize(monitorSize);
+            changeSettings.setVisible(true);
+            customerDetails.setSize(monitorSize);
+            customerDetails.setVisible(true);
+            deleteCustomer.setSize(monitorSize);
+            deleteCustomer.setVisible(true);
+            deleteFlight.setSize(monitorSize);
+            deleteFlight.setVisible(true);
+            deleteLuggage.setSize(monitorSize);
+            deleteLuggage.setVisible(true);
+            example.setSize(monitorSize);
+            example.setVisible(true);
+            flightDetails.setSize(monitorSize);
+            flightDetails.setVisible(true);
+            generateStatistics.setSize(monitorSize);
+            generateStatistics.setVisible(true);
+            help.setSize(monitorSize);
+            help.setVisible(true);
+            homeScreenAdministrator.setSize(monitorSize);
+            homeScreenAdministrator.setVisible(true);
+            homeScreenEmployee.setSize(monitorSize);
+            homeScreenEmployee.setVisible(true);
+            homeScreenManager.setSize(monitorSize);
+            homeScreenManager.setVisible(true);
+            loginScreen.setSize(monitorSize);
+            loginScreen.setVisible(true);
+            luggageDetails.setSize(monitorSize);
+            luggageDetails.setVisible(true);
+            searchCustomer.setSize(monitorSize);
+            searchCustomer.setVisible(true);
+            searchFlight.setSize(monitorSize);
+            searchFlight.setVisible(true);
+            searchLuggage.setSize(monitorSize);
+            searchLuggage.setVisible(true);
+            userManagement.setSize(monitorSize);
+            userManagement.setVisible(true);
+            //</editor-fold>
+
+            /* Corendon red menubar
+            menuBar = new JMenuBar();
+            menuBar.setSize(1920, 50);
+            menuBar.setBackground(Styling.CORENDON_RED);
+            menuBar.setVisible(true);
+
+            JMenuItem menuItem = new JMenuItem();
+            menuItem.setText("Test item");
+            menuItem.setForeground(Color.WHITE);
+            menuItem.setBackground(Styling.CORENDON_RED);
+            menuBar.add(menuItem);
+
+            this.add(menuBar);
+            */
+
+            this.currentPanel = loginScreen;
+            this.switchJPanel(ScreenNames.LOGINSCREEN);
+
+            //this.currentPanel = firstStart;
+            //this.switchJPanel(ScreenNames.FIRST_START);
+        }
     }
     
     /**
