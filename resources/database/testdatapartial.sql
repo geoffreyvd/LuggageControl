@@ -43,7 +43,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'henk','tank','lovetanks@aol.com','06638638638','1822-04-22','Androgenous','tanklane 1337','1337TANK'),(2,'mary','currie','uranium@hotmail.com','06238','1922-03-17','fEMALE','cesiumlane 13','84572OP');
+INSERT INTO `customer` VALUES (1,'henk','tank','lovetanks@aol.com','06638638639','1822-04-22','Androgenous','tanklane 1337','1337TANK'),(2,'mary','currie','uranium@hotmail.com','06238','1922-03-17','Female','cesiumlane 16','84572OP');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +70,7 @@ CREATE TABLE `customer_flight` (
 
 LOCK TABLES `customer_flight` WRITE;
 /*!40000 ALTER TABLE `customer_flight` DISABLE KEYS */;
-INSERT INTO `customer_flight` VALUES (2,1);
+INSERT INTO `customer_flight` VALUES (1,1),(2,1),(2,2);
 /*!40000 ALTER TABLE `customer_flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +225,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(512) DEFAULT NULL,
   `salt` varchar(16) DEFAULT NULL,
   `email` varchar(128) DEFAULT NULL,
   `firstname` varchar(45) DEFAULT NULL,
@@ -252,7 +252,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (7,'user1','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1),(8,'user2','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2),(9,'user3','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3),(10,'user0','verysecure',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
+INSERT INTO `user` VALUES (7,'user1','M21PjSi8/obI9ioCP9qVMmVSzt7pgQaYbc5GOefhT/fPh21Df6FGQSztnOympEpp3vD72VSw1P6LKnFOm1hnTg==','sMbVZ9NhF98notLQ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1),(8,'user2','VQO9/p4LmZUoDHinndnnCtLkmvZHhpBmFOPfo6tz4qfs+kEwgvtqktngPRQOTPcqeo5U84kM4X90WnyUW+KxlA==','iup5j6bpaXSZyIYK',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2),(9,'user3','lhrPwoaww6F9r1sUlqompaBfNd1I8HPXBV9ixnkPyF1+U7kd7uUvKdviYln5Ic8ouWlqBjrceWT15MjSTD4pyA==','b0T6bVYQ1F+M3wyN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3),(10,'user0','verysecurel5rmXW36On8sLfW3gAyQ1RaZLjL2SWgKE2ow5bk8NPMcCGtuHhCBZ4HUwpnR0LdMVuUDVbs9iMS8wqqWvMFXgg==','v8tpFSorKJ3J6E0S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -265,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-28 15:06:12
+-- Dump completed on 2015-12-07 20:38:46

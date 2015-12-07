@@ -316,7 +316,6 @@ public class AddCustomer extends SwitchingJPanel {
             tableCustomer.setModel(datamodel);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
         }
     }
     private void textFieldQuickSearchFlightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldQuickSearchFlightNumberKeyPressed

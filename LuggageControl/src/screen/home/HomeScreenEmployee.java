@@ -264,7 +264,6 @@ public class HomeScreenEmployee extends SwitchingJPanel {
             tableLuggage.setModel(datamodel);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            new ErrorJDialog(this.luggageControl, true, "Error: retrieving customer dataset", (new Throwable()).getStackTrace());
         }
     }
 
