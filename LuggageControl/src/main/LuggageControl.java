@@ -202,9 +202,9 @@ public class LuggageControl extends javax.swing.JFrame {
         
         this.currentPanel = loginScreen;
         this.switchJPanel(ScreenNames.LOGINSCREEN);
-        // testing if I can switch to a specific tab
-        // and yes that works
-        // helpLinking.selectTab("Not available");
+        
+        //this.currentPanel = firstStart;
+        //this.switchJPanel(ScreenNames.FIRST_START);
     }
     
     /**
@@ -228,7 +228,7 @@ public class LuggageControl extends javax.swing.JFrame {
         else if(this.currentPanel instanceof screen.add.AddFlight) {
             this.remove(addFlight);
         }
-        else if(this.currentPanel instanceof screen.add.AddLuggage) {
+        else if(this.currentPanel instanceof screen.add.AddLuggageOld) {
             this.remove(addLuggage);
         }
         else if(this.currentPanel instanceof screen.add.AddUser) {

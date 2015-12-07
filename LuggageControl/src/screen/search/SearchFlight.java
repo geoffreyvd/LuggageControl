@@ -1,10 +1,15 @@
 package screen.search;
 
+import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
+import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -13,6 +18,8 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  */
 public class SearchFlight extends SwitchingJPanel {
 
+    private DatabaseMan db = new DatabaseMan();
+    
     /**
      * Creates new form SearchFlight
      * @param luggageControl
@@ -48,9 +55,95 @@ public class SearchFlight extends SwitchingJPanel {
      * This method is best used in conjunction with the fillTableFlight.
      * @param flightId The specific database luggage id from the luggage table
      */
-    public void switchLuggageDetails(int flightId) {
-        this.luggageControl.prefillPanel(ScreenNames.LUGGAGE_DETAILS, flightId);
-        this.luggageControl.switchJPanel(ScreenNames.LUGGAGE_DETAILS);
+    public void switchFlightDetails(int flightId) {
+        this.luggageControl.prefillPanel(ScreenNames.FLIGHT_DETAILS, flightId);
+        this.luggageControl.switchJPanel(ScreenNames.FLIGHT_DETAILS);
+    }
+    
+    /**
+     * Searches through the database for the luggage withe filters from 
+     * the textfields or for every luggage when none of the fields are filled in
+     */
+    private void fillSearchLuggageTable() {
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
+        ArrayList<String> values = new ArrayList<String>();
+
+        // If Some text fields are not empty we add the WHERE clause
+        if (!textFieldFlightnumber.getText().equals("") || !textFieldOrigin.getText().equals("") ||
+            !textFieldDestination.getText().equals("") || !textFieldDepartureTime.getText().equals("") || 
+            !textFieldArrivalTime.getText().equals("")) {
+            query += "WHERE 1=0 ";
+        }
+
+        try {
+            if (!textFieldFlightnumber.getText().equals("")) {
+                query += "OR flight_id = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFlightnumber.getText()));
+            }
+
+            if (!textFieldOrigin.getText().equals("")) {
+                query += "OR origin = ? ";
+                values.add(helpers.Filters.filteredString(textFieldOrigin.getText()));
+            }
+
+            if (!textFieldDestination.getText().equals("")) {
+                query += "OR destination = ? ";
+                values.add(helpers.Filters.filteredString(textFieldDestination.getText()));
+            }
+            if (!textFieldDepartureTime.getText().equals("")) {
+                query += "OR departure = ? ";
+                values.add(helpers.Filters.filteredString(textFieldDepartureTime.getText()));
+            }
+            if (!textFieldArrivalTime.getText().equals("")) {
+                query += "OR arrival = ? ";
+                values.add(helpers.Filters.filteredString(textFieldArrivalTime.getText()));
+            }
+
+//            // If you get a mysql error saying: not unique table/alias look here 
+//            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
+//            // You need to create a mysql alias if you select multiple times from the same table!
+//            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+//            query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+//            if (!textFieldFlightNumber.getText().equals("")) {
+//                query += "`luggage_flight`.`flight_id` = ? AND ";
+//                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+//            }
+//            query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
+//            
+//            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+//            query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+//            if (!textFieldOwnerID.getText().equals("")) {
+//                query += "`customer_luggage`.`customer_id` = ? AND ";
+//                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+//            }
+//            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
+                    
+            
+
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableFlightSearch.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("flight_id"),
+                    result.getString("origin"),
+                    result.getString("destination"),
+                    result.getString("departure"),
+                    result.getString("arrival")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableFlightSearch.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
     }
     
     /**
@@ -103,14 +196,14 @@ public class SearchFlight extends SwitchingJPanel {
 
             },
             new String [] {
-                "Luggage ID", "Location", "Color", "Weight", "Size", "Content", "Status"
+                "Flightnumber", "Origin", "Destination", "Departure", "Arival"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -121,6 +214,7 @@ public class SearchFlight extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableFlightSearch.getTableHeader().setReorderingAllowed(false);
         tableFlightSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tableFlightSearchKeyPressed(evt);
@@ -192,7 +286,7 @@ public class SearchFlight extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        //this.fillSearchLuggageTable();
+        this.fillSearchLuggageTable();
         this.userNotAFK();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
@@ -213,7 +307,7 @@ public class SearchFlight extends SwitchingJPanel {
             try {
                 tempTable = (JTable)evt.getComponent();
                 // look at this one liner
-                //switchFlightDetails(Integer.parseInt((String) tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
+                switchFlightDetails(Integer.parseInt((String) tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
             }
             catch(Exception e) {
                 new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());

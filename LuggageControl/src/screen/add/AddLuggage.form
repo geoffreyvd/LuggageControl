@@ -15,48 +15,44 @@
 
   <Layout>
     <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="1" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelAddLuggage" min="-2" pref="203" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="buttonHelp" min="-2" pref="97" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelAddLuggage" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="butonCancel" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldContent" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textFieldFlightnumber" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="comboBoxLuggageStatus" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="textFieldLocation" alignment="0" pref="130" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="textFieldWeight" min="-2" pref="130" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textFieldOwnerID" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Component id="textFieldSize" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Component id="textFieldColor" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Component id="textFieldSize" pref="130" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldWeight" pref="130" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="comboBoxLuggageStatus" pref="130" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldColor" pref="130" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="textFieldLocation" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textFieldFlightnumber" alignment="0" pref="130" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="94" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
-                              <Component id="butonCancel" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="pic" max="32767" attributes="0"/>
-                          <Component id="buttonUploadImage" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldOwnerID" pref="130" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="buttonHelpLinking" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="buttonUploadImage" pref="263" max="32767" attributes="0"/>
+                      <Component id="pic" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -65,63 +61,71 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="labelAddLuggage" min="-2" pref="49" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Component id="labelAddLuggage" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonHelpLinking" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldFlightnumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldFlightnumber" alignment="3" max="-2" attributes="0"/>
                           <Component id="textFieldOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="textFieldLocation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxLuggageStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="textFieldSize" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldWeight" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="textFieldContent" pref="207" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Component id="pic" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonUploadImage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="pic" min="-2" pref="219" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="jSeparator1" min="-2" pref="398" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="buttonHelp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Help"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHelpActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightnumber">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelAddLuggage">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="30" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Add luggage"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldLocation">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldOwnerID">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldOwnerIDActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBoxLuggageStatus">
       <Properties>
@@ -141,22 +145,23 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldWeight">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldContent">
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelAddLuggage">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="30" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Add luggage"/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="textPaneContent">
+        </Component>
+      </SubComponents>
+    </Container>
     <Component class="javax.swing.JButton" name="buttonUploadImage">
       <Properties>
         <Property name="text" type="java.lang.String" value="Upload image"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUploadsImageActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUploadImagebuttonUploadsImageActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonConfirm">
@@ -172,15 +177,26 @@
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butonCancelbuttonCancelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="pic">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonHelpLinking">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Help"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHelpLinkingbuttonHelpActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
   </SubComponents>
 </Form>

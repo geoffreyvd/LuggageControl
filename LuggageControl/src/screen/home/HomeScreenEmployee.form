@@ -18,13 +18,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="buttonAddLuggage" alignment="0" max="32767" attributes="0"/>
-                  <Component id="buttonAddCustomer" alignment="0" max="32767" attributes="0"/>
-                  <Component id="buttonSearchCustomer" max="32767" attributes="0"/>
-                  <Component id="buttonSearchLuggage" alignment="0" max="32767" attributes="0"/>
-                  <Component id="buttonAddFlight" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelHeaderLeftSide" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="buttonAddLuggage" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonSearchCustomer" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonSearchLuggage" alignment="1" max="32767" attributes="0"/>
+                      <Component id="buttonAddCustomer" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonAddFlight" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonSearchFlight" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="labelHeaderLeftSide" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" pref="194" max="32767" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="16" max="-2" attributes="0"/>
