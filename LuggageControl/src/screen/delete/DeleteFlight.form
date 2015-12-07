@@ -27,17 +27,24 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="buttonUpdate" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="scrollPaneTable" pref="591" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="scrollPaneTable" alignment="1" pref="771" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelName" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textFieldFlightNumber" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="buttonSearch" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textFieldDestination" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textFieldOrigin" max="32767" attributes="0"/>
+                                  <Component id="textFieldFlightNumber" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textFieldDeparture" max="32767" attributes="0"/>
+                                  <Component id="buttonSearch" pref="197" max="32767" attributes="0"/>
+                                  <Component id="textFieldArrival" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
                                   <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
@@ -58,7 +65,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="labelName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldFlightNumber" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textFieldFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldDeparture" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
@@ -66,10 +76,18 @@
                       <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollPaneTable" pref="207" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="textFieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldArrival" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="textFieldDestination" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="buttonSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="scrollPaneTable" pref="275" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="buttonUpdate" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -88,6 +106,7 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightNumber">
       <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldFlightNumberActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="flightNumberKeyPressed"/>
       </Events>
     </Component>
@@ -190,6 +209,28 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUpdate"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldOrigin">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldOriginActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldOriginflightNumberKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldDestination">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldDestinationflightNumberKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldDeparture">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldDepartureActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldDepartureflightNumberKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="textFieldArrival">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldArrivalflightNumberKeyPressed"/>
       </Events>
     </Component>
   </SubComponents>

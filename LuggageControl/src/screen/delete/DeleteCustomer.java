@@ -30,6 +30,10 @@ public class DeleteCustomer extends SwitchingJPanel {
         initComponents();
         PromptSupport.setPrompt("Customer Name", textFieldCustomerName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerName);
+        PromptSupport.setPrompt("Customer Surname", textFieldCustomerSurname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerSurname);
+        PromptSupport.setPrompt("Customer Email", textFieldCustomerEmail);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerEmail);
         PromptSupport.setPrompt("Customer ID", textFieldCustomerId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerId);
         PromptSupport.setPrompt("Customer ID", textFieldDeleteCustomerId);
@@ -47,8 +51,10 @@ public class DeleteCustomer extends SwitchingJPanel {
     private void initComponents() {
 
         labelHeader = new javax.swing.JLabel();
-        textFieldCustomerName = new javax.swing.JFormattedTextField();
         textFieldCustomerId = new javax.swing.JFormattedTextField();
+        textFieldCustomerName = new javax.swing.JFormattedTextField();
+        textFieldCustomerSurname = new javax.swing.JFormattedTextField();
+        textFieldCustomerEmail = new javax.swing.JFormattedTextField();
         buttonSearch = new javax.swing.JButton();
         scrollPaneDeleteCustomer = new javax.swing.JScrollPane();
         tableDeleteCustomer = new javax.swing.JTable();
@@ -62,9 +68,27 @@ public class DeleteCustomer extends SwitchingJPanel {
         labelHeader.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHeader.setText("Delete Customer");
 
+        textFieldCustomerId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCustomerIdActionPerformed(evt);
+            }
+        });
+
         textFieldCustomerName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCustomerNameActionPerformed(evt);
+            }
+        });
+
+        textFieldCustomerSurname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCustomerSurnameActionPerformed(evt);
+            }
+        });
+
+        textFieldCustomerEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCustomerEmailActionPerformed(evt);
             }
         });
 
@@ -75,23 +99,28 @@ public class DeleteCustomer extends SwitchingJPanel {
             }
         });
 
+        tableDeleteCustomer.setAutoCreateRowSorter(true);
         tableDeleteCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Customer ID", "Customer first name", "Customer surname", "Customer email"
+                "Customer ID", "Customer first name", "Customer surname", "Customer email", "remove"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         scrollPaneDeleteCustomer.setViewportView(tableDeleteCustomer);
@@ -117,7 +146,6 @@ public class DeleteCustomer extends SwitchingJPanel {
             }
         });
 
-        textFieldDeleteCustomerId.setPreferredSize(new java.awt.Dimension(6, 20));
         textFieldDeleteCustomerId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldDeleteCustomerIdActionPerformed(evt);
@@ -131,7 +159,7 @@ public class DeleteCustomer extends SwitchingJPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelHeader)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,14 +167,24 @@ public class DeleteCustomer extends SwitchingJPanel {
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(buttonSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldCustomerId, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldCustomerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(161, 161, 161)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textFieldDeleteCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textFieldCustomerSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textFieldCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textFieldDeleteCustomerId)
+                                    .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
@@ -158,22 +196,32 @@ public class DeleteCustomer extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelHeader)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldDeleteCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonSearch)
-                            .addComponent(buttonDelete)))
+                            .addComponent(textFieldCustomerSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(textFieldDeleteCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(buttonDelete))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonSearch))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonBack)))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(scrollPaneDeleteCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,6 +285,18 @@ public class DeleteCustomer extends SwitchingJPanel {
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
+    private void textFieldCustomerSurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCustomerSurnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCustomerSurnameActionPerformed
+
+    private void textFieldCustomerEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCustomerEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCustomerEmailActionPerformed
+
+    private void textFieldCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCustomerIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCustomerIdActionPerformed
+
     private void buildTable() {
         ArrayList<String> values = new ArrayList<String>();
         String query = "SELECT * FROM luggagecontroldata.customer";
@@ -289,8 +349,10 @@ public class DeleteCustomer extends SwitchingJPanel {
     private javax.swing.JLabel labelHeader;
     private javax.swing.JScrollPane scrollPaneDeleteCustomer;
     private javax.swing.JTable tableDeleteCustomer;
+    private javax.swing.JFormattedTextField textFieldCustomerEmail;
     private javax.swing.JFormattedTextField textFieldCustomerId;
     private javax.swing.JFormattedTextField textFieldCustomerName;
+    private javax.swing.JFormattedTextField textFieldCustomerSurname;
     private javax.swing.JTextField textFieldDeleteCustomerId;
     // End of variables declaration//GEN-END:variables
 

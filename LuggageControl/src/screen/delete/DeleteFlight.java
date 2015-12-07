@@ -25,6 +25,14 @@ public class DeleteFlight extends SwitchingJPanel {
         initComponents();
         PromptSupport.setPrompt("Flightnumber", textFieldFlightNumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
+        PromptSupport.setPrompt("Arrival", textFieldArrival);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArrival);
+        PromptSupport.setPrompt("Departure", textFieldDeparture);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDeparture);
+        PromptSupport.setPrompt("Destination", textFieldDestination);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDestination);
+        PromptSupport.setPrompt("Origion", textFieldOrigin);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOrigin);
     }
 
     /**
@@ -44,12 +52,21 @@ public class DeleteFlight extends SwitchingJPanel {
         buttonBack = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
+        textFieldOrigin = new javax.swing.JFormattedTextField();
+        textFieldDestination = new javax.swing.JFormattedTextField();
+        textFieldDeparture = new javax.swing.JFormattedTextField();
+        textFieldArrival = new javax.swing.JFormattedTextField();
 
         setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
 
         labelName.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelName.setText("Delete Flight");
 
+        textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldFlightNumberActionPerformed(evt);
+            }
+        });
         textFieldFlightNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 flightNumberKeyPressed(evt);
@@ -114,6 +131,40 @@ public class DeleteFlight extends SwitchingJPanel {
             }
         });
 
+        textFieldOrigin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldOriginActionPerformed(evt);
+            }
+        });
+        textFieldOrigin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldOriginflightNumberKeyPressed(evt);
+            }
+        });
+
+        textFieldDestination.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldDestinationflightNumberKeyPressed(evt);
+            }
+        });
+
+        textFieldDeparture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldDepartureActionPerformed(evt);
+            }
+        });
+        textFieldDeparture.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldDepartureflightNumberKeyPressed(evt);
+            }
+        });
+
+        textFieldArrival.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldArrivalflightNumberKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,16 +174,22 @@ public class DeleteFlight extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPaneTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textFieldFlightNumber)
-                                    .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldDestination)
+                                    .addComponent(textFieldOrigin)
+                                    .addComponent(textFieldFlightNumber))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldDeparture)
+                                    .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                                    .addComponent(textFieldArrival))
+                                .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -146,15 +203,23 @@ public class DeleteFlight extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonBack)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonUpdate)
                 .addContainerGap())
@@ -167,7 +232,6 @@ public class DeleteFlight extends SwitchingJPanel {
      */
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
         this.userNotAFK();
-        new ErrorJDialog(this.luggageControl, true);
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBack
 
@@ -209,12 +273,12 @@ public class DeleteFlight extends SwitchingJPanel {
      */
     private void buttonUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdate
         DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
-        String query = "DELETE FROM flights WHERE 1=0";
+        String query = "DELETE FROM flight WHERE 1=0";
         ArrayList<String> data = new ArrayList();
         ArrayList<String> types = new ArrayList();
         boolean[] idRemove = new boolean[datamodel.getRowCount()]; 
         
-        for (int i = datamodel.getRowCount() - 1; i > 0; i--) {
+        for (int i = datamodel.getRowCount() - 1; i >= 0; i--) {
             
             // if this entry equals true - true to remove
             if((boolean)datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
@@ -236,6 +300,34 @@ public class DeleteFlight extends SwitchingJPanel {
         }
     }//GEN-LAST:event_buttonUpdate
 
+    private void textFieldOriginflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldOriginflightNumberKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldOriginflightNumberKeyPressed
+
+    private void textFieldDestinationflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldDestinationflightNumberKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldDestinationflightNumberKeyPressed
+
+    private void textFieldDepartureflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldDepartureflightNumberKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldDepartureflightNumberKeyPressed
+
+    private void textFieldArrivalflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldArrivalflightNumberKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldArrivalflightNumberKeyPressed
+
+    private void textFieldOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldOriginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldOriginActionPerformed
+
+    private void textFieldDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDepartureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldDepartureActionPerformed
+
+    private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldFlightNumberActionPerformed
+
     /**
      * Looks at the text fields and if their filled in, 
      * determines how our database query should look and runs it and finally fills the table with the data.
@@ -245,12 +337,12 @@ public class DeleteFlight extends SwitchingJPanel {
         try {
             if(textFieldFlightNumber.getText().equals("")) {
                 String[] values = {};
-                result = db.query("SELECT * FROM flights;", values);
+                result = db.query("SELECT * FROM flight;", values);
             }
             else {
                 // always filter user input with securitymanager
                 String[] values = {helpers.Filters.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
-                result = db.query("SELECT * FROM flights WHERE flight_id = ? ;", values);
+                result = db.query("SELECT * FROM flight WHERE flight_id = ? ;", values);
             }
             DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
@@ -277,7 +369,11 @@ public class DeleteFlight extends SwitchingJPanel {
     private javax.swing.JLabel labelName;
     private javax.swing.JScrollPane scrollPaneTable;
     private javax.swing.JTable tableFlights;
+    private javax.swing.JFormattedTextField textFieldArrival;
+    private javax.swing.JFormattedTextField textFieldDeparture;
+    private javax.swing.JFormattedTextField textFieldDestination;
     private javax.swing.JFormattedTextField textFieldFlightNumber;
+    private javax.swing.JFormattedTextField textFieldOrigin;
     // End of variables declaration//GEN-END:variables
 
 }
