@@ -1,25 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package screen.add;
 
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
-import java.awt.Image;
-import java.io.File;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import org.apache.commons.codec.binary.Base64;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- * This JPanel adds a luggage into the database
  *
  * @author Konrad
  */
 public class AddLuggage extends SwitchingJPanel {
 
     private String imageBase64;
-
+    
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
@@ -38,11 +39,19 @@ public class AddLuggage extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldColor);
         PromptSupport.setPrompt("Size", textFieldSize);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSize);
-        PromptSupport.setPrompt("Content", textFieldContent);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldContent);
 
     }
 
+    /**
+     * encodes the image into a base64 string
+     *
+     * @param imageByteArray
+     * @return base64 string
+     */
+    public static String encodeImage(byte[] imageByteArray) {
+        return Base64.encodeBase64URLSafeString(imageByteArray);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,38 +61,40 @@ public class AddLuggage extends SwitchingJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonHelp = new javax.swing.JButton();
         textFieldFlightnumber = new javax.swing.JFormattedTextField();
+        labelAddLuggage = new javax.swing.JLabel();
         textFieldLocation = new javax.swing.JFormattedTextField();
         textFieldOwnerID = new javax.swing.JFormattedTextField();
         comboBoxLuggageStatus = new javax.swing.JComboBox();
         textFieldColor = new javax.swing.JFormattedTextField();
         textFieldSize = new javax.swing.JFormattedTextField();
         textFieldWeight = new javax.swing.JFormattedTextField();
-        textFieldContent = new javax.swing.JFormattedTextField();
-        labelAddLuggage = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textPaneContent = new javax.swing.JTextPane();
         buttonUploadImage = new javax.swing.JButton();
         buttonConfirm = new javax.swing.JButton();
         butonCancel = new javax.swing.JButton();
         pic = new javax.swing.JLabel();
+        buttonHelpLinking = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
-        buttonHelp.setText("Help");
-        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
+        labelAddLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelAddLuggage.setText("Add luggage");
+
+        textFieldOwnerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonHelpActionPerformed(evt);
+                textFieldOwnerIDActionPerformed(evt);
             }
         });
 
         comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found", "Returned" }));
 
-        labelAddLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        labelAddLuggage.setText("Add luggage");
+        jScrollPane1.setViewportView(textPaneContent);
 
         buttonUploadImage.setText("Upload image");
         buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonUploadsImageActionPerformed(evt);
+                buttonUploadImagebuttonUploadsImageActionPerformed(evt);
             }
         });
 
@@ -97,51 +108,55 @@ public class AddLuggage extends SwitchingJPanel {
         butonCancel.setText("Cancel");
         butonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelActionPerformed(evt);
+                butonCancelbuttonCancelActionPerformed(evt);
             }
         });
 
         pic.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         pic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        buttonHelpLinking.setText("Help");
+        buttonHelpLinking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHelpLinkingbuttonHelpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAddLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldContent, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textFieldSize, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboBoxLuggageStatus, 0, 130, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldColor, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textFieldLocation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
-                            .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldSize, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldLocation, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldOwnerID, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 118, Short.MAX_VALUE)
-                                .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(buttonHelpLinking, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                        .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -149,46 +164,46 @@ public class AddLuggage extends SwitchingJPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelAddLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
+                    .addComponent(labelAddLuggage)
+                    .addComponent(buttonHelpLinking))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(textFieldContent))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonHelp)
-                        .addGap(59, 59, 59)
-                        .addComponent(buttonUploadImage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonConfirm)
-                            .addComponent(butonCancel))))
+                        .addComponent(buttonUploadImage)))
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonConfirm)
+                    .addComponent(butonCancel))
                 .addGap(30, 30, 30))
-            .addComponent(jSeparator1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * pops up a new window which makes the user choose an image and uploads it,
-     * then it loads the image onto panels in the label
-     *
-     * @param evt
-     */
-    private void buttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadsImageActionPerformed
+    private void textFieldOwnerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldOwnerIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldOwnerIDActionPerformed
+
+    private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
         this.userNotAFK();
         System.out.println(String.valueOf(buttonUploadImage.getWidth()) + " here"); // check button width
         ImageIcon imageIcon = new ImageIcon(helpers.ImageMaker.getPath());
@@ -197,107 +212,94 @@ public class AddLuggage extends SwitchingJPanel {
 
         imageBase64 = helpers.ImageMaker.base64Encode(helpers.ImageMaker.getPath());
 
+    }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
 
-    }//GEN-LAST:event_buttonUploadsImageActionPerformed
-
-    /**
-     * puts all the strings from the texgtfields into the database
-     *
-     * @param evt
-     */
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         DatabaseMan db = new DatabaseMan();
         if (!("".equals(textFieldFlightnumber.getText()) || "".equals(textFieldLocation.getText())
-                || "".equals(textFieldOwnerID.getText()) || "Status".equals(comboBoxLuggageStatus.getSelectedItem().toString())
-                || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
-                || "".equals(textFieldSize.getText()) || "".equals(textFieldContent.getText()))) {
+            || "".equals(textFieldOwnerID.getText()) || "Status".equals(comboBoxLuggageStatus.getSelectedItem().toString())
+            || "".equals(textFieldWeight.getText()) || "".equals(textFieldColor.getText())
+            || "".equals(textFieldSize.getText()))) {
 
-            System.out.println(comboBoxLuggageStatus.getSelectedItem().toString());
-            String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage`"
-                    + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
-                    + "VALUES(?,?,?,?,?,?,?)";
-            String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
-                    + "(`flight_id`, `luggage_id`)  "
-                    + "VALUES(?,?)";
-            String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer_luggage`"
-                    + "(`customer_id`, `luggage_id`)  "
-                    + "VALUES(?,?)";
-            String querySearchLuggage = "SELECT MAX(luggage_id) FROM luggage";
+        System.out.println(comboBoxLuggageStatus.getSelectedItem().toString());
+        String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage`"
+        + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
+        + "VALUES(?,?,?,?,?,?,?)";
+        String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
+        + "(`flight_id`, `luggage_id`)  "
+        + "VALUES(?,?)";
+        String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer_luggage`"
+        + "(`customer_id`, `luggage_id`)  "
+        + "VALUES(?,?)";
+        String querySearchLuggage = "SELECT MAX(luggage_id) FROM luggage";
 
-            String[] luggageID = {};
+        String[] luggageID = {};
 
-            String[] values = new String[7];
-            String[] types = new String[7];
+        String[] values = new String[7];
+        String[] types = new String[7];
 
-            String[] values2 = new String[2];
-            String[] types2 = new String[2];
+        String[] values2 = new String[2];
+        String[] types2 = new String[2];
 
-            String[] values3 = new String[2];
-            String[] types3 = new String[2];
+        String[] values3 = new String[2];
+        String[] types3 = new String[2];
 
-            values[0] = textFieldLocation.getText();
-            values[1] = textFieldColor.getText();
-            values[2] = textFieldWeight.getText();
-            values[3] = textFieldSize.getText();
-            values[4] = comboBoxLuggageStatus.getSelectedItem().toString();
-            values[5] = textFieldContent.getText();
-            values[6] = imageBase64;
+        values[0] = textFieldLocation.getText();
+        values[1] = textFieldColor.getText();
+        values[2] = textFieldWeight.getText();
+        values[3] = textFieldSize.getText();
+        values[4] = comboBoxLuggageStatus.getSelectedItem().toString();
+        values[5] = textPaneContent.getText();
+        values[6] = imageBase64;
 
-            types[0] = "String";
-            types[1] = "String";
-            types[2] = "String";
-            types[3] = "String";
-            types[4] = "String";
-            types[5] = "String";
-            types[6] = "String";
+        types[0] = "String";
+        types[1] = "String";
+        types[2] = "String";
+        types[3] = "String";
+        types[4] = "String";
+        types[5] = "String";
+        types[6] = "String";
 
-            try {
-                db.queryManipulation(queryInsertLuggage, values, types);
-                System.out.println("hey");
-                values2[0] = textFieldFlightnumber.getText();
-                values2[1] = db.queryOneResult(querySearchLuggage, luggageID);
-                types2[0] = "Int";
-                types2[1] = "Int";
-                System.out.println("hey2");
-                values3[0] = textFieldOwnerID.getText();
-                System.out.println("hey2");
-                values3[1] = db.queryOneResult(querySearchLuggage, luggageID);
-                System.out.println("yoyo");
-                types3[0] = "Int";
-                types3[1] = "Int";
-                System.out.println("yo");
-                db.queryManipulation(queryInsertFlight, values2, types2);
-                System.out.println("hey3");
-                db.queryManipulation(queryInsertCustomer, values3, types3);
-            } catch (Exception e) {
-                System.out.println("hey3");
-            }
-            textFieldFlightnumber.setText("");
-            textFieldLocation.setText("");
-            textFieldOwnerID.setText("");
-            comboBoxLuggageStatus.setSelectedIndex(0);
-            textFieldWeight.setText("");
-            textFieldColor.setText("");
-            textFieldSize.setText("");
-            textFieldContent.setText("");
-            pic.setIcon(null);
-            this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-            System.out.println("work");
+        try {
+            db.queryManipulation(queryInsertLuggage, values, types);
+            System.out.println("hey");
+            values2[0] = textFieldFlightnumber.getText();
+            values2[1] = db.queryOneResult(querySearchLuggage, luggageID);
+            types2[0] = "Int";
+            types2[1] = "Int";
+            System.out.println("hey2");
+            values3[0] = textFieldOwnerID.getText();
+            System.out.println("hey2");
+            values3[1] = db.queryOneResult(querySearchLuggage, luggageID);
+            System.out.println("yoyo");
+            types3[0] = "Int";
+            types3[1] = "Int";
+            System.out.println("yo");
+            db.queryManipulation(queryInsertFlight, values2, types2);
+            System.out.println("hey3");
+            db.queryManipulation(queryInsertCustomer, values3, types3);
+        } catch (Exception e) {
+            System.out.println("hey3");
+        }
+        textFieldFlightnumber.setText("");
+        textFieldLocation.setText("");
+        textFieldOwnerID.setText("");
+        comboBoxLuggageStatus.setSelectedIndex(0);
+        textFieldWeight.setText("");
+        textFieldColor.setText("");
+        textFieldSize.setText("");
+        textPaneContent.setText("");
+        pic.setIcon(null);
+        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        System.out.println("work");
         } else {
             System.out.println("not work");
         }
 
         this.userNotAFK();
-
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
-    /**
-     * sets the user as not afk, resets all the text fields and combobox, and
-     * changes to panel home screen
-     *
-     * @param evt
-     */
-    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+    private void butonCancelbuttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelbuttonCancelActionPerformed
         this.userNotAFK();
         textFieldFlightnumber.setText("");
         textFieldLocation.setText("");
@@ -306,47 +308,32 @@ public class AddLuggage extends SwitchingJPanel {
         textFieldWeight.setText("");
         textFieldColor.setText("");
         textFieldSize.setText("");
-        textFieldContent.setText("");
+        textPaneContent.setText("");
         pic.setIcon(null);
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-    }//GEN-LAST:event_buttonCancelActionPerformed
+    }//GEN-LAST:event_butonCancelbuttonCancelActionPerformed
 
-    /**
-     * sets the user as not afk and changes to panel help_adding
-     *
-     * @param evt
-     */
-    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+    private void buttonHelpLinkingbuttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpLinkingbuttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.ADDING);
-    }//GEN-LAST:event_buttonHelpActionPerformed
-
-    /**
-     * encodes the image into a base64 string
-     *
-     * @param imageByteArray
-     * @return base64 string
-     */
-    public static String encodeImage(byte[] imageByteArray) {
-        return Base64.encodeBase64URLSafeString(imageByteArray);
-    }
+        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
+    }//GEN-LAST:event_buttonHelpLinkingbuttonHelpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;
     private javax.swing.JButton buttonConfirm;
-    private javax.swing.JButton buttonHelp;
+    private javax.swing.JButton buttonHelpLinking;
     private javax.swing.JButton buttonUploadImage;
     private javax.swing.JComboBox comboBoxLuggageStatus;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelAddLuggage;
     private javax.swing.JLabel pic;
     private javax.swing.JFormattedTextField textFieldColor;
-    private javax.swing.JFormattedTextField textFieldContent;
     private javax.swing.JFormattedTextField textFieldFlightnumber;
     private javax.swing.JFormattedTextField textFieldLocation;
     private javax.swing.JFormattedTextField textFieldOwnerID;
     private javax.swing.JFormattedTextField textFieldSize;
     private javax.swing.JFormattedTextField textFieldWeight;
+    private javax.swing.JTextPane textPaneContent;
     // End of variables declaration//GEN-END:variables
 }
