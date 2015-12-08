@@ -23,7 +23,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class DeleteLuggage extends SwitchingJPanel {
 
     private DatabaseMan db = new DatabaseMan();
-    
+
     public DeleteLuggage(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
@@ -222,6 +222,7 @@ public class DeleteLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        this.userNotAFK();
         fillFlightTable();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
@@ -236,11 +237,11 @@ public class DeleteLuggage extends SwitchingJPanel {
         }
         if (!textFieldLuggageID.getText().equals("")) {
             query += " OR luggage.luggage_id = ?";
-            values.add(helpers.Filters.filteredString(textFieldLuggageID.getText(),1,10));
+            values.add(helpers.Filters.filteredString(textFieldLuggageID.getText(), 1, 10));
         }
         if (!textFieldLocation.getText().equals("")) {
             query += " OR Location = ?";
-            values.add(helpers.Filters.filteredString(textFieldLocation.getText(),1,45));
+            values.add(helpers.Filters.filteredString(textFieldLocation.getText(), 1, 45));
         }
         if (!textFieldStatus.getText().equals("")) {
             query += " OR Status = ?";
@@ -250,7 +251,7 @@ public class DeleteLuggage extends SwitchingJPanel {
             query += " OR flight_id = ?";
             values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText(), 1, 10));
         }
-        
+
         ResultSet result = new EmptyResultSet();
         try {
             result = db.query(query, values.toArray(new String[values.size()]));
@@ -268,21 +269,21 @@ public class DeleteLuggage extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, "Error: retrieving flights dataset", (new Throwable()).getStackTrace());
         }
     }
-    
+
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
     private void textFieldLuggageIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLuggageIDActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldLuggageIDActionPerformed
 
     private void textFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldStatusActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldStatusActionPerformed
 
     private void textFieldLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLocationActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldLocationActionPerformed
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded

@@ -25,44 +25,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="scrollPaneDeleteCustomer" pref="660" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="labelHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="buttonUpdate" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="scrollPaneDeleteCustomer" pref="660" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="textFieldCustomerId" min="-2" pref="166" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="textFieldCustomerSurname" min="-2" pref="166" max="-2" attributes="0"/>
+                              <Component id="labelHeader" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="textFieldCustomerName" min="-2" pref="166" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="textFieldCustomerEmail" min="-2" pref="166" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace pref="318" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="buttonSearch" min="-2" pref="342" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                      <EmptySpace min="43" pref="318" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="textFieldDeleteCustomerId" max="32767" attributes="0"/>
-                                  <Component id="buttonDelete" min="-2" pref="166" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="textFieldCustomerId" min="-2" pref="166" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="textFieldCustomerSurname" min="-2" pref="166" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -81,29 +81,13 @@
                           <Component id="textFieldCustomerSurname" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textFieldCustomerId" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="textFieldDeleteCustomerId" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="textFieldCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldCustomerEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textFieldCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCustomerEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="buttonDelete" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
@@ -111,9 +95,11 @@
                       <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="scrollPaneDeleteCustomer" pref="237" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="scrollPaneDeleteCustomer" pref="218" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="buttonUpdate" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -171,7 +157,7 @@
                 <Column editable="false" title="Customer first name" type="java.lang.String"/>
                 <Column editable="false" title="Customer surname" type="java.lang.String"/>
                 <Column editable="false" title="Customer email" type="java.lang.String"/>
-                <Column editable="false" title="remove" type="java.lang.Boolean"/>
+                <Column editable="true" title="remove" type="java.lang.Boolean"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -226,17 +212,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHelpActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonDelete">
+    <Component class="javax.swing.JButton" name="buttonUpdate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textFieldDeleteCustomerId">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldDeleteCustomerIdActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUpdateActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
