@@ -8,20 +8,25 @@ import managers.SecurityMan;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import javax.swing.JMenuBar;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import managers.ConfigurationMan;
 
 /**
  * Root class off application creates the main windows
+ *
  * @author Team3 Fys
  */
 public class LuggageControl extends javax.swing.JFrame {
+
     // <editor-fold defaultstate="collapsed" desc="Screen objects">
+
     private screen.add.AddCustomer addCustomer;
     private screen.add.AddFlight addFlight;
     private screen.add.AddLuggage addLuggage;
     private screen.add.AddUser addUser;
     private screen.ChangeSettings changeSettings;
-    private screen.details.CustomerDetails customerDetails;   
+    private screen.details.CustomerDetails customerDetails;
     private screen.delete.DeleteCustomer deleteCustomer;
     private screen.delete.DeleteFlight deleteFlight;
     private screen.delete.DeleteLuggage deleteLuggage;
@@ -44,25 +49,25 @@ public class LuggageControl extends javax.swing.JFrame {
     private screen.search.SearchLuggage searchLuggage;
     private screen.details.UserDetails userManagement;
     // </editor-fold>
-    
+
     // Used to determine if components have been initialized
     private boolean componentsInitialized = false;
 
     private JMenuBar menuBar;
-    
+
     // keeps a reference to the current active panel
     private SwitchingJPanel currentPanel;
     private SwitchingJPanel previousPanel;
 
     private GraphicsDevice graphicsDevice;
     private Dimension monitorSize;
-    
+
     // security manager and event interface
     private SecurityMan secman;
-    
+
     // configuration manager
     private ConfigurationMan conman;
-    
+
     /**
      *
      */
@@ -70,19 +75,19 @@ public class LuggageControl extends javax.swing.JFrame {
         // parse the refernence of our interface to the security manager class
         // so it can call us.
         secman = new SecurityMan(this);
-        
+
         // get the monitor dimension of the default monitor
         // this needs to switch to the monitor the application will appear in the future
         graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         monitorSize = new Dimension(graphicsDevice.getDisplayMode().getWidth(), graphicsDevice.getDisplayMode().getHeight());
-        
+
         // Exits the application on closing this JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
+
         firstStart = new screen.FirstStart(this);
         firstStart.setSize(monitorSize);
         firstStart.setVisible(true);
-        
+
         // ConfigurationMan must be initialized after initComponents
         conman = new ConfigurationMan(this);
         System.out.println(conman.getMysqlDumpLocationWindows(this));
@@ -99,6 +104,20 @@ public class LuggageControl extends javax.swing.JFrame {
         // circumventing static reference with appropiate EventQueue
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+//                try {
+//                    // Set cross-platform Java L&F (also called "Metal")
+//                    UIManager.setLookAndFeel("windows");
+//                } catch (UnsupportedLookAndFeelException e) {
+//                    // handle exception
+//                } catch (ClassNotFoundException e) {
+//                    // handle exception
+//                } catch (InstantiationException e) {
+//                    // handle exception
+//                } catch (IllegalAccessException e) {
+//                    // handle exception
+//                }
+
+                
                 new LuggageControl().setVisible(true);
             }
         });
@@ -110,9 +129,9 @@ public class LuggageControl extends javax.swing.JFrame {
      * memory consumption.
      */
     public void initComponents() {
-        if(!componentsInitialized) {
+        if (!componentsInitialized) {
             componentsInitialized = true;
-        
+
             // <editor-fold defaultstate="collapsed" desc="Screen objects initialazations">
             addCustomer = new screen.add.AddCustomer(this);
             addFlight = new screen.add.AddFlight(this);
@@ -190,20 +209,19 @@ public class LuggageControl extends javax.swing.JFrame {
             //</editor-fold>
 
             /* Corendon red menubar
-            menuBar = new JMenuBar();
-            menuBar.setSize(1920, 50);
-            menuBar.setBackground(Styling.CORENDON_RED);
-            menuBar.setVisible(true);
+             menuBar = new JMenuBar();
+             menuBar.setSize(1920, 50);
+             menuBar.setBackground(Styling.CORENDON_RED);
+             menuBar.setVisible(true);
 
-            JMenuItem menuItem = new JMenuItem();
-            menuItem.setText("Test item");
-            menuItem.setForeground(Color.WHITE);
-            menuItem.setBackground(Styling.CORENDON_RED);
-            menuBar.add(menuItem);
+             JMenuItem menuItem = new JMenuItem();
+             menuItem.setText("Test item");
+             menuItem.setForeground(Color.WHITE);
+             menuItem.setBackground(Styling.CORENDON_RED);
+             menuBar.add(menuItem);
 
-            this.add(menuBar);
-            */
-
+             this.add(menuBar);
+             */
             this.currentPanel = loginScreen;
             this.switchJPanel(ScreenNames.LOGINSCREEN);
 
@@ -211,126 +229,99 @@ public class LuggageControl extends javax.swing.JFrame {
             //this.switchJPanel(ScreenNames.FIRST_START);
         }
     }
-    
+
     /**
-     * Switch to the previously displayed panel,
-     * This does not work!
+     * Switch to the previously displayed panel, This does not work!
      */
     public void switchPreviousPanel() {
         String tempSwitchString = this.previousPanel.getClass().getSimpleName();
         this.switchJPanel(tempSwitchString);
     }
-    
+
     /**
-     * Based on our currentPanel variable we remove the panel so a new one can be added.
+     * Based on our currentPanel variable we remove the panel so a new one can
+     * be added.
      */
     private void removeCurrentJPanel() {
-        
+
         // this giant if statement needs to be converted to a switch statement
-        if(this.currentPanel instanceof screen.add.AddCustomer) {
+        if (this.currentPanel instanceof screen.add.AddCustomer) {
             this.remove(addCustomer);
-        }
-        else if(this.currentPanel instanceof screen.add.AddFlight) {
+        } else if (this.currentPanel instanceof screen.add.AddFlight) {
             this.remove(addFlight);
-        }
-        else if(this.currentPanel instanceof screen.add.AddLuggage) {
+        } else if (this.currentPanel instanceof screen.add.AddLuggage) {
             this.remove(addLuggage);
-        }
-        else if(this.currentPanel instanceof screen.add.AddUser) {
+        } else if (this.currentPanel instanceof screen.add.AddUser) {
             this.remove(addUser);
-        }
-        else if(this.currentPanel instanceof screen.ChangeSettings) {
+        } else if (this.currentPanel instanceof screen.ChangeSettings) {
             this.remove(changeSettings);
-        }
-        else if(this.currentPanel instanceof screen.details.CustomerDetails) {
+        } else if (this.currentPanel instanceof screen.details.CustomerDetails) {
             this.remove(customerDetails);
-        }
-        else if(this.currentPanel instanceof screen.delete.DeleteCustomer) {
+        } else if (this.currentPanel instanceof screen.delete.DeleteCustomer) {
             this.remove(deleteCustomer);
-        }
-        else if(this.currentPanel instanceof screen.delete.DeleteFlight) {
+        } else if (this.currentPanel instanceof screen.delete.DeleteFlight) {
             this.remove(deleteFlight);
-        }
-        else if(this.currentPanel instanceof screen.delete.DeleteLuggage) {
+        } else if (this.currentPanel instanceof screen.delete.DeleteLuggage) {
             this.remove(deleteLuggage);
-        }    
-        else if(this.currentPanel instanceof screen.Example) {
-            this.remove(example);  
-        }
-        else if(this.currentPanel instanceof screen.FirstStart) {
-            this.remove(firstStart);  
-        }
-        else if(this.currentPanel instanceof screen.details.FlightDetails) {
-            this.remove(flightDetails);  
-        }
-        else if(this.currentPanel instanceof screen.GenerateStatistics) {
+        } else if (this.currentPanel instanceof screen.Example) {
+            this.remove(example);
+        } else if (this.currentPanel instanceof screen.FirstStart) {
+            this.remove(firstStart);
+        } else if (this.currentPanel instanceof screen.details.FlightDetails) {
+            this.remove(flightDetails);
+        } else if (this.currentPanel instanceof screen.GenerateStatistics) {
             this.remove(generateStatistics);
-        }
-        else if(this.currentPanel instanceof screen.Help) {
+        } else if (this.currentPanel instanceof screen.Help) {
             this.remove(help);
-        }
-        else if(this.currentPanel instanceof screen.help.Adding) {
+        } else if (this.currentPanel instanceof screen.help.Adding) {
             this.remove(helpAdding);
-        }
-        else if(this.currentPanel instanceof screen.help.Finding) {
+        } else if (this.currentPanel instanceof screen.help.Finding) {
             this.remove(helpFinding);
-        }
-        else if(this.currentPanel instanceof screen.help.Linking) {
+        } else if (this.currentPanel instanceof screen.help.Linking) {
             this.remove(helpLinking);
-        }
-        else if(this.currentPanel instanceof screen.help.Removing) {
+        } else if (this.currentPanel instanceof screen.help.Removing) {
             this.remove(helpRemoving);
-        }
-        else if(this.currentPanel instanceof screen.home.HomeScreenAdministrator) {
+        } else if (this.currentPanel instanceof screen.home.HomeScreenAdministrator) {
             this.remove(homeScreenAdministrator);
-        }
-        else if(this.currentPanel instanceof screen.home.HomeScreenEmployee) {
+        } else if (this.currentPanel instanceof screen.home.HomeScreenEmployee) {
             this.remove(homeScreenEmployee);
-        }
-        else if(this.currentPanel instanceof screen.home.HomeScreenManager) {
+        } else if (this.currentPanel instanceof screen.home.HomeScreenManager) {
             this.remove(homeScreenManager);
-        }
-        else if(this.currentPanel instanceof screen.LoginScreen) {
+        } else if (this.currentPanel instanceof screen.LoginScreen) {
             this.remove(loginScreen);
-        }
-        else if(this.currentPanel instanceof screen.details.LuggageDetails) {
+        } else if (this.currentPanel instanceof screen.details.LuggageDetails) {
             this.remove(luggageDetails);
-        }
-        else if(this.currentPanel instanceof screen.search.SearchCustomer) {
+        } else if (this.currentPanel instanceof screen.search.SearchCustomer) {
             this.remove(searchCustomer);
-        }
-        else if(this.currentPanel instanceof screen.search.SearchFlight) {
+        } else if (this.currentPanel instanceof screen.search.SearchFlight) {
             this.remove(searchFlight);
-        }
-        else if(this.currentPanel instanceof screen.search.SearchLuggage) {
+        } else if (this.currentPanel instanceof screen.search.SearchLuggage) {
             this.remove(searchLuggage);
-        }
-        else if(this.currentPanel instanceof screen.details.UserDetails) {
+        } else if (this.currentPanel instanceof screen.details.UserDetails) {
             this.remove(userManagement);
         }
     }
-    
+
     /**
      * Go to home screen based on current permissions.
      */
     public void switchHomeScreen() {
-        if(secman.getPermissions() == 1) {
+        if (secman.getPermissions() == 1) {
             this.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-        }
-        else if(secman.getPermissions() == 2) {
+        } else if (secman.getPermissions() == 2) {
             this.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
-        }
-        else if(secman.getPermissions() == 3) {
+        } else if (secman.getPermissions() == 3) {
             this.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
-        }
-        else {
+        } else {
             this.switchJPanel(ScreenNames.LOGINSCREEN);
         }
     }
-    
+
     /**
      * Switch the panel to another panel identified by ScreenNames constants.
-     * @param panelName string that identifies the screen use constants.ScreenNames
+     *
+     * @param panelName string that identifies the screen use
+     * constants.ScreenNames
      */
     public void switchJPanel(String panelName) {
         switch (panelName) {
@@ -555,88 +546,88 @@ public class LuggageControl extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     /**
      * Switch a screen.help panel to a specific tab.
+     *
      * @param tabName the name of the tab
      * @param panelName the help screen must be of package screen.help
      */
     public void switchTab(String tabName, String panelName) {
-        if(panelName == ScreenNames.Help.ADDING) {
+        if (panelName == ScreenNames.Help.ADDING) {
             helpAdding.selectTab(tabName);
-        }
-        else if(panelName == ScreenNames.Help.FINDING) {
+        } else if (panelName == ScreenNames.Help.FINDING) {
             helpFinding.selectTab(tabName);
-        }
-        else if(panelName == ScreenNames.Help.LINKING) {
+        } else if (panelName == ScreenNames.Help.LINKING) {
             helpLinking.selectTab(tabName);
-        }
-        else if(panelName == ScreenNames.Help.REMOVING) {
+        } else if (panelName == ScreenNames.Help.REMOVING) {
             helpRemoving.selectTab(tabName);
-        }
-        else {
+        } else {
             new ErrorJDialog(this, true, "Error: screen does not exist", (new Throwable()).getStackTrace());
         }
     }
-    
+
     /**
-     * Makes sure that when we are switching from panels we do not create loops in the back button,
-     * NOT WORKING!
+     * Makes sure that when we are switching from panels we do not create loops
+     * in the back button, NOT WORKING!
      */
     private void updatePreviousPanel() {
-        if(!(this.previousPanel instanceof screen.help.Adding || 
-            this.previousPanel instanceof screen.help.Finding || 
-            this.previousPanel instanceof screen.help.Linking ||
-            this.previousPanel instanceof screen.help.Removing)) {
-            if(!(this.currentPanel instanceof screen.Help)) {
+        if (!(this.previousPanel instanceof screen.help.Adding
+                || this.previousPanel instanceof screen.help.Finding
+                || this.previousPanel instanceof screen.help.Linking
+                || this.previousPanel instanceof screen.help.Removing)) {
+            if (!(this.currentPanel instanceof screen.Help)) {
                 this.previousPanel = this.currentPanel;
             }
         }
     }
-    
+
     /**
-     * Special function to prefill detail panels with information based on a specific ID
-     * When supplying a panelName make sure this is a details panel.
-     * @param panelName the panelName from the screen constants, this must be a details screen in order to work 
+     * Special function to prefill detail panels with information based on a
+     * specific ID When supplying a panelName make sure this is a details panel.
+     *
+     * @param panelName the panelName from the screen constants, this must be a
+     * details screen in order to work
      * @param id the specific ID
      */
     public void prefillPanel(String panelName, int id) {
-        if(panelName.equals(ScreenNames.CUSTOMER_DETAILS)) {
+        if (panelName.equals(ScreenNames.CUSTOMER_DETAILS)) {
             customerDetails.loadCustomer(id);
-        }
-        else if(panelName.equals(ScreenNames.LUGGAGE_DETAILS)) {
+        } else if (panelName.equals(ScreenNames.LUGGAGE_DETAILS)) {
             // does not work!
             luggageDetails.loadLuggage(id);
-        }
-        else {
+        } else {
             new ErrorJDialog(this, true, "Error: Trying to prefill detail panel which does not exist", (new Throwable()).getStackTrace());
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="user management methods">
     /**
      * Parse to login to the security manager and attempt a login sequence.
+     *
      * @param username the username as described in the database
      * @param password the password as described in the database
      */
     public boolean loginUser(String username, String password) {
-        if(secman.logInUser(username, password)) {
+        if (secman.logInUser(username, password)) {
             username = null;
             password = null;
             return true;
-        }
-        else {
+        } else {
             username = null;
             password = null;
             return false;
         }
     }
-    
+
     /**
-     * Parse to login to the security manager and attempt a login sequence
-     * This method is more secure since it uses a <code>char[]</code> instead of a String which is easier deleted.
+     * Parse to login to the security manager and attempt a login sequence This
+     * method is more secure since it uses a <code>char[]</code> instead of a
+     * String which is easier deleted.
+     *
      * @param username the username as described in the database
-     * @param password array of characters which together are the password as described in the database
+     * @param password array of characters which together are the password as
+     * described in the database
      */
     public void loginUser(String username, char[] password) {
 //        if(secman.logInUser(username, password)) {
@@ -646,17 +637,20 @@ public class LuggageControl extends javax.swing.JFrame {
 //            new ErrorJDialog("Username or password incorrect", "Your username or password is incorrect.");
 //        }
     }
-    
+
     /**
-     * Sets the user afk to true or false and parses this through to the security manager
+     * Sets the user afk to true or false and parses this through to the
+     * security manager
+     *
      * @param userAFK true if the user is afk, false if he is not.
      */
     public void setUserAFK(boolean userAFK) {
         this.secman.setUserAFK(false);
     }
-    
+
     /**
-     * Called when the user is timed-out switches the panel back to the login panel.
+     * Called when the user is timed-out switches the panel back to the login
+     * panel.
      */
     public void userTimeOut() {
         this.switchJPanel(ScreenNames.LOGINSCREEN);
