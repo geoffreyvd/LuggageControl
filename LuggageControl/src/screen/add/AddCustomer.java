@@ -102,7 +102,17 @@ public class AddCustomer extends SwitchingJPanel {
             new String [] {
                 "Luggage ID", "Origin", "Location", "Flightnumber"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableCustomer.setFocusable(false);
+        tableCustomer.setRowSelectionAllowed(false);
         table.setViewportView(tableCustomer);
 
         textFieldQuickSearchFlightNumber.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +147,7 @@ public class AddCustomer extends SwitchingJPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(labelAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldSurName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(textFieldEmail)
