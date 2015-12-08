@@ -225,11 +225,12 @@ public class AddLuggage extends SwitchingJPanel {
     private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
         this.userNotAFK();
         System.out.println(String.valueOf(buttonUploadImage.getWidth()) + " here"); // check button width
-        ImageIcon imageIcon = new ImageIcon(helpers.ImageMaker.getPath());
+        String path = helpers.ImageMaker.getPath();
+        ImageIcon imageIcon = new ImageIcon(path);
 
-        pic.setIcon(helpers.ImageMaker.resizeImage(buttonUploadImage.getWidth(), pic.getHeight(), helpers.ImageMaker.getPath()));
+        pic.setIcon(helpers.ImageMaker.resizeImage(buttonUploadImage.getWidth(), pic.getHeight(), path));
 
-        imageBase64 = helpers.ImageMaker.base64Encode(helpers.ImageMaker.getPath());
+        imageBase64 = helpers.ImageMaker.base64Encode(path);
 
     }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
 
