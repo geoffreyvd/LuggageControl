@@ -104,18 +104,19 @@ public class LuggageControl extends javax.swing.JFrame {
         // circumventing static reference with appropiate EventQueue
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                try {
-//                    // Set cross-platform Java L&F (also called "Metal")
-//                    UIManager.setLookAndFeel("windows");
-//                } catch (UnsupportedLookAndFeelException e) {
-//                    // handle exception
-//                } catch (ClassNotFoundException e) {
-//                    // handle exception
-//                } catch (InstantiationException e) {
-//                    // handle exception
-//                } catch (IllegalAccessException e) {
-//                    // handle exception
-//                }
+                try {
+                    // Set cross-platform Java L&F (also called "Metal")
+                    UIManager.setLookAndFeel(
+            UIManager.getSystemLookAndFeelClassName());
+                } catch (UnsupportedLookAndFeelException e) {
+                    // handle exception
+                } catch (ClassNotFoundException e) {
+                    // handle exception
+                } catch (InstantiationException e) {
+                    // handle exception
+                } catch (IllegalAccessException e) {
+                    // handle exception
+                }
 
                 
                 new LuggageControl().setVisible(true);
