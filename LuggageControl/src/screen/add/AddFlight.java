@@ -20,6 +20,10 @@ public class AddFlight extends SwitchingJPanel {
     public AddFlight(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
+        PromptSupport.setPrompt("Luggage ID", textFieldLuggageID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageID);
+        PromptSupport.setPrompt("Owner ID", textFieldOwnerID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOwnerID);
         PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
         PromptSupport.setPrompt("Origin", textFieldOrigin);
@@ -28,8 +32,8 @@ public class AddFlight extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDestination);
         PromptSupport.setPrompt("Departure time", textFieldDepartureTime);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDepartureTime);
-        PromptSupport.setPrompt("Arival time", textFieldArivalTime);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArivalTime);
+        PromptSupport.setPrompt("Arival time", textFieldArrivalTime);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArrivalTime);
 
     }
 
@@ -47,11 +51,16 @@ public class AddFlight extends SwitchingJPanel {
         textFieldOrigin = new javax.swing.JFormattedTextField();
         textFieldDestination = new javax.swing.JFormattedTextField();
         textFieldDepartureTime = new javax.swing.JFormattedTextField();
-        textFieldArivalTime = new javax.swing.JFormattedTextField();
+        textFieldArrivalTime = new javax.swing.JFormattedTextField();
         buttonHelp = new javax.swing.JButton();
         buttonConfirm = new javax.swing.JButton();
         butonCancel = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        labelQuickSearch = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
+        textFieldLuggageID = new javax.swing.JFormattedTextField();
+        textFieldOwnerID = new javax.swing.JFormattedTextField();
 
         labelAddCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddCustomer.setText("Add flight");
@@ -84,6 +93,11 @@ public class AddFlight extends SwitchingJPanel {
             }
         });
 
+        labelQuickSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelQuickSearch.setText("Quick search");
+
+        labelStatus.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,56 +105,74 @@ public class AddFlight extends SwitchingJPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldDestination)
+                    .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(textFieldDestination)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
-                                .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(textFieldOrigin)
-                                    .addComponent(textFieldFlightnumber))
+                                .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldDepartureTime)
-                                    .addComponent(textFieldArivalTime))))
-                        .addGap(30, 30, 30))))
+                                .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelAddCustomer))
+                        .addGap(0, 164, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldFlightnumber)
+                            .addComponent(textFieldOrigin)
+                            .addComponent(textFieldOwnerID))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldDepartureTime)
+                            .addComponent(textFieldArrivalTime)
+                            .addComponent(textFieldLuggageID))))
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(labelQuickSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {butonCancel, buttonBack, buttonConfirm, buttonHelp});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAddCustomer)
-                    .addComponent(buttonHelp))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldDepartureTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldArivalTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonConfirm)
-                    .addComponent(butonCancel)
-                    .addComponent(buttonBack))
-                .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelQuickSearch)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAddCustomer)
+                            .addComponent(buttonHelp))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldLuggageID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDepartureTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldArrivalTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonConfirm)
+                            .addComponent(butonCancel)
+                            .addComponent(buttonBack))
+                        .addGap(30, 30, 30))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {butonCancel, buttonBack, buttonConfirm, buttonHelp});
@@ -164,32 +196,77 @@ public class AddFlight extends SwitchingJPanel {
      */
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         DatabaseMan db = new DatabaseMan();
-        if (!("".equals(textFieldFlightnumber.getText()) || "".equals(textFieldArivalTime.getText())
+        if (!("".equals(textFieldFlightnumber.getText()) || "".equals(textFieldArrivalTime.getText())
                 || "".equals(textFieldDepartureTime.getText()) || "".equals(textFieldDestination.getText())
                 || "".equals(textFieldOrigin.getText()))) {
 
-            String query = "INSERT INTO `luggagecontroldata`.`flights`"
+            String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`flight`"
                     + "(`flight_id`, `origin`, `destination`, `departure`, `arrival`) "
                     + "VALUES(?,?,?,?,?)";
+            String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
+                    + "(`flight_id`, `luggage_id`)  "
+                    + "VALUES(?,?)";
+            String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer_flight`"
+                    + "(`customer_id`, `flight_id`)  "
+                    + "VALUES(?,?)";
 
             String[] values = new String[5];
             String[] types = new String[5];
+            
+            String[] values2 = new String[2];
+            String[] types2 = new String[2];
+
+            String[] values3 = new String[2];
+            String[] types3 = new String[2];
 
             values[0] = textFieldFlightnumber.getText();
             values[1] = textFieldOrigin.getText();
             values[2] = textFieldDestination.getText();
             values[3] = textFieldDepartureTime.getText();
-            values[4] = textFieldArivalTime.getText();
-
+            values[4] = textFieldArrivalTime.getText();
             types[0] = "String";
             types[1] = "String";
             types[2] = "String";
             types[3] = "String";
             types[4] = "String";
+            
+            values2[0] = textFieldFlightnumber.getText();
+            values2[1] = textFieldLuggageID.getText();
+            types2[0] = "String";
+            types2[1] = "String";
+            
+            values3[0] = textFieldOwnerID.getText();
+            values3[1] = textFieldFlightnumber.getText();
+            types3[0] = "String";
+            types3[1] = "String";
 
             try {
-
-                db.queryManipulation(query, values, types);
+                
+                if(!db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
+                labelStatus.setText("Flightnumber already taken!");
+                this.resetLabel(5000, labelStatus);
+                return;
+                }
+                if(helpers.Filters.filteredDateTime(textFieldArrivalTime.getText()).equals("")){
+                labelStatus.setText("Not a correct entry for arrival time!");
+                this.resetLabel(5000, labelStatus);
+                return;
+                }
+                if(helpers.Filters.filteredDateTime(textFieldDepartureTime.getText()).equals("")){
+                labelStatus.setText("Not a correct entry for departure time time!");
+                this.resetLabel(5000, labelStatus);
+                return;
+                }
+           
+                db.queryManipulation(queryInsertFlight, values, types);
+                if((!("".equals(textFieldLuggageID.getText())))){
+                db.queryManipulation(queryInsertLuggage, values2, types2);
+                } 
+                
+                if((!("".equals(textFieldOwnerID.getText())))){
+                db.queryManipulation(queryInsertCustomer, values3, types3);
+                } 
+                
 
             } catch (Exception e) {
 
@@ -198,11 +275,14 @@ public class AddFlight extends SwitchingJPanel {
             textFieldDestination.setText("");
             textFieldOrigin.setText("");
             textFieldDepartureTime.setText("");
-            textFieldArivalTime.setText("");
+            textFieldArrivalTime.setText("");
+            labelStatus.setText("");
+            textFieldLuggageID.setText("");
+            textFieldOwnerID.setText("");
             this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-            System.out.println("work");
         } else {
-            System.out.println("not work");
+            labelStatus.setText("Not all fields are entered!");
+            this.resetLabel(5000, labelStatus);
         }
         this.userNotAFK();
 
@@ -220,7 +300,10 @@ public class AddFlight extends SwitchingJPanel {
         textFieldDestination.setText("");
         textFieldOrigin.setText("");
         textFieldDepartureTime.setText("");
-        textFieldArivalTime.setText("");
+        textFieldArrivalTime.setText("");
+        textFieldLuggageID.setText("");
+        textFieldOwnerID.setText("");
+        labelStatus.setText("");
     }//GEN-LAST:event_butonCancelbuttonCancelActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
@@ -229,7 +312,10 @@ public class AddFlight extends SwitchingJPanel {
         textFieldDestination.setText("");
         textFieldOrigin.setText("");
         textFieldDepartureTime.setText("");
-        textFieldArivalTime.setText("");
+        textFieldArrivalTime.setText("");
+        labelStatus.setText("");
+        textFieldLuggageID.setText("");
+        textFieldOwnerID.setText("");
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
@@ -239,11 +325,16 @@ public class AddFlight extends SwitchingJPanel {
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonConfirm;
     private javax.swing.JButton buttonHelp;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelAddCustomer;
-    private javax.swing.JFormattedTextField textFieldArivalTime;
+    private javax.swing.JLabel labelQuickSearch;
+    private javax.swing.JLabel labelStatus;
+    private javax.swing.JFormattedTextField textFieldArrivalTime;
     private javax.swing.JFormattedTextField textFieldDepartureTime;
     private javax.swing.JFormattedTextField textFieldDestination;
     private javax.swing.JFormattedTextField textFieldFlightnumber;
+    private javax.swing.JFormattedTextField textFieldLuggageID;
     private javax.swing.JFormattedTextField textFieldOrigin;
+    private javax.swing.JFormattedTextField textFieldOwnerID;
     // End of variables declaration//GEN-END:variables
 }
