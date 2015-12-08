@@ -116,7 +116,7 @@ public class DeleteFlight extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 500));
         tableFlights.getTableHeader().setReorderingAllowed(false);
         scrollPaneTable.setViewportView(tableFlights);
 
@@ -326,31 +326,31 @@ public class DeleteFlight extends SwitchingJPanel {
     }//GEN-LAST:event_buttonUpdate
 
     private void textFieldOriginflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldOriginflightNumberKeyPressed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldOriginflightNumberKeyPressed
 
     private void textFieldDestinationflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldDestinationflightNumberKeyPressed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldDestinationflightNumberKeyPressed
 
     private void textFieldDepartureflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldDepartureflightNumberKeyPressed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldDepartureflightNumberKeyPressed
 
     private void textFieldArrivalflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldArrivalflightNumberKeyPressed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldArrivalflightNumberKeyPressed
 
     private void textFieldOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldOriginActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldOriginActionPerformed
 
     private void textFieldDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDepartureActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldDepartureActionPerformed
 
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
@@ -392,7 +392,7 @@ public class DeleteFlight extends SwitchingJPanel {
             query += " OR origin = ?";
             values.add(helpers.Filters.filteredString(textFieldOrigin.getText(), 1, 45));
         }
-        
+
         ResultSet result = new EmptyResultSet();
         try {
             result = db.query(query, values.toArray(new String[values.size()]));

@@ -5,8 +5,13 @@
  */
 package screen.delete;
 
+import baseClasses.EmptyResultSet;
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
@@ -16,6 +21,8 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author Gebruiker
  */
 public class DeleteLuggage extends SwitchingJPanel {
+
+    private DatabaseMan db = new DatabaseMan();
 
     public DeleteLuggage(LuggageControl luggageControl) {
         super(luggageControl);
@@ -121,6 +128,7 @@ public class DeleteLuggage extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableDeleteLuggage.setPreferredSize(new java.awt.Dimension(1920, 500));
         scrollPaneLuggageTable.setViewportView(tableDeleteLuggage);
 
         textFieldStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +144,11 @@ public class DeleteLuggage extends SwitchingJPanel {
         });
 
         buttonUpdate.setText("Update");
+        buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -210,28 +223,111 @@ public class DeleteLuggage extends SwitchingJPanel {
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        DatabaseMan db = new DatabaseMan();
+        this.userNotAFK();
+        fillFlightTable();
     }//GEN-LAST:event_buttonSearchActionPerformed
 
+    private void fillFlightTable() {
+        ArrayList<String> values = new ArrayList<String>();
+        String query = "SELECT Luggage.Luggage_id, flight_id, status, location FROM luggage INNER JOIN luggage_flight ON luggage_flight.luggage_id = luggage.luggage_id";
+        if (!textFieldFlightNumber.getText().equals("") || !textFieldLocation.getText().equals("")
+                || !textFieldLuggageID.getText().equals("") || !textFieldStatus.getText().equals("")) {
+            query += " WHERE 1 = 0";
+        } else {
+            query += " order by luggage_id desc";
+        }
+        if (!textFieldLuggageID.getText().equals("")) {
+            query += " OR luggage.luggage_id = ?";
+            values.add(helpers.Filters.filteredString(textFieldLuggageID.getText(), 1, 10));
+        }
+        if (!textFieldLocation.getText().equals("")) {
+            query += " OR Location = ?";
+            values.add(helpers.Filters.filteredString(textFieldLocation.getText(), 1, 45));
+        }
+        if (!textFieldStatus.getText().equals("")) {
+            query += " OR Status = ?";
+            values.add(helpers.Filters.filteredString(textFieldStatus.getText(), 1, 45));
+        }
+        if (!textFieldFlightNumber.getText().equals("")) {
+            query += " OR flight_id = ?";
+            values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText(), 1, 10));
+        }
+
+        ResultSet result = new EmptyResultSet();
+        try {
+            result = db.query(query, values.toArray(new String[values.size()]));
+            DefaultTableModel datamodel = (DefaultTableModel) tableDeleteLuggage.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+                Object[] data = {result.getString("luggage_id"), result.getString("flight_id"), result.getString("status"), result.getString("location"), false};
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableDeleteLuggage.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, "Error: retrieving flights dataset", (new Throwable()).getStackTrace());
+        }
+    }
+
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
     private void textFieldLuggageIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLuggageIDActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldLuggageIDActionPerformed
 
     private void textFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldStatusActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldStatusActionPerformed
 
     private void textFieldLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLocationActionPerformed
-        // TODO add your handling code here:
+        this.userNotAFK();
     }//GEN-LAST:event_textFieldLocationActionPerformed
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
-        // TODO add your handling code here:
+        fillFlightTable();
     }//GEN-LAST:event_formAncestorAdded
+
+    private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
+        DefaultTableModel datamodel = (DefaultTableModel) tableDeleteLuggage.getModel();
+        String query = "DELETE FROM luggage WHERE 1=0";
+        String query1 = "DELETE FROM luggage_flight WHERE 1=0";
+        String query2 = "DELETE FROM customer_luggage WHERE 1=0";
+        ArrayList<String> data = new ArrayList();
+        ArrayList<String> types = new ArrayList();
+        boolean[] idRemove = new boolean[datamodel.getRowCount()];
+
+        for (int i = datamodel.getRowCount() - 1; i >= 0; i--) {
+
+            // if this entry equals true - true to remove
+            if ((boolean) datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
+                query += " OR luggage_id = ?";
+                query1 += " OR luggage_id = ?";
+                query2 += " OR luggage_id = ?";
+                data.add((String) datamodel.getValueAt(i, 0));
+                types.add(db.PS_TYPE_INT);
+            }
+        }
+
+        String[] values = data.toArray(new String[data.size()]);
+        String[] types2 = types.toArray(new String[types.size()]);
+
+        try {
+            db.queryManipulation(query2, values, types2);
+            db.queryManipulation(query1, values, types2);
+            db.queryManipulation(query, values, types2);
+            fillFlightTable();
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
+        }
+
+        for (boolean idrem : idRemove) {
+            System.out.println(idrem);
+        }
+    }//GEN-LAST:event_buttonUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
