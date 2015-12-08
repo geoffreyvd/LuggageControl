@@ -26,6 +26,8 @@ public class ConfigurationMan {
     // used to determine if we can start initialization immediately
     private boolean proceedInitialization = true;
     
+    private DatabaseMan db = new DatabaseMan();
+    
     // Configuration file name
     private static final String CONFIG_NAME = "config.ini";
     
@@ -126,7 +128,10 @@ public class ConfigurationMan {
      * @return true if initial configuration is complete, false otherwise. 
      */
     public boolean getInitialConfiguration() {
-        return true;
+        if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) > 0) {
+            return true;
+        }
+        return false;
     }
     
     /**
