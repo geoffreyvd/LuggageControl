@@ -128,6 +128,7 @@ public class DeleteLuggage extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableDeleteLuggage.setPreferredSize(new java.awt.Dimension(1920, 500));
         scrollPaneLuggageTable.setViewportView(tableDeleteLuggage);
 
         textFieldStatus.addActionListener(new java.awt.event.ActionListener() {

@@ -116,7 +116,7 @@ public class DeleteFlight extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 500));
         tableFlights.getTableHeader().setReorderingAllowed(false);
         scrollPaneTable.setViewportView(tableFlights);
 
