@@ -1,10 +1,12 @@
 package screen.details;
 
+import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import managers.SecurityMan;
@@ -398,14 +400,121 @@ public class CustomerDetails extends SwitchingJPanel {
      * Fill the luggage table
      */
     private void searchLuggage() {
-        
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+        ArrayList<String> values = new ArrayList<String>();
+
+        // If Some text fields are not empty we add the WHERE clause
+        if (!textFieldLugLocation.getText().equals("") || !textFieldLuggageId.getText().equals("") ||
+            !textPaneContent.getText().equals("")) {
+            query += "WHERE 1=0 ";
+        }
+
+        try {
+            if (!textFieldLuggageId.getText().equals("")) {
+                query += "OR luggage_id = ? ";
+                values.add(helpers.Filters.filteredString(textFieldLuggageId.getText()));
+            }
+
+            if (!textFieldLugLocation.getText().equals("")) {
+                query += "OR location = ? ";
+                values.add(helpers.Filters.filteredString(textFieldLugLocation.getText()));
+            }
+
+            if (!textPaneContent.getText().equals("")) {
+                query += "OR content LIKE ? ";
+                values.add("%" + helpers.Filters.filteredString(textPaneContent.getText()) + "%");
+            }   
+
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableLugSearchLuggage.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("luggage_id"),
+                    result.getString("location"),
+                    result.getString("color"),
+                    result.getString("weight"),
+                    result.getString("size"),
+                    result.getString("content"),
+                    result.getString("status")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableLugSearchLuggage.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
     }
     
     /**
      * fill the flight table
      */
     private void searchFlight() {
-        
+//        ResultSet result = new EmptyResultSet();
+//        String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
+//        ArrayList<String> values = new ArrayList<String>();
+//
+//        // If Some text fields are not empty we add the WHERE clause
+//        if (!textFieldFlightnumber.getText().equals("") || !textFieldOrigin.getText().equals("") ||
+//            !textFieldDestination.getText().equals("") || !textFieldDepartureTime.getText().equals("") || 
+//            !textFieldArrivalTime.getText().equals("")) {
+//            query += "WHERE 1=0 ";
+//        }
+//
+//        try {
+//            if (!textFieldFlightnumber.getText().equals("")) {
+//                query += "OR flight_id = ? ";
+//                values.add(helpers.Filters.filteredString(textFieldFlightnumber.getText()));
+//            }
+//
+//            if (!textFieldOrigin.getText().equals("")) {
+//                query += "OR origin = ? ";
+//                values.add(helpers.Filters.filteredString(textFieldOrigin.getText()));
+//            }
+//
+//            if (!textFieldDestination.getText().equals("")) {
+//                query += "OR destination = ? ";
+//                values.add(helpers.Filters.filteredString(textFieldDestination.getText()));
+//            }
+//            if (!textFieldDepartureTime.getText().equals("")) {
+//                query += "OR departure = ? ";
+//                values.add(helpers.Filters.filteredString(textFieldDepartureTime.getText()));
+//            }
+//            if (!textFieldArrivalTime.getText().equals("")) {
+//                query += "OR arrival = ? ";
+//                values.add(helpers.Filters.filteredString(textFieldArrivalTime.getText()));
+//            }            
+//
+//            result = db.query(query + ";", values.toArray(new String[values.size()]));
+//
+//            DefaultTableModel datamodel = (DefaultTableModel) tableLugSearchFlight.getModel();
+//            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+//                datamodel.removeRow(i);
+//            }
+//            while (result.next()) {
+//
+//                Object[] data = {
+//                    result.getString("flight_id"),
+//                    result.getString("origin"),
+//                    result.getString("destination"),
+//                    result.getString("departure"),
+//                    result.getString("arrival")
+//                };
+//
+//                // datamodel.addRow is skipped problaby exception
+//                datamodel.addRow(data);
+//            }
+//            tableLugSearchFlight.setModel(datamodel);
+//        } catch (Exception e) {
+//            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+//        }
     }
     
     /**
@@ -449,11 +558,11 @@ public class CustomerDetails extends SwitchingJPanel {
         textFieldLugLocation = new javax.swing.JFormattedTextField();
         textFieldLuggageId = new javax.swing.JFormattedTextField();
         buttonSearchLuggage = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        scrollPaneContent = new javax.swing.JScrollPane();
+        textPaneContent = new javax.swing.JTextPane();
         panelSearchFlight = new javax.swing.JPanel();
         scrollPaneFlightTable = new javax.swing.JScrollPane();
-        tableLugSearchLuggage1 = new javax.swing.JTable();
+        tableLugSearchFlight = new javax.swing.JTable();
         comboBoxFli = new javax.swing.JComboBox();
         textFieldFli = new javax.swing.JFormattedTextField();
         textFieldFlightId = new javax.swing.JFormattedTextField();
@@ -490,11 +599,6 @@ public class CustomerDetails extends SwitchingJPanel {
 
         comboBoxFlight.setToolTipText("Links to flights");
         comboBoxFlight.setMaximumSize(new java.awt.Dimension(150, 150));
-        comboBoxFlight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxFlightActionPerformed(evt);
-            }
-        });
 
         buttonRemoveFlightNumber.setText("Remove");
         buttonRemoveFlightNumber.addActionListener(new java.awt.event.ActionListener() {
@@ -594,7 +698,7 @@ public class CustomerDetails extends SwitchingJPanel {
             }
         });
 
-        jScrollPane1.setViewportView(jTextPane1);
+        scrollPaneContent.setViewportView(textPaneContent);
 
         javax.swing.GroupLayout panelSearchLuggageLayout = new javax.swing.GroupLayout(panelSearchLuggage);
         panelSearchLuggage.setLayout(panelSearchLuggageLayout);
@@ -603,7 +707,7 @@ public class CustomerDetails extends SwitchingJPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLuggageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(scrollPaneContent)
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(comboBoxLugStatus, 0, 409, Short.MAX_VALUE)
                     .addComponent(textFieldLugLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -623,7 +727,7 @@ public class CustomerDetails extends SwitchingJPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboBoxLugStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(scrollPaneContent, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -633,7 +737,7 @@ public class CustomerDetails extends SwitchingJPanel {
 
         tabPaneSearch.addTab("Luggage", panelSearchLuggage);
 
-        tableLugSearchLuggage1.setModel(new javax.swing.table.DefaultTableModel(
+        tableLugSearchFlight.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -656,11 +760,11 @@ public class CustomerDetails extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableLugSearchLuggage1.setFocusable(false);
-        tableLugSearchLuggage1.setRowSelectionAllowed(false);
-        tableLugSearchLuggage1.getTableHeader().setReorderingAllowed(false);
-        scrollPaneFlightTable.setViewportView(tableLugSearchLuggage1);
-        tableLugSearchLuggage1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableLugSearchFlight.setFocusable(false);
+        tableLugSearchFlight.setRowSelectionAllowed(false);
+        tableLugSearchFlight.getTableHeader().setReorderingAllowed(false);
+        scrollPaneFlightTable.setViewportView(tableLugSearchFlight);
+        tableLugSearchFlight.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         comboBoxFli.setMaximumSize(new java.awt.Dimension(150, 150));
 
@@ -929,7 +1033,7 @@ public class CustomerDetails extends SwitchingJPanel {
     private void buttonRemoveLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveLuggage
         this.userNotAFK();
         try {
-            removeCustomerLuggageLink(Integer.parseInt(comboBoxFlight.getSelectedItem().toString()));
+            removeCustomerLuggageLink(Integer.parseInt(comboBoxLuggage.getSelectedItem().toString()));
         }
         catch(NullPointerException e) {
             labelStatus.setText("Cannot delete unexisting reference");
@@ -941,10 +1045,6 @@ public class CustomerDetails extends SwitchingJPanel {
         }
         loadCustomer(currentCustomerId);
     }//GEN-LAST:event_buttonRemoveLuggage
-
-    private void comboBoxFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxFlightActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxFlightActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -961,8 +1061,6 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JComboBox comboBoxGender;
     private javax.swing.JComboBox comboBoxLugStatus;
     private javax.swing.JComboBox comboBoxLuggage;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel labeBirthday;
     private javax.swing.JLabel labelBirthdayDisplay;
     private javax.swing.JLabel labelHeaderLeftSide;
@@ -978,12 +1076,13 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JLabel labelSurnameDisplay;
     private javax.swing.JPanel panelSearchFlight;
     private javax.swing.JPanel panelSearchLuggage;
+    private javax.swing.JScrollPane scrollPaneContent;
     private javax.swing.JScrollPane scrollPaneFlightTable;
     private javax.swing.JScrollPane scrollPaneLuggageTable;
     private javax.swing.JSeparator separatorScreenDefider;
     private javax.swing.JTabbedPane tabPaneSearch;
+    private javax.swing.JTable tableLugSearchFlight;
     private javax.swing.JTable tableLugSearchLuggage;
-    private javax.swing.JTable tableLugSearchLuggage1;
     private javax.swing.JFormattedTextField textFieldAddFlight;
     private javax.swing.JFormattedTextField textFieldAddLuggage;
     private javax.swing.JFormattedTextField textFieldAdress;
@@ -994,5 +1093,6 @@ public class CustomerDetails extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldLugLocation;
     private javax.swing.JFormattedTextField textFieldLuggageId;
     private javax.swing.JFormattedTextField textFieldPostcode;
+    private javax.swing.JTextPane textPaneContent;
     // End of variables declaration//GEN-END:variables
 }
