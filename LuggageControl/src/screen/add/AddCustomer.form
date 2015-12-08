@@ -19,38 +19,42 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelAddCustomer" max="32767" attributes="0"/>
-                  <Component id="textFieldSurName" alignment="1" max="32767" attributes="0"/>
-                  <Component id="textFieldCellphoneNumber" alignment="1" max="32767" attributes="0"/>
-                  <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
-                  <Component id="textFieldBirthday" alignment="0" max="32767" attributes="0"/>
-                  <Component id="textFieldGender" alignment="0" max="32767" attributes="0"/>
-                  <Component id="textFieldAdress" alignment="0" max="32767" attributes="0"/>
-                  <Component id="textFieldPostcode" alignment="1" max="32767" attributes="0"/>
-                  <Component id="textFieldName" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelAddCustomer" max="32767" attributes="0"/>
+                          <Component id="textFieldSurName" alignment="1" max="32767" attributes="0"/>
+                          <Component id="textFieldCellphoneNumber" alignment="1" max="32767" attributes="0"/>
+                          <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textFieldBirthday" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textFieldGender" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textFieldAdress" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textFieldPostcode" alignment="1" max="32767" attributes="0"/>
+                          <Component id="textFieldName" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="buttonConfirm" linkSize="1" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="butonCancel" linkSize="1" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="buttonBack" linkSize="1" min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="butonCancel" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="labelQuickSearch" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
                           </Group>
                           <Component id="textFieldQuickSearchFlightNumber" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="buttonBack" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
-                          <Component id="buttonHelp" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="buttonHelp" linkSize="1" min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
                   <Component id="table" alignment="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -74,15 +78,15 @@
                           <Component id="textFieldQuickSearchFlightNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="buttonHelp" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="table" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="textFieldSurName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldEmail" min="-2" max="-2" attributes="0"/>
@@ -96,18 +100,15 @@
                       <Component id="textFieldAdress" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldPostcode" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="table" pref="0" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace pref="115" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonConfirm" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="butonCancel" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonBack" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
           </Group>
           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
       </Group>
@@ -172,7 +173,7 @@
         <Component class="javax.swing.JTable" name="tableCustomer">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Luggage ID" type="java.lang.Object"/>
                 <Column editable="false" title="Origin" type="java.lang.Object"/>
                 <Column editable="false" title="Location" type="java.lang.Object"/>

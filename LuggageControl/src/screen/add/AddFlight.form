@@ -18,40 +18,38 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="textFieldDestination" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="labelAddCustomer" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
-                              <Component id="buttonHelp" min="-2" pref="97" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buttonBack" min="-2" pref="97" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="butonCancel" min="-2" pref="90" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="buttonConfirm" linkSize="1" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="buttonConfirm" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="butonCancel" linkSize="1" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="buttonBack" linkSize="1" min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="textFieldOrigin" max="32767" attributes="0"/>
-                          <Component id="textFieldFlightnumber" max="32767" attributes="0"/>
+                          <Component id="textFieldDestination" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="labelAddCustomer" max="32767" attributes="0"/>
+                              <EmptySpace pref="162" max="32767" attributes="0"/>
+                              <Component id="buttonHelp" linkSize="1" min="-2" pref="97" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="textFieldOrigin" max="32767" attributes="0"/>
+                                  <Component id="textFieldFlightnumber" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textFieldDepartureTime" max="32767" attributes="0"/>
+                                  <Component id="textFieldArivalTime" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldDepartureTime" max="32767" attributes="0"/>
-                          <Component id="textFieldArivalTime" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,13 +59,9 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="labelAddCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonHelp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="buttonHelp" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="textFieldFlightnumber" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textFieldDepartureTime" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -79,10 +73,11 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="textFieldDestination" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buttonConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="butonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonConfirm" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="butonCancel" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonBack" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
