@@ -14,10 +14,11 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * Screen to remove flights from the database
+ *
  * @author Corne Lukken
  */
 public class DeleteFlight extends SwitchingJPanel {
-    
+
     private DatabaseMan db = new DatabaseMan();
 
     public DeleteFlight(LuggageControl luggageControl) {
@@ -58,6 +59,15 @@ public class DeleteFlight extends SwitchingJPanel {
         textFieldArrival = new javax.swing.JFormattedTextField();
 
         setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         labelName.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelName.setText("Delete Flight");
@@ -228,6 +238,7 @@ public class DeleteFlight extends SwitchingJPanel {
 
     /**
      * Switches the screen to the <code>HomeScreenAdministrator</code> screen
+     *
      * @param evt event with key and component information
      */
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
@@ -237,6 +248,7 @@ public class DeleteFlight extends SwitchingJPanel {
 
     /**
      * Opens the help screen about removing data entries
+     *
      * @param evt event with key and component information
      */
     private void buttonHelp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelp
@@ -247,6 +259,7 @@ public class DeleteFlight extends SwitchingJPanel {
 
     /**
      * Fills the table with the flight database data when the button is pressed.
+     *
      * @param evt event with key and component information
      */
     private void buttonSearch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearch
@@ -255,47 +268,59 @@ public class DeleteFlight extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearch
 
     /**
-     * Calls <code>fillFlightTable()</code> if the pressed key is enter. 
+     * Calls <code>fillFlightTable()</code> if the pressed key is enter.
+     *
      * @param evt event with key and component information
      */
     private void flightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flightNumberKeyPressed
         this.userNotAFK();
-        
+
         // identify the pressed key
-        if(evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             this.fillFlightTable();
         }
     }//GEN-LAST:event_flightNumberKeyPressed
 
     /**
-     * Loops through the table dataset and removes any rows which are marked for removal.
+     * Loops through the table dataset and removes any rows which are marked for
+     * removal.
+     *
      * @param evt event with key and component information
      */
     private void buttonUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdate
-        DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
+        DefaultTableModel datamodel = (DefaultTableModel) tableFlights.getModel();
         String query = "DELETE FROM flight WHERE 1=0";
+        String query1 = "DELETE FROM customer_flight WHERE 1=0";
+        String query2 = "DELETE FROM luggage_flight WHERE 1=0";
         ArrayList<String> data = new ArrayList();
         ArrayList<String> types = new ArrayList();
-        boolean[] idRemove = new boolean[datamodel.getRowCount()]; 
-        
+        boolean[] idRemove = new boolean[datamodel.getRowCount()];
+
         for (int i = datamodel.getRowCount() - 1; i >= 0; i--) {
-            
+
             // if this entry equals true - true to remove
-            if((boolean)datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
+            if ((boolean) datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
                 query += " OR flight_id = ?";
-                data.add((String)datamodel.getValueAt(i, 0));
+                query1 += " OR flight_id = ?";
+                query2 += " OR flight_id = ?";
+                data.add((String) datamodel.getValueAt(i, 0));
                 types.add(db.PS_TYPE_INT);
             }
         }
-        
+
+        String[] values = data.toArray(new String[data.size()]);
+        String[] types2 = types.toArray(new String[types.size()]);
+
         try {
-            db.queryManipulation(query, data.toArray(new String[data.size()]), types.toArray(new String[types.size()]));
-        }
-        catch(Exception e) {
+            db.queryManipulation(query2, values, types2);
+            db.queryManipulation(query1, values, types2);
+            db.queryManipulation(query, values, types2);
+            fillFlightTable();
+        } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
         }
-        
-        for(boolean idrem: idRemove) {
+
+        for (boolean idrem : idRemove) {
             System.out.println(idrem);
         }
     }//GEN-LAST:event_buttonUpdate
@@ -328,35 +353,60 @@ public class DeleteFlight extends SwitchingJPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        fillFlightTable();
+    }//GEN-LAST:event_formAncestorAdded
+
     /**
-     * Looks at the text fields and if their filled in, 
-     * determines how our database query should look and runs it and finally fills the table with the data.
+     * Looks at the text fields and if their filled in, determines how our
+     * database query should look and runs it and finally fills the table with
+     * the data.
      */
     private void fillFlightTable() {
+        ArrayList<String> values = new ArrayList<String>();
+        String query = "SELECT * FROM flight";
+        if (!textFieldFlightNumber.getText().equals("") || !textFieldArrival.getText().equals("")
+                || !textFieldDeparture.getText().equals("") || !textFieldDestination.getText().equals("")
+                || !textFieldOrigin.getText().equals("")) {
+            query += " WHERE 1 = 0";
+        } else {
+            query += " order by flight_id desc";
+        }
+        if (!textFieldFlightNumber.getText().equals("")) {
+            query += " OR flight_id = ?";
+            values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText(), 1, 10));
+        }
+        if (!textFieldDeparture.getText().equals("")) {
+            query += " OR departure LIKE ?";
+            values.add(helpers.Filters.filteredString("%" + textFieldDeparture.getText() + "%"));
+        }
+        if (!textFieldArrival.getText().equals("")) {
+            query += " OR arrival LIKE ?";
+            values.add(helpers.Filters.filteredString("%" + textFieldArrival.getText() + "%"));
+        }
+        if (!textFieldDestination.getText().equals("")) {
+            query += " OR destination = ?";
+            values.add(helpers.Filters.filteredString(textFieldDestination.getText(), 1, 45));
+        }
+        if (!textFieldOrigin.getText().equals("")) {
+            query += " OR origin = ?";
+            values.add(helpers.Filters.filteredString(textFieldOrigin.getText(), 1, 45));
+        }
+        
         ResultSet result = new EmptyResultSet();
         try {
-            if(textFieldFlightNumber.getText().equals("")) {
-                String[] values = {};
-                result = db.query("SELECT * FROM flight;", values);
-            }
-            else {
-                // always filter user input with securitymanager
-                String[] values = {helpers.Filters.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
-                result = db.query("SELECT * FROM flight WHERE flight_id = ? ;", values);
-            }
-            DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
+            result = db.query(query, values.toArray(new String[values.size()]));
+            DefaultTableModel datamodel = (DefaultTableModel) tableFlights.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
                 datamodel.removeRow(i);
             }
-            while(result.next()) {
-                System.out.println(result.getString("origin"));
+            while (result.next()) {
                 Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival"), false};
                 // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
             tableFlights.setModel(datamodel);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Error: retrieving flights dataset", (new Throwable()).getStackTrace());
         }
     }

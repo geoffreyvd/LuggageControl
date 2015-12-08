@@ -38,7 +38,6 @@ public class DeleteCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerId);
         PromptSupport.setPrompt("Customer ID", textFieldDeleteCustomerId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDeleteCustomerId);
-        buildTable();
     }
 
     /**
@@ -64,6 +63,15 @@ public class DeleteCustomer extends SwitchingJPanel {
         textFieldDeleteCustomerId = new javax.swing.JTextField();
 
         setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         labelHeader.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHeader.setText("Delete Customer");
@@ -297,10 +305,15 @@ public class DeleteCustomer extends SwitchingJPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldCustomerIdActionPerformed
 
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        buildTable();
+    }//GEN-LAST:event_formAncestorAdded
+
     private void buildTable() {
         ArrayList<String> values = new ArrayList<String>();
         String query = "SELECT * FROM luggagecontroldata.customer";
-        if (!textFieldCustomerId.getText().equals("") || !textFieldCustomerName.getText().equals("")) {
+        if (!textFieldCustomerId.getText().equals("") || !textFieldCustomerName.getText().equals("") 
+                || !textFieldCustomerEmail.getText().equals("") || !textFieldCustomerSurname.getText().equals("")) {
             query += " WHERE 1 = 0";
         }else{
             query += " order by customer_id desc";
@@ -313,8 +326,14 @@ public class DeleteCustomer extends SwitchingJPanel {
             query += " OR firstname = ?";
             values.add(helpers.Filters.filteredString(textFieldCustomerName.getText()));
         }
-
-        query += " limit 4;";
+        if (!textFieldCustomerEmail.getText().equals("")) {
+            query += " OR email = ?";
+            values.add(helpers.Filters.filteredString(textFieldCustomerEmail.getText()));
+        }
+        if (!textFieldCustomerSurname.getText().equals("")) {
+            query += " OR surname = ?";
+            values.add(helpers.Filters.filteredString(textFieldCustomerSurname.getText()));
+        }
         
         ResultSet result;
         try {
