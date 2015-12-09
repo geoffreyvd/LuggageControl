@@ -71,7 +71,7 @@ public class LuggageDetails extends SwitchingJPanel {
     
     /**
      * Prepares the screen with data based on the supplied customer id
-     * @param luggageID the lggage id get this from the database
+     * @param luggageID the luggage id get this from the database
      */
     public void loadLuggage(int luggageID) {
         try {
@@ -81,6 +81,7 @@ public class LuggageDetails extends SwitchingJPanel {
                 textFieldUpdateColor.setText(resultLuggage.getString("color"));
                 textFieldUpdateWeight.setText(resultLuggage.getString("weight"));
                 textFieldUpdateSize.setText(resultLuggage.getString("size"));
+                textPaneUpdateContent.setText(resultLuggage.getString("content"));
                 
                 currentLuggageId = Integer.parseInt(resultLuggage.getString("luggage_id"));
             }
@@ -126,7 +127,7 @@ public class LuggageDetails extends SwitchingJPanel {
             
             // check if our email is not taken yet
             if(!textFieldUpdateLocation.getText().equals("")) {
-                query += "email = ?,";
+                query += "location = ?,";
                 values.add(helpers.Filters.filteredString(textFieldUpdateLocation.getText()));
                 types.add("String");
             }
@@ -141,7 +142,7 @@ public class LuggageDetails extends SwitchingJPanel {
                 comboBoxUpdateStatus.getSelectedItem().toString().equals("Found") || 
                 comboBoxUpdateStatus.getSelectedItem().toString().equals("Returned")
             ) {
-                query += " gender = ?,";
+                query += " status = ?,";
                 values.add(helpers.Filters.filteredString(comboBoxUpdateStatus.getSelectedItem().toString()));
                 types.add("String");
             }
@@ -189,7 +190,7 @@ public class LuggageDetails extends SwitchingJPanel {
             
             // validate size placeholder
             if(!textPaneUpdateContent.getText().equals("")) {
-                query += " size = ?,";
+                query += " content = ?,";
                 values.add(helpers.Filters.filteredString(textPaneUpdateContent.getText()));
                 types.add("String");
             }
@@ -576,6 +577,7 @@ public class LuggageDetails extends SwitchingJPanel {
      */
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
         this.userNotAFK();
+        updateLuggage();
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
     /**

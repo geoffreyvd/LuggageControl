@@ -608,6 +608,10 @@ public class LuggageControl extends javax.swing.JFrame {
             // does not work!
             luggageDetails.loadLuggage(id);
         }
+        else if(panelName.equals(ScreenNames.FLIGHT_DETAILS)) {
+            // does not work!
+            flightDetails.loadFlight(id);
+        }
         else {
             new ErrorJDialog(this, true, "Error: Trying to prefill detail panel which does not exist", (new Throwable()).getStackTrace());
         }
