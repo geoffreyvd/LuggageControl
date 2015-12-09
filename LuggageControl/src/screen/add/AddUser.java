@@ -383,7 +383,7 @@ public class AddUser extends SwitchingJPanel {
         try {
             db.queryManipulation(
                     "INSERT INTO user "+
-                            "(username,password,salt,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,permissions)" +
+                            "(username,password,salt,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,permission)" +
                             " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     userData, userTypes
             );

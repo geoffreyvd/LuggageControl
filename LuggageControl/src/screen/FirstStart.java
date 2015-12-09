@@ -52,12 +52,16 @@ public class FirstStart extends SwitchingJPanel {
     
     private void testDatabase() {
         try {
-            db.query("SELECT * FROM user;", new String[]{});
-            labelDatabaseStatus.setText("DatabaseConnection: succes!");
-            panelTwoCanContinue = true;
+            if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) == 0) {
+                labelDatabaseStatus.setText("DatabaseConnection: succes!");
+                panelTwoCanContinue = true;
+            }
+            labelDatabaseStatus.setText("DatabaseConnection: failed!");
+            panelTwoCanContinue = false;
         }
         catch(Exception e) {
             labelDatabaseStatus.setText("DatabaseConnection: failed!");
+            panelTwoCanContinue = false;
         }
     }
 
@@ -170,6 +174,7 @@ public class FirstStart extends SwitchingJPanel {
             }
         });
 
+        labelDatabaseStatus.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         labelDatabaseStatus.setText("DatabaseConnection:");
 
         javax.swing.GroupLayout panelTwoLayout = new javax.swing.GroupLayout(panelTwo);
@@ -183,14 +188,14 @@ public class FirstStart extends SwitchingJPanel {
                     .addComponent(labelPtwoHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonPTwoNext, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonPTwoNext, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelDatabaseStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonDatabaseRetry, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTwoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDatabaseStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonDatabaseRetry)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTwoLayout.setVerticalGroup(
             panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,10 +204,10 @@ public class FirstStart extends SwitchingJPanel {
                 .addComponent(labelPtwoHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonDatabaseRetry)
-                    .addComponent(labelDatabaseStatus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(panelTwoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDatabaseStatus)
+                    .addComponent(buttonDatabaseRetry, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(buttonPTwoNext)
                 .addContainerGap())
@@ -310,6 +315,10 @@ public class FirstStart extends SwitchingJPanel {
                 .addContainerGap())
         );
 
+        layeredPaneSubScreens.setLayer(panelOne, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPaneSubScreens.setLayer(panelTwo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPaneSubScreens.setLayer(panelThree, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout layeredPaneSubScreensLayout = new javax.swing.GroupLayout(layeredPaneSubScreens);
         layeredPaneSubScreens.setLayout(layeredPaneSubScreensLayout);
         layeredPaneSubScreensLayout.setHorizontalGroup(
@@ -336,9 +345,6 @@ public class FirstStart extends SwitchingJPanel {
                     .addComponent(panelThree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
-        layeredPaneSubScreens.setLayer(panelOne, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layeredPaneSubScreens.setLayer(panelTwo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layeredPaneSubScreens.setLayer(panelThree, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -348,7 +354,7 @@ public class FirstStart extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(layeredPaneSubScreens)
-                    .addComponent(progressBarConfig, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))
+                    .addComponent(progressBarConfig, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -367,6 +373,7 @@ public class FirstStart extends SwitchingJPanel {
             this.progressBarConfig.setValue(10);
             this.panelOne.setVisible(false);
             this.panelTwo.setVisible(true);
+            this.testDatabase();
         }
     }//GEN-LAST:event_buttonPOneNextActionPerformed
 
@@ -385,7 +392,7 @@ public class FirstStart extends SwitchingJPanel {
     }//GEN-LAST:event_buttonPThreeNextActionPerformed
 
     private void buttonDatabaseRetryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseRetryActionPerformed
-        // TODO add your handling code here:
+        this.testDatabase();
     }//GEN-LAST:event_buttonDatabaseRetryActionPerformed
 
 
