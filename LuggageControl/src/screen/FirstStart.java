@@ -52,7 +52,7 @@ public class FirstStart extends SwitchingJPanel {
     
     private void testDatabase() {
         try {
-            if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) > 0) {
+            if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) == 0) {
                 labelDatabaseStatus.setText("DatabaseConnection: succes!");
                 panelTwoCanContinue = true;
             }
