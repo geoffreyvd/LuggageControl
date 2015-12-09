@@ -9,6 +9,7 @@ import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.sql.ResultSet;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
@@ -31,6 +32,14 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
         this.buildTable("SELECT * FROM luggagecontroldata.luggage");
     }
+    
+    private void clearLuggageTable() {
+        DefaultTableModel datamodel = (DefaultTableModel)tableLuggage.getModel();
+        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+            datamodel.removeRow(i);
+        }
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,6 +117,11 @@ public class HomeScreenEmployee extends SwitchingJPanel {
                 textFieldFlightNumberActionPerformed(evt);
             }
         });
+        textFieldFlightNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldFlightNumberKeyPressed(evt);
+            }
+        });
 
         tableLuggage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,6 +141,11 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         });
         tableLuggage.setFocusable(false);
         tableLuggage.setRowSelectionAllowed(false);
+        tableLuggage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableLuggageKeyPressed(evt);
+            }
+        });
         scrollPaneQuickSearchTable.setViewportView(tableLuggage);
 
         buttonAddFlight.setText("Add flight");
@@ -207,10 +226,6 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
-    }//GEN-LAST:event_buttonHelpActionPerformed
-
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
         this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
@@ -235,13 +250,38 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.ADD_FLIGHT);
     }//GEN-LAST:event_buttonAddFlightActionPerformed
 
-    private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldFlightNumberActionPerformed
-
     private void buttonSearchFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchFlightActionPerformed
         this.luggageControl.switchJPanel(ScreenNames.SEARCH_FLIGHT);
     }//GEN-LAST:event_buttonSearchFlightActionPerformed
+
+    private void textFieldFlightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldFlightNumberKeyPressed
+        // identify the pressed key
+        if(evt.getKeyCode() == evt.VK_ENTER) {
+            this.buildTable("SELECT * FROM luggagecontroldata.luggage");
+        }
+    }//GEN-LAST:event_textFieldFlightNumberKeyPressed
+
+    private void tableLuggageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableLuggageKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER) {
+            JTable tempTable = new JTable();
+            try {
+                tempTable = (JTable)evt.getComponent();
+            }
+            catch(Exception e) {
+                new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+            }
+            
+            this.clearLuggageTable();
+        }
+    }//GEN-LAST:event_tableLuggageKeyPressed
+
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        this.luggageControl.switchJPanel(ScreenNames.HELP);
+    }//GEN-LAST:event_buttonHelpActionPerformed
+
+    private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldFlightNumberActionPerformed
 
     private void buildTable(String query) {
         String[] values = { //sc.filteredString(textFieldQuickSearchFlightNumber.getText())
@@ -250,7 +290,13 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         query += " limit 4;";
 
         ResultSet result;
+        
         try {
+            /**if(!textFieldFlightNumber.getText().equals("")) {
+                query += "WHERE flightnumber = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+            }**/
+            
             result = db.query(query, values);
             DefaultTableModel datamodel = (DefaultTableModel) tableLuggage.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
