@@ -52,12 +52,16 @@ public class FirstStart extends SwitchingJPanel {
     
     private void testDatabase() {
         try {
-            db.query("SELECT * FROM user;", new String[]{});
-            labelDatabaseStatus.setText("DatabaseConnection: succes!");
-            panelTwoCanContinue = true;
+            if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) > 0) {
+                labelDatabaseStatus.setText("DatabaseConnection: succes!");
+                panelTwoCanContinue = true;
+            }
+            labelDatabaseStatus.setText("DatabaseConnection: failed!");
+            panelTwoCanContinue = false;
         }
         catch(Exception e) {
             labelDatabaseStatus.setText("DatabaseConnection: failed!");
+            panelTwoCanContinue = false;
         }
     }
 

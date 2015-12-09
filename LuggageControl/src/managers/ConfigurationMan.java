@@ -128,10 +128,15 @@ public class ConfigurationMan {
      * @return true if initial configuration is complete, false otherwise. 
      */
     public boolean getInitialConfiguration() {
-        if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) > 0) {
-            return true;
+        try {
+            if(Integer.parseInt(db.queryOneResult("SELECT COUNT(*) FROM user;", new String[]{})) > 0) {
+                return true;
+            }
+            return false;
         }
-        return false;
+        catch(Exception e) {
+            return false;
+        }
     }
     
     /**
