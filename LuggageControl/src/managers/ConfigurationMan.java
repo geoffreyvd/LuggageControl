@@ -101,7 +101,7 @@ public class ConfigurationMan {
         }
 
         // windows test for mysqldump.exe location and if our file still exists
-        if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists()) {
+        if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists(this.luggageControl)) {
             this.findMysqlDumpLocationWindows();
         } 
         
@@ -172,11 +172,17 @@ public class ConfigurationMan {
      * Check if our reference to the <code>mysqldump.exe</code> on windows still exists.
      * @return true if the file exists, false if it does not.
      */
-    public static boolean mysqlDumpExists() {
+    public static boolean mysqlDumpExists(LuggageControl luggageControl) {
         if(OS.equals("Linux")) {
             return true;
         }
-        return true;
+        File f = new File(getMysqlDumpLocationWindows(luggageControl));
+        if(f.exists() && !f.isDirectory()) { 
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
     public boolean findMysqlDumpLocationWindows() {
