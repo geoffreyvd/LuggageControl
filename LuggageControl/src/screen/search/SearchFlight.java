@@ -168,7 +168,7 @@ public class SearchFlight extends SwitchingJPanel {
         textFieldDepartureTime = new javax.swing.JFormattedTextField();
 
         labelSearchFlight.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        labelSearchFlight.setText("Search luggage");
+        labelSearchFlight.setText("Search flight");
 
         buttonSearch.setText("Search");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {

@@ -29,14 +29,16 @@
               </Group>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="labelHeaderRightSide" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="buttonHelp" min="-2" pref="123" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="buttonChangeSettings" min="-2" max="-2" attributes="0"/>
                   <Component id="textFieldFlightNumber" alignment="0" max="32767" attributes="0"/>
                   <Component id="scrollPaneQuickSearchTable" alignment="0" pref="541" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="labelHeaderRightSide" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="buttonHelp" max="32767" attributes="0"/>
+                          <Component id="buttonChangeSettings" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
