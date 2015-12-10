@@ -53,6 +53,7 @@ public class FirstStart extends SwitchingJPanel {
         
         this.panelTwo.setVisible(false);
         this.panelThree.setVisible(false);
+        this.panelFour.setVisible(false);
     }
     
     private void createUser() {
@@ -111,7 +112,9 @@ public class FirstStart extends SwitchingJPanel {
         
         // check if we have a user image
         if(userImage.equals("")) {
-            
+            labelUserStatus.setText("No image was uploaded");
+            this.resetLabel(5000, labelUserStatus);
+            return;
         }
         
         String salt = "";
@@ -166,7 +169,7 @@ public class FirstStart extends SwitchingJPanel {
             db.queryManipulation(
                     "INSERT INTO user "+
                             "(username,password,salt,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,image,permission)" +
-                            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     userData, userTypes
             );
         } catch (SQLException ex) {
@@ -189,6 +192,7 @@ public class FirstStart extends SwitchingJPanel {
         textFieldNationality.setText("");
         textFieldAdress.setText("");
         textFieldPostalcode.setText("");
+        userImage = "";
         userPic.setIcon(null);
     }
     
@@ -267,6 +271,9 @@ public class FirstStart extends SwitchingJPanel {
         jSeparator2 = new javax.swing.JSeparator();
         panelUserImage = new javax.swing.JPanel();
         userPic = new javax.swing.JLabel();
+        panelFour = new javax.swing.JPanel();
+        labelPtwoHeader1 = new javax.swing.JLabel();
+        buttonFinish = new javax.swing.JButton();
         progressBarConfig = new javax.swing.JProgressBar();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
@@ -310,7 +317,7 @@ public class FirstStart extends SwitchingJPanel {
                 .addContainerGap()
                 .addComponent(labelPoneHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonPOneNext)
                 .addContainerGap())
@@ -522,9 +529,41 @@ public class FirstStart extends SwitchingJPanel {
                 .addContainerGap())
         );
 
+        labelPtwoHeader1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        labelPtwoHeader1.setText("Initial configuration complete");
+
+        buttonFinish.setText("Finish configuration and start LuggageControl");
+        buttonFinish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFinishActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelFourLayout = new javax.swing.GroupLayout(panelFour);
+        panelFour.setLayout(panelFourLayout);
+        panelFourLayout.setHorizontalGroup(
+            panelFourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFourLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonFinish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPtwoHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 1152, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelFourLayout.setVerticalGroup(
+            panelFourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFourLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelPtwoHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonFinish, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         layeredPaneSubScreens.setLayer(panelOne, javax.swing.JLayeredPane.DEFAULT_LAYER);
         layeredPaneSubScreens.setLayer(panelTwo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         layeredPaneSubScreens.setLayer(panelThree, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPaneSubScreens.setLayer(panelFour, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layeredPaneSubScreensLayout = new javax.swing.GroupLayout(layeredPaneSubScreens);
         layeredPaneSubScreens.setLayout(layeredPaneSubScreensLayout);
@@ -538,6 +577,11 @@ public class FirstStart extends SwitchingJPanel {
                     .addContainerGap()
                     .addComponent(panelThree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(20, 20, 20)))
+            .addGroup(layeredPaneSubScreensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layeredPaneSubScreensLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panelFour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layeredPaneSubScreensLayout.setVerticalGroup(
             layeredPaneSubScreensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,6 +594,11 @@ public class FirstStart extends SwitchingJPanel {
                 .addGroup(layeredPaneSubScreensLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(panelThree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layeredPaneSubScreensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layeredPaneSubScreensLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panelFour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -576,20 +625,22 @@ public class FirstStart extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonPOneNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPOneNextActionPerformed
-        this.progressBarConfig.setValue(10);
+        this.progressBarConfig.setValue(33);
         this.panelOne.setVisible(false);
         this.panelTwo.setVisible(true);
         this.testDatabase();
     }//GEN-LAST:event_buttonPOneNextActionPerformed
 
     private void buttonPTwoNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPTwoNextActionPerformed
-        this.progressBarConfig.setValue(20);
+        this.progressBarConfig.setValue(66);
         this.panelTwo.setVisible(false);
         this.panelThree.setVisible(true);
     }//GEN-LAST:event_buttonPTwoNextActionPerformed
 
     private void buttonPThreeNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPThreeNextActionPerformed
-
+        this.progressBarConfig.setValue(100);
+        this.panelThree.setVisible(false);
+        this.panelFour.setVisible(true);
     }//GEN-LAST:event_buttonPThreeNextActionPerformed
 
     private void buttonDatabaseRetryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseRetryActionPerformed
@@ -611,9 +662,15 @@ public class FirstStart extends SwitchingJPanel {
         this.createUser();
     }//GEN-LAST:event_buttonPthreeCreateUserActionPerformed
 
+    private void buttonFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishActionPerformed
+        this.luggageControl.remove(this);
+        this.luggageControl.initComponents();
+    }//GEN-LAST:event_buttonFinishActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDatabaseRetry;
+    private javax.swing.JButton buttonFinish;
     private javax.swing.JButton buttonPOneNext;
     private javax.swing.JButton buttonPThreeNext;
     private javax.swing.JButton buttonPTwoNext;
@@ -631,8 +688,10 @@ public class FirstStart extends SwitchingJPanel {
     private javax.swing.JLabel labelPoneHeader;
     private javax.swing.JLabel labelPthreeHeader;
     private javax.swing.JLabel labelPtwoHeader;
+    private javax.swing.JLabel labelPtwoHeader1;
     private javax.swing.JLabel labelUserStatus;
     private javax.swing.JLayeredPane layeredPaneSubScreens;
+    private javax.swing.JPanel panelFour;
     private javax.swing.JPanel panelOne;
     private javax.swing.JPanel panelThree;
     private javax.swing.JPanel panelTwo;

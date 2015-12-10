@@ -252,6 +252,7 @@ public class DatabaseMan {
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();

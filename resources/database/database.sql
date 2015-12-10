@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `luggagecontroldata`.`luggage` (
   `size` VARCHAR(6) NULL DEFAULT NULL,
   `content` VARCHAR(256) NULL DEFAULT NULL,
   `status` VARCHAR(11) NULL DEFAULT NULL,
-  `image` BLOB NULL DEFAULT NULL,
+  `image` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`luggage_id`),
   UNIQUE INDEX `id_UNIQUE` (`luggage_id` ASC))
 ENGINE = InnoDB
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `luggagecontroldata`.`user` (
   `adress` VARCHAR(45) NULL DEFAULT NULL,
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `postcode` VARCHAR(45) NULL DEFAULT NULL,
-  `image` BLOB NULL DEFAULT NULL,
+  `image` LONGTEXT NULL DEFAULT NULL,
   `permission` INT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `id_UNIQUE` (`user_id` ASC),
