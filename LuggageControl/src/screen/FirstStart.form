@@ -44,7 +44,7 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="layeredPaneSubScreens" max="32767" attributes="0"/>
-                  <Component id="progressBarConfig" pref="655" max="32767" attributes="0"/>
+                  <Component id="progressBarConfig" pref="1200" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -111,10 +111,10 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="0" pref="535" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="1076" max="32767" attributes="0"/>
                               <Component id="buttonPOneNext" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labelPoneHeader" alignment="0" pref="635" max="32767" attributes="0"/>
+                          <Component id="labelPoneHeader" alignment="0" pref="1176" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -126,7 +126,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelPoneHeader" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="334" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="413" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonPOneNext" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -217,6 +217,7 @@
             <Component class="javax.swing.JButton" name="buttonPTwoNext">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Next"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPTwoNextActionPerformed"/>
@@ -269,13 +270,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="buttonPThreeNext" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="labelPthreeHeader" alignment="1" pref="605" max="32767" attributes="0"/>
+                          <Component id="buttonPthreeCreateUser" max="32767" attributes="0"/>
+                          <Component id="labelUserStatus" alignment="1" max="32767" attributes="0"/>
+                          <Component id="labelPthreeHeader" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="textFieldFirstname" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -291,7 +290,6 @@
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                               <Component id="textFieldPostalcode" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="comboBoxProfession" alignment="0" pref="605" max="32767" attributes="0"/>
                           <Component id="textFieldNationality" alignment="0" max="32767" attributes="0"/>
                           <Component id="textFieldCellphone" alignment="0" max="32767" attributes="0"/>
                           <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
@@ -299,43 +297,70 @@
                           <Component id="comboBoxGender" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator2" min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="buttonUploadImage" pref="658" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="buttonPThreeNext" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="panelUserImage" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelPthreeHeader" min="-2" pref="49" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldFirstname" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldSurname" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="labelPthreeHeader" min="-2" pref="49" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="textFieldFirstname" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldSurname" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboBoxGender" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textFieldBirthday" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="textFieldEmail" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="textFieldCellphone" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="textFieldNationality" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="textFieldAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldPostalcode" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="textFieldUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="labelUserStatus" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="panelUserImage" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="buttonPthreeCreateUser" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonUploadImage" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonPThreeNext" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jSeparator2" min="-2" pref="493" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="comboBoxGender" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldBirthday" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldEmail" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldCellphone" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldNationality" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldAdress" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldPostalcode" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="comboBoxProfession" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldUsername" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
-                      <Component id="buttonPThreeNext" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -345,6 +370,7 @@
             <Component class="javax.swing.JButton" name="buttonPThreeNext">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Next"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPThreeNextActionPerformed"/>
@@ -429,20 +455,6 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboBoxProfession">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Employee"/>
-                    <StringItem index="1" value="Manager"/>
-                    <StringItem index="2" value="Administrator"/>
-                  </StringArray>
-                </Property>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[250, 250]"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JFormattedTextField" name="textFieldUsername">
               <Properties>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -457,6 +469,48 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="labelUserStatus">
+              <Properties>
+                <Property name="verticalAlignment" type="int" value="1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="buttonUploadImage">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Upload image"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUploadImageActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="buttonPthreeCreateUser">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create User"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPthreeCreateUserActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator2">
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelUserImage">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="userPic" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="userPic" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="userPic">
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>

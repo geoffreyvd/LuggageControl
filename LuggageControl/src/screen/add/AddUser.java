@@ -1,8 +1,10 @@
 package screen.add;
 
+import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -345,8 +347,21 @@ public class AddUser extends SwitchingJPanel {
             tempPermission = 3;
         }
         
-        String salt = secman.createSalt();
-        String password = secman.encodePassword(textFieldPassword.getText(), salt);
+        String salt = "";
+        String password = "";
+        
+        try {
+            salt = secman.createSalt();
+            password = secman.encodePassword(textFieldPassword.getText(), salt);
+        } 
+        catch (NoSuchAlgorithmException e) {
+            new ErrorJDialog(this.luggageControl, true, "Required algorithm does not exists", e.getStackTrace());
+            return;
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+            return;
+        }
         
         String[] userData = {
             textFieldUsername.getText(), 
