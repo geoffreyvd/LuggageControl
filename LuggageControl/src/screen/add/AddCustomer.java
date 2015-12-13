@@ -54,6 +54,10 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDeparture);
         PromptSupport.setPrompt("Arrival time (YYYY-MM-DD HH:MM:SS)", textFieldFlightArrival);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightArrival);
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
+        PromptSupport.setPrompt("Luggage ID", textFieldLuggageId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageId);
     }
     
     private void searchLuggage() {
@@ -170,7 +174,130 @@ public class AddCustomer extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
     }
+    public boolean checkInput() {
+        if (textFieldName.getText().equals("")){
+            labelStatus.setText("First name is empty");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+        if (textFieldSurName.getText().equals("")){
+            labelStatus.setText("Surname is empty");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+        if (helpers.Filters.filteredEmail(textFieldEmail.getText()).equals("")){
+            labelStatus.setText("Email not valid");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+        if (helpers.Filters.filteredCellphone(textFieldCellphoneNumber.getText()).equals("")){
+            labelStatus.setText("Cellphone not valid");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+       // if (helpers.Filters.filteredDate(textFieldBirthday.getText()).equals("")){
+            
+       // }
+       if (textFieldGender.getText().equals("")){
+            labelStatus.setText("Gender is empty");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+       if (textFieldAdress.getText().equals("")){
+            labelStatus.setText("Adress is empty");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+       if (helpers.Filters.filteredPostcode(textFieldPostcode.getText()).equals("")){
+            labelStatus.setText("Postcode not valid");
+            this.resetLabel(5000, labelStatus);
+            return false;    
+        }
+       return true;
+    }
+    private void addCustomer(){
+        if (checkInput()) {
 
+            String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer`"
+                    + "(`firstname`, `surname`, `email`, `cellphone`, `birthday`, `gender`, `adress`, `postcode`)"
+                    + "VALUES(?,?,?,?,?,?,?,?)";
+
+            String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`customer_luggage`"
+                    + "(`customer_id`, `luggage_id`)  "
+                    + "VALUES(?,?)";
+            String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
+                    + "(`customer_id`,`flight_id`)  "
+                    + "VALUES(?,?)";
+            String querySearchCustomer = "SELECT customer_id FROM customer WHERE "
+                    + "firstname = ? AND surname = ? AND email = ? AND cellphone = ? "
+                    + "AND birthday = ? AND gender = ? AND adress = ? AND postcode = ?;";
+            
+            
+            String[] values = new String[8];
+            String[] types = new String[8];
+            
+            String[] values2 = new String[2];
+            String[] types2 = new String[2];
+            
+            String[] values3 = new String[2];
+            String[] types3 = new String[2];
+
+            values[0] = textFieldName.getText();
+            values[1] = textFieldSurName.getText();
+            values[2] = textFieldEmail.getText();
+            values[3] = textFieldCellphoneNumber.getText();
+            values[4] = textFieldBirthday.getText();
+            values[5] = textFieldGender.getText();
+            values[6] = textFieldAdress.getText();
+            values[7] = textFieldPostcode.getText();
+            
+            values2[0] = db.queryOneResult(querySearchCustomer, values);
+            values2[1] = textFieldLuggageID.getText();
+            
+            values3[0] = db.queryOneResult(querySearchCustomer, values);
+            values3[1] = textFieldFlightnumber.getText();
+            
+            types[0] = "String";
+            types[1] = "String";
+            types[2] = "String";
+            types[3] = "Int";
+            types[4] = "String";
+            types[5] = "String";
+            types[6] = "String";
+            types[7] = "String";
+            
+            types2[0] = "Int";
+            types2[1] = "Int";
+            
+            types3[0] = "Int";
+            types3[1] = "Int";
+
+            try {
+                db.queryManipulation(queryInsertCustomer, values, types);
+                if(!textFieldFlightnumber.getText().equals("")){
+                    db.queryManipulation(queryInsertFlight, values3, types3);
+                }
+                if (!textFieldLuggageID.getText().equals("")) {   
+                    db.queryManipulation(queryInsertLuggage, values2, types2);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                new ErrorJDialog(this.luggageControl, true, "Error: retrieving inserting customer", (new Throwable()).getStackTrace());
+            }
+        } else {
+            //labelStatus.setText("");
+        }
+    }
+    public void clearFields() {
+        textFieldName.setText("");
+        textFieldSurName.setText("");
+        textFieldEmail.setText("");
+        textFieldCellphoneNumber.setText("");
+        textFieldBirthday.setText("");
+        textFieldGender.setText("");
+        textFieldAdress.setText("");
+        textFieldPostcode.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -215,6 +342,9 @@ public class AddCustomer extends SwitchingJPanel {
         textFieldFlightDestination = new javax.swing.JFormattedTextField();
         textFieldFlightArrival = new javax.swing.JFormattedTextField();
         textFieldFlightDeparture = new javax.swing.JFormattedTextField();
+        textFieldLuggageID = new javax.swing.JFormattedTextField();
+        textFieldFlightnumber = new javax.swing.JFormattedTextField();
+        labelStatus = new javax.swing.JLabel();
 
         labelAddCustomer.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddCustomer.setText("Add customer");
@@ -430,22 +560,27 @@ public class AddCustomer extends SwitchingJPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labelAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                        .addComponent(textFieldSurName, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(textFieldEmail)
-                        .addComponent(textFieldBirthday)
-                        .addComponent(textFieldGender)
-                        .addComponent(textFieldAdress)
-                        .addComponent(textFieldPostcode, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(textFieldName))
+                    .addComponent(labelAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                    .addComponent(textFieldSurName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(textFieldEmail)
+                    .addComponent(textFieldBirthday)
+                    .addComponent(textFieldGender)
+                    .addComponent(textFieldAdress)
+                    .addComponent(textFieldPostcode, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(textFieldName)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textFieldLuggageID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldFlightnumber))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -469,9 +604,16 @@ public class AddCustomer extends SwitchingJPanel {
                         .addComponent(labelAddCustomer)
                         .addComponent(labelQuickSearch))
                     .addComponent(buttonHelp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tabPaneSearch))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldLuggageID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldSurName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,12 +629,13 @@ public class AddCustomer extends SwitchingJPanel {
                         .addComponent(textFieldAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonConfirm)
                             .addComponent(butonCancel)
-                            .addComponent(buttonBack)))
-                    .addComponent(tabPaneSearch))
+                            .addComponent(buttonBack))))
                 .addGap(30, 30, 30))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -513,66 +656,13 @@ public class AddCustomer extends SwitchingJPanel {
 
     private void butonCancelbuttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelbuttonCancelActionPerformed
         this.userNotAFK();
-        textFieldName.setText("");
-        textFieldSurName.setText("");
-        textFieldEmail.setText("");
-        textFieldCellphoneNumber.setText("");
-        textFieldBirthday.setText("");
-        textFieldGender.setText("");
-        textFieldAdress.setText("");
-        textFieldPostcode.setText("");
+        this.clearFields();
     }//GEN-LAST:event_butonCancelbuttonCancelActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-        if (!("".equals(textFieldName.getText()) || "".equals(textFieldSurName.getText())
-                || "".equals(textFieldEmail.getText()) || "".equals(textFieldCellphoneNumber.getText())
-                || "".equals(textFieldBirthday.getText()) || "".equals(textFieldGender.getText())
-                || "".equals(textFieldAdress.getText()) || "".equals(textFieldPostcode.getText()))) {
-
-            String query = "INSERT INTO `luggagecontroldata`.`customer`"
-                    + "(`firstname`, `surname`, `email`, `cellphone`, `birthday`, `gender`, `adress`, `postcode`)"
-                    + "VALUES(?,?,?,?,?,?,?,?)";
-
-            String[] values = new String[8];
-            String[] types = new String[8];
-
-            values[0] = textFieldName.getText();
-            values[1] = textFieldSurName.getText();
-            values[2] = textFieldEmail.getText();
-            values[3] = textFieldCellphoneNumber.getText();
-            values[4] = textFieldBirthday.getText();
-            values[5] = textFieldGender.getText();
-            values[6] = textFieldAdress.getText();
-            values[7] = textFieldPostcode.getText();
-
-            types[0] = "String";
-            types[1] = "String";
-            types[2] = "String";
-            types[3] = "Int";
-            types[4] = "String";
-            types[5] = "String";
-            types[6] = "String";
-            types[7] = "String";
-
-            try {
-                db.queryManipulation(query, values, types);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                new ErrorJDialog(this.luggageControl, true, "Error: retrieving inserting customer", (new Throwable()).getStackTrace());
-            }
-        } else {
-            //labelStatus.setText("");
-        }
-
+        this.addCustomer();
         this.userNotAFK();
-        textFieldName.setText("");
-        textFieldSurName.setText("");
-        textFieldEmail.setText("");
-        textFieldCellphoneNumber.setText("");
-        textFieldBirthday.setText("");
-        textFieldGender.setText("");
-        textFieldAdress.setText("");
-        textFieldPostcode.setText("");
+        this.clearFields();
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonSearchLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggage
@@ -600,6 +690,7 @@ public class AddCustomer extends SwitchingJPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelAddCustomer;
     private javax.swing.JLabel labelQuickSearch;
+    private javax.swing.JLabel labelStatus;
     private javax.swing.JPanel panelSearchFlight;
     private javax.swing.JPanel panelSearchLuggage;
     private javax.swing.JScrollPane scrollPaneContent;
@@ -617,8 +708,10 @@ public class AddCustomer extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldFlightDestination;
     private javax.swing.JFormattedTextField textFieldFlightId;
     private javax.swing.JFormattedTextField textFieldFlightOrigin;
+    private javax.swing.JFormattedTextField textFieldFlightnumber;
     private javax.swing.JTextField textFieldGender;
     private javax.swing.JFormattedTextField textFieldLugLocation;
+    private javax.swing.JFormattedTextField textFieldLuggageID;
     private javax.swing.JFormattedTextField textFieldLuggageId;
     private javax.swing.JTextField textFieldName;
     private javax.swing.JTextField textFieldPostcode;
