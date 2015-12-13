@@ -50,9 +50,9 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightOrigin);
         PromptSupport.setPrompt("Destination", textFieldFlightDestination);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDestination);
-        PromptSupport.setPrompt("Departure time (YYYY-MM-DD HH-MM-SS)", textFieldFlightDeparture);
+        PromptSupport.setPrompt("Departure time (YYYY-MM-DD HH:MM:SS)", textFieldFlightDeparture);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDeparture);
-        PromptSupport.setPrompt("Arrival time (YYYY-MM-DD HH-MM-SS)", textFieldFlightArrival);
+        PromptSupport.setPrompt("Arrival time (YYYY-MM-DD HH:MM:SS)", textFieldFlightArrival);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightArrival);
     }
     

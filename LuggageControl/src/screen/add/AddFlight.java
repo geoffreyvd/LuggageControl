@@ -39,9 +39,9 @@ public class AddFlight extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOrigin);
         PromptSupport.setPrompt("Destination", textFieldDestination);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDestination);
-        PromptSupport.setPrompt("Departure time (YYYY-MM-DD HH-MM-SS)", textFieldDepartureTime);
+        PromptSupport.setPrompt("Departure time (YYYY-MM-DD HH:MM:SS)", textFieldDepartureTime);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDepartureTime);
-        PromptSupport.setPrompt("Arival time (YYYY-MM-DD HH-MM-SS)", textFieldArrivalTime);
+        PromptSupport.setPrompt("Arival time (YYYY-MM-DD HH:MM:SS)", textFieldArrivalTime);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArrivalTime);
         PromptSupport.setPrompt("First Name", textFieldFirstName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstName);
