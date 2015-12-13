@@ -25,7 +25,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="linkingTab" pref="983" max="32767" attributes="0"/>
+                  <Component id="linkingTab" pref="1503" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="screenName" pref="0" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -45,8 +45,8 @@
                   <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="linkingTab" pref="447" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Component id="linkingTab" pref="667" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,29 +84,24 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="helpRemovingHeader" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingOne" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingOTwo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelHelpRemovingTwo2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingThree" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingThree2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingFour" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingFive" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingFive2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingSix" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHelpRemovingSix2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="helpRemovingExample" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="scrollPaneHelpRemoving" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="helpRemovingHeader" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingOne" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingOTwo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingTwo2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingThree" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingThree2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingFour" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingFive" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingFive2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingSix" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingSix2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="helpRemovingExample" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelHelpRemovingImage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="796" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -115,35 +110,38 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelHelpRemovingImage" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="scrollPaneHelpRemoving" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="helpRemovingHeader" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOne" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOTwo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingTwo2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingThree" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingThree2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingFour" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingFive" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingFive2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingSix" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingSix2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="helpRemovingExample" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labelHelpRemovingImage" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingOne" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingOTwo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingTwo2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingThree" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingThree2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingFour" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingFive" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingFive2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingSix" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="labelHelpRemovingSix2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="helpRemovingExample" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -252,19 +250,24 @@
                           <Component id="scrollPaneHelpRemoving1" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelHelpRemovingOne6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="helpRemovingHeader2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingOne2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingOne3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingOne4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelHelpRemovingOne5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingFour" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="helpLinkingHeader" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingOne" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingTwo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingThree" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingThree2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingFive" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingFive2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHelpLinkingSix" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="helpLinkingExample" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="helpLinkingExample2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelHelpRemovingImage1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -276,21 +279,31 @@
                           <Group type="102" attributes="0">
                               <Component id="scrollPaneHelpRemoving1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="helpRemovingHeader2" min="-2" max="-2" attributes="0"/>
+                              <Component id="helpLinkingHeader" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOne2" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingOne" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOne3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingTwo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOne4" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingThree" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOne5" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingThree2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHelpRemovingOne6" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingFour" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingFive" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingFive2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="labelHelpLinkingSix" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="helpLinkingExample" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="helpLinkingExample2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="labelHelpRemovingImage1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -306,7 +319,7 @@
                 <Component class="javax.swing.JTextPane" name="textPaneRemoving1">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="Only the administrator can remove database entries. The following entries can be removed: Customers, Flights, Luggage, Users. Removing entries also removes any links or references to other entries for instance: removing a suitcase also removes every reference to users finding or losing this suitcase it will be as if the never lost or found it. Removing entries will effect statistics generated for manager type users."/>
+                    <Property name="text" type="java.lang.String" value="Employees can remove links between different kinds of data, between a flight and a cutsomer for example. Removing these links means the one will no longer be associated with the other. This has consequences for the way information is found and statistics be aware of these consequences before you remove links."/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -318,34 +331,59 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="helpRemovingHeader2">
+            <Component class="javax.swing.JLabel" name="helpLinkingHeader">
               <Properties>
                 <Property name="text" type="java.lang.String" value="To remove links take the following steps"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelHelpRemovingOne2">
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingOne">
               <Properties>
                 <Property name="text" type="java.lang.String" value="#1 - Login as an employee user."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelHelpRemovingOne3">
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingTwo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="#2 - Open a search screen."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelHelpRemovingOne4">
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingThree">
               <Properties>
                 <Property name="text" type="java.lang.String" value="#3 - enter the desired details and acquire "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelHelpRemovingOne5">
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingThree2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="the results."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelHelpRemovingOne6">
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingFour">
               <Properties>
                 <Property name="text" type="java.lang.String" value="#4 - open the details screen with the result."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingFive">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="#5 - select the desired id from the combox"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingFive2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="if you are uncertain about the id use the search panels on the right."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelHelpLinkingSix">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="#6 - press the remove button"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="helpLinkingExample">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="On the right you will see a example of how a  screen "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="helpLinkingExample2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="with removing capabilities looks like."/>
               </Properties>
             </Component>
           </SubComponents>
