@@ -24,6 +24,7 @@ public class SearchLuggage extends SwitchingJPanel {
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
+     * @param luggageControl
      */
     public SearchLuggage(LuggageControl luggageControl) {
         super(luggageControl);

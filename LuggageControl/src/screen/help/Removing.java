@@ -11,9 +11,21 @@ import main.LuggageControl;
 public class Removing extends SwitchingJPanel {
     
     // static variables used to identify tabs
-    public static final String REMOVE_ENTRIES = "REMOVE_ENTRIES";
+
+    /**
+     *
+     */
+        public static final String REMOVE_ENTRIES = "REMOVE_ENTRIES";
+
+    /**
+     *
+     */
     public static final String REMOVE_LINKS = "REMOVE_LINKS";
 
+    /**
+     *
+     * @param luggageControl
+     */
     public Removing(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

@@ -10,6 +10,10 @@ import main.LuggageControl;
  */
 public class ChangeSettings extends SwitchingJPanel {
 
+    /**
+     *
+     * @param luggageControl
+     */
     public ChangeSettings(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

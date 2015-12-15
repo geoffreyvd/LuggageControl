@@ -24,6 +24,7 @@ public class FirstStart extends SwitchingJPanel {
     
     /**
      * Creates new form FirstStart
+     * @param luggageControl
      */
     public FirstStart(LuggageControl luggageControl) {
         super(luggageControl);

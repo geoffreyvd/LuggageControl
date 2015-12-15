@@ -25,6 +25,10 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     private SecurityMan sc;
     DatabaseMan db = new DatabaseMan();
 
+    /**
+     *
+     * @param luggageControl
+     */
     public HomeScreenEmployee(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

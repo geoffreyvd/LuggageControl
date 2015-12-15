@@ -20,6 +20,10 @@ import snippits.PieChart_AWT;
  */
 public class HomeScreenManager extends SwitchingJPanel {
 
+    /**
+     *
+     * @param luggageControl
+     */
     public HomeScreenManager(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
