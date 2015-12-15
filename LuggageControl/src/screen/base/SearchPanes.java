@@ -85,6 +85,61 @@ public class SearchPanes extends JTabbedPane{
     
     // <editor-fold defaultstate="collapsed" desc="initComponents">
     private void initComponents() {
+        panelUploadImage = new javax.swing.JPanel();
+        panelSearchCustomer = new javax.swing.JPanel();
+        
+        scrollPaneCustomerTable = new javax.swing.JScrollPane();
+        tableSearchCustomer = new javax.swing.JTable();
+        comboBoxCustomerGender = new javax.swing.JComboBox();
+        textFieldCustomerSurname = new javax.swing.JFormattedTextField();
+        textFieldCustomerId = new javax.swing.JFormattedTextField();
+        buttonSearchCustomer = new javax.swing.JButton();
+        textFieldCustomerFirstname = new javax.swing.JFormattedTextField();
+        textFieldCustomerEmail = new javax.swing.JFormattedTextField();
+        textFieldCustomerCellphone = new javax.swing.JFormattedTextField();
+        textFieldCustomerBirthday = new javax.swing.JFormattedTextField();
+        textFieldCustomerPostcode = new javax.swing.JFormattedTextField();
+        textFieldCustomerAdress = new javax.swing.JFormattedTextField();
+        panelSearchFlight = new javax.swing.JPanel();
+        scrollPaneFlightTable = new javax.swing.JScrollPane();
+        tableLugSearchFlight = new javax.swing.JTable();
+        textFieldFlightOrigin = new javax.swing.JFormattedTextField();
+        textFieldFlightId = new javax.swing.JFormattedTextField();
+        buttonSearchFlight = new javax.swing.JButton();
+        textFieldFlightDestination = new javax.swing.JFormattedTextField();
+        textFieldFlightArrival = new javax.swing.JFormattedTextField();
+        textFieldFlightDeparture = new javax.swing.JFormattedTextField();
+        panelSearchLuggage = new javax.swing.JPanel();
+        scrollPaneLuggageTable = new javax.swing.JScrollPane();
+        tableLugSearchLuggage = new javax.swing.JTable();
+        comboBoxLuggageStatus = new javax.swing.JComboBox();
+        textFieldLuggageLocation = new javax.swing.JFormattedTextField();
+        textFieldLuggageId = new javax.swing.JFormattedTextField();
+        buttonSearchLuggage = new javax.swing.JButton();
+        scrollPaneContent = new javax.swing.JScrollPane();
+        textPaneLuggageDescription = new javax.swing.JTextPane();
+        comboBoxLuggageSize = new javax.swing.JComboBox();
+        textFieldLuggageWeight = new javax.swing.JFormattedTextField();
+        textFieldLuggageColor = new javax.swing.JFormattedTextField();
+        labelLuggageDescription = new javax.swing.JLabel();
+        panelSearchUser = new javax.swing.JPanel();
+        scrollPaneUserTable = new javax.swing.JScrollPane();
+        tableLugSearchLuggage1 = new javax.swing.JTable();
+        comboBoxUserGender = new javax.swing.JComboBox();
+        
+        textFieldUserName = new javax.swing.JFormattedTextField();
+        textFieldUserId = new javax.swing.JFormattedTextField();
+        
+        buttonSearchUser = new javax.swing.JButton();
+        
+        textFieldUserFirstName = new javax.swing.JFormattedTextField();
+        textFieldUserSurName = new javax.swing.JFormattedTextField();
+        textFieldUserCellphone = new javax.swing.JFormattedTextField();
+        textFieldUserBirthday = new javax.swing.JFormattedTextField();
+        textFieldUserNationality = new javax.swing.JFormattedTextField();
+        textFieldUserAdress = new javax.swing.JFormattedTextField();
+        textFieldUserPostcode = new javax.swing.JFormattedTextField();
+        
         this.addTab("Upload image", panelUploadImage);
 
         tableSearchCustomer.setModel(new javax.swing.table.DefaultTableModel(
@@ -538,9 +593,9 @@ public class SearchPanes extends JTabbedPane{
         );
         
         this.addTab("User", panelSearchUser);
+        this.setVisible(true);
     }
     //</editor-fold>
-    
     
     public void setVisible(boolean visible, int panelId) {
         switch(panelId) {

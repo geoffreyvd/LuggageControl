@@ -203,7 +203,7 @@ public class LuggageControl extends javax.swing.JFrame {
     private SwitchingJPanel previousPanel;
 
     private final GraphicsDevice graphicsDevice;
-    private final Dimension monitorSize;
+    public final Dimension monitorSize;
 
     // security manager and event interface
     private final SecurityMan secman;
