@@ -337,12 +337,12 @@ public class SearchFlight extends SwitchingJPanel {
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
         clearSearchLuggage();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpLinkingbuttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpLinkingbuttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpLinkingbuttonHelpActionPerformed
 
     private void tableFlightSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableFlightSearchKeyPressed
