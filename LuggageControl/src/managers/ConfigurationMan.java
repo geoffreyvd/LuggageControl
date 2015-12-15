@@ -18,7 +18,7 @@ import java.io.Writer;
 import main.LuggageControl;
 
 /**
- * Manage configuration file
+ * Manage configuration file and determine if intial system configuration is complete.
  * @author Corne Lukken
  */
 public class ConfigurationMan {
@@ -39,6 +39,11 @@ public class ConfigurationMan {
     
     private FindMysqlJDialog msqlDialog;
     
+    /**
+     * Special dialog to show the process of searching for <code>mysql.exe</code>  
+     * @param parent Frame parent this is main.LuggageControl
+     * @param modal true to block all further interactions until dialog closes.
+     */
     public static class FindMysqlJDialog extends PopUpJDialog {
 
         private FindMysqlJDialog(Frame parent, boolean modal) {
