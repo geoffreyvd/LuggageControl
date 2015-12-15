@@ -651,7 +651,7 @@ public class FirstStart extends SwitchingJPanel {
     private void buttonUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImageActionPerformed
         this.userNotAFK();
         System.out.println(String.valueOf(buttonUploadImage.getWidth()) + " here"); // check button width
-        String path = helpers.ImageMaker.getPath();
+        String path = helpers.ImageMaker.getImagePath();
         ImageIcon imageIcon = new ImageIcon(path);
 
         userPic.setIcon(helpers.ImageMaker.resizeImage(userPic.getWidth(), -1, path));

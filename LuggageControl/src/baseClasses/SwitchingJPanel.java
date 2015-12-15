@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import main.LuggageControl;
 import managers.DatabaseMan;
@@ -103,6 +104,25 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
             }
         }
         System.err.println("You should really override this function!");
+    }
+    
+    protected String selectLabelImage(JLabel label) {
+        String tempCurrentImagePath = helpers.ImageMaker.getImagePath();
+        ImageIcon imageIcon = new ImageIcon(tempCurrentImagePath);
+        System.out.println(imageIcon);
+        if(imageIcon.getIconHeight() > imageIcon.getIconWidth()) {
+            label.setIcon(helpers.ImageMaker.resizeImage(-1, label.getHeight(), tempCurrentImagePath));
+        }
+        else if(imageIcon.getIconHeight() < imageIcon.getIconWidth()) {
+            label.setIcon(helpers.ImageMaker.resizeImage(label.getWidth(), -1, tempCurrentImagePath));
+        }
+        else {
+            label.setIcon(helpers.ImageMaker.resizeImage(label.getWidth(), label.getHeight(), tempCurrentImagePath));
+        }
+        
+        label.setHorizontalAlignment(label.CENTER);
+        label.setVerticalAlignment(label.CENTER);
+        return helpers.ImageMaker.base64Encode(tempCurrentImagePath);
     }
     
     /**
