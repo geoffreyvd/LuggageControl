@@ -3,22 +3,17 @@ package screen.details;
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
-import managers.DatabaseMan;
-import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
- *
- * @author user
+ * User details screen for the administrator to manage users
+ * @author Team 3 FYS
  */
 
 public class UserDetails extends SwitchingJPanel {
-    
-    private DatabaseMan db = new DatabaseMan();
     
     public UserDetails(LuggageControl luggageControl) {
         super(luggageControl);
@@ -243,7 +238,7 @@ public class UserDetails extends SwitchingJPanel {
 
     private void buttonDeletebutonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeletebutonCancelActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR); 
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_ADMINISTRATOR); 
     }//GEN-LAST:event_buttonDeletebutonCancelActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
@@ -284,12 +279,12 @@ public class UserDetails extends SwitchingJPanel {
     
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HELP); 
+        this.luggageControl.switchJPanel(this.luggageControl.HELP); 
     }//GEN-LAST:event_buttonHelpActionPerformed
 
 

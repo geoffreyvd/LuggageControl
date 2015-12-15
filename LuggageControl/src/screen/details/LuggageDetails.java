@@ -5,16 +5,13 @@
  */
 package screen.details;
 
-import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
@@ -655,7 +652,7 @@ public class LuggageDetails extends SwitchingJPanel {
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
         this.userNotAFK();
         clearLuggage();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_butonCancelActionPerformed
 
     /**
@@ -665,7 +662,7 @@ public class LuggageDetails extends SwitchingJPanel {
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
         this.clearLuggage();
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
+        this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
@@ -674,7 +671,7 @@ public class LuggageDetails extends SwitchingJPanel {
      */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.LINKING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP_LINKING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void textFieldUpdateSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUpdateSizeActionPerformed

@@ -143,28 +143,22 @@ public class LuggageControl extends javax.swing.JFrame {
     /**
      *
      */
-    public class Help {
+    public static final String HELP_ADDING = "Adding";
 
-            /**
-             *
-             */
-            public static final String ADDING = "Adding";
+    /**
+     *
+     */
+    public static final String HELP_FINDING = "Finding";
 
-            /**
-             *
-             */
-            public static final String FINDING = "Finding";
+    /**
+     *
+     */
+    public static final String HELP_LINKING = "Linking";
 
-            /**
-             *
-             */
-            public static final String LINKING = "Linking";
-
-            /**
-             *
-             */
-            public static final String REMOVING = "Removing";
-    }
+    /**
+     *
+     */
+    public static final String HELP_REMOVING = "Removing";
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Screen objects">
@@ -596,7 +590,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = help;
                 break;
-            case Help.ADDING:
+            case HELP_ADDING:
                 this.removeCurrentJPanel();
                 this.add(helpAdding);
                 this.revalidate();
@@ -604,7 +598,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = helpAdding;
                 break;
-            case Help.FINDING:
+            case HELP_FINDING:
                 this.removeCurrentJPanel();
                 this.add(helpFinding);
                 this.revalidate();
@@ -612,7 +606,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = helpFinding;
                 break;
-            case Help.LINKING:
+            case HELP_LINKING:
                 this.removeCurrentJPanel();
                 this.add(helpLinking);
                 this.revalidate();
@@ -620,7 +614,7 @@ public class LuggageControl extends javax.swing.JFrame {
                 this.previousPanel = this.currentPanel;
                 this.currentPanel = helpLinking;
                 break;
-            case Help.REMOVING:
+            case HELP_REMOVING:
                 this.removeCurrentJPanel();
                 this.add(helpRemoving);
                 this.revalidate();
@@ -705,13 +699,13 @@ public class LuggageControl extends javax.swing.JFrame {
      * @param panelName the help screen must be of package screen.help
      */
     public void switchTab(String tabName, String panelName) {
-        if (panelName == Help.ADDING) {
+        if (panelName == HELP_ADDING) {
             helpAdding.selectTab(tabName);
-        } else if (panelName == Help.FINDING) {
+        } else if (panelName == HELP_FINDING) {
             helpFinding.selectTab(tabName);
-        } else if (panelName == Help.LINKING) {
+        } else if (panelName == HELP_LINKING) {
             helpLinking.selectTab(tabName);
-        } else if (panelName == Help.REMOVING) {
+        } else if (panelName == HELP_REMOVING) {
             helpRemoving.selectTab(tabName);
         } else {
             new ErrorJDialog(this, true, "Error: screen does not exist", (new Throwable()).getStackTrace());
