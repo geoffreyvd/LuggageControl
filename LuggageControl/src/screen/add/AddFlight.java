@@ -41,7 +41,7 @@ public class AddFlight extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDestination);
         PromptSupport.setPrompt("Departure time (YYYY-MM-DD HH:MM:SS)", textFieldDepartureTime);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDepartureTime);
-        PromptSupport.setPrompt("Arival time (YYYY-MM-DD HH:MM:SS)", textFieldArrivalTime);
+        PromptSupport.setPrompt("Arrival time (YYYY-MM-DD HH:MM:SS)", textFieldArrivalTime);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArrivalTime);
         PromptSupport.setPrompt("First Name", textFieldFirstName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstName);
@@ -56,11 +56,51 @@ public class AddFlight extends SwitchingJPanel {
         PromptSupport.setPrompt("Luggage Location", textFieldLugLocation);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLugLocation);
     }
+    public boolean checkInput(){
+        if (!(textFieldOwnerID.getText().equals("")) 
+                && db.queryOneResult("SELECT `customer_id` FROM customer WHERE customer_id = ?", new String[]{textFieldOwnerID.getText()}).equals("")) {
+            labelStatus.setText("Customer doesn't exist");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if (!(textFieldLuggageID.getText().equals("")) && 
+                db.queryOneResult("SELECT `luggage_id` FROM luggage WHERE luggage_id = ?", new String[]{textFieldLuggageID.getText()}).equals("")) {
+            labelStatus.setText("Luggage doesn't exist");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if (!(textFieldFlightnumber.getText().equals("")) 
+                && !db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
+            labelStatus.setText("Flightnumber does already exist");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if(helpers.Filters.filteredDateTime(textFieldDepartureTime.getText()).equals("")){
+            labelStatus.setText("Not a correct entry for Departure time!");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if(helpers.Filters.filteredDateTime(textFieldArrivalTime.getText()).equals("")){
+            labelStatus.setText("Not a correct entry for arrival time!");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if (textFieldOrigin.getText().equals("")) {
+            labelStatus.setText("Origin is empty");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if (textFieldDestination.getText().equals("")) {
+            labelStatus.setText("Destination is empty");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        return true;
+        
+    }
     private void addFlight(){
         
-        if (!("".equals(textFieldFlightnumber.getText()) || "".equals(textFieldArrivalTime.getText())
-                || "".equals(textFieldDepartureTime.getText()) || "".equals(textFieldDestination.getText())
-                || "".equals(textFieldOrigin.getText()))) {
+        if (checkInput()) {
 
             String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`flight`"
                     + "(`flight_id`, `origin`, `destination`, `departure`, `arrival`) "
@@ -103,37 +143,18 @@ public class AddFlight extends SwitchingJPanel {
             types3[1] = "String";
 
             try {
-                
-                if(!db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
-                labelStatus.setText("Flightnumber already taken!");
-                this.resetLabel(5000, labelStatus);
-                return;
-                }
-                if(helpers.Filters.filteredDateTime(textFieldArrivalTime.getText()).equals("")){
-                labelStatus.setText("Not a correct entry for arrival time!");
-                this.resetLabel(5000, labelStatus);
-                return;
-                }
-                if(helpers.Filters.filteredDateTime(textFieldDepartureTime.getText()).equals("")){
-                labelStatus.setText("Not a correct entry for departure time!");
-                this.resetLabel(5000, labelStatus);
-                return;
-                }
-           
                 db.queryManipulation(queryInsertFlight, values, types);
-                if((!("".equals(textFieldLuggageID.getText())))){
+                if(!("".equals(textFieldLuggageID.getText()))){
                 db.queryManipulation(queryInsertLuggage, values2, types2);
                 } 
-                if((!("".equals(textFieldOwnerID.getText())))){
+                if(!("".equals(textFieldOwnerID.getText()))){
                 db.queryManipulation(queryInsertCustomer, values3, types3);
                 }
-                clearFlight();
+                
             } catch (Exception e) {
             }
+            this.clearFlight();
             this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
-        } else {
-            labelStatus.setText("Not all fields are entered!");
-            this.resetLabel(5000, labelStatus);
         }
     }
     private void clearFlight(){

@@ -48,7 +48,7 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageId);
         PromptSupport.setPrompt("Luggage Location", textFieldLugLocation);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLugLocation);
-        PromptSupport.setPrompt("Flight ID", textFieldFlightId);
+        PromptSupport.setPrompt("Flightnumber", textFieldFlightId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightId);
         PromptSupport.setPrompt("Origin", textFieldFlightOrigin);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightOrigin);
@@ -60,8 +60,10 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightArrival);
         PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
-        PromptSupport.setPrompt("Luggage ID", textFieldLuggageId);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageId);
+        PromptSupport.setPrompt("LuggageID", textFieldLuggageID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageID);
+        
+      
     }
     
     private void searchLuggage() {
@@ -204,9 +206,11 @@ public class AddCustomer extends SwitchingJPanel {
             this.resetLabel(5000, labelStatus);
             return false;    
         }
-       // if (helpers.Filters.filteredDate(textFieldBirthday.getText()).equals("")){
-            
-       // }
+        if (helpers.Filters.filteredDate(textFieldBirthday.getText(),"yyyy-MM-dd").equals("")){
+            labelStatus.setText("Birthday not valid");
+            this.resetLabel(5000, labelStatus);
+            return false; 
+        }
        if (textFieldGender.getText().equals("")){
             labelStatus.setText("Gender is empty");
             this.resetLabel(5000, labelStatus);
@@ -294,7 +298,6 @@ public class AddCustomer extends SwitchingJPanel {
                 new ErrorJDialog(this.luggageControl, true, "Error: retrieving inserting customer", (new Throwable()).getStackTrace());
             }
         } else {
-            //labelStatus.setText("");
         }
     }
 
@@ -310,6 +313,7 @@ public class AddCustomer extends SwitchingJPanel {
         textFieldGender.setText("");
         textFieldAdress.setText("");
         textFieldPostcode.setText("");
+        labelStatus.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -62,6 +62,7 @@ public class AddLuggage extends SwitchingJPanel {
         textFieldColor.setText("");
         textFieldSize.setText("");
         textPaneContent.setText("");
+        labelStatus.setText("");
         pic.setIcon(null);
     }
 
@@ -89,15 +90,16 @@ public class AddLuggage extends SwitchingJPanel {
         }
 
         // check if flightnumber exists
-        if (!(textFieldFlightnumber.getText().equals("")) &&db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
+        if (!(textFieldFlightnumber.getText().equals("")) && 
+                db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
             labelStatus.setText("Flightnumber doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
 
         // check if customer exists
-        if (!(textFieldOwnerID.getText().equals("")) && 
-                db.queryOneResult("SELECT `customer_id` FROM customer WHERE customer_id = ?", new String[]{textFieldOwnerID.getText()}).equals("")) {
+        if (!(textFieldOwnerID.getText().equals("")) 
+                && db.queryOneResult("SELECT `customer_id` FROM customer WHERE customer_id = ?", new String[]{textFieldOwnerID.getText()}).equals("")) {
             labelStatus.setText("Customer doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
@@ -754,6 +756,7 @@ public class AddLuggage extends SwitchingJPanel {
         ImageIcon imageIcon = new ImageIcon(helpers.ImageMaker.getPath());
         
         pic.setIcon(helpers.ImageMaker.resizeImage(pic.getWidth(), pic.getHeight(), helpers.ImageMaker.getPath()));
+        
 
         imageBase64 = helpers.ImageMaker.base64Encode(helpers.ImageMaker.getPath());
     }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
