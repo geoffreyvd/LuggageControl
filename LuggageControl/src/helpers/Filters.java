@@ -74,10 +74,16 @@ public final class Filters {
         } catch (Exception ex) {
             
         }
+        try{
         if(date.before(new Date())) {
             return originalDate;
+            
         }
         return "";
+        }
+        catch(Exception e){
+            return "";
+        }
     }
     
     /**

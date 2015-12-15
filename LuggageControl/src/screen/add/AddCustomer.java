@@ -31,7 +31,7 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldName);
         PromptSupport.setPrompt("Sur name", textFieldSurName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSurName);
-        PromptSupport.setPrompt("E-Mail", textFieldEmail);
+        PromptSupport.setPrompt("Email", textFieldEmail);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
         PromptSupport.setPrompt("Cellphone number", textFieldCellphoneNumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphoneNumber);
@@ -200,6 +200,18 @@ public class AddCustomer extends SwitchingJPanel {
      * @return
      */
     private boolean checkInput() {
+        if (!(textFieldLuggageID.getText().equals("")) && 
+                db.queryOneResult("SELECT `luggage_id` FROM luggage WHERE luggage_id = ?", new String[]{textFieldLuggageID.getText()}).equals("")) {
+            labelStatus.setText("Luggage doesn't exist");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
+        if (!(textFieldFlightnumber.getText().equals("")) && 
+                db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
+            labelStatus.setText("Flightnumber doesn't exist");
+            this.resetLabel(5000, labelStatus);
+            return false;
+        }
         if (textFieldName.getText().equals("")){
             labelStatus.setText("First name is empty");
             this.resetLabel(5000, labelStatus);
@@ -220,8 +232,8 @@ public class AddCustomer extends SwitchingJPanel {
             this.resetLabel(5000, labelStatus);
             return false;    
         }
-        if (helpers.Filters.filteredDate(textFieldBirthday.getText(),"yyyy-MM-dd").equals("")){
-            labelStatus.setText("Birthday not valid");
+        if (helpers.Filters.filteredDate(textFieldBirthday.getText(), "").equals("")){
+            labelStatus.setText("Birthday not valid, birthday should be like YYYY-MM-DD");
             this.resetLabel(5000, labelStatus);
             return false; 
         }
@@ -311,8 +323,9 @@ public class AddCustomer extends SwitchingJPanel {
                 System.out.println(e.getMessage());
                 new ErrorJDialog(this.luggageControl, true, "Error: retrieving inserting customer", (new Throwable()).getStackTrace());
             }
-        } else {
-        }
+            this.clearFields();
+            
+        } 
     }
 
     /**
@@ -584,6 +597,8 @@ public class AddCustomer extends SwitchingJPanel {
 
         tabPaneSearch.addTab("Flight", panelSearchFlight);
 
+        labelStatus.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -694,7 +709,6 @@ public class AddCustomer extends SwitchingJPanel {
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         this.addCustomer();
         this.userNotAFK();
-        this.clearFields();
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonSearchLuggage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggage

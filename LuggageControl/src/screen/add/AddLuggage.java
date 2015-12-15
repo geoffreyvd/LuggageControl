@@ -96,7 +96,7 @@ public class AddLuggage extends SwitchingJPanel {
 
         // validate location placeholder
         if (textFieldLocation.getText().equals("")) {
-            labelStatus.setText("Location not valid");
+            labelStatus.setText("Location is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
@@ -128,7 +128,7 @@ public class AddLuggage extends SwitchingJPanel {
 
         // validate color placeholder
         if (textFieldColor.getText().equals("")) {
-            labelStatus.setText("Color is not valid");
+            labelStatus.setText("Color is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
@@ -149,7 +149,7 @@ public class AddLuggage extends SwitchingJPanel {
         
         // check if content is filled in
         if (textPaneContent.getText().equals("")) {
-            labelStatus.setText("Content is empty");
+                labelStatus.setText("Content is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
@@ -231,6 +231,7 @@ public class AddLuggage extends SwitchingJPanel {
                 
             }
             this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
+            this.clearFields();
         }
     }
     
