@@ -2,18 +2,18 @@ package screen.details;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseDetails;
 
 /**
  * User details screen for the administrator to manage users
  * @author Team 3 FYS
  */
 
-public class UserDetails extends SwitchingJPanel {
+public class UserDetails extends BaseDetails {
     
     public UserDetails(LuggageControl luggageControl) {
         super(luggageControl);

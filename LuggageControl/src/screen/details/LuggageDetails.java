@@ -7,7 +7,6 @@ package screen.details;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,12 +16,13 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseDetails;
 
 /**
  * This JPanel changes the data from the corresponding luggage into the database
  * @author Admin
  */
-public class LuggageDetails extends SwitchingJPanel {
+public class LuggageDetails extends BaseDetails {
 
     private int currentLuggageId = 0; 
     
