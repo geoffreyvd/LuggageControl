@@ -79,7 +79,16 @@ public class FlightDetails extends SwitchingJPanel {
      * clear all fields on search customer
      */
     public void clearSearchCustomer() {
-        
+        textFieldFirstName.setText("");
+        textFieldSurName.setText("");
+        textFieldCellphone.setText("");
+        textFieldEmail.setText("");
+    }
+    
+    public void clearAll() {
+        clearFLight();
+        clearSearchLuggage();
+        clearSearchCustomer();
     }
     
     /**
@@ -329,6 +338,7 @@ public class FlightDetails extends SwitchingJPanel {
         textFieldSurName = new javax.swing.JFormattedTextField();
         textFieldEmail = new javax.swing.JFormattedTextField();
         textFieldCellphone = new javax.swing.JFormattedTextField();
+        buttonCancelSearchCustomer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         scrollPaneLuggageTable = new javax.swing.JScrollPane();
         tableSearchLuggage = new javax.swing.JTable();
@@ -336,6 +346,7 @@ public class FlightDetails extends SwitchingJPanel {
         comboBoxLuggageStatus = new javax.swing.JComboBox();
         textFieldLugLocation = new javax.swing.JFormattedTextField();
         textFieldLuggageId = new javax.swing.JFormattedTextField();
+        buttonCancelSearchLuggage = new javax.swing.JButton();
 
         labelDisplayFLightnumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDisplayFLightnumber.setText("Flightnumber:  ");
@@ -419,6 +430,13 @@ public class FlightDetails extends SwitchingJPanel {
 
         textFieldCellphone.setMaximumSize(new java.awt.Dimension(6, 20));
 
+        buttonCancelSearchCustomer.setText("Search");
+        buttonCancelSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelSearchCustomerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -439,6 +457,8 @@ public class FlightDetails extends SwitchingJPanel {
                                 .addGap(1, 1, 1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCancelSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -456,7 +476,9 @@ public class FlightDetails extends SwitchingJPanel {
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonSearchCustomer)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSearchCustomer)
+                    .addComponent(buttonCancelSearchCustomer))
                 .addGap(12, 12, 12))
         );
 
@@ -503,6 +525,13 @@ public class FlightDetails extends SwitchingJPanel {
 
         textFieldLuggageId.setMaximumSize(new java.awt.Dimension(150, 150));
 
+        buttonCancelSearchLuggage.setText("Search");
+        buttonCancelSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelSearchLuggageActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -513,6 +542,8 @@ public class FlightDetails extends SwitchingJPanel {
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(buttonSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonCancelSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.Alignment.TRAILING, 0, 395, Short.MAX_VALUE)
                     .addComponent(textFieldLugLocation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -531,7 +562,9 @@ public class FlightDetails extends SwitchingJPanel {
                 .addGap(14, 14, 14)
                 .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonSearchLuggage)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSearchLuggage)
+                    .addComponent(buttonCancelSearchLuggage))
                 .addContainerGap())
         );
 
@@ -623,6 +656,7 @@ public class FlightDetails extends SwitchingJPanel {
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
         loadFlight(currentFlightId);
+        clearAll();
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
@@ -640,10 +674,22 @@ public class FlightDetails extends SwitchingJPanel {
         searchCustomer();
     }//GEN-LAST:event_buttonSearchCustomerActionPerformed
 
+    private void buttonCancelSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelSearchCustomerActionPerformed
+        this.userNotAFK();
+        clearSearchCustomer();
+    }//GEN-LAST:event_buttonCancelSearchCustomerActionPerformed
+
+    private void buttonCancelSearchLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelSearchLuggageActionPerformed
+        this.userNotAFK();
+        clearSearchLuggage();
+    }//GEN-LAST:event_buttonCancelSearchLuggageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonCancelChanges;
+    private javax.swing.JButton buttonCancelSearchCustomer;
+    private javax.swing.JButton buttonCancelSearchLuggage;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearchCustomer;
     private javax.swing.JButton buttonSearchLuggage;

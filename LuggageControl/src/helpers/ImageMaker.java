@@ -21,18 +21,29 @@ import static screen.add.AddLuggage.encodeImage;
 public class ImageMaker {
 
     private static ImageIcon imageIcon;
+    private static String imagePath;
     
     private ImageMaker() {
     }
     
-    public static String getPath() {
+    /**
+     * sets the path to the image
+     */
+    public static void setPath() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-        return selectedFile.getAbsolutePath();
+        imagePath = selectedFile.getAbsolutePath();
         }
-        return "no image found";
+        imagePath = "no image found";
+    }
+    
+    /** 
+     * @return path to image
+     */
+    public static String getPath() {
+        return imagePath;
     }
     
     /**
@@ -71,9 +82,9 @@ public class ImageMaker {
      */
     public static ImageIcon resizeImage(int width, int height, String path) {
         imageIcon = new ImageIcon(path);
-        Image image = imageIcon.getImage(); // transform it 
-        Image newImage = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-        imageIcon = new ImageIcon(newImage);  // transform it back
+        Image image = imageIcon.getImage(); // transform image 
+        Image newImage = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); // scale the image the SMOOTH way 
+        imageIcon = new ImageIcon(newImage);  // transform image back
         return imageIcon;
     }
     

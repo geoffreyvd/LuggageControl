@@ -27,30 +27,27 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="labelSearchFlight" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboBoxSearchType" min="-2" pref="150" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="buttonHelpLinking" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelSearchFlight" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="textFieldFlightnumber" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="textFieldOrigin" pref="263" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="textFieldDestination" min="-2" pref="363" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textFieldFlightnumber" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="textFieldOrigin" pref="203" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldDestination" pref="204" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="textFieldDepartureTime" pref="203" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldArrivalTime" pref="204" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="textFieldDepartureTime" pref="263" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="textFieldArrivalTime" min="-2" pref="363" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -63,18 +60,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelSearchFlight" min="-2" pref="49" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textFieldFlightnumber" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="labelSearchFlight" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textFieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonHelpLinking" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="comboBoxSearchType" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="buttonHelpLinking" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="textFieldFlightnumber" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="textFieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldDestination" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -192,6 +194,22 @@
     <Component class="javax.swing.JFormattedTextField" name="textFieldOrigin">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="textFieldDepartureTime">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboBoxSearchType">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Inclusive"/>
+            <StringItem index="1" value="Exclusive"/>
+            <StringItem index="2" value="Loose"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Search type:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

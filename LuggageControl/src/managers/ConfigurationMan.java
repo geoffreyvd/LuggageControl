@@ -181,7 +181,8 @@ public class ConfigurationMan {
         if(OS.equals("Linux")) {
             return true;
         }
-        File f = new File(getMysqlDumpLocationWindows(luggageControl));
+        String path = getMysqlDumpLocationWindows(luggageControl).replace("^ ", " ");
+        File f = new File(path);
         if(f.exists() && !f.isDirectory()) { 
             return true;
         }
