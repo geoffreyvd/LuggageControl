@@ -88,6 +88,14 @@ public class SecurityMan {
         fireTimeOut = new timeOutTimerTask(this.luggageControl);
     }
     
+    /**
+     *
+     * @param password
+     * @param saltString
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws Exception
+     */
     public static String encodePassword(String password, String saltString) throws NoSuchAlgorithmException, Exception {
         MessageDigest md = MessageDigest.getInstance("SHA-512");
 
@@ -102,6 +110,12 @@ public class SecurityMan {
         return password;
     }
     
+    /**
+     *
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws Exception
+     */
     public static String createSalt() throws NoSuchAlgorithmException, Exception {
         SecureRandom number;
         number = SecureRandom.getInstance("SHA1PRNG");
@@ -212,6 +226,7 @@ public class SecurityMan {
     /**
      * Resets the timeout time to the default time Please note that the timer
      * time does not change until you reset the timer.
+     * @param resetTimer
      * @return true if succeeded, false when failed.
      */
     public boolean resetTimeOutTime(boolean resetTimer) {
@@ -251,6 +266,7 @@ public class SecurityMan {
      * timer time does not change until you reset the timer.
      *
      * @param newTimeOutTime
+     * @param resetTimer
      * @return true if succeeded, false when failed.
      */
     public boolean setTimeOutTime(int newTimeOutTime, boolean resetTimer) {
@@ -266,6 +282,9 @@ public class SecurityMan {
         return true;
     }
     
+    /**
+     *
+     */
     public void startTimer() {
         //  start the timer with the timertask
         timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);

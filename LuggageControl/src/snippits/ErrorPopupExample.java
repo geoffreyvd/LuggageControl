@@ -8,10 +8,18 @@ import baseClasses.ErrorJDialog;
  */
 public class ErrorPopupExample extends javax.swing.JFrame{
     
+    /**
+     *
+     */
     public ErrorPopupExample() {
         new ErrorJDialog(this, true, "Error: tab does not exist", (new Throwable()).getStackTrace());
     }
     
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         
         java.awt.EventQueue.invokeLater(new Runnable() {

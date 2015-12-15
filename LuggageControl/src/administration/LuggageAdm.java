@@ -10,6 +10,9 @@ public class LuggageAdm {
     
     private DatabaseMan db = new DatabaseMan();
     
+    /**
+     *
+     */
     public LuggageAdm() {
         
     }

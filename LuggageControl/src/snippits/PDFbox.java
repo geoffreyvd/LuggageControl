@@ -16,8 +16,17 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDPixelMap;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 
+/**
+ *
+ * @author geoffrey
+ */
 public class PDFbox {
 
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main (String[] args) throws Exception {
         
         // Create a document and add a page to it

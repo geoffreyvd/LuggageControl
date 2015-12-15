@@ -40,13 +40,27 @@ public class DatabaseMan {
     private final String DATABASE_PASSWORD = "verysecurepassword";
     private final String DATABASE_NAME = "luggagecontroldata";
 
+    /**
+     *
+     */
     public static final String PS_TYPE_STRING = "String";
+
+    /**
+     *
+     */
     public static final String PS_TYPE_INT = "Int";
 
+    /**
+     *
+     */
     public DatabaseMan() {
 
     }
 
+    /**
+     *
+     * @param luggageControl
+     */
     public static void exportDatabase(LuggageControl luggageControl) {
         JTextField username = new JTextField(5);
         JPasswordField password = new JPasswordField(5);

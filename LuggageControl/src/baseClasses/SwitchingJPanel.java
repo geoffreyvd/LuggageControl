@@ -14,6 +14,9 @@ import main.LuggageControl;
  */
 public abstract class SwitchingJPanel extends javax.swing.JPanel{    
     
+    /**
+     *
+     */
     protected LuggageControl luggageControl;
     
     private ArrayList<LabelThread> resetLabels = new ArrayList<LabelThread>();
@@ -52,6 +55,10 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
         } 
     }
     
+    /**
+     *
+     * @param luggageControl
+     */
     public SwitchingJPanel(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
     }

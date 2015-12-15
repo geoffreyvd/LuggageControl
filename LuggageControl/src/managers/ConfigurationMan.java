@@ -41,8 +41,6 @@ public class ConfigurationMan {
     
     /**
      * Special dialog to show the process of searching for <code>mysql.exe</code>  
-     * @param parent Frame parent this is main.LuggageControl
-     * @param modal true to block all further interactions until dialog closes.
      */
     public static class FindMysqlJDialog extends PopUpJDialog {
 
@@ -81,6 +79,10 @@ public class ConfigurationMan {
     
     BufferedReader br;
     
+    /**
+     *
+     * @param luggageControl
+     */
     public ConfigurationMan(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
 
@@ -146,6 +148,7 @@ public class ConfigurationMan {
     
     /**
      * Reads the mysqldump location and returns a absolute path
+     * @param luggageControl
      * @return absolute path to <file>mysqldump.exe</file> or Linux if on linux, empty when no path exists
      */
     public static String getMysqlDumpLocationWindows(LuggageControl luggageControl) {
@@ -175,6 +178,7 @@ public class ConfigurationMan {
     
     /**
      * Check if our reference to the <code>mysqldump.exe</code> on windows still exists.
+     * @param luggageControl
      * @return true if the file exists, false if it does not.
      */
     public static boolean mysqlDumpExists(LuggageControl luggageControl) {
@@ -191,6 +195,10 @@ public class ConfigurationMan {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean findMysqlDumpLocationWindows() {
         if(OS.equals("Linux")) {
             return false;

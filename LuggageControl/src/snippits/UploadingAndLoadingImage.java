@@ -23,6 +23,9 @@ public class UploadingAndLoadingImage extends SwitchingJPanel{
     // make a JFileChooser object
     JFileChooser fileChooser = new JFileChooser();
     
+    /**
+     *
+     */
     public UploadingAndLoadingImage() {
         // example of uploading a image
         int returnValue = fileChooser.showOpenDialog(null);
@@ -36,6 +39,11 @@ public class UploadingAndLoadingImage extends SwitchingJPanel{
         }
     }
     
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         new UploadingAndLoadingImage();
     }

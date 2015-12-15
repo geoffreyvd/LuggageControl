@@ -15,6 +15,10 @@ import managers.DatabaseMan;
  */
 public class DataBaseQueryExample {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         //insert query example in screen -> adduser
 

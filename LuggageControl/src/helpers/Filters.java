@@ -60,6 +60,7 @@ public final class Filters {
     /**
      * Checks if the string is a valid according to the supplied date format
      * @param originalDate string to be checked for containing date string or empty string for default yyyy-MM-dd dateformat.
+     * @param dateFormat
      * @return the string if it is valid or a empty string if it is not
      */
     public static String filteredDate(String originalDate, String dateFormat) {

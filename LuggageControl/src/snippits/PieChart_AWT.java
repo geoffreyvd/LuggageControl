@@ -44,11 +44,20 @@ public class PieChart_AWT extends ChartPanel {
     }
     
     // create a demo of the piechart
-    public static JPanel createDemoPanel() {
+
+    /**
+     *
+     * @return
+     */
+        public static JPanel createDemoPanel() {
         JFreeChart chart = createChart(createDataset());
         return new ChartPanel(chart);
     }
 
+    /**
+     *
+     * @param chart
+     */
     public PieChart_AWT(JFreeChart chart) {
         super(chart);
     }

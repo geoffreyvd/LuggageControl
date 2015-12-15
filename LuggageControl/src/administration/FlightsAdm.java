@@ -10,6 +10,9 @@ public class FlightsAdm {
     
     private DatabaseMan db = new DatabaseMan();
     
+    /**
+     *
+     */
     public FlightsAdm() {
         
     }

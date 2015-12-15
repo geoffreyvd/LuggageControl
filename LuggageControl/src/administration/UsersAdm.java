@@ -10,6 +10,9 @@ public class UsersAdm {
     
     private DatabaseMan db = new DatabaseMan();
     
+    /**
+     *
+     */
     public UsersAdm() {
         
     }

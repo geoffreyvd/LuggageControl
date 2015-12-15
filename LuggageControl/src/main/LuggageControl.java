@@ -613,6 +613,7 @@ public class LuggageControl extends javax.swing.JFrame {
      *
      * @param username the username as described in the database
      * @param password the password as described in the database
+     * @return 
      */
     public boolean loginUser(String username, String password) {
         if (secman.logInUser(username, password)) {
