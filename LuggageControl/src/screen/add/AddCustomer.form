@@ -456,6 +456,9 @@
     <Component class="javax.swing.JFormattedTextField" name="textFieldFlightnumber">
     </Component>
     <Component class="javax.swing.JLabel" name="labelStatus">
+      <Properties>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
