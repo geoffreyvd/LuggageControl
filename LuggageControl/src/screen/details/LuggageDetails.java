@@ -51,14 +51,14 @@ public class LuggageDetails extends BaseDetails {
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
         
-        SearchPanes henk = new SearchPanes();
-        LayoutManager ly = searchPanel.getLayout();
-        henk.setVisible(true);
-        ly.addLayoutComponent("SearchPanes", henk);
-        searchPanel.add(henk);
-        searchPanel.setLayout(ly);
-        searchPanel.revalidate();
-        searchPanel.repaint();
+//        SearchPanes henk = new SearchPanes();
+//        LayoutManager ly = searchPanel.getLayout();
+//        henk.setVisible(true);
+//        ly.addLayoutComponent("SearchPanes", henk);
+//        searchPanel.add(henk);
+//        searchPanel.setLayout(ly);
+//        searchPanel.revalidate();
+//        searchPanel.repaint();
     }
     
     @Override
@@ -305,7 +305,7 @@ public class LuggageDetails extends BaseDetails {
         textPaneUpdateContent = new javax.swing.JTextPane();
         labelStatus = new javax.swing.JLabel();
         labelDescription = new javax.swing.JLabel();
-        searchPanel = new javax.swing.JPanel();
+        searchPanes1 = new screen.base.SearchPanes();
 
         labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelLuggageDetails.setText("Luggage details");
@@ -372,19 +372,6 @@ public class LuggageDetails extends BaseDetails {
         labelDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDescription.setText("Description:");
 
-        searchPanel.setBackground(new java.awt.Color(239, 20, 23));
-
-        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
-        searchPanel.setLayout(searchPanelLayout);
-        searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -431,13 +418,13 @@ public class LuggageDetails extends BaseDetails {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0)
+                        .addComponent(searchPanes1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -445,7 +432,7 @@ public class LuggageDetails extends BaseDetails {
             .addComponent(separatorCenter)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelLuggageDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -481,8 +468,9 @@ public class LuggageDetails extends BaseDetails {
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonUpdate)
-                            .addComponent(buttonCancel)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(buttonCancel))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -490,8 +478,8 @@ public class LuggageDetails extends BaseDetails {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonBack)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(30, 30, 30))
+                        .addComponent(searchPanes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -554,7 +542,7 @@ public class LuggageDetails extends BaseDetails {
     private javax.swing.JLabel labelOrigin;
     private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelStatus;
-    private javax.swing.JPanel searchPanel;
+    private screen.base.SearchPanes searchPanes1;
     private javax.swing.JSeparator separatorCenter;
     private javax.swing.JFormattedTextField textFieldUpdateColor;
     private javax.swing.JFormattedTextField textFieldUpdateLocation;
