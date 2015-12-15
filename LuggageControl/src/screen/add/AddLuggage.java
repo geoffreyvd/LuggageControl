@@ -767,17 +767,6 @@ public class AddLuggage extends SwitchingJPanel {
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
-    private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
-        this.userNotAFK();
-        System.out.println(String.valueOf(buttonUploadImage.getWidth()) + " here"); // check button width
-        String path = helpers.ImageMaker.getPath();
-        ImageIcon imageIcon = new ImageIcon(path);
-
-        pic.setIcon(helpers.ImageMaker.resizeImage(buttonUploadImage.getWidth()-100, buttonUploadImage.getWidth()-100, path));
-
-        imageBase64 = helpers.ImageMaker.base64Encode(path);
-    }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
-
     private void buttonSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomerActionPerformed
         this.userNotAFK();
         this.searchCustomer();
