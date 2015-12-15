@@ -23,6 +23,10 @@ public class AddUser extends SwitchingJPanel {
     
     private SecurityMan secman;
 
+    /**
+     *
+     * @param luggageControl
+     */
     public AddUser(LuggageControl luggageControl) {
         super(luggageControl);
         
@@ -138,6 +142,8 @@ public class AddUser extends SwitchingJPanel {
         textFieldPostalcode.setMaximumSize(new java.awt.Dimension(250, 250));
 
         textFieldCellphone.setMaximumSize(new java.awt.Dimension(250, 250));
+
+        pic.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         comboBoxProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Employee", "Manager", "Administrator" }));
         comboBoxProfession.setMaximumSize(new java.awt.Dimension(250, 250));
@@ -272,9 +278,10 @@ public class AddUser extends SwitchingJPanel {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
 
             ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
+            System.out.println(image);
+
             pic.setIcon(image);
             this.setVisible(true);
         }

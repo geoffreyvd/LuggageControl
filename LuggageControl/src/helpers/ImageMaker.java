@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helpers;
 
 import java.io.File;
@@ -21,28 +16,25 @@ import static screen.add.AddLuggage.encodeImage;
 public class ImageMaker {
 
     private static ImageIcon imageIcon;
-    private static String imagePath;
     
     private ImageMaker() {
     }
     
-    /**
-     * sets the path to the image
+    /** 
+     * Show a filechooser to select an 
+     * @return path to image
      */
-    public static void setPath() {
+    public static String getImagePath() {
+        String imagePath;
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-        imagePath = selectedFile.getAbsolutePath();
+            System.out.println(selectedFile);
+            imagePath = selectedFile.getAbsolutePath();
+        } else {
+            imagePath = "no image found";
         }
-        imagePath = "no image found";
-    }
-    
-    /** 
-     * @return path to image
-     */
-    public static String getPath() {
         return imagePath;
     }
     

@@ -386,7 +386,7 @@ public class CustomerDetails extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
         
-        // if all went well we tell the user
+        // if all went well wse tell the user
         labelStatus.setText("");
         
         loadCustomer(currentCustomerId);

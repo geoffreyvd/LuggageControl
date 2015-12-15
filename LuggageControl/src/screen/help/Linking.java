@@ -11,11 +11,31 @@ import main.LuggageControl;
 public class Linking extends SwitchingJPanel {
     
     // static variables used to identify tabs
-    public static final String CUSTOMER_TO_FLIGHTS = "CUSTOMER_TO_FLIGHTS";
+
+    /**
+     *
+     */
+        public static final String CUSTOMER_TO_FLIGHTS = "CUSTOMER_TO_FLIGHTS";
+
+    /**
+     *
+     */
     public static final String FLIGHTS_TO_LUGGAGE = "FLIGHTS_TO_LUGGAGE";
+
+    /**
+     *
+     */
     public static final String LUGGAGE_TO_CUSTOMER = "LUGGAGE_TO_CUSTOMER";
+
+    /**
+     *
+     */
     public static final String LUGGAGE_TO_LUGGAGE = "LUGGAGE_TO_LUGGAGE";
 
+    /**
+     *
+     * @param luggageControl
+     */
     public Linking(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

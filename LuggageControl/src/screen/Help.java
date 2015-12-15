@@ -25,6 +25,7 @@ public class Help extends SwitchingJPanel{
     
     /**
      * Creates new form Help
+     * @param luggageControl
      */
     public Help(LuggageControl luggageControl) {
         super(luggageControl);

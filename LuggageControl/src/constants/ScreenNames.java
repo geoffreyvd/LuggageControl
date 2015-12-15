@@ -9,6 +9,7 @@ package constants;
  * this can then be used to easily tell methods about which JPanel screen their talking,
  * Some developers find this ugly but java itself uses this all the time
  * just take a look into the Swing library.
+ * @deprecated Dont use mofo!
  * @author Corne Lukken
  */
 public class ScreenNames {

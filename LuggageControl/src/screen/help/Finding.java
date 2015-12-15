@@ -11,11 +11,31 @@ import main.LuggageControl;
 public class Finding extends SwitchingJPanel {
     
     // static variables used to identify tabs
-    public static final String FIND_CUSTOMER = "FIND_CUSTOMER";
+
+    /**
+     *
+     */
+        public static final String FIND_CUSTOMER = "FIND_CUSTOMER";
+
+    /**
+     *
+     */
     public static final String FIND_FLIGHTS = "FIND_FLIGHTS";
+
+    /**
+     *
+     */
     public static final String FIND_LUGGAGE = "FIND_LUGGAGE";
+
+    /**
+     *
+     */
     public static final String FIND_LINKS = "FIND_LINKS";
 
+    /**
+     *
+     * @param luggageControl
+     */
     public Finding(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

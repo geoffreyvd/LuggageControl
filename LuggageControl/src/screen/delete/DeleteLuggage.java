@@ -24,6 +24,10 @@ public class DeleteLuggage extends SwitchingJPanel {
 
     private DatabaseMan db = new DatabaseMan();
 
+    /**
+     *
+     * @param luggageControl
+     */
     public DeleteLuggage(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

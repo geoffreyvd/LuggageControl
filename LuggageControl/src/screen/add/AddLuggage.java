@@ -752,13 +752,7 @@ public class AddLuggage extends SwitchingJPanel {
 
     private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
         this.userNotAFK();
-        helpers.ImageMaker.setPath();
-        ImageIcon imageIcon = new ImageIcon(helpers.ImageMaker.getPath());
-        
-        pic.setIcon(helpers.ImageMaker.resizeImage(pic.getWidth(), pic.getHeight(), helpers.ImageMaker.getPath()));
-        
-
-        imageBase64 = helpers.ImageMaker.base64Encode(helpers.ImageMaker.getPath());
+        imageBase64 = selectLabelImage(pic);
     }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
 
     private void buttonSearchFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchFlight
