@@ -2,18 +2,18 @@ package screen.details;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseDetails;
 
 /**
  *
  * @author Admin
  */
-public class CustomerDetails extends SwitchingJPanel {
+public class CustomerDetails extends BaseDetails {
     
     private int currentCustomerId = 0; 
 

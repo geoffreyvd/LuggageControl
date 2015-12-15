@@ -7,8 +7,6 @@ package screen.details;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,12 +17,13 @@ import main.LuggageControl;
 import managers.DatabaseMan;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseDetails;
 
 /**
  *
  * @author Admin
  */
-public class FlightDetails extends SwitchingJPanel {
+public class FlightDetails extends BaseDetails {
 
     private int currentFlightId = 0; 
     
@@ -649,7 +648,7 @@ public class FlightDetails extends SwitchingJPanel {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_FLIGHT);
+        this.luggageControl.switchJPanel(this.luggageControl.SEARCH_FLIGHT);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
@@ -665,7 +664,7 @@ public class FlightDetails extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonSearchLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggageActionPerformed

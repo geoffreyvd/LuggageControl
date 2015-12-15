@@ -7,7 +7,7 @@ package screen.details;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
+import java.awt.LayoutManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,23 +17,28 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseDetails;
+import screen.base.SearchPanes;
 
 /**
  * This JPanel changes the data from the corresponding luggage into the database
  * @author Admin
  */
-public class LuggageDetails extends SwitchingJPanel {
+public class LuggageDetails extends BaseDetails {
 
     private int currentLuggageId = 0; 
     
     private String luggageImage = "";
 
     private SecurityMan sc;
+    
+    private SearchPanes searchPanes = new SearchPanes();
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
      */
     public LuggageDetails(LuggageControl luggageControl) {
         super(luggageControl);
+        
         initComponents();
         PromptSupport.setPrompt("Location", textFieldUpdateLocation);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateLocation);
@@ -45,11 +50,15 @@ public class LuggageDetails extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateColor);
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
-        PromptSupport.setPrompt("Firstname", textFieldCustomerId);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerId);
-        PromptSupport.setPrompt("Surname", textFieldCustomerName);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerName);
         
+        SearchPanes henk = new SearchPanes();
+        LayoutManager ly = searchPanel.getLayout();
+        henk.setVisible(true);
+        ly.addLayoutComponent("SearchPanes", henk);
+        searchPanel.add(henk);
+        searchPanel.setLayout(ly);
+        searchPanel.revalidate();
+        searchPanel.repaint();
     }
     
     @Override
@@ -78,24 +87,6 @@ public class LuggageDetails extends SwitchingJPanel {
         textFieldUpdateWeight.setText("");
         textFieldUpdateSize.setText("");
         textPaneUpdateContent.setText("");
-        textFieldCustomerId.setText("");
-        textFieldCustomerName.setText("");
-        comboBoxCustomerGender.setSelectedIndex(0);
-        textFieldFlightId.setText("");
-        textFieldFliOrigin.setText("");
-        textFieldFliDestination.setText("");
-        textFieldFliDeparture.setText("");
-        textFieldFliArrival.setText("");
-        
-        DefaultTableModel datamodel = (DefaultTableModel) tableLugSearchFlight.getModel();
-        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-            datamodel.removeRow(i);
-        }
-        
-        datamodel = (DefaultTableModel) tableLugSearchCustomer.getModel();
-        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-            datamodel.removeRow(i);
-        }
     }
     
     
@@ -282,67 +273,6 @@ public class LuggageDetails extends SwitchingJPanel {
         
     }
     
-    private void searchFlight() {
-        ResultSet result = new EmptyResultSet();
-        String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
-        ArrayList<String> values = new ArrayList<String>();
-
-        // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldFlightId.getText().equals("") || !textFieldFliOrigin.getText().equals("") ||
-            !textFieldFliDestination.getText().equals("") || !textFieldFliDeparture.getText().equals("") || 
-            !textFieldFliArrival.getText().equals("")) {
-            query += "WHERE 1=0 ";
-        }
-
-        try {
-            if (!textFieldFlightId.getText().equals("")) {
-                query += "OR flight_id = ? ";
-                values.add(helpers.Filters.filteredString(textFieldFlightId.getText()));
-            }
-
-            if (!textFieldFliOrigin.getText().equals("")) {
-                query += "OR origin = ? ";
-                values.add(helpers.Filters.filteredString(textFieldFliOrigin.getText()));
-            }
-
-            if (!textFieldFliDestination.getText().equals("")) {
-                query += "OR destination = ? ";
-                values.add(helpers.Filters.filteredString(textFieldFliDestination.getText()));
-            }
-            if (!textFieldFliDeparture.getText().equals("")) {
-                query += "OR departure = ? ";
-                values.add(helpers.Filters.filteredString(textFieldFliDeparture.getText()));
-            }
-            if (!textFieldFliArrival.getText().equals("")) {
-                query += "OR arrival = ? ";
-                values.add(helpers.Filters.filteredString(textFieldFliArrival.getText()));
-            }            
-
-            result = db.query(query + ";", values.toArray(new String[values.size()]));
-
-            DefaultTableModel datamodel = (DefaultTableModel) tableLugSearchFlight.getModel();
-            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-                datamodel.removeRow(i);
-            }
-            while (result.next()) {
-
-                Object[] data = {
-                    result.getString("flight_id"),
-                    result.getString("origin"),
-                    result.getString("destination"),
-                    result.getString("departure"),
-                    result.getString("arrival")
-                };
-
-                // datamodel.addRow is skipped problaby exception
-                datamodel.addRow(data);
-            }
-            tableLugSearchFlight.setModel(datamodel);
-        } catch (Exception e) {
-            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -374,27 +304,8 @@ public class LuggageDetails extends SwitchingJPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         textPaneUpdateContent = new javax.swing.JTextPane();
         labelStatus = new javax.swing.JLabel();
-        tabPaneSearch = new javax.swing.JTabbedPane();
-        panelUploadImage = new javax.swing.JPanel();
-        labelLuggageImage = new javax.swing.JLabel();
-        buttonUploadImage = new javax.swing.JButton();
-        panelSearchLuggage = new javax.swing.JPanel();
-        scrollPaneLuggageTable = new javax.swing.JScrollPane();
-        tableLugSearchCustomer = new javax.swing.JTable();
-        comboBoxCustomerGender = new javax.swing.JComboBox();
-        textFieldCustomerName = new javax.swing.JFormattedTextField();
-        textFieldCustomerId = new javax.swing.JFormattedTextField();
-        buttonSearchUser = new javax.swing.JButton();
-        panelSearchFlight = new javax.swing.JPanel();
-        scrollPaneFlightTable = new javax.swing.JScrollPane();
-        tableLugSearchFlight = new javax.swing.JTable();
-        textFieldFliOrigin = new javax.swing.JFormattedTextField();
-        textFieldFlightId = new javax.swing.JFormattedTextField();
-        buttonSearchFlight = new javax.swing.JButton();
-        textFieldFliDestination = new javax.swing.JFormattedTextField();
-        textFieldFliArrival = new javax.swing.JFormattedTextField();
-        textFieldFliDeparture = new javax.swing.JFormattedTextField();
         labelDescription = new javax.swing.JLabel();
+        searchPanel = new javax.swing.JPanel();
 
         labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelLuggageDetails.setText("Luggage details");
@@ -458,204 +369,21 @@ public class LuggageDetails extends SwitchingJPanel {
 
         jScrollPane2.setViewportView(textPaneUpdateContent);
 
-        labelLuggageImage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelLuggageImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        labelLuggageImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        buttonUploadImage.setText("Upload image");
-        buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonUploadImagebuttonUploadsImageActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelUploadImageLayout = new javax.swing.GroupLayout(panelUploadImage);
-        panelUploadImage.setLayout(panelUploadImageLayout);
-        panelUploadImageLayout.setHorizontalGroup(
-            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUploadImageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                    .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        panelUploadImageLayout.setVerticalGroup(
-            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUploadImageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonUploadImage)
-                .addContainerGap())
-        );
-
-        tabPaneSearch.addTab("Upload image", panelUploadImage);
-
-        tableLugSearchCustomer.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Luggage ID", "Content", "Color", "Size", "Status", "Image"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableLugSearchCustomer.setFocusable(false);
-        tableLugSearchCustomer.getTableHeader().setReorderingAllowed(false);
-        scrollPaneLuggageTable.setViewportView(tableLugSearchCustomer);
-
-        comboBoxCustomerGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gender", "male", "female", "androgenous" }));
-        comboBoxCustomerGender.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        textFieldCustomerName.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        textFieldCustomerId.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        buttonSearchUser.setText("Search");
-        buttonSearchUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchCustomer(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelSearchLuggageLayout = new javax.swing.GroupLayout(panelSearchLuggage);
-        panelSearchLuggage.setLayout(panelSearchLuggageLayout);
-        panelSearchLuggageLayout.setHorizontalGroup(
-            panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLuggageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(comboBoxCustomerGender, 0, 536, Short.MAX_VALUE)
-                    .addComponent(textFieldCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSearchLuggageLayout.createSequentialGroup()
-                        .addComponent(buttonSearchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelSearchLuggageLayout.setVerticalGroup(
-            panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLuggageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBoxCustomerGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonSearchUser)
-                .addGap(12, 12, 12))
-        );
-
-        tabPaneSearch.addTab("Customer", panelSearchLuggage);
-
-        tableLugSearchFlight.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Flight ID", "Origin", "Destination", "Departure", "Arrival"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableLugSearchFlight.setFocusable(false);
-        tableLugSearchFlight.setRowSelectionAllowed(false);
-        tableLugSearchFlight.getTableHeader().setReorderingAllowed(false);
-        scrollPaneFlightTable.setViewportView(tableLugSearchFlight);
-
-        textFieldFliOrigin.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        textFieldFlightId.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        buttonSearchFlight.setText("Search");
-        buttonSearchFlight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchFlight(evt);
-            }
-        });
-
-        textFieldFliDestination.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        textFieldFliArrival.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        textFieldFliDeparture.setMaximumSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout panelSearchFlightLayout = new javax.swing.GroupLayout(panelSearchFlight);
-        panelSearchFlight.setLayout(panelSearchFlightLayout);
-        panelSearchFlightLayout.setHorizontalGroup(
-            panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchFlightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneFlightTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(textFieldFliOrigin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldFlightId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldFliDestination, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelSearchFlightLayout.createSequentialGroup()
-                        .addComponent(buttonSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchFlightLayout.createSequentialGroup()
-                        .addComponent(textFieldFliDeparture, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldFliArrival, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelSearchFlightLayout.setVerticalGroup(
-            panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchFlightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textFieldFlightId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldFliOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldFliDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldFliArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldFliDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPaneFlightTable, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonSearchFlight)
-                .addGap(6, 6, 6))
-        );
-
-        tabPaneSearch.addTab("Flight", panelSearchFlight);
-
         labelDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelDescription.setText("Destination: ");
+        labelDescription.setText("Description:");
+
+        searchPanel.setBackground(new java.awt.Color(239, 20, 23));
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -700,16 +428,17 @@ public class LuggageDetails extends SwitchingJPanel {
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addComponent(tabPaneSearch)))
+                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -746,14 +475,13 @@ public class LuggageDetails extends SwitchingJPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelDescription)
                         .addGap(0, 0, 0)
-                        .addComponent(jScrollPane2)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonUpdate)
-                            .addComponent(buttonCancel))
-                        .addGap(30, 30, 30))
+                            .addComponent(buttonCancel)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -762,8 +490,8 @@ public class LuggageDetails extends SwitchingJPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonBack)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tabPaneSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -808,31 +536,12 @@ public class LuggageDetails extends SwitchingJPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldUpdateSizeActionPerformed
 
-    private void buttonSearchCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomer
-        this.userNotAFK();
-        this.searchCustomer();
-    }//GEN-LAST:event_buttonSearchCustomer
-
-    private void buttonSearchFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchFlight
-        this.userNotAFK();
-        this.searchFlight();
-    }//GEN-LAST:event_buttonSearchFlight
-
-    private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
-        this.userNotAFK();
-        luggageImage = selectLabelImage(labelLuggageImage);
-    }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelp;
-    private javax.swing.JButton buttonSearchFlight;
-    private javax.swing.JButton buttonSearchUser;
     private javax.swing.JButton buttonUpdate;
-    private javax.swing.JButton buttonUploadImage;
-    private javax.swing.JComboBox comboBoxCustomerGender;
     private javax.swing.JComboBox comboBoxUpdateStatus;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDescription;
@@ -842,26 +551,11 @@ public class LuggageDetails extends SwitchingJPanel {
     private javax.swing.JLabel labelDisplayOrigin;
     private javax.swing.JLabel labelFlightnumber;
     private javax.swing.JLabel labelLuggageDetails;
-    private javax.swing.JLabel labelLuggageImage;
     private javax.swing.JLabel labelOrigin;
     private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelStatus;
-    private javax.swing.JPanel panelSearchFlight;
-    private javax.swing.JPanel panelSearchLuggage;
-    private javax.swing.JPanel panelUploadImage;
-    private javax.swing.JScrollPane scrollPaneFlightTable;
-    private javax.swing.JScrollPane scrollPaneLuggageTable;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JSeparator separatorCenter;
-    private javax.swing.JTabbedPane tabPaneSearch;
-    private javax.swing.JTable tableLugSearchCustomer;
-    private javax.swing.JTable tableLugSearchFlight;
-    private javax.swing.JFormattedTextField textFieldCustomerId;
-    private javax.swing.JFormattedTextField textFieldCustomerName;
-    private javax.swing.JFormattedTextField textFieldFliArrival;
-    private javax.swing.JFormattedTextField textFieldFliDeparture;
-    private javax.swing.JFormattedTextField textFieldFliDestination;
-    private javax.swing.JFormattedTextField textFieldFliOrigin;
-    private javax.swing.JFormattedTextField textFieldFlightId;
     private javax.swing.JFormattedTextField textFieldUpdateColor;
     private javax.swing.JFormattedTextField textFieldUpdateLocation;
     private javax.swing.JFormattedTextField textFieldUpdateOwnerID;

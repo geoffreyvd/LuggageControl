@@ -4,14 +4,14 @@ import baseClasses.SwitchingJPanel;
 import main.LuggageControl;
 
 /**
- * Base search panel class 
+ *
  * @author Corne Lukken
  */
-public class BaseSearch extends SwitchingJPanel{
+public class BaseDetails extends SwitchingJPanel{
     
     private SearchPanes searchPanes = new SearchPanes();
     
-    public BaseSearch(LuggageControl luggageControl) {
+    public BaseDetails(LuggageControl luggageControl) {
         super(luggageControl);
     }
     
