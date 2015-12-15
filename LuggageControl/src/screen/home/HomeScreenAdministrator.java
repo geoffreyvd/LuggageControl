@@ -1,7 +1,6 @@
 package screen.home;
 
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.io.File;
 import javax.swing.JFileChooser;
 import main.LuggageControl;
@@ -175,32 +174,32 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
+        this.luggageControl.switchJPanel(this.luggageControl.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteCustomerActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.DELETE_CUSTOMER);
+        this.luggageControl.switchJPanel(this.luggageControl.DELETE_CUSTOMER);
     }//GEN-LAST:event_buttonDeleteCustomerActionPerformed
 
     private void buttonDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteLuggageActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.DELETE_LUGGAGE);
+        this.luggageControl.switchJPanel(this.luggageControl.DELETE_LUGGAGE);
     }//GEN-LAST:event_buttonDeleteLuggageActionPerformed
 
     private void buttonUserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserManagementActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.USER_MANAGEMENT);
+        this.luggageControl.switchJPanel(this.luggageControl.USER_MANAGEMENT);
     }//GEN-LAST:event_buttonUserManagementActionPerformed
 
     private void buttonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddUserActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.ADD_USER);
+        this.luggageControl.switchJPanel(this.luggageControl.ADD_USER);
     }//GEN-LAST:event_buttonAddUserActionPerformed
 
     private void buttonDatabaseImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDatabaseImportActionPerformed
@@ -219,7 +218,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
 
     private void buttonDeleteFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteFlight
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.DELETE_FLIGHT);
+        this.luggageControl.switchJPanel(this.luggageControl.DELETE_FLIGHT);
     }//GEN-LAST:event_buttonDeleteFlight
 
 

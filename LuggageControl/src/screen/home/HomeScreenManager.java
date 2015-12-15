@@ -6,7 +6,6 @@
 package screen.home;
 
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.awt.BorderLayout;
 import main.LuggageControl;
 import org.jfree.chart.ChartFactory;
@@ -174,12 +173,12 @@ public class HomeScreenManager extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
+        this.luggageControl.switchJPanel(this.luggageControl.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
 

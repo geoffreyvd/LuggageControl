@@ -8,11 +8,9 @@ package screen.add;
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
@@ -218,7 +216,7 @@ public class AddLuggage extends SwitchingJPanel {
             } catch (SQLException e) {
                 
             }
-            this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+            this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
         }
     }
     
@@ -732,13 +730,13 @@ public class AddLuggage extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
         clearFields();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomerActionPerformed

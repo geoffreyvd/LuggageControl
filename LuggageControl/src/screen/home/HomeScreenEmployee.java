@@ -7,7 +7,6 @@ package screen.home;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -232,31 +231,31 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonChangeSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeSettingsActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.CHANGE_SETTINGS);
+        this.luggageControl.switchJPanel(this.luggageControl.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
     private void buttonSearchLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchLuggageActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_LUGGAGE);
+        this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
     }//GEN-LAST:event_buttonSearchLuggageActionPerformed
 
     private void buttonSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomerActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_CUSTOMER);
+        this.luggageControl.switchJPanel(this.luggageControl.SEARCH_CUSTOMER);
     }//GEN-LAST:event_buttonSearchCustomerActionPerformed
 
     private void buttonAddLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddLuggageActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.ADD_LUGGAGE);
+        this.luggageControl.switchJPanel(this.luggageControl.ADD_LUGGAGE);
     }//GEN-LAST:event_buttonAddLuggageActionPerformed
 
     private void buttonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCustomerActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.ADD_CUSTOMER);
+        this.luggageControl.switchJPanel(this.luggageControl.ADD_CUSTOMER);
     }//GEN-LAST:event_buttonAddCustomerActionPerformed
 
     private void buttonAddFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddFlightActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.ADD_FLIGHT);
+        this.luggageControl.switchJPanel(this.luggageControl.ADD_FLIGHT);
     }//GEN-LAST:event_buttonAddFlightActionPerformed
 
     private void buttonSearchFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchFlightActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.SEARCH_FLIGHT);
+        this.luggageControl.switchJPanel(this.luggageControl.SEARCH_FLIGHT);
     }//GEN-LAST:event_buttonSearchFlightActionPerformed
 
     private void textFieldFlightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldFlightNumberKeyPressed
@@ -281,7 +280,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
     }//GEN-LAST:event_tableLuggageKeyPressed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed

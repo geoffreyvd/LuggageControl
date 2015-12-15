@@ -2,7 +2,6 @@ package screen.add;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -258,7 +257,7 @@ public class AddUser extends SwitchingJPanel {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_ADMINISTRATOR);
         textFieldUsername.setText("");
         textFieldPassword.setText(""); 
         textFieldFirstname.setText(""); 
@@ -447,7 +446,7 @@ public class AddUser extends SwitchingJPanel {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP_ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
 
