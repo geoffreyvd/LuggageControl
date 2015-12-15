@@ -75,7 +75,24 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
     /**
      * method to update the panel with new database information, called when luggagecontrol switches to this panel.
      */
-    // protected abstract void updatePanel();
+    public void updatePanelInformation() {
+        System.err.println("You should really override this function!");
+    };
+    
+    /**
+     * Update the panel with a specific id
+     * @param id the id of the panel datatype
+     */
+    public void updatePanelInformation(int id) {
+        System.err.println("You should really override this function!");
+    }
+    
+    /**
+     * method to clear the panel and remove all information
+     */
+    public void clearPanelInformation() {
+        System.err.println("You should really override this function!");
+    }
     
     /**
      * Make luggagecontrol aware that the user is not afk and has moved.

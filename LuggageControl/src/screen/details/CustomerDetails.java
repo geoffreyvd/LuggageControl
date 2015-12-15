@@ -52,10 +52,20 @@ public class CustomerDetails extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFliArrival);
     }
     
-//    @Override
-//    protected void updatePanel() {
-//        loadCustomer(currentCustomerId);
-//    }
+    @Override
+    public void updatePanelInformation() {
+        loadCustomer(currentCustomerId);
+    }
+    
+    @Override
+    public void updatePanelInformation(int customerId) {
+        loadCustomer(customerId);
+    }
+    
+    @Override
+    public void clearPanelInformation() {
+        this.clearCustomerData();
+    }
     
     //<editor-fold defaultstate="collapsed" desc="Customer data manipulation & screen update methods">
     /**
@@ -137,7 +147,7 @@ public class CustomerDetails extends SwitchingJPanel {
      * Prepares the screen with data based on the supplied customer id
      * @param customerID the customer id get this from the database
      */
-    public void loadCustomer(int customerID) {
+    private void loadCustomer(int customerID) {
         this.clearCustomerData();
         try {
             ResultSet result = db.query("SELECT * FROM customer WHERE customer_id = ?", new String[]{customerID + ""});

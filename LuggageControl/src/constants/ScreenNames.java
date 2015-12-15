@@ -41,7 +41,7 @@ public class ScreenNames {
     /**
      *
      */
-        public static final String ADD_CUSTOMER = "AddCustomer";
+    public static final String ADD_CUSTOMER = "AddCustomer";
 
     /**
      *
