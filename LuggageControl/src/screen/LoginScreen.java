@@ -16,6 +16,10 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  */
 public class LoginScreen extends SwitchingJPanel {
 
+    /**
+     *
+     * @param luggageControl
+     */
     public LoginScreen(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

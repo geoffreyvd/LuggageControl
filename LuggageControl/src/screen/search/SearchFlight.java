@@ -4,8 +4,10 @@ import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import constants.ScreenNames;
+import java.awt.TextField;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
@@ -19,9 +21,10 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class SearchFlight extends SwitchingJPanel {
 
     private DatabaseMan db = new DatabaseMan();
-    
+
     /**
      * Creates new form SearchFlight
+     *
      * @param luggageControl
      */
     public SearchFlight(LuggageControl luggageControl) {
@@ -49,20 +52,21 @@ public class SearchFlight extends SwitchingJPanel {
         textFieldDepartureTime.setText("");
         textFieldArrivalTime.setText("");
     }
-    
+
     /**
-     * Go to the flight details screen based on the selected flight id
-     * This method is best used in conjunction with the fillTableFlight.
+     * Go to the flight details screen based on the selected flight id This
+     * method is best used in conjunction with the fillTableFlight.
+     *
      * @param flightId The specific database luggage id from the luggage table
      */
     public void switchFlightDetails(int flightId) {
         this.luggageControl.prefillPanel(ScreenNames.FLIGHT_DETAILS, flightId);
         this.luggageControl.switchJPanel(ScreenNames.FLIGHT_DETAILS);
     }
-    
+
     /**
-     * Searches through the database for the luggage withe filters from 
-     * the textfields or for every luggage when none of the fields are filled in
+     * Searches through the database for the luggage withe filters from the
+     * textfields or for every luggage when none of the fields are filled in
      */
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
@@ -70,82 +74,38 @@ public class SearchFlight extends SwitchingJPanel {
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldFlightnumber.getText().equals("") || !textFieldOrigin.getText().equals("") ||
-            !textFieldDestination.getText().equals("") || !textFieldDepartureTime.getText().equals("") || 
-            !textFieldArrivalTime.getText().equals("")) {
+        if (!textFieldFlightnumber.getText().equals("") || !textFieldOrigin.getText().equals("")
+                || !textFieldDestination.getText().equals("") || !textFieldDepartureTime.getText().equals("")
+                || !textFieldArrivalTime.getText().equals("")) {
             if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
-            if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive") ||
-                comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                    || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
                 query += "WHERE 1=0 ";
             }
         }
 
         try {
+            //mid
             if (!textFieldFlightnumber.getText().equals("")) {
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
-                    query += "AND flight_id = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
-                    query += "OR flight_id = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                    query += "OR flight_id LIKE '%?%' ";
-                }
-                values.add(helpers.Filters.filteredString(textFieldFlightnumber.getText()));
+                query += checkComboBox("flight_id", textFieldFlightnumber, values);
             }
 
             if (!textFieldOrigin.getText().equals("")) {
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
-                    query += "AND origin = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
-                    query += "OR origin = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                    query += "OR origin LIKE '%?%' ";
-                }
-                values.add(helpers.Filters.filteredString(textFieldOrigin.getText()));
+                query += checkComboBox("origin", textFieldOrigin, values);
             }
 
             if (!textFieldDestination.getText().equals("")) {
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
-                    query += "AND destination = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
-                    query += "OR destination = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                    query += "OR destination LIKE '%?%' ";
-                }
-                values.add(helpers.Filters.filteredString(textFieldDestination.getText()));
+                query += checkComboBox("destination", textFieldDestination, values);
             }
-            
+
             if (!textFieldDepartureTime.getText().equals("")) {
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
-                    query += "AND departure = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
-                    query += "OR departure = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                    query += "OR departure LIKE '%?%' ";
-                }
-                values.add(helpers.Filters.filteredString(textFieldDepartureTime.getText()));
+                query += checkComboBox("departure", textFieldDepartureTime, values);
             }
-            
+
             if (!textFieldArrivalTime.getText().equals("")) {
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
-                    query += "AND arrival = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
-                    query += "OR arrival = ? ";
-                }
-                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                    query += "OR arrival LIKE '%?%' ";
-                }
-                values.add(helpers.Filters.filteredString(textFieldArrivalTime.getText()));
+                query += checkComboBox("arrival", textFieldArrivalTime, values);
             }
 
 //            // If you get a mysql error saying: not unique table/alias look here 
@@ -166,7 +126,6 @@ public class SearchFlight extends SwitchingJPanel {
 //                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
 //            }
 //            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
-
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
             DefaultTableModel datamodel = (DefaultTableModel) tableFlightSearch.getModel();
@@ -191,7 +150,27 @@ public class SearchFlight extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
     }
-    
+
+    /**
+     * 
+     * @param kolomNaam
+     * @param textField
+     * @param values
+     * @return 
+     */
+    private String checkComboBox(String kolomNaam, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + kolomNaam + " = ? ";
+        }else if(comboBoxSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + kolomNaam + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + kolomNaam + " = ? ";
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -214,6 +193,16 @@ public class SearchFlight extends SwitchingJPanel {
         textFieldDepartureTime = new javax.swing.JFormattedTextField();
         comboBoxSearchType = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         labelSearchFlight.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchFlight.setText("Search flight");
@@ -357,20 +346,23 @@ public class SearchFlight extends SwitchingJPanel {
     }//GEN-LAST:event_buttonHelpLinkingbuttonHelpActionPerformed
 
     private void tableFlightSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableFlightSearchKeyPressed
-        if(evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             JTable tempTable = new JTable();
             try {
-                tempTable = (JTable)evt.getComponent();
+                tempTable = (JTable) evt.getComponent();
                 // look at this one liner
                 switchFlightDetails(Integer.parseInt((String) tempTable.getValueAt(tempTable.getSelectedRow(), 0)));
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
             }
 
             tableFlightSearch.clearSelection();
         }
     }//GEN-LAST:event_tableFlightSearchKeyPressed
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        fillSearchLuggageTable();
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,6 +10,8 @@ public class ErrorJDialog extends PopUpJDialog {
 
     /**
      * Creates new form NewJDialog
+     * @param parent
+     * @param modal
      */
     public ErrorJDialog(java.awt.Frame parent, boolean modal) {
         this(parent, modal, "Error", "");
@@ -17,6 +19,8 @@ public class ErrorJDialog extends PopUpJDialog {
     
     /**
      * Display a error dialog with a given title and some text.
+     * @param parent
+     * @param modal
      * @param title determines the dialog (window) title.
      * @param text text displayed within a textPane to the user.
      */
@@ -34,6 +38,8 @@ public class ErrorJDialog extends PopUpJDialog {
     
     /**
      *  Display a error with a dialog and present the user with a stracktrace.
+     * @param parent
+     * @param modal
      * @param title Title of the dialog
      * @param stackTrace array of calls which led to the point the error occured.
      */
@@ -43,6 +49,8 @@ public class ErrorJDialog extends PopUpJDialog {
     
     /**
      *  Display a error with a dialog and present the user with a stracktrace.
+     * @param parent
+     * @param modal
      * @param title Title of the dialog
      * @param strackTrace array of calls which led to the point the error occured.
      * @param critical true if critical error and application should quit.

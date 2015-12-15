@@ -115,7 +115,7 @@ public class AddFlight extends SwitchingJPanel {
                 return;
                 }
                 if(helpers.Filters.filteredDateTime(textFieldDepartureTime.getText()).equals("")){
-                labelStatus.setText("Not a correct entry for departure time time!");
+                labelStatus.setText("Not a correct entry for departure time!");
                 this.resetLabel(5000, labelStatus);
                 return;
                 }

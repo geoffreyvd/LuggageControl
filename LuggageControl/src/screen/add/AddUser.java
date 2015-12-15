@@ -23,6 +23,10 @@ public class AddUser extends SwitchingJPanel {
     
     private SecurityMan secman;
 
+    /**
+     *
+     * @param luggageControl
+     */
     public AddUser(LuggageControl luggageControl) {
         super(luggageControl);
         

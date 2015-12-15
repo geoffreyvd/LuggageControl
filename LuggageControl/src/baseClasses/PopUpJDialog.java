@@ -14,6 +14,8 @@ public class PopUpJDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form PopUpJdDialog
+     * @param parent
+     * @param modal
      */    
     public PopUpJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,7 +31,11 @@ public class PopUpJDialog extends javax.swing.JDialog {
     private Dimension popUpDimension = new Dimension(400, 300);
     
     // Graphics envrioment used to determine aspects of screen and 3D capabilities.
-    protected GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+    /**
+     *
+     */
+        protected GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
     
     /**
      * Relocate the JDialog to the center of all monitors.

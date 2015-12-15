@@ -13,6 +13,10 @@ import managers.DatabaseMan;
  */
 public class HomeScreenAdministrator extends SwitchingJPanel {
 
+    /**
+     *
+     * @param luggageControl
+     */
     public HomeScreenAdministrator(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

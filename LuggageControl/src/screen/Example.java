@@ -14,6 +14,10 @@ import main.LuggageControl;
  */
 public class Example extends SwitchingJPanel {
 
+    /**
+     *
+     * @param luggageControl
+     */
     public Example(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
