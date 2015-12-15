@@ -30,6 +30,7 @@ public class AddLuggage extends SwitchingJPanel {
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
+     * @param luggageControl
      */
     public AddLuggage(LuggageControl luggageControl) {
         super(luggageControl);
@@ -49,6 +50,9 @@ public class AddLuggage extends SwitchingJPanel {
 
     }
 
+    /**
+     *
+     */
     public void clearFields() {
         textFieldFlightnumber.setText("");
         textFieldLocation.setText("");
@@ -73,6 +77,7 @@ public class AddLuggage extends SwitchingJPanel {
 
     /**
      * check input
+     * @return 
      */
     public boolean checkInput() {
 

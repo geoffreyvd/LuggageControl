@@ -21,6 +21,10 @@ public class AddCustomer extends SwitchingJPanel {
     private SecurityMan sc;
     DatabaseMan db = new DatabaseMan();
 
+    /**
+     *
+     * @param luggageControl
+     */
     public AddCustomer(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
@@ -174,6 +178,11 @@ public class AddCustomer extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean checkInput() {
         if (textFieldName.getText().equals("")){
             labelStatus.setText("First name is empty");
@@ -288,6 +297,10 @@ public class AddCustomer extends SwitchingJPanel {
             //labelStatus.setText("");
         }
     }
+
+    /**
+     *
+     */
     public void clearFields() {
         textFieldName.setText("");
         textFieldSurName.setText("");

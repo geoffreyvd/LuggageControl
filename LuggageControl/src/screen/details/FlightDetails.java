@@ -33,6 +33,7 @@ public class FlightDetails extends SwitchingJPanel {
     
     /**
      * Creates new form FlightDetails
+     * @param luggageControl
      */
     public FlightDetails(LuggageControl luggageControl) {
         super(luggageControl);
@@ -85,6 +86,9 @@ public class FlightDetails extends SwitchingJPanel {
         textFieldEmail.setText("");
     }
     
+    /**
+     *
+     */
     public void clearAll() {
         clearFLight();
         clearSearchLuggage();
@@ -213,7 +217,7 @@ public class FlightDetails extends SwitchingJPanel {
     
      /**
      * Prepares the screen with data based on the supplied customer id
-     * @param luggageID the lggage id get this from the database
+     * @param FlightID
      */
     public void loadFlight(int FlightID) {
         try {
