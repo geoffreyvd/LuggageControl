@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `luggagecontroldata`.`luggage` (
   `color` VARCHAR(45) NULL DEFAULT NULL,
   `weight` INT NULL DEFAULT NULL,
   `size` VARCHAR(6) NULL DEFAULT NULL,
-  `content` VARCHAR(256) NULL DEFAULT NULL,
+  `description` VARCHAR(256) NULL DEFAULT NULL,
   `status` VARCHAR(11) NULL DEFAULT NULL,
   `image` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`luggage_id`),
@@ -132,7 +132,6 @@ CREATE TABLE IF NOT EXISTS `luggagecontroldata`.`luggage_lost_found` (
   `luggage_lost_id` INT(10) UNSIGNED NOT NULL,
   `luggage_found_id` INT(10) UNSIGNED NOT NULL,
   `status` VARCHAR(25) NULL DEFAULT NULL,
-  `luggage_lost_foundcol` VARCHAR(45) NULL,
   INDEX `fk_table1_luggage1_idx` (`luggage_lost_id` ASC),
   INDEX `fk_table1_luggage2_idx` (`luggage_found_id` ASC),
   CONSTRAINT `fk_table1_luggage1`
