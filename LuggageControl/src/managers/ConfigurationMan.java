@@ -206,7 +206,7 @@ public class ConfigurationMan {
             return;
         }
         
-        new Thread("findMysqlDumpLocationThread") {
+        Thread findMysqlDumpLocationThread = new Thread("findMysqlDumpLocationThread") {
             @Override
             public void run() {
                 String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
@@ -254,5 +254,6 @@ public class ConfigurationMan {
                 }
             }
         };
+        findMysqlDumpLocationThread.run();
     }
 }

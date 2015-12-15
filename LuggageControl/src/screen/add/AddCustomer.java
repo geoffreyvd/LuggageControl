@@ -65,6 +65,21 @@ public class AddCustomer extends SwitchingJPanel {
       
     }
     
+    @Override
+    public void updatePanelInformation() {
+        System.err.println("Add panel not capabable of prefilling data");
+    }
+    
+    @Override
+    public void updatePanelInformation(int customerId) {
+        this.updatePanelInformation();
+    }
+    
+    @Override
+    public void clearPanelInformation() {
+        this.clearFields();
+    }
+    
     private void searchLuggage() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
@@ -184,7 +199,7 @@ public class AddCustomer extends SwitchingJPanel {
      *
      * @return
      */
-    public boolean checkInput() {
+    private boolean checkInput() {
         if (textFieldName.getText().equals("")){
             labelStatus.setText("First name is empty");
             this.resetLabel(5000, labelStatus);
@@ -662,6 +677,7 @@ public class AddCustomer extends SwitchingJPanel {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
+        this.clearFields();
         this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 

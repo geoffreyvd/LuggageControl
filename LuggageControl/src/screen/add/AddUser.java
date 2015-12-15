@@ -19,7 +19,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * @author Admin
  */
 public class AddUser extends SwitchingJPanel {
-    
+    private String imageBase64 = "";
     private SecurityMan secman;
 
     /**
@@ -54,7 +54,41 @@ public class AddUser extends SwitchingJPanel {
         
         this.secman = new SecurityMan(luggageControl);
     }
-
+    @Override
+    public void updatePanelInformation() {
+        System.err.println("Add panel not capabable of prefilling data");
+    }
+    
+    @Override
+    public void updatePanelInformation(int customerId) {
+        this.updatePanelInformation();
+    }
+    
+    @Override
+    public void clearPanelInformation() {
+        this.clearFields();
+    }
+    private void addCustomer() {
+     //   if (checkInput()){
+      //      String queryInsertUser = "INSERT INTO `luggagecontroldata`.`user`"
+      //              +"(`username"   
+      //  }
+    }
+    private void clearFields(){
+        textFieldUsername.setText("");
+        textFieldPassword.setText(""); 
+        textFieldFirstname.setText(""); 
+        textFieldSurname.setText(""); 
+        textFieldCellphone.setText("");
+        textFieldBirthday.setText("");
+        comboBoxGender.setSelectedIndex(0);
+        textFieldNationality.setText("");
+        textFieldAdress.setText("");
+        textFieldPostalcode.setText("");
+        comboBoxProfession.setSelectedIndex(0);
+        pic.setIcon(null);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -257,195 +291,30 @@ public class AddUser extends SwitchingJPanel {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
+        this.clearFields();
         this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_ADMINISTRATOR);
-        textFieldUsername.setText("");
-        textFieldPassword.setText(""); 
-        textFieldFirstname.setText(""); 
-        textFieldSurname.setText(""); 
-        textFieldCellphone.setText("");
-        textFieldBirthday.setText("");
-        comboBoxGender.setSelectedIndex(0);
-        textFieldNationality.setText("");
-        textFieldAdress.setText("");
-        textFieldPostalcode.setText("");
-        comboBoxProfession.setSelectedIndex(0);
+        
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImageActionPerformed
         this.userNotAFK();
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-
-            ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
-            System.out.println(image);
-
-            pic.setIcon(image);
-            this.setVisible(true);
-        }
+        imageBase64 = selectLabelImage(pic);
     }//GEN-LAST:event_buttonUploadImageActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-        // check if all fields are entered
-        // we user or so we dont have to check all conditions every time
-        if( textFieldAdress.getText().equals("") || 
-            textFieldBirthday.getText().equals("") || 
-            textFieldCellphone.getText().equals("") || 
-            textFieldEmail.getText().equals("") || 
-            textFieldFirstname.getText().equals("") ||
-            textFieldSurname.getText().equals("") ||
-            textFieldNationality.getText().equals("") ||
-            textFieldPassword.getText().equals("") ||   
-            textFieldPostalcode.getText().equals("") || 
-            textFieldUsername.getText().equals("") ) 
-        {
-            labelStatus.setText("Not all fields are entered!");
-            this.resetLabel(5000, labelStatus);
-            return;
-        }
         
-        DatabaseMan db = new DatabaseMan();
-        
-        // check if the username does not yet exist
-        if(!db.queryOneResult("SELECT `username` FROM user WHERE username = ?", new String[]{textFieldUsername.getText()}).equals("")) {
-            labelStatus.setText("Username already taken!");
-            this.resetLabel(5000, labelStatus);
-            return;
-        }
-        
-        // check if the email does not yet exist
-        if(!db.queryOneResult("SELECT `email` FROM user WHERE email = ?", new String[]{textFieldEmail.getText()}).equals("")) {
-            labelStatus.setText("Email adress already taken!");
-            this.resetLabel(5000, labelStatus);
-            return;
-        }
-        
-        // check if our cellphone only contains numbers
-        if(helpers.Filters.filteredCellphone(textFieldCellphone.getText()).equals("")) {
-            labelStatus.setText("Invalid characters in cellphone, can only contain numbers");
-            this.resetLabel(5000, labelStatus);
-            return;
-        }
-        
-        // check if our birthday is a date and in the past
-        if(helpers.Filters.filteredDate(textFieldBirthday.getText(), "yyyy-MM-dd").equals("")) {
-            labelStatus.setText("Birthday needs to be valid date in the past");
-            this.resetLabel(5000, labelStatus);
-            return;
-        }
-        
-        // check if our email is valid
-        if(helpers.Filters.filteredEmail(textFieldEmail.getText()).equals("")) {
-            labelStatus.setText("Needs to be valid email adress");
-            this.resetLabel(5000, labelStatus);
-            return;
-        }
-        
-        int tempPermission = 0;
-        if(comboBoxProfession.getSelectedItem().toString() == "Employee") {
-            tempPermission = 1;
-        }
-        else if(comboBoxProfession.getSelectedItem().toString() == "Manager") {
-            tempPermission = 2;
-        }
-        else if(comboBoxProfession.getSelectedItem().toString() == "Manager") {
-            tempPermission = 3;
-        }
-        
-        String salt = "";
-        String password = "";
-        
-        try {
-            salt = secman.createSalt();
-            password = secman.encodePassword(textFieldPassword.getText(), salt);
-        } 
-        catch (NoSuchAlgorithmException e) {
-            new ErrorJDialog(this.luggageControl, true, "Required algorithm does not exists", e.getStackTrace());
-            return;
-        }
-        catch(Exception e) {
-            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
-            return;
-        }
-        
-        String[] userData = {
-            textFieldUsername.getText(), 
-            password, 
-            salt,
-            textFieldEmail.getText(), 
-            textFieldFirstname.getText(), 
-            textFieldSurname.getText(), 
-            textFieldCellphone.getText(),
-            textFieldBirthday.getText(),
-            comboBoxGender.getSelectedItem().toString(),
-            textFieldNationality.getText(),
-            textFieldAdress.getText(),
-            textFieldPostalcode.getText(),
-            tempPermission + ""
-        };
-        
-        String[] userTypes = {
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "String",
-            "Int",
-        };
-        
-        try {
-            db.queryManipulation(
-                    "INSERT INTO user "+
-                            "(username,password,salt,email,firstname,surname,cellphone,birthday,gender,nationality,adress,postcode,permission)" +
-                            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    userData, userTypes
-            );
-        } catch (SQLException ex) {
-            Logger.getLogger(AddUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        labelStatus.setText("User succesfully added");
-        this.resetLabel(10000, labelStatus);
-
-        textFieldUsername.setText("");
-        textFieldPassword.setText(""); 
-        textFieldFirstname.setText(""); 
-        textFieldSurname.setText(""); 
-        textFieldCellphone.setText("");
-        textFieldBirthday.setText("");
-        comboBoxGender.setSelectedIndex(0);
-        textFieldNationality.setText("");
-        textFieldAdress.setText("");
-        textFieldPostalcode.setText("");
-        comboBoxProfession.setSelectedIndex(0);
-        pic.setIcon(null);
-        
+        this.addCustomer();
+        this.clearFields();
         this.userNotAFK();
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        textFieldUsername.setText("");
-        textFieldPassword.setText(""); 
-        textFieldFirstname.setText(""); 
-        textFieldSurname.setText(""); 
-        textFieldCellphone.setText("");
-        textFieldBirthday.setText("");
-        comboBoxGender.setSelectedIndex(0);
-        textFieldNationality.setText("");
-        textFieldAdress.setText("");
-        textFieldPostalcode.setText("");
-        comboBoxProfession.setSelectedIndex(0);
+        this.clearFields();
+        this.userNotAFK();
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        this.userNotAFK();
         this.luggageControl.switchJPanel(this.luggageControl.HELP_ADDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
@@ -473,4 +342,6 @@ public class AddUser extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldSurname;
     private javax.swing.JFormattedTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
+
+    
 }

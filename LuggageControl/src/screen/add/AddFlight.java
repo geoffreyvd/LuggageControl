@@ -153,11 +153,26 @@ public class AddFlight extends SwitchingJPanel {
                 
             } catch (Exception e) {
             }
-            this.clearFlight();
+            this.clearFields();
             this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
         }
     }
-    private void clearFlight(){
+    @Override
+    public void updatePanelInformation() {
+        System.err.println("Add panel not capabable of prefilling data");
+    }
+    
+    @Override
+    public void updatePanelInformation(int customerId) {
+        this.updatePanelInformation();
+    }
+    
+    @Override
+    public void clearPanelInformation() {
+        this.clearFields();
+    }
+    
+    private void clearFields(){
         textFieldFlightnumber.setText("");
         textFieldDestination.setText("");
         textFieldOrigin.setText("");
@@ -628,12 +643,12 @@ public class AddFlight extends SwitchingJPanel {
 
     private void butonCancelbuttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelbuttonCancelActionPerformed
         this.userNotAFK();
-        this.clearFlight();
+        this.clearFields();
     }//GEN-LAST:event_butonCancelbuttonCancelActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
-        this.clearFlight();
+        this.clearFields();
         this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonBackActionPerformed
 

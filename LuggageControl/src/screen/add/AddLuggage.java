@@ -47,7 +47,21 @@ public class AddLuggage extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSize);
 
     }
-
+    @Override
+    public void updatePanelInformation() {
+        System.err.println("Add panel not capabable of prefilling data");
+    }
+    
+    @Override
+    public void updatePanelInformation(int customerId) {
+        this.updatePanelInformation();
+    }
+    
+    @Override
+    public void clearPanelInformation() {
+        this.clearFields();
+    }
+    
     /**
      *
      */
