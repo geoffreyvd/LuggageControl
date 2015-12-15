@@ -1,0 +1,2599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="LuggageControl">
+  <ClassDiagramComponents>
+    <Class name="CustomerAdm" package="administration" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FlightsAdm" package="administration" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LuggageAdm" package="administration" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="UsersAdm" package="administration" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Administration" package="baseClasses" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DatabaseMan" name="databaseManReference"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="EmptyResultSet" package="baseClasses" visibility="public" xPosition="3979.0" yPosition="4.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="next" returnType="boolean" visibility="public"/>
+        <Method name="close" returnType="void" visibility="public"/>
+        <Method name="wasNull" returnType="boolean" visibility="public"/>
+        <Method name="getString" returnType="String" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getBoolean" returnType="boolean" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getByte" returnType="byte" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getShort" returnType="short" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getInt" returnType="int" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getLong" returnType="long" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getFloat" returnType="float" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getDouble" returnType="double" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getBigDecimal" returnType="BigDecimal" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="int" name="scale"/>
+        </Method>
+        <Method name="getBytes" returnType="byte[]" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getDate" returnType="Date" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getTime" returnType="Time" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getTimestamp" returnType="Timestamp" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getAsciiStream" returnType="InputStream" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getUnicodeStream" returnType="InputStream" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getBinaryStream" returnType="InputStream" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getString" returnType="String" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getBoolean" returnType="boolean" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getByte" returnType="byte" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getShort" returnType="short" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getInt" returnType="int" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getLong" returnType="long" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getFloat" returnType="float" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getDouble" returnType="double" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getBigDecimal" returnType="BigDecimal" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="int" name="scale"/>
+        </Method>
+        <Method name="getBytes" returnType="byte[]" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getDate" returnType="Date" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getTime" returnType="Time" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getTimestamp" returnType="Timestamp" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getAsciiStream" returnType="InputStream" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getUnicodeStream" returnType="InputStream" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getBinaryStream" returnType="InputStream" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getWarnings" returnType="SQLWarning" visibility="public"/>
+        <Method name="clearWarnings" returnType="void" visibility="public"/>
+        <Method name="getCursorName" returnType="String" visibility="public"/>
+        <Method name="getMetaData" returnType="ResultSetMetaData" visibility="public"/>
+        <Method name="getObject" returnType="Object" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getObject" returnType="Object" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="findColumn" returnType="int" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getCharacterStream" returnType="Reader" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getCharacterStream" returnType="Reader" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getBigDecimal" returnType="BigDecimal" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getBigDecimal" returnType="BigDecimal" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="isBeforeFirst" returnType="boolean" visibility="public"/>
+        <Method name="isAfterLast" returnType="boolean" visibility="public"/>
+        <Method name="isFirst" returnType="boolean" visibility="public"/>
+        <Method name="isLast" returnType="boolean" visibility="public"/>
+        <Method name="beforeFirst" returnType="void" visibility="public"/>
+        <Method name="afterLast" returnType="void" visibility="public"/>
+        <Method name="first" returnType="boolean" visibility="public"/>
+        <Method name="last" returnType="boolean" visibility="public"/>
+        <Method name="getRow" returnType="int" visibility="public"/>
+        <Method name="absolute" returnType="boolean" visibility="public">
+          <Argument type="int" name="row"/>
+        </Method>
+        <Method name="relative" returnType="boolean" visibility="public">
+          <Argument type="int" name="rows"/>
+        </Method>
+        <Method name="previous" returnType="boolean" visibility="public"/>
+        <Method name="setFetchDirection" returnType="void" visibility="public">
+          <Argument type="int" name="direction"/>
+        </Method>
+        <Method name="getFetchDirection" returnType="int" visibility="public"/>
+        <Method name="setFetchSize" returnType="void" visibility="public">
+          <Argument type="int" name="rows"/>
+        </Method>
+        <Method name="getFetchSize" returnType="int" visibility="public"/>
+        <Method name="getType" returnType="int" visibility="public"/>
+        <Method name="getConcurrency" returnType="int" visibility="public"/>
+        <Method name="rowUpdated" returnType="boolean" visibility="public"/>
+        <Method name="rowInserted" returnType="boolean" visibility="public"/>
+        <Method name="rowDeleted" returnType="boolean" visibility="public"/>
+        <Method name="updateNull" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="updateBoolean" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="boolean" name="x"/>
+        </Method>
+        <Method name="updateByte" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="byte" name="x"/>
+        </Method>
+        <Method name="updateShort" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="short" name="x"/>
+        </Method>
+        <Method name="updateInt" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="updateLong" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="long" name="x"/>
+        </Method>
+        <Method name="updateFloat" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="float" name="x"/>
+        </Method>
+        <Method name="updateDouble" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="double" name="x"/>
+        </Method>
+        <Method name="updateBigDecimal" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="BigDecimal" name="x"/>
+        </Method>
+        <Method name="updateString" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="String" name="x"/>
+        </Method>
+        <Method name="updateBytes" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="byte[]" name="x"/>
+        </Method>
+        <Method name="updateDate" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Date" name="x"/>
+        </Method>
+        <Method name="updateTime" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Time" name="x"/>
+        </Method>
+        <Method name="updateTimestamp" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Timestamp" name="x"/>
+        </Method>
+        <Method name="updateAsciiStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="int" name="length"/>
+        </Method>
+        <Method name="updateBinaryStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="int" name="length"/>
+        </Method>
+        <Method name="updateCharacterStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="x"/>
+          <Argument type="int" name="length"/>
+        </Method>
+        <Method name="updateObject" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Object" name="x"/>
+          <Argument type="int" name="scaleOrLength"/>
+        </Method>
+        <Method name="updateObject" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Object" name="x"/>
+        </Method>
+        <Method name="updateNull" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="updateBoolean" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="boolean" name="x"/>
+        </Method>
+        <Method name="updateByte" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="byte" name="x"/>
+        </Method>
+        <Method name="updateShort" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="short" name="x"/>
+        </Method>
+        <Method name="updateInt" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="updateLong" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="long" name="x"/>
+        </Method>
+        <Method name="updateFloat" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="float" name="x"/>
+        </Method>
+        <Method name="updateDouble" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="double" name="x"/>
+        </Method>
+        <Method name="updateBigDecimal" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="BigDecimal" name="x"/>
+        </Method>
+        <Method name="updateString" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="String" name="x"/>
+        </Method>
+        <Method name="updateBytes" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="byte[]" name="x"/>
+        </Method>
+        <Method name="updateDate" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Date" name="x"/>
+        </Method>
+        <Method name="updateTime" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Time" name="x"/>
+        </Method>
+        <Method name="updateTimestamp" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Timestamp" name="x"/>
+        </Method>
+        <Method name="updateAsciiStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="int" name="length"/>
+        </Method>
+        <Method name="updateBinaryStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="int" name="length"/>
+        </Method>
+        <Method name="updateCharacterStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="int" name="length"/>
+        </Method>
+        <Method name="updateObject" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Object" name="x"/>
+          <Argument type="int" name="scaleOrLength"/>
+        </Method>
+        <Method name="updateObject" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Object" name="x"/>
+        </Method>
+        <Method name="insertRow" returnType="void" visibility="public"/>
+        <Method name="updateRow" returnType="void" visibility="public"/>
+        <Method name="deleteRow" returnType="void" visibility="public"/>
+        <Method name="refreshRow" returnType="void" visibility="public"/>
+        <Method name="cancelRowUpdates" returnType="void" visibility="public"/>
+        <Method name="moveToInsertRow" returnType="void" visibility="public"/>
+        <Method name="moveToCurrentRow" returnType="void" visibility="public"/>
+        <Method name="getStatement" returnType="Statement" visibility="public"/>
+        <Method name="getObject" returnType="Object" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Map&lt;String, Class&lt;?&gt;&gt;" name="map"/>
+        </Method>
+        <Method name="getRef" returnType="Ref" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getBlob" returnType="Blob" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getClob" returnType="Clob" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getArray" returnType="Array" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getObject" returnType="Object" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Map&lt;String, Class&lt;?&gt;&gt;" name="map"/>
+        </Method>
+        <Method name="getRef" returnType="Ref" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getBlob" returnType="Blob" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getClob" returnType="Clob" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getArray" returnType="Array" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getDate" returnType="Date" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Calendar" name="cal"/>
+        </Method>
+        <Method name="getDate" returnType="Date" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Calendar" name="cal"/>
+        </Method>
+        <Method name="getTime" returnType="Time" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Calendar" name="cal"/>
+        </Method>
+        <Method name="getTime" returnType="Time" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Calendar" name="cal"/>
+        </Method>
+        <Method name="getTimestamp" returnType="Timestamp" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Calendar" name="cal"/>
+        </Method>
+        <Method name="getTimestamp" returnType="Timestamp" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Calendar" name="cal"/>
+        </Method>
+        <Method name="getURL" returnType="URL" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getURL" returnType="URL" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="updateRef" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Ref" name="x"/>
+        </Method>
+        <Method name="updateRef" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Ref" name="x"/>
+        </Method>
+        <Method name="updateBlob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Blob" name="x"/>
+        </Method>
+        <Method name="updateBlob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Blob" name="x"/>
+        </Method>
+        <Method name="updateClob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Clob" name="x"/>
+        </Method>
+        <Method name="updateClob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Clob" name="x"/>
+        </Method>
+        <Method name="updateArray" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Array" name="x"/>
+        </Method>
+        <Method name="updateArray" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Array" name="x"/>
+        </Method>
+        <Method name="getRowId" returnType="RowId" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getRowId" returnType="RowId" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="updateRowId" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="RowId" name="x"/>
+        </Method>
+        <Method name="updateRowId" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="RowId" name="x"/>
+        </Method>
+        <Method name="getHoldability" returnType="int" visibility="public"/>
+        <Method name="isClosed" returnType="boolean" visibility="public"/>
+        <Method name="updateNString" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="String" name="nString"/>
+        </Method>
+        <Method name="updateNString" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="String" name="nString"/>
+        </Method>
+        <Method name="updateNClob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="NClob" name="nClob"/>
+        </Method>
+        <Method name="updateNClob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="NClob" name="nClob"/>
+        </Method>
+        <Method name="getNClob" returnType="NClob" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getNClob" returnType="NClob" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getSQLXML" returnType="SQLXML" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getSQLXML" returnType="SQLXML" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="updateSQLXML" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="SQLXML" name="xmlObject"/>
+        </Method>
+        <Method name="updateSQLXML" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="SQLXML" name="xmlObject"/>
+        </Method>
+        <Method name="getNString" returnType="String" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getNString" returnType="String" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="getNCharacterStream" returnType="Reader" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="getNCharacterStream" returnType="Reader" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+        </Method>
+        <Method name="updateNCharacterStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="x"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateNCharacterStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateAsciiStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateBinaryStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateCharacterStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="x"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateAsciiStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateBinaryStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="x"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateCharacterStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateBlob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="inputStream"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateBlob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="inputStream"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateClob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateClob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateNClob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateNClob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+          <Argument type="long" name="length"/>
+        </Method>
+        <Method name="updateNCharacterStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="x"/>
+        </Method>
+        <Method name="updateNCharacterStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+        </Method>
+        <Method name="updateAsciiStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="x"/>
+        </Method>
+        <Method name="updateBinaryStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="x"/>
+        </Method>
+        <Method name="updateCharacterStream" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="x"/>
+        </Method>
+        <Method name="updateAsciiStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="x"/>
+        </Method>
+        <Method name="updateBinaryStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="x"/>
+        </Method>
+        <Method name="updateCharacterStream" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+        </Method>
+        <Method name="updateBlob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="InputStream" name="inputStream"/>
+        </Method>
+        <Method name="updateBlob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="InputStream" name="inputStream"/>
+        </Method>
+        <Method name="updateClob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="reader"/>
+        </Method>
+        <Method name="updateClob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+        </Method>
+        <Method name="updateNClob" returnType="void" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Reader" name="reader"/>
+        </Method>
+        <Method name="updateNClob" returnType="void" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Reader" name="reader"/>
+        </Method>
+        <Method name="getObject" returnType="T" visibility="public">
+          <Argument type="int" name="columnIndex"/>
+          <Argument type="Class&lt;T&gt;" name="type"/>
+        </Method>
+        <Method name="getObject" returnType="T" visibility="public">
+          <Argument type="String" name="columnLabel"/>
+          <Argument type="Class&lt;T&gt;" name="type"/>
+        </Method>
+        <Method name="unwrap" returnType="T" visibility="public">
+          <Argument type="Class&lt;T&gt;" name="iface"/>
+        </Method>
+        <Method name="isWrapperFor" returnType="boolean" visibility="public">
+          <Argument type="Class&lt;?&gt;" name="iface"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ErrorJDialog" package="baseClasses" visibility="public" xPosition="1935.0" yPosition="286.0">
+      <Fields>
+        <Field name="critical" type="boolean" visibility="private"/>
+        <Field name="buttonConfirm" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="textPane" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="String" name="title"/>
+          <Argument type="String" name="text"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="String" name="title"/>
+          <Argument type="StackTraceElement[]" name="stackTrace"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="String" name="title"/>
+          <Argument type="StackTraceElement[]" name="strackTrace"/>
+          <Argument type="boolean" name="critical"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonConfirmActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PopUpJDialog" package="baseClasses" visibility="public" xPosition="1935.0" yPosition="22.0">
+      <Fields>
+        <Field name="popUpDimension" type="Dimension" visibility="private"/>
+        <Field name="graphics" type="GraphicsEnvironment" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="centerFrame" returnType="void" visibility="protected"/>
+        <Method name="haltProgram" returnType="void" visibility="protected"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="SwitchingJPanel" package="baseClasses" visibility="public" isAbstract="true" xPosition="3598.0" yPosition="1601.0">
+      <Fields>
+        <Field name="luggageControl" type="LuggageControl" visibility="protected"/>
+        <Field name="resetLabels" type="ArrayList&lt;LabelThread&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="userNotAFK" returnType="void" visibility="protected"/>
+        <Method name="resetLabel" returnType="void" visibility="protected" isSynchronized="true">
+          <Argument type="int" name="time"/>
+          <Argument type="JLabel" name="label"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ScreenNames" package="constants" visibility="public" xPosition="2670.0" yPosition="58.0">
+      <Fields>
+        <Field name="ADD_CUSTOMER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ADD_FLIGHT" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ADD_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ADD_USER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="CHANGE_SETTINGS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="CUSTOMER_DETAILS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="DELETE_CUSTOMER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="DELETE_FLIGHT" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="DELETE_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="EXAMPLE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FIRST_START" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FLIGHT_DETAILS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="GENERATE_STATISTICS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="HELP" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="HOME_SCREEN_ADMINISTRATOR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="HOME_SCREEN_EMPLOYEE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="HOME_SCREEN_MANAGER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LOGINSCREEN" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LUGGAGE_DETAILS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SEARCH_CUSTOMER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SEARCH_FLIGHT" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SEARCH_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="USER_MANAGEMENT" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Styling" package="constants" visibility="public" xPosition="899.0" yPosition="420.0">
+      <Fields>
+        <Field name="MINIMUM_DIMENSION" type="Dimension" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="CORENDON_RED" type="Color" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Filters" package="helpers" visibility="public" isFinal="true" xPosition="1854.0" yPosition="3162.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="filteredAdress" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+        </Method>
+        <Method name="filteredCellphone" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+        </Method>
+        <Method name="filteredEmail" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+        </Method>
+        <Method name="fitleredPostcode" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+        </Method>
+        <Method name="filteredDate" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalDate"/>
+          <Argument type="String" name="dateFormat"/>
+        </Method>
+        <Method name="filteredDateTime" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalDateTime"/>
+        </Method>
+        <Method name="filteredDateTime" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalDateTime"/>
+          <Argument type="Timestamp" name="minimumDateTime"/>
+          <Argument type="Timestamp" name="maximumDateTime"/>
+        </Method>
+        <Method name="filteredInt" returnType="int" visibility="public" isStatic="true">
+          <Argument type="int" name="originalInt"/>
+          <Argument type="int" name="minimumInt"/>
+          <Argument type="int" name="maximumInt"/>
+        </Method>
+        <Method name="filteredInt" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalInt"/>
+          <Argument type="int" name="minimumInt"/>
+          <Argument type="int" name="maximumInt"/>
+        </Method>
+        <Method name="filteredString" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+          <Argument type="char[]" name="characters"/>
+          <Argument type="boolean" name="whitelist"/>
+        </Method>
+        <Method name="filteredString" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+          <Argument type="int" name="minLength"/>
+          <Argument type="int" name="maxLength"/>
+        </Method>
+        <Method name="filteredString" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="originalString"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ImageMaker" package="helpers" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="imageIcon" type="ImageIcon" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getPath" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="base64Encode" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="resizeImage" returnType="ImageIcon" visibility="public" isStatic="true">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+          <Argument type="String" name="path"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Math" package="helpers" visibility="public" isFinal="true" xPosition="1635.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="safeDivision" returnType="double" visibility="public" isStatic="true">
+          <Argument type="double" name="a"/>
+          <Argument type="double" name="b"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LuggageControl" package="main" visibility="public" xPosition="2334.0" yPosition="859.0">
+      <Fields>
+        <Field name="addCustomer" type="screen.add.AddCustomer" visibility="private"/>
+        <Field name="addFlight" type="screen.add.AddFlight" visibility="private"/>
+        <Field name="addLuggage" type="screen.add.AddLuggage" visibility="private"/>
+        <Field name="addUser" type="screen.add.AddUser" visibility="private"/>
+        <Field name="changeSettings" type="screen.ChangeSettings" visibility="private"/>
+        <Field name="customerDetails" type="screen.details.CustomerDetails" visibility="private"/>
+        <Field name="deleteCustomer" type="screen.delete.DeleteCustomer" visibility="private"/>
+        <Field name="deleteFlight" type="screen.delete.DeleteFlight" visibility="private"/>
+        <Field name="deleteLuggage" type="screen.delete.DeleteLuggage" visibility="private"/>
+        <Field name="example" type="screen.Example" visibility="private"/>
+        <Field name="firstStart" type="screen.FirstStart" visibility="private"/>
+        <Field name="flightDetails" type="screen.details.FlightDetails" visibility="private"/>
+        <Field name="generateStatistics" type="screen.GenerateStatistics" visibility="private"/>
+        <Field name="help" type="screen.Help" visibility="private"/>
+        <Field name="helpAdding" type="screen.help.Adding" visibility="private"/>
+        <Field name="helpFinding" type="screen.help.Finding" visibility="private"/>
+        <Field name="helpLinking" type="screen.help.Linking" visibility="private"/>
+        <Field name="helpRemoving" type="screen.help.Removing" visibility="private"/>
+        <Field name="homeScreenAdministrator" type="screen.home.HomeScreenAdministrator" visibility="private"/>
+        <Field name="homeScreenEmployee" type="screen.home.HomeScreenEmployee" visibility="private"/>
+        <Field name="homeScreenManager" type="screen.home.HomeScreenManager" visibility="private"/>
+        <Field name="loginScreen" type="screen.LoginScreen" visibility="private"/>
+        <Field name="luggageDetails" type="screen.details.LuggageDetails" visibility="private"/>
+        <Field name="searchCustomer" type="screen.search.SearchCustomer" visibility="private"/>
+        <Field name="searchFlight" type="screen.search.SearchFlight" visibility="private"/>
+        <Field name="searchLuggage" type="screen.search.SearchLuggage" visibility="private"/>
+        <Field name="userManagement" type="screen.details.UserDetails" visibility="private"/>
+        <Field name="componentsInitialized" type="boolean" visibility="private"/>
+        <Field name="menuBar" type="JMenuBar" visibility="private"/>
+        <Field name="currentPanel" type="SwitchingJPanel" visibility="private"/>
+        <Field name="previousPanel" type="SwitchingJPanel" visibility="private"/>
+        <Field name="graphicsDevice" type="GraphicsDevice" visibility="private"/>
+        <Field name="monitorSize" type="Dimension" visibility="private"/>
+        <Field name="secman" type="SecurityMan" visibility="private"/>
+        <Field name="conman" type="ConfigurationMan" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="initComponents" returnType="void" visibility="public"/>
+        <Method name="switchPreviousPanel" returnType="void" visibility="public"/>
+        <Method name="removeCurrentJPanel" returnType="void" visibility="private"/>
+        <Method name="switchHomeScreen" returnType="void" visibility="public"/>
+        <Method name="switchJPanel" returnType="void" visibility="public">
+          <Argument type="String" name="panelName"/>
+        </Method>
+        <Method name="switchTab" returnType="void" visibility="public">
+          <Argument type="String" name="tabName"/>
+          <Argument type="String" name="panelName"/>
+        </Method>
+        <Method name="updatePreviousPanel" returnType="void" visibility="private"/>
+        <Method name="prefillPanel" returnType="void" visibility="public">
+          <Argument type="String" name="panelName"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="loginUser" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="loginUser" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="char[]" name="password"/>
+        </Method>
+        <Method name="setUserAFK" returnType="void" visibility="public">
+          <Argument type="boolean" name="userAFK"/>
+        </Method>
+        <Method name="userTimeOut" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ConfigurationMan" package="managers" visibility="public" xPosition="2652.0" yPosition="801.0">
+      <Fields>
+        <Field name="proceedInitialization" type="boolean" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="CONFIG_NAME" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="OS" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="MYSQL_DUMP_LOCATION" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="luggageControl" type="LuggageControl" visibility="private" isFinal="true"/>
+        <Field name="msqlDialog" type="FindMysqlJDialog" visibility="private"/>
+        <Field name="writer" type="Writer" visibility="package"/>
+        <Field name="br" type="BufferedReader" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="checkConfigFile" returnType="boolean" visibility="private"/>
+        <Method name="getInitialConfiguration" returnType="boolean" visibility="public"/>
+        <Method name="getMysqlDumpLocationWindows" returnType="String" visibility="public" isStatic="true">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Method>
+        <Method name="mysqlDumpExists" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Method>
+        <Method name="findMysqlDumpLocationWindows" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DatabaseMan" package="managers" visibility="public" xPosition="45.0" yPosition="1492.0">
+      <Fields>
+        <Field name="HOST_NAME" type="String" visibility="private" isFinal="true"/>
+        <Field name="DATABASE_USERNAME" type="String" visibility="private" isFinal="true"/>
+        <Field name="DATABASE_PASSWORD" type="String" visibility="private" isFinal="true"/>
+        <Field name="DATABASE_NAME" type="String" visibility="private" isFinal="true"/>
+        <Field name="PS_TYPE_STRING" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PS_TYPE_INT" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="exportDatabase" returnType="void" visibility="public" isStatic="true">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Method>
+        <Method name="queryOneResult" returnType="String" visibility="public">
+          <Argument type="String" name="query"/>
+          <Argument type="String[]" name="values"/>
+        </Method>
+        <Method name="query" returnType="ResultSet" visibility="public">
+          <Argument type="String" name="query"/>
+          <Argument type="String[]" name="values"/>
+        </Method>
+        <Method name="queryManipulation" returnType="void" visibility="public">
+          <Argument type="String" name="query"/>
+          <Argument type="String[]" name="values"/>
+          <Argument type="String[]" name="types"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ScreenMan" package="managers" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="SecurityMan" package="managers" visibility="public" xPosition="1525.0" yPosition="2751.0">
+      <Fields>
+        <Field name="luggageControl" type="LuggageControl" visibility="private"/>
+        <Field name="databaseMan" type="DatabaseMan" visibility="private"/>
+        <Field name="userPermissions" type="AtomicInteger" visibility="private"/>
+        <Field name="userLoggedIn" type="AtomicBoolean" visibility="private"/>
+        <Field name="defaultTimeOutTime" type="int" visibility="private"/>
+        <Field name="timeOutTime" type="int" visibility="private"/>
+        <Field name="userAFK" type="AtomicBoolean" visibility="private"/>
+        <Field name="timeOut" type="Timer" visibility="private"/>
+        <Field name="fireTimeOut" type="timeOutTimerTask" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="encodePassword" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="saltString"/>
+        </Method>
+        <Method name="createSalt" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="logInUser" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getPermissions" returnType="int" visibility="public"/>
+        <Method name="getLoggedIn" returnType="boolean" visibility="public"/>
+        <Method name="getUserAFK" returnType="boolean" visibility="public"/>
+        <Method name="setUserAFK" returnType="void" visibility="public">
+          <Argument type="boolean" name="useAFK"/>
+        </Method>
+        <Method name="getTimeOutTime" returnType="int" visibility="public"/>
+        <Method name="resetTimeOutTime" returnType="boolean" visibility="public">
+          <Argument type="boolean" name="resetTimer"/>
+        </Method>
+        <Method name="resetTimer" returnType="boolean" visibility="public"/>
+        <Method name="setTimeOutTime" returnType="boolean" visibility="public">
+          <Argument type="int" name="newTimeOutTime"/>
+          <Argument type="boolean" name="resetTimer"/>
+        </Method>
+        <Method name="startTimer" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AddCustomer" package="screen.add" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="sc" type="SecurityMan" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="package"/>
+        <Field name="butonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonConfirm" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchFlight" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxLugStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="labelAddCustomer" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelQuickSearch" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="panelSearchFlight" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelSearchLuggage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="scrollPaneContent" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneFlightTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneLuggageTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tabPaneSearch" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="tableLugSearchFlight" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tableLugSearchLuggage" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldAdress" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldBirthday" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldCellphoneNumber" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldFlightArrival" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightDeparture" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightDestination" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightOrigin" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldGender" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldLugLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldName" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldPostcode" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldSurName" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textPaneContent" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="searchLuggage" returnType="void" visibility="private"/>
+        <Method name="searchFlight" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="butonCancelbuttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonConfirmActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchLuggage" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchFlight" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AddFlight" package="screen.add" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="sc" type="SecurityMan" visibility="private"/>
+        <Field name="butonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonConfirm" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxLugStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="labelAddCustomer" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelQuickSearch" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="panelSearchCustomer" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelSearchLuggage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="scrollPaneContent" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneLuggageTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tabPaneSearch" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="tableLugSearchLuggage" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tableSearchCustomer" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldArrivalTime" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCellphone" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldDepartureTime" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldDestination" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFirstName" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightnumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLugLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageID" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldOrigin" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldOwnerID" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSurName" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textPaneContent" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addFlight" returnType="void" visibility="private"/>
+        <Method name="clearFlight" returnType="void" visibility="private"/>
+        <Method name="searchCustomer" returnType="void" visibility="private"/>
+        <Method name="searchLuggage" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonConfirmActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="butonCancelbuttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchCustomerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchLuggage" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AddLuggage" package="screen.add" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="imageBase64" type="String" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="butonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonConfirm" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUploadImage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxLuggageStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="labelAddLuggage" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="pic" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="textFieldColor" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightnumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldOwnerID" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSize" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldWeight" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textPaneContent" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearFields" returnType="void" visibility="public"/>
+        <Method name="encodeImage" returnType="String" visibility="public" isStatic="true">
+          <Argument type="byte[]" name="imageByteArray"/>
+        </Method>
+        <Method name="checkInput" returnType="boolean" visibility="public"/>
+        <Method name="addLuggage" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonUploadImagebuttonUploadsImageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonConfirmActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="butonCancelbuttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AddUser" package="screen.add" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields>
+        <Field name="secman" type="SecurityMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonConfirm" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUploadImage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxGender" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxProfession" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="labelAddUser" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="pic" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="textFieldAdress" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldBirthday" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCellphone" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFirstname" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldNationality" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldPassword" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldPostalcode" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSurname" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUsername" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUploadImageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonConfirmActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ChangeSettings" package="screen" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Fields>
+        <Field name="buttonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonChangeSettings" type="javax.swing.JButton" visibility="private"/>
+        <Field name="checkBoxTextToSpeach" type="javax.swing.JCheckBox" visibility="private"/>
+        <Field name="comboBoxButtonFontSize" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxHeaderFontSize" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxParagraphFontSize" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="labelChangeSettings" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="checkBoxTextToSpeachActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonChangeSettingsActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="comboBoxParagraphFontSizeActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DeleteCustomer" package="screen.delete" visibility="public" xPosition="2850.0" yPosition="801.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneDeleteCustomer" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableDeleteCustomer" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldCustomerEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCustomerId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCustomerName" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCustomerSurname" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="textFieldCustomerNameActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldCustomerSurnameActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldCustomerEmailActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldCustomerIdActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="formAncestorAdded" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.AncestorEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUpdateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buildTable" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DeleteFlight" package="screen.delete" visibility="public" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableFlights" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldArrival" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldDeparture" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldDestination" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightNumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldOrigin" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonBack" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelp" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearch" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="flightNumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUpdate" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldOriginflightNumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldDestinationflightNumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldDepartureflightNumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldArrivalflightNumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldOriginActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldDepartureActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldFlightNumberActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="formAncestorAdded" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.AncestorEvent" name="evt"/>
+        </Method>
+        <Method name="fillFlightTable" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DeleteLuggage" package="screen.delete" visibility="public" xPosition="620.0" yPosition="1220.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneLuggageTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableDeleteLuggage" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldFlightNumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageID" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldStatus" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="fillFlightTable" returnType="void" visibility="private"/>
+        <Method name="textFieldFlightNumberActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldLuggageIDActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldStatusActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldLocationActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="formAncestorAdded" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.AncestorEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUpdateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CustomerDetails" package="screen.details" visibility="public" xPosition="920.0" yPosition="1220.0">
+      <Fields>
+        <Field name="currentCustomerId" type="int" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonCancelChanges" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonRemoveFlightNumber" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonRemoveLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchFlight" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdateCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxFlight" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxGender" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxLugStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxLuggage" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="labeBirthday" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelBirthdayDisplay" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHeaderLeftSide" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHeaderSearch" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelNameDisplay" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelOwnerId" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelOwnerId1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelOwnerId2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelOwnerIdDisplay" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelSurname" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelSurnameDisplay" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="panelSearchFlight" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelSearchLuggage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="scrollPaneContent" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneFlightTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneLuggageTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="separatorScreenDefider" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="tabPaneSearch" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="tableLugSearchFlight" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tableLugSearchLuggage" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldAddFlight" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldAddLuggage" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldAdress" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCellphone" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFliArrival" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFliDeparture" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFliDestination" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFliOrigin" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLugLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldPostcode" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textPaneContent" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearCustomerData" returnType="void" visibility="private"/>
+        <Method name="fillCustomerFlights" returnType="void" visibility="private"/>
+        <Method name="fillCustomerFlights" returnType="void" visibility="private">
+          <Argument type="int" name="customerId"/>
+        </Method>
+        <Method name="fillCustomerLuggage" returnType="void" visibility="private"/>
+        <Method name="fillCustomerLuggage" returnType="void" visibility="private">
+          <Argument type="int" name="customerId"/>
+        </Method>
+        <Method name="loadCustomer" returnType="void" visibility="public">
+          <Argument type="int" name="customerID"/>
+        </Method>
+        <Method name="removeCustomerFlightLink" returnType="void" visibility="private">
+          <Argument type="int" name="flight_id"/>
+        </Method>
+        <Method name="removeCustomerLuggageLink" returnType="void" visibility="private">
+          <Argument type="int" name="luggage_id"/>
+        </Method>
+        <Method name="updateCustomer" returnType="void" visibility="private"/>
+        <Method name="setCustomerGender" returnType="void" visibility="private">
+          <Argument type="String" name="gender"/>
+        </Method>
+        <Method name="searchLuggage" returnType="void" visibility="private"/>
+        <Method name="searchFlight" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="backToSearchCustomer" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchLuggage" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUpdateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonRemoveFlight" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchFlight" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonRemoveLuggage" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FlightDetails" package="screen.details" visibility="public" xPosition="1220.0" yPosition="1220.0">
+      <Fields>
+        <Field name="currentFlightId" type="int" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="sc" type="SecurityMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonCancelChanges" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdateCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxLuggageStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jTabbedPane1" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="labelDisplayFLightnumber" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHeaderLeftSide" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHeaderSearch" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelOwnerIdDisplay" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneLuggageTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="scrollPaneTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableSearchCustomer" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tableSearchLuggage" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldCellphone" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFirstName" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLugLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSurName" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUpdateArrivaDate" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldUpdateDepartureDate" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldUpdateDestination" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="textFieldUpdateOrigin" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearFLight" returnType="void" visibility="public"/>
+        <Method name="clearSearchLuggage" returnType="void" visibility="public"/>
+        <Method name="clearSearchCustomer" returnType="void" visibility="public"/>
+        <Method name="searchCustomer" returnType="void" visibility="private"/>
+        <Method name="searchLuggage" returnType="void" visibility="private"/>
+        <Method name="loadFlight" returnType="void" visibility="public">
+          <Argument type="int" name="FlightID"/>
+        </Method>
+        <Method name="updateFlight" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUpdateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchLuggageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchCustomerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LuggageDetails" package="screen.details" visibility="public" xPosition="1520.0" yPosition="1220.0">
+      <Fields>
+        <Field name="currentLuggageId" type="int" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="sc" type="SecurityMan" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxUpdateStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="labelDestination" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelDisplayDestination" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelDisplayFlightnumber" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelDisplayOrigin" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelFlightnumber" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelLuggageDetails" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelOrigin" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelSearch" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="separatorCenter" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="tableCustomerSearch" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldSearchBirthday" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSearchFirstname" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSearchSurname" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUpdateColor" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUpdateLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUpdateOwnerID" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUpdateSize" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUpdateWeight" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textPaneUpdateContent" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearLuggage" returnType="void" visibility="public"/>
+        <Method name="loadLuggage" returnType="void" visibility="public">
+          <Argument type="int" name="luggageID"/>
+        </Method>
+        <Method name="updateLuggage" returnType="void" visibility="private"/>
+        <Method name="setLuggageStatus" returnType="void" visibility="private">
+          <Argument type="String" name="status"/>
+        </Method>
+        <Method name="fillSearchLuggageTable" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonUpdateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="butonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserDetails" package="screen.details" visibility="public" xPosition="1820.0" yPosition="1220.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="LabelUserId" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonDelete" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUpdate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxProfession" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="labelName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelUserDetails" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelUserSearch" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableUserSearch" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldAdress" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCellphoneNumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCity" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUserId" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldZipcode" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonUpdateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDeletebutonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="fillSearchUserTable" returnType="void" visibility="private"/>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Example" package="screen" visibility="public" xPosition="2120.0" yPosition="1220.0">
+      <Fields>
+        <Field name="jButton10" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton9" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jComboBox1" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jFormattedTextField1" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton9ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton10ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FirstStart" package="screen" visibility="public" xPosition="3027.0" yPosition="2100.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="secman" type="SecurityMan" visibility="private"/>
+        <Field name="userImage" type="String" visibility="private"/>
+        <Field name="buttonDatabaseRetry" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonFinish" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonPOneNext" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonPThreeNext" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonPTwoNext" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonPthreeCreateUser" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUploadImage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxGender" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jList1" type="javax.swing.JList" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane3" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jTextPane1" type="javax.swing.JTextPane" visibility="private"/>
+        <Field name="jTextPane2" type="javax.swing.JTextPane" visibility="private"/>
+        <Field name="labelDatabaseStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelPoneHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelPthreeHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelPtwoHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelPtwoHeader1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelUserStatus" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="layeredPaneSubScreens" type="javax.swing.JLayeredPane" visibility="private"/>
+        <Field name="panelFour" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelOne" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelThree" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelTwo" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelUserImage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="progressBarConfig" type="javax.swing.JProgressBar" visibility="private"/>
+        <Field name="textFieldAdress" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldBirthday" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldCellphone" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFirstname" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldNationality" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldPassword" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldPostalcode" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSurname" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldUsername" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="userPic" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="createUser" returnType="void" visibility="private"/>
+        <Method name="testUser" returnType="void" visibility="private"/>
+        <Method name="testDatabase" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonPOneNextActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonPTwoNextActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonPThreeNextActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDatabaseRetryActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUploadImageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonPthreeCreateUserActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonFinishActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GenerateStatistics" package="screen" visibility="public" xPosition="320.0" yPosition="1620.0">
+      <Fields>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonGenerate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxStatisticSort" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="comboBoxStatisticType" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="labelHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="textFieldLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldStartDate" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonBackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonGenerateActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Adding" package="screen.help" visibility="public" xPosition="620.0" yPosition="1620.0">
+      <Fields>
+        <Field name="ADD_CUSTOMER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ADD_FLIGHTS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ADD_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="panelAddCustomer" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelAddFlights" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelAddLuggage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="screenName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tabAdding" type="javax.swing.JTabbedPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="selectTab" returnType="void" visibility="public">
+          <Argument type="String" name="tabName"/>
+        </Method>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="buttonBackbackToPreviousScreen" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Finding" package="screen.help" visibility="public" xPosition="920.0" yPosition="1620.0">
+      <Fields>
+        <Field name="FIND_CUSTOMER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FIND_FLIGHTS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FIND_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FIND_LINKS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="linkingTab" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="panelFindCustomer" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelFindFlights" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelFindLinks" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelFindLuggage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="screenName" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="selectTab" returnType="void" visibility="public">
+          <Argument type="String" name="tabName"/>
+        </Method>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="buttonBackbackToPreviousScreen" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Linking" package="screen.help" visibility="public" xPosition="1220.0" yPosition="1620.0">
+      <Fields>
+        <Field name="CUSTOMER_TO_FLIGHTS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FLIGHTS_TO_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LUGGAGE_TO_CUSTOMER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LUGGAGE_TO_LUGGAGE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="linkingTab" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="lostFoundLuggageP" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelCustomersFlights" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelFlightsLuggage" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelLuggageCustomers" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="screenName" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="selectTab" returnType="void" visibility="public">
+          <Argument type="String" name="tabName"/>
+        </Method>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="buttonBackbackToPreviousScreen" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Removing" package="screen.help" visibility="public" xPosition="1520.0" yPosition="1620.0">
+      <Fields>
+        <Field name="REMOVE_ENTRIES" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="REMOVE_LINKS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="helpRemovingExample" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="helpRemovingHeader" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingFive" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingFive2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingFour" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingOTwo" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingOne" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingSix" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingSix2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingThree" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingThree2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHelpRemovingTwo2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="linkingTab" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="panelRemoveEntries" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panelRemoveLinks" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="screenName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneEntries" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="textPaneEntries" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="selectTab" returnType="void" visibility="public">
+          <Argument type="String" name="tabName"/>
+        </Method>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="buttonBackbackToPreviousScreen" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Help" package="screen" visibility="public" xPosition="1820.0" yPosition="1620.0">
+      <Fields>
+        <Field name="helpListDoubleClick" type="int" visibility="private"/>
+        <Field name="helpListPreviousValue" type="int" visibility="private"/>
+        <Field name="buttonBack" type="javax.swing.JButton" visibility="private"/>
+        <Field name="helpList" type="javax.swing.JList" visibility="private"/>
+        <Field name="labelScreenHelp" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneHelpList" type="javax.swing.JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="openHelpScreen" returnType="void" visibility="public">
+          <Argument type="String" name="listItemName"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonBackbackToPreviousScreen" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="helpListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="helpListKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HomeScreenAdministrator" package="screen.home" visibility="public" xPosition="2120.0" yPosition="1620.0">
+      <Fields>
+        <Field name="buttonAddUser" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonChangeSettings" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonDatabaseExport" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonDatabaseImport" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonDeleteCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonDeleteFlight" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonDeleteLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonUserManagement" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelDatabaseManagement" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHome" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonChangeSettingsActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDeleteCustomerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDeleteLuggageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonUserManagementActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonAddUserActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDatabaseImportActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDatabaseExportActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonDeleteFlight" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HomeScreenEmployee" package="screen.home" visibility="public" xPosition="2238.0" yPosition="2141.0">
+      <Fields>
+        <Field name="sc" type="SecurityMan" visibility="private"/>
+        <Field name="db" type="DatabaseMan" visibility="package"/>
+        <Field name="buttonAddCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonAddFlight" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonAddLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonChangeSettings" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchCustomer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchFlight" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearchLuggage" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelHeaderLeftSide" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelHeaderRightSide" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneQuickSearchTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableLuggage" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldFlightNumber" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearLuggageTable" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonChangeSettingsActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchLuggageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchCustomerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonAddLuggageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonAddCustomerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonAddFlightActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchFlightActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldFlightNumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="tableLuggageKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldFlightNumberActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buildTable" returnType="void" visibility="private">
+          <Argument type="String" name="query"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HomeScreenManager" package="screen.home" visibility="public" xPosition="320.0" yPosition="2020.0">
+      <Fields>
+        <Field name="buttonChangeSettings" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonExportStatistics" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonGenerateStatistics" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxStatistics" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="labelHome" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="panelChart" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonGenerateStatisticsActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonExportStatisticsActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonChangeSettingsActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LoginScreen" package="screen" visibility="public" xPosition="620.0" yPosition="2020.0">
+      <Fields>
+        <Field name="buttonLogin" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelLoginError" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="textFieldPassword" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="textFieldUsername" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonLoginActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldUserKeyPress" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldPassKeyPress" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="panelMouseMoved" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="loginUser" returnType="boolean" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="SearchCustomer" package="screen.search" visibility="public" xPosition="920.0" yPosition="2020.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelp" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="labelSearchCustomer" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="scrollPaneTable" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="tableCustomer" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldCellphone" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldEmail" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFirstName" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightnumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldSurName" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearCustomerTable" returnType="void" visibility="private"/>
+        <Method name="clearSearchCustomer" returnType="void" visibility="public"/>
+        <Method name="fillCustomerTable" returnType="void" visibility="public"/>
+        <Method name="switchCustomerDetails" returnType="void" visibility="public">
+          <Argument type="int" name="customerId"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="textFieldFlightnumberKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="tableCustomerKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="tableCustomerMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="formAncestorAdded" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.AncestorEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SearchFlight" package="screen.search" visibility="public" xPosition="714.0" yPosition="2795.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelpLinking" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="labelSearchFlight" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tableFlightSearch" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldArrivalTime" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldDepartureTime" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldDestination" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldFlightnumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldOrigin" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearSearchLuggage" returnType="void" visibility="public"/>
+        <Method name="switchFlightDetails" returnType="void" visibility="public">
+          <Argument type="int" name="flightId"/>
+        </Method>
+        <Method name="fillSearchLuggageTable" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonHelpLinkingbuttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tableFlightSearchKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SearchLuggage" package="screen.search" visibility="public" xPosition="1520.0" yPosition="2020.0">
+      <Fields>
+        <Field name="db" type="DatabaseMan" visibility="private"/>
+        <Field name="buttonCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonHelpLinking" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buttonSearch" type="javax.swing.JButton" visibility="private"/>
+        <Field name="comboBoxLuggageStatus" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="labelSearchLuggage" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tableLuggageSearch" type="javax.swing.JTable" visibility="private"/>
+        <Field name="textFieldFlightNumber" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLocation" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldLuggageID" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="textFieldOwnerID" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LuggageControl" name="luggageControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clearSearchLuggage" returnType="void" visibility="public"/>
+        <Method name="switchLuggageDetails" returnType="void" visibility="public">
+          <Argument type="int" name="luggageId"/>
+        </Method>
+        <Method name="fillSearchLuggageTable" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="buttonHelpActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="buttonSearchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tableLuggageSearchKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="formAncestorAdded" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.AncestorEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DataBaseQueryExample" package="snippits" visibility="public" xPosition="1820.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ErrorPopupExample" package="snippits" visibility="public" xPosition="2120.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PDFbox" package="snippits" visibility="public" xPosition="20.0" yPosition="2420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PieChart_AWT" package="snippits" visibility="public" xPosition="320.0" yPosition="2420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="JFreeChart" name="chart"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="createDataset" returnType="PieDataset" visibility="private" isStatic="true"/>
+        <Method name="createChart" returnType="JFreeChart" visibility="private" isStatic="true">
+          <Argument type="PieDataset" name="dataset"/>
+        </Method>
+        <Method name="createDemoPanel" returnType="JPanel" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="PromptSupportTextFieldPlaceholder" package="snippits" visibility="public" xPosition="620.0" yPosition="2420.0">
+      <Fields>
+        <Field name="randomTextField" type="javax.swing.JFormattedTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="SwitchingJPanel" package="snippits" visibility="public" xPosition="341.0" yPosition="2858.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="examplePanel" package="snippits" visibility="public" xPosition="1220.0" yPosition="2420.0">
+      <Fields>
+        <Field name="sJPanelEventsInstance" type="SJPanelEvents" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SJPanelEvents" name="sJPanelEventsReference"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="examplePanel2" package="snippits" visibility="public" xPosition="1520.0" yPosition="2420.0">
+      <Fields>
+        <Field name="sJPanelEventsInstance" type="SJPanelEvents" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SJPanelEvents" name="sJPanelEventsReference"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="SwitchingJPanelExample" package="snippits" visibility="public" xPosition="1820.0" yPosition="2420.0">
+      <Fields>
+        <Field name="exmPanel" type="examplePanel" visibility="private"/>
+        <Field name="exmPanel2" type="examplePanel2" visibility="private"/>
+        <Field name="sjPanelEventsInstance" type="SwitchingJPanel.SJPanelEvents" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="switchJPanel" returnType="void" visibility="private">
+          <Argument type="String" name="screenName"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TestingLayouts" package="snippits" visibility="public" xPosition="2120.0" yPosition="2420.0">
+      <Fields>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTextPane1" type="javax.swing.JTextPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="UploadingAndLoadingImage" package="snippits" visibility="public" xPosition="20.0" yPosition="2820.0">
+      <Fields>
+        <Field name="labelName" type="JLabel" visibility="package"/>
+        <Field name="fileChooser" type="JFileChooser" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="screen.FirstStart" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="conman" source="main.LuggageControl" target="managers.ConfigurationMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.details.CustomerDetails" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.search.SearchLuggage" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="sc" source="screen.details.FlightDetails" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.delete.DeleteLuggage" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.search.SearchLuggage" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.Example" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.add.AddUser" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.GenerateStatistics" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="administration.LuggageAdm" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sc" source="screen.home.HomeScreenEmployee" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.FirstStart" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="exmPanel" source="snippits.SwitchingJPanelExample" target="snippits.examplePanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="snippits.examplePanel" target="snippits.SwitchingJPanel"/>
+    <HasRelation name="exmPanel2" source="snippits.SwitchingJPanelExample" target="snippits.examplePanel2" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="databaseMan" source="managers.SecurityMan" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="previousPanel" source="main.LuggageControl" target="snippits.SwitchingJPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.add.AddLuggage" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.help.Linking" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.home.HomeScreenEmployee" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="luggageControl" source="managers.SecurityMan" target="main.LuggageControl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sc" source="screen.details.LuggageDetails" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="administration.CustomerAdm" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.details.LuggageDetails" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.home.HomeScreenEmployee" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="baseClasses.ErrorJDialog" target="baseClasses.PopUpJDialog"/>
+    <IsRelation name="is" source="screen.details.CustomerDetails" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.search.SearchFlight" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="snippits.examplePanel2" target="snippits.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.add.AddCustomer" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.details.UserDetails" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="luggageControl" source="managers.ConfigurationMan" target="main.LuggageControl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.delete.DeleteFlight" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.delete.DeleteCustomer" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="secman" source="screen.add.AddUser" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.add.AddFlight" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="managers.ConfigurationMan" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="baseClasses.Administration" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentPanel" source="main.LuggageControl" target="snippits.SwitchingJPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.details.LuggageDetails" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.help.Removing" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.Help" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.help.Adding" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="administration.UsersAdm" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.home.HomeScreenManager" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="sc" source="screen.add.AddFlight" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.search.SearchCustomer" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.search.SearchCustomer" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.delete.DeleteFlight" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.delete.DeleteLuggage" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.add.AddLuggage" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="screen.details.FlightDetails" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="secman" source="main.LuggageControl" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.add.AddFlight" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.home.HomeScreenAdministrator" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="sc" source="screen.add.AddCustomer" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="administration.FlightsAdm" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.help.Finding" target="baseClasses.SwitchingJPanel"/>
+    <UseRelation source="managers.ConfigurationMan" target="main.LuggageControl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.add.AddCustomer" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="snippits.UploadingAndLoadingImage" target="snippits.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.ChangeSettings" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="luggageControl" source="snippits.SwitchingJPanel" target="main.LuggageControl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.LoginScreen" target="baseClasses.SwitchingJPanel"/>
+    <IsRelation name="is" source="screen.delete.DeleteCustomer" target="baseClasses.SwitchingJPanel"/>
+    <HasRelation name="db" source="screen.details.UserDetails" target="managers.DatabaseMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.search.SearchFlight" target="baseClasses.SwitchingJPanel"/>
+    <UseRelation source="managers.DatabaseMan" target="main.LuggageControl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="secman" source="screen.FirstStart" target="managers.SecurityMan" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="screen.details.FlightDetails" target="baseClasses.SwitchingJPanel"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

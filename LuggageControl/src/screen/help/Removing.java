@@ -47,47 +47,223 @@ public class Removing extends SwitchingJPanel {
         screenName = new javax.swing.JLabel();
         linkingTab = new javax.swing.JTabbedPane();
         panelRemoveEntries = new javax.swing.JPanel();
-        scrollPaneEntries = new javax.swing.JScrollPane();
-        textPaneEntries = new javax.swing.JTextPane();
+        scrollPaneHelpRemoving = new javax.swing.JScrollPane();
+        textPaneRemoving = new javax.swing.JTextPane();
+        labelHelpRemovingImage = new javax.swing.JLabel();
+        helpRemovingHeader = new javax.swing.JLabel();
+        labelHelpRemovingOne = new javax.swing.JLabel();
+        labelHelpRemovingOTwo = new javax.swing.JLabel();
+        labelHelpRemovingTwo2 = new javax.swing.JLabel();
+        labelHelpRemovingThree = new javax.swing.JLabel();
+        labelHelpRemovingThree2 = new javax.swing.JLabel();
+        labelHelpRemovingFour = new javax.swing.JLabel();
+        labelHelpRemovingFive = new javax.swing.JLabel();
+        labelHelpRemovingFive2 = new javax.swing.JLabel();
+        labelHelpRemovingSix = new javax.swing.JLabel();
+        labelHelpRemovingSix2 = new javax.swing.JLabel();
+        helpRemovingExample = new javax.swing.JLabel();
         panelRemoveLinks = new javax.swing.JPanel();
+        scrollPaneHelpRemoving1 = new javax.swing.JScrollPane();
+        textPaneRemoving1 = new javax.swing.JTextPane();
+        labelHelpRemovingImage1 = new javax.swing.JLabel();
+        helpLinkingHeader = new javax.swing.JLabel();
+        labelHelpLinkingOne = new javax.swing.JLabel();
+        labelHelpLinkingTwo = new javax.swing.JLabel();
+        labelHelpLinkingThree = new javax.swing.JLabel();
+        labelHelpLinkingThree2 = new javax.swing.JLabel();
+        labelHelpLinkingFour = new javax.swing.JLabel();
+        labelHelpLinkingFive = new javax.swing.JLabel();
+        labelHelpLinkingFive2 = new javax.swing.JLabel();
+        labelHelpLinkingSix = new javax.swing.JLabel();
+        helpLinkingExample = new javax.swing.JLabel();
+        helpLinkingExample2 = new javax.swing.JLabel();
         buttonBack = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setDoubleBuffered(false);
+        setPreferredSize(new java.awt.Dimension(800, 400));
 
         screenName.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         screenName.setText("Help - removing");
         screenName.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        textPaneEntries.setEditable(false);
-        textPaneEntries.setText("Only the administrator can remove database entries, employees or managers must supply the primary key ID to the database entry in order for it to be removed. The following entries can be removed: Customers, Flights, Luggage, Users. Removing entries also removes any links to other entries for instance: removing a suitcase also removes every reference to users finding or losing this suitcase it will be as if the never lost or found it. Removing entries will effect statistics generated for manager type users.");
-        scrollPaneEntries.setViewportView(textPaneEntries);
+        textPaneRemoving.setEditable(false);
+        textPaneRemoving.setText("Only the administrator can remove database entries. The following entries can be removed: Customers, Flights, Luggage, Users. Removing entries also removes any links or references to other entries for instance: removing a suitcase also removes every reference to users finding or losing this suitcase it will be as if the never lost or found it. Removing entries will effect statistics generated for manager type users.");
+        scrollPaneHelpRemoving.setViewportView(textPaneRemoving);
+
+        labelHelpRemovingImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/help.removing.one.png"))); // NOI18N
+
+        helpRemovingHeader.setText("To remove an entry the following steps are to be taken.");
+
+        labelHelpRemovingOne.setText("#1 - Login as an administrive user.");
+
+        labelHelpRemovingOTwo.setText("#2 - Proceed to a delete screen by pressing one of the 3 delete screens");
+
+        labelHelpRemovingTwo2.setText("in the top right corner.");
+
+        labelHelpRemovingThree.setText("#3 - On the delete screen fill in as most of details you know about the");
+
+        labelHelpRemovingThree2.setText("you want to remove.");
+
+        labelHelpRemovingFour.setText("#4 - Press the search button, the details will now be filled in the table.");
+
+        labelHelpRemovingFive.setText("#5 - Mark the checkbox on the right under the remove header");
+
+        labelHelpRemovingFive2.setText("for each of the entries you which to be removed.");
+
+        labelHelpRemovingSix.setText("#6 - Press update, all the marked entries will be removed");
+
+        labelHelpRemovingSix2.setText("and the table will be updated with new information.");
+
+        helpRemovingExample.setText("On the right you will see a example of how a delete screen looks");
 
         javax.swing.GroupLayout panelRemoveEntriesLayout = new javax.swing.GroupLayout(panelRemoveEntries);
         panelRemoveEntries.setLayout(panelRemoveEntriesLayout);
         panelRemoveEntriesLayout.setHorizontalGroup(
             panelRemoveEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRemoveEntriesLayout.createSequentialGroup()
-                .addComponent(scrollPaneEntries, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1508, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panelRemoveEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(helpRemovingHeader)
+                    .addComponent(labelHelpRemovingOne)
+                    .addComponent(labelHelpRemovingOTwo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelHelpRemovingTwo2)
+                    .addComponent(labelHelpRemovingThree)
+                    .addComponent(labelHelpRemovingThree2)
+                    .addComponent(labelHelpRemovingFour)
+                    .addComponent(labelHelpRemovingFive)
+                    .addComponent(labelHelpRemovingFive2)
+                    .addComponent(labelHelpRemovingSix)
+                    .addComponent(labelHelpRemovingSix2)
+                    .addComponent(helpRemovingExample)
+                    .addComponent(scrollPaneHelpRemoving, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingImage)
+                .addGap(12, 12, 12))
         );
         panelRemoveEntriesLayout.setVerticalGroup(
             panelRemoveEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRemoveEntriesLayout.createSequentialGroup()
-                .addComponent(scrollPaneEntries, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 796, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panelRemoveEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRemoveEntriesLayout.createSequentialGroup()
+                        .addComponent(scrollPaneHelpRemoving)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(helpRemovingHeader))
+                    .addGroup(panelRemoveEntriesLayout.createSequentialGroup()
+                        .addComponent(labelHelpRemovingImage)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingOne)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingOTwo)
+                .addGap(0, 0, 0)
+                .addComponent(labelHelpRemovingTwo2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingThree)
+                .addGap(0, 0, 0)
+                .addComponent(labelHelpRemovingThree2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingFour)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingFive)
+                .addGap(0, 0, 0)
+                .addComponent(labelHelpRemovingFive2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingSix)
+                .addGap(0, 0, 0)
+                .addComponent(labelHelpRemovingSix2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(helpRemovingExample)
+                .addGap(12, 12, 12))
         );
 
         linkingTab.addTab("remove entries", panelRemoveEntries);
+
+        textPaneRemoving1.setEditable(false);
+        textPaneRemoving1.setText("Employees can remove links between different kinds of data, between a flight and a cutsomer for example. Removing these links means the one will no longer be associated with the other. This has consequences for the way information is found and statistics be aware of these consequences before you remove links.");
+        scrollPaneHelpRemoving1.setViewportView(textPaneRemoving1);
+
+        labelHelpRemovingImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/help.removing.two.png"))); // NOI18N
+
+        helpLinkingHeader.setText("To remove links take the following steps");
+
+        labelHelpLinkingOne.setText("#1 - Login as an employee user.");
+
+        labelHelpLinkingTwo.setText("#2 - Open a search screen.");
+
+        labelHelpLinkingThree.setText("#3 - enter the desired details and acquire ");
+
+        labelHelpLinkingThree2.setText("the results.");
+
+        labelHelpLinkingFour.setText("#4 - open the details screen with the result.");
+
+        labelHelpLinkingFive.setText("#5 - select the desired id from the combox");
+
+        labelHelpLinkingFive2.setText("if you are uncertain about the id use the search panels on the right.");
+
+        labelHelpLinkingSix.setText("#6 - press the remove button");
+
+        helpLinkingExample.setText("On the right you will see a example of how a  screen ");
+
+        helpLinkingExample2.setText("with removing capabilities looks like.");
 
         javax.swing.GroupLayout panelRemoveLinksLayout = new javax.swing.GroupLayout(panelRemoveLinks);
         panelRemoveLinks.setLayout(panelRemoveLinksLayout);
         panelRemoveLinksLayout.setHorizontalGroup(
             panelRemoveLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1855, Short.MAX_VALUE)
+            .addGroup(panelRemoveLinksLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRemoveLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneHelpRemoving1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelRemoveLinksLayout.createSequentialGroup()
+                        .addGroup(panelRemoveLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelHelpLinkingFour)
+                            .addComponent(helpLinkingHeader)
+                            .addComponent(labelHelpLinkingOne)
+                            .addComponent(labelHelpLinkingTwo)
+                            .addComponent(labelHelpLinkingThree)
+                            .addComponent(labelHelpLinkingThree2)
+                            .addComponent(labelHelpLinkingFive)
+                            .addComponent(labelHelpLinkingFive2)
+                            .addComponent(labelHelpLinkingSix)
+                            .addComponent(helpLinkingExample)
+                            .addComponent(helpLinkingExample2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelHelpRemovingImage1)
+                .addGap(12, 12, 12))
         );
         panelRemoveLinksLayout.setVerticalGroup(
             panelRemoveLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 946, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRemoveLinksLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(panelRemoveLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRemoveLinksLayout.createSequentialGroup()
+                        .addComponent(scrollPaneHelpRemoving1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(helpLinkingHeader)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelHelpLinkingOne)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelHelpLinkingTwo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelHelpLinkingThree)
+                        .addGap(0, 0, 0)
+                        .addComponent(labelHelpLinkingThree2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelHelpLinkingFour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelHelpLinkingFive)
+                        .addGap(0, 0, 0)
+                        .addComponent(labelHelpLinkingFive2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelHelpLinkingSix)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(helpLinkingExample)
+                        .addGap(0, 0, 0)
+                        .addComponent(helpLinkingExample2))
+                    .addComponent(labelHelpRemovingImage1))
+                .addGap(12, 12, 12))
         );
 
         linkingTab.addTab("remove links", panelRemoveLinks);
@@ -106,12 +282,12 @@ public class Removing extends SwitchingJPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(linkingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 1503, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(linkingTab))
-                .addGap(30, 30, 30))
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,8 +297,8 @@ public class Removing extends SwitchingJPanel {
                     .addComponent(screenName, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(linkingTab)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(linkingTab, javax.swing.GroupLayout.PREFERRED_SIZE, 667, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         linkingTab.getAccessibleContext().setAccessibleName("Linking Luggage");
@@ -136,11 +312,38 @@ public class Removing extends SwitchingJPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
+    private javax.swing.JLabel helpLinkingExample;
+    private javax.swing.JLabel helpLinkingExample2;
+    private javax.swing.JLabel helpLinkingHeader;
+    private javax.swing.JLabel helpRemovingExample;
+    private javax.swing.JLabel helpRemovingHeader;
+    private javax.swing.JLabel labelHelpLinkingFive;
+    private javax.swing.JLabel labelHelpLinkingFive2;
+    private javax.swing.JLabel labelHelpLinkingFour;
+    private javax.swing.JLabel labelHelpLinkingOne;
+    private javax.swing.JLabel labelHelpLinkingSix;
+    private javax.swing.JLabel labelHelpLinkingThree;
+    private javax.swing.JLabel labelHelpLinkingThree2;
+    private javax.swing.JLabel labelHelpLinkingTwo;
+    private javax.swing.JLabel labelHelpRemovingFive;
+    private javax.swing.JLabel labelHelpRemovingFive2;
+    private javax.swing.JLabel labelHelpRemovingFour;
+    private javax.swing.JLabel labelHelpRemovingImage;
+    private javax.swing.JLabel labelHelpRemovingImage1;
+    private javax.swing.JLabel labelHelpRemovingOTwo;
+    private javax.swing.JLabel labelHelpRemovingOne;
+    private javax.swing.JLabel labelHelpRemovingSix;
+    private javax.swing.JLabel labelHelpRemovingSix2;
+    private javax.swing.JLabel labelHelpRemovingThree;
+    private javax.swing.JLabel labelHelpRemovingThree2;
+    private javax.swing.JLabel labelHelpRemovingTwo2;
     private javax.swing.JTabbedPane linkingTab;
     private javax.swing.JPanel panelRemoveEntries;
     private javax.swing.JPanel panelRemoveLinks;
     private javax.swing.JLabel screenName;
-    private javax.swing.JScrollPane scrollPaneEntries;
-    private javax.swing.JTextPane textPaneEntries;
+    private javax.swing.JScrollPane scrollPaneHelpRemoving;
+    private javax.swing.JScrollPane scrollPaneHelpRemoving1;
+    private javax.swing.JTextPane textPaneRemoving;
+    private javax.swing.JTextPane textPaneRemoving1;
     // End of variables declaration//GEN-END:variables
 }

@@ -51,7 +51,7 @@ public final class Filters {
      * @param originalString String to be checked for postcode validity
      * @return filteredPostcode with postcode or empty string if invalid.
      */
-    public static String fitleredPostcode(String originalString) {
+    public static String filteredPostcode(String originalString) {
         return originalString;
     }
     
