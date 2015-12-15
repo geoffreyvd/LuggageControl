@@ -105,7 +105,7 @@ public class ConfigurationMan {
             proceedInitialization = false;
             
             // go to initial config
-            this.luggageControl.switchJPanel(ScreenNames.FIRST_START);
+            this.luggageControl.switchJPanel(this.luggageControl.FIRST_START);
         }
 
         // windows test for mysqldump.exe location and if our file still exists
@@ -198,64 +198,61 @@ public class ConfigurationMan {
     }
     
     /**
-     * Find mysqldump.exe on the windows file system and store the location in the configuration file.
+     * Find <code>mysqldump.exe</code> on the windows file system and store the location in the configuration file.
      * @return if true if we found the location false if we failed to find it.
      */
-    public boolean findMysqlDumpLocationWindows() {
+    public void findMysqlDumpLocationWindows() {
         if(OS.equals("Linux")) {
-            return false;
+            return;
         }
         
-        msqlDialog = new FindMysqlJDialog(this.luggageControl, false);
-        String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
-        ProcessBuilder pb = new ProcessBuilder(command);
-        char schijf;
-        String line = null;
-        boolean found = false;
-        for (schijf = 'A'; schijf <= 'Z'; schijf++) {
-            if(!found) {
-                pb.directory(new File(schijf + ":\\"));
-                try {
-                    Process process = pb.start();
+        new Thread("findMysqlDumpLocationThread") {
+            @Override
+            public void run() {
+                String[] command = {"CMD", "/C", "dir", "/s", "*mysqldump.exe*"};
+                ProcessBuilder pb = new ProcessBuilder(command);
+                char schijf;
+                String line = null;
+                boolean found = false;
+                for (schijf = 'A'; schijf <= 'Z'; schijf++) {
+                    if(!found) {
+                        pb.directory(new File(schijf + ":\\"));
+                        try {
+                            Process process = pb.start();
 
-                    InputStream is = process.getInputStream();
-                    InputStreamReader isr = new InputStreamReader(is);
-                    BufferedReader br = new BufferedReader(isr);
+                            InputStream is = process.getInputStream();
+                            InputStreamReader isr = new InputStreamReader(is);
+                            BufferedReader br = new BufferedReader(isr);
 
-                    String tempLine;
-                    while ((tempLine = br.readLine()) != null && line == null) {
-                        if (!tempLine.contains("Directory of")) {
-                        } else {
-                            line = (tempLine.replace("Directory of", ""));
-                            line = (line.trim());
-                            found = true;
+                            String tempLine;
+                            while ((tempLine = br.readLine()) != null && line == null) {
+                                if (!tempLine.contains("Directory of")) {
+                                } else {
+                                    line = (tempLine.replace("Directory of", ""));
+                                    line = (line.trim());
+                                    found = true;
+                                }
+                            }
+
+                        } catch (java.io.IOException e) {
+                            System.out.println("Drive " + schijf + " does not exist");
                         }
                     }
-
-                } catch (java.io.IOException e) {
-                    System.out.println("Drive " + schijf + " does not exist");
+                }
+                try {
+                    if(line != null) {
+                        FileWriter fw = new FileWriter(new File(CONFIG_NAME).getAbsoluteFile());
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        line = line.replace(" ", "^ ");
+                        bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
+                        bw.close();
+                        msqlDialog.dispose();
+                    }
+                }
+                catch(Exception e) {
+                    
                 }
             }
-        }
-        try {
-            if(line != null) {
-                FileWriter fw = new FileWriter(new File(CONFIG_NAME).getAbsoluteFile());
-                BufferedWriter bw = new BufferedWriter(fw);
-                line = line.replace(" ", "^ ");
-                bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
-                bw.close();
-                msqlDialog.dispose();
-                return true;
-            }
-            else {
-                msqlDialog.dispose();
-                return false;
-            }
-        }
-        catch(Exception e) {
-            msqlDialog.dispose();
-            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
-            return false;
-        }
+        };
     }
 }
