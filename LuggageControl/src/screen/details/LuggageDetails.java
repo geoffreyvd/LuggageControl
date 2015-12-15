@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
-import managers.DatabaseMan;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
@@ -27,8 +26,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class LuggageDetails extends SwitchingJPanel {
 
     private int currentLuggageId = 0; 
-    
-    private DatabaseMan db = new DatabaseMan();
+
     private SecurityMan sc;
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields

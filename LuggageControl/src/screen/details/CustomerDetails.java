@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
-import managers.DatabaseMan;
-import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -19,8 +17,6 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class CustomerDetails extends SwitchingJPanel {
     
     private int currentCustomerId = 0; 
-    
-    private DatabaseMan db = new DatabaseMan();
 
     public CustomerDetails(LuggageControl luggageControl) {
         super(luggageControl);
@@ -97,7 +93,6 @@ public class CustomerDetails extends SwitchingJPanel {
      */
     private void fillCustomerFlights(int customerId) {
         comboBoxFlight.removeAllItems();
-        DatabaseMan db = new DatabaseMan();
         try {
             String query = "SELECT `flight`.flight_id, origin, destination, departure, arrival ";
             query += "FROM flight INNER JOIN customer_flight WHERE customer_id = ? AND `customer_flight`.flight_id = `flight`.flight_id;";
@@ -125,7 +120,6 @@ public class CustomerDetails extends SwitchingJPanel {
      */
     private void fillCustomerLuggage(int customerId) {
         comboBoxLuggage.removeAllItems();
-        DatabaseMan db = new DatabaseMan();
         try {
             String query = "SELECT `luggage`.luggage_id ";
             query += "FROM luggage INNER JOIN customer_luggage WHERE customer_id = ? AND `customer_luggage`.luggage_id = `luggage`.luggage_id;";
@@ -146,7 +140,6 @@ public class CustomerDetails extends SwitchingJPanel {
     public void loadCustomer(int customerID) {
         this.clearCustomerData();
         try {
-            DatabaseMan db = new DatabaseMan();
             ResultSet result = db.query("SELECT * FROM customer WHERE customer_id = ?", new String[]{customerID + ""});
             // get the first row result
             while(result.next()) {

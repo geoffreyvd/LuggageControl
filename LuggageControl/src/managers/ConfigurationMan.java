@@ -18,7 +18,7 @@ import java.io.Writer;
 import main.LuggageControl;
 
 /**
- * Manage configuration file and determine if intial system configuration is complete.
+ * Manage configuration file and determine if initial system configuration is complete.
  * @author Corne Lukken
  */
 public class ConfigurationMan {
@@ -74,13 +74,14 @@ public class ConfigurationMan {
         }
     }
     
-    // Our file writer
+    // file writer to write to configuration file
     Writer writer;
     
+    // buffered reader to read from configuration file
     BufferedReader br;
     
     /**
-     *
+     * Performs initial test conditions and determines when to initialize <code>main.LuggageControl</code>
      * @param luggageControl
      */
     public ConfigurationMan(LuggageControl luggageControl) {
@@ -112,6 +113,7 @@ public class ConfigurationMan {
             this.findMysqlDumpLocationWindows();
         } 
         
+        // proceed with the initialization if the configuration is done
         if(proceedInitialization) {
             this.luggageControl.initComponents();
         }
@@ -196,8 +198,8 @@ public class ConfigurationMan {
     }
     
     /**
-     *
-     * @return
+     * Find mysqldump.exe on the windows file system and store the location in the configuration file.
+     * @return if true if we found the location false if we failed to find it.
      */
     public boolean findMysqlDumpLocationWindows() {
         if(OS.equals("Linux")) {

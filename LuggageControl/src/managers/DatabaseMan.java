@@ -24,7 +24,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import main.LuggageControl;
-import static managers.ConfigurationMan.getMysqlDumpLocationWindows;
 
 /**
  * DataBaseManager is a class with predefined credentials for the database. It
@@ -58,7 +57,7 @@ public class DatabaseMan {
     }
 
     /**
-     *
+     * Create the dialogs to ask for a location and export the database content and structure to this file.
      * @param luggageControl
      */
     public static void exportDatabase(LuggageControl luggageControl) {

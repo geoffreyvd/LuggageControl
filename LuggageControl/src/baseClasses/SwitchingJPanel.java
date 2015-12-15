@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.JLabel;
 import main.LuggageControl;
+import managers.DatabaseMan;
 
 /**
  * Extension JPanel with event to switch screens
@@ -15,10 +16,18 @@ import main.LuggageControl;
 public abstract class SwitchingJPanel extends javax.swing.JPanel{    
     
     /**
-     *
+     * Inherit a reference to the main Frame of the application
      */
     protected LuggageControl luggageControl;
     
+    /**
+     * DatabaseMan object to access the database.
+     */
+    protected DatabaseMan db = new DatabaseMan();
+    
+    /**
+     * ArrayList to hold current active threads to reset labels 
+     */
     private ArrayList<LabelThread> resetLabels = new ArrayList<LabelThread>();
     
     // Special class to attend to resetting labels
