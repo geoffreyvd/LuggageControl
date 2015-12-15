@@ -270,6 +270,7 @@ public class AddLuggage extends SwitchingJPanel {
         });
 
         pic.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        pic.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonHelp.setText("Help");
@@ -327,8 +328,8 @@ public class AddLuggage extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
-                            .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -346,9 +347,7 @@ public class AddLuggage extends SwitchingJPanel {
                     .addComponent(buttonHelp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(textFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -366,8 +365,8 @@ public class AddLuggage extends SwitchingJPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonUploadImage)
                     .addComponent(buttonConfirm)
@@ -385,13 +384,12 @@ public class AddLuggage extends SwitchingJPanel {
 
     private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
         this.userNotAFK();
-        System.out.println(String.valueOf(buttonUploadImage.getWidth()) + " here"); // check button width
-        String path = helpers.ImageMaker.getPath();
-        ImageIcon imageIcon = new ImageIcon(path);
+        helpers.ImageMaker.setPath();
+        ImageIcon imageIcon = new ImageIcon(helpers.ImageMaker.getPath());
 
-        pic.setIcon(helpers.ImageMaker.resizeImage(buttonUploadImage.getWidth()-100, buttonUploadImage.getWidth()-100, path));
+        pic.setIcon(helpers.ImageMaker.resizeImage(pic.getWidth(), pic.getHeight(), helpers.ImageMaker.getPath()));
 
-        imageBase64 = helpers.ImageMaker.base64Encode(path);
+        imageBase64 = helpers.ImageMaker.base64Encode(helpers.ImageMaker.getPath());
 
     }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
 

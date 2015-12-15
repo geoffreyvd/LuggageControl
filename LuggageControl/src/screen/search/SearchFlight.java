@@ -73,30 +73,78 @@ public class SearchFlight extends SwitchingJPanel {
         if (!textFieldFlightnumber.getText().equals("") || !textFieldOrigin.getText().equals("") ||
             !textFieldDestination.getText().equals("") || !textFieldDepartureTime.getText().equals("") || 
             !textFieldArrivalTime.getText().equals("")) {
-            query += "WHERE 1=0 ";
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive") ||
+                comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "WHERE 1=0 ";
+            }
         }
 
         try {
             if (!textFieldFlightnumber.getText().equals("")) {
-                query += "OR flight_id = ? ";
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                    query += "AND flight_id = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
+                    query += "OR flight_id = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                    query += "OR flight_id LIKE '%?%' ";
+                }
                 values.add(helpers.Filters.filteredString(textFieldFlightnumber.getText()));
             }
 
             if (!textFieldOrigin.getText().equals("")) {
-                query += "OR origin = ? ";
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                    query += "AND origin = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
+                    query += "OR origin = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                    query += "OR origin LIKE '%?%' ";
+                }
                 values.add(helpers.Filters.filteredString(textFieldOrigin.getText()));
             }
 
             if (!textFieldDestination.getText().equals("")) {
-                query += "OR destination = ? ";
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                    query += "AND destination = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
+                    query += "OR destination = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                    query += "OR destination LIKE '%?%' ";
+                }
                 values.add(helpers.Filters.filteredString(textFieldDestination.getText()));
             }
+            
             if (!textFieldDepartureTime.getText().equals("")) {
-                query += "OR departure = ? ";
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                    query += "AND departure = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
+                    query += "OR departure = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                    query += "OR departure LIKE '%?%' ";
+                }
                 values.add(helpers.Filters.filteredString(textFieldDepartureTime.getText()));
             }
+            
             if (!textFieldArrivalTime.getText().equals("")) {
-                query += "OR arrival = ? ";
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                    query += "AND arrival = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")) {
+                    query += "OR arrival = ? ";
+                }
+                if (comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                    query += "OR arrival LIKE '%?%' ";
+                }
                 values.add(helpers.Filters.filteredString(textFieldArrivalTime.getText()));
             }
 
@@ -118,8 +166,6 @@ public class SearchFlight extends SwitchingJPanel {
 //                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
 //            }
 //            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
-                    
-            
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
@@ -166,6 +212,8 @@ public class SearchFlight extends SwitchingJPanel {
         textFieldDestination = new javax.swing.JFormattedTextField();
         textFieldOrigin = new javax.swing.JFormattedTextField();
         textFieldDepartureTime = new javax.swing.JFormattedTextField();
+        comboBoxSearchType = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         labelSearchFlight.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearchFlight.setText("Search flight");
@@ -222,6 +270,10 @@ public class SearchFlight extends SwitchingJPanel {
         });
         jScrollPane1.setViewportView(tableFlightSearch);
 
+        comboBoxSearchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inclusive", "Exclusive", "Loose" }));
+
+        jLabel1.setText("Search type:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,39 +290,42 @@ public class SearchFlight extends SwitchingJPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelSearchFlight)
+                                .addGap(71, 71, 71)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(buttonHelpLinking, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(labelSearchFlight)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(textFieldOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(textFieldDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textFieldDepartureTime, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(textFieldArrivalTime, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)))
-                                .addGap(100, 100, 100)))
+                                .addComponent(textFieldOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textFieldDepartureTime, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textFieldArrivalTime, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(buttonHelpLinking))
+                            .addComponent(jLabel1)
+                            .addComponent(buttonHelpLinking))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldArrivalTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,6 +377,8 @@ public class SearchFlight extends SwitchingJPanel {
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelpLinking;
     private javax.swing.JButton buttonSearch;
+    private javax.swing.JComboBox comboBoxSearchType;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelSearchFlight;
     private javax.swing.JTable tableFlightSearch;

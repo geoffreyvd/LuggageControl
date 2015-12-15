@@ -60,8 +60,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="buttonUploadImage" pref="539" max="32767" attributes="0"/>
-                          <Component id="pic" max="32767" attributes="0"/>
+                          <Component id="buttonUploadImage" max="32767" attributes="0"/>
+                          <Component id="pic" min="-2" pref="539" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -83,7 +83,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pic" alignment="0" pref="426" max="32767" attributes="0"/>
+                  <Component id="pic" alignment="0" min="-2" pref="426" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="textFieldLocation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -194,6 +194,11 @@
     <Component class="javax.swing.JLabel" name="pic">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
