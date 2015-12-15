@@ -204,7 +204,7 @@ public class ConfigurationMan {
     public void findMysqlDumpLocationWindows() {
         if(OS.equals("Linux")) {
             return;
-        }
+        } 
         
         Thread findMysqlDumpLocationThread = new Thread("findMysqlDumpLocationThread") {
             @Override
@@ -246,7 +246,7 @@ public class ConfigurationMan {
                         line = line.replace(" ", "^ ");
                         bw.write(MYSQL_DUMP_LOCATION + line + "\\mysqldump.exe");
                         bw.close();
-                        msqlDialog.dispose();
+                        
                     }
                 }
                 catch(Exception e) {
@@ -254,6 +254,7 @@ public class ConfigurationMan {
                 }
             }
         };
+        msqlDialog.dispose();
         findMysqlDumpLocationThread.run();
     }
 }

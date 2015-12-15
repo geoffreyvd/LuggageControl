@@ -10,17 +10,26 @@ import javax.swing.*;
  */
 public class SearchPanes extends JTabbedPane{
     
-    private static final int UPLOAD_IMAGE = 1;
-    private static final int SEARCH_CUSTOMER = 2;
-    private static final int SEARCH_FLIGHT = 3;
-    private static final int SEARCH_LUGGAGE = 4;
-    private static final int SEARCH_USER = 5;
+    public static final String UPLOAD_IMAGE = "panelUploadImage";
+    public static final String SEARCH_CUSTOMER = "panelSearchCustomer";
+    public static final String SEARCH_FLIGHT = "panelSearchFlight";
+    public static final String SEARCH_LUGGAGE = "panelSearchLuggage";
+    public static final String SEARCH_USER = "panelSearchUser";
+    
+    /* these have been not neccesary so far but I made them as a precaution
+        public static final String UPLOAD_IMAGE_NAME = "Upload image";
+        public static final String SEARCH_CUSTOMER_NAME = "Customer";
+        public static final String SEARCH_FLIGHT_NAME = "Flight";
+        public static final String SEARCH_LUGGAGE_NAME = "Luggage";
+        public static final String SEARCH_USER_NAME = "User";
+    */
     
     // <editor-fold defaultstate="collapsed" desc="Giant list of screen components">
     private javax.swing.JButton buttonSearchCustomer;
     private javax.swing.JButton buttonSearchFlight;
     private javax.swing.JButton buttonSearchLuggage;
     private javax.swing.JButton buttonSearchUser;
+    private javax.swing.JButton buttonUploadImage;
     
     private javax.swing.JComboBox comboBoxCustomerGender;
     private javax.swing.JComboBox comboBoxLuggageSize;
@@ -38,6 +47,7 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JTable tableLugSearchLuggage1;
     private javax.swing.JTable tableSearchCustomer;
     
+    private javax.swing.JLabel labelLuggageImage;
     private javax.swing.JLabel labelLuggageDescription;
     
     private javax.swing.JFormattedTextField textFieldCustomerAdress;
@@ -121,6 +131,7 @@ public class SearchPanes extends JTabbedPane{
         comboBoxLuggageSize = new javax.swing.JComboBox();
         textFieldLuggageWeight = new javax.swing.JFormattedTextField();
         textFieldLuggageColor = new javax.swing.JFormattedTextField();
+        labelLuggageImage = new javax.swing.JLabel();
         labelLuggageDescription = new javax.swing.JLabel();
         panelSearchUser = new javax.swing.JPanel();
         scrollPaneUserTable = new javax.swing.JScrollPane();
@@ -131,6 +142,7 @@ public class SearchPanes extends JTabbedPane{
         textFieldUserId = new javax.swing.JFormattedTextField();
         
         buttonSearchUser = new javax.swing.JButton();
+        buttonUploadImage = new javax.swing.JButton();
         
         textFieldUserFirstName = new javax.swing.JFormattedTextField();
         textFieldUserSurName = new javax.swing.JFormattedTextField();
@@ -139,6 +151,42 @@ public class SearchPanes extends JTabbedPane{
         textFieldUserNationality = new javax.swing.JFormattedTextField();
         textFieldUserAdress = new javax.swing.JFormattedTextField();
         textFieldUserPostcode = new javax.swing.JFormattedTextField();
+        
+        labelLuggageImage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelLuggageImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelLuggageImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        buttonUploadImage.setText("Upload image");
+        buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUploadImagebutton(evt);
+            }
+
+            private void buttonUploadImagebutton(ActionEvent evt) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+
+        javax.swing.GroupLayout panelUploadImageLayout = new javax.swing.GroupLayout(panelUploadImage);
+        panelUploadImage.setLayout(panelUploadImageLayout);
+        panelUploadImageLayout.setHorizontalGroup(
+            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUploadImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelUploadImageLayout.setVerticalGroup(
+            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUploadImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonUploadImage)
+                .addContainerGap())
+        );
         
         this.addTab("Upload image", panelUploadImage);
 
@@ -597,25 +645,56 @@ public class SearchPanes extends JTabbedPane{
     }
     //</editor-fold>
     
-    public void setVisible(boolean visible, int panelId) {
+    /**
+     * Add and appropriately name a tab, <U>does not check if tab already exists!</U>
+     * @param panelId static string to identify the tab to be added.
+     */
+    public void addSearchTab(String panelId) {
         switch(panelId) {
-            case 1:
-                this.panelUploadImage.setVisible(visible);
+            case UPLOAD_IMAGE:
+                this.insertTab("Upload image", null, panelUploadImage, "", this.getTabCount());
                 break;
-            case 2:
-                this.panelSearchCustomer.setVisible(visible);
+            case SEARCH_CUSTOMER:
+                this.insertTab("Customer", null, panelSearchCustomer, "", this.getTabCount());
                 break;
-            case 3:
-                this.panelSearchFlight.setVisible(visible);
+            case SEARCH_FLIGHT:
+                this.insertTab("Flight", null, panelSearchFlight, "", this.getTabCount());
+                break;   
+            case SEARCH_LUGGAGE:
+                this.insertTab("Luggage", null, panelSearchLuggage, "", this.getTabCount());
                 break;
-            case 4:
-                this.panelSearchLuggage.setVisible(visible);
-                break;
-            case 5:
-                this.panelSearchUser.setVisible(visible);
-                break;
+            case SEARCH_USER:
+                this.insertTab("User", null, panelSearchUser, "", this.getTabCount());
+                break;  
             default:
-                System.err.println("Panel does not exist");
+                System.err.println("Trying to add none existing tab");
+                break;
+        }
+    }
+    
+    /**
+     * Removes the tab from the panel if it exists.
+     * @param panelId identifies the tab to remove from the static strings
+     */
+    public void removeSearchTab(String panelId) {
+        switch(panelId) {
+            case UPLOAD_IMAGE:
+                this.remove(panelUploadImage);
+                break;
+            case SEARCH_CUSTOMER:
+                this.remove(panelSearchCustomer);
+                break;
+            case SEARCH_FLIGHT:
+                this.remove(panelSearchFlight);
+                break;   
+            case SEARCH_LUGGAGE:
+                this.remove(panelSearchLuggage);
+                break;
+            case SEARCH_USER:
+                this.remove(panelSearchUser);
+                break;  
+            default:
+                System.err.println("Trying to remove none existing tab");
                 break;
         }
     }
