@@ -91,6 +91,17 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
      * method to clear the panel and remove all information
      */
     public void clearPanelInformation() {
+        for(int i = 0 ; i < this.getComponentCount(); i++) {
+            java.awt.Component component = this.getComponent(i);
+            if(component instanceof javax.swing.JLabel) {
+                javax.swing.JLabel label = (javax.swing.JLabel)component;
+                label.setText("");
+            }
+            else if(component instanceof javax.swing.JComboBox) {
+                javax.swing.JComboBox comboBox = (javax.swing.JComboBox)component;
+                comboBox.setSelectedIndex(0);
+            }
+        }
         System.err.println("You should really override this function!");
     }
     

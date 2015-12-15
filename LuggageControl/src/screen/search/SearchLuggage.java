@@ -56,8 +56,8 @@ public class SearchLuggage extends SwitchingJPanel {
      * @param luggageId The specific database luggage id from the luggage table
      */
     public void switchLuggageDetails(int luggageId) {
-        this.luggageControl.prefillPanel(ScreenNames.LUGGAGE_DETAILS, luggageId);
-        this.luggageControl.switchJPanel(ScreenNames.LUGGAGE_DETAILS);
+        this.luggageControl.prefillPanel(this.luggageControl.LUGGAGE_DETAILS, luggageId);
+        this.luggageControl.switchJPanel(this.luggageControl.LUGGAGE_DETAILS);
     }
     
     /**

@@ -5,6 +5,7 @@
  */
 package screen.details;
 
+import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
@@ -74,6 +76,24 @@ public class LuggageDetails extends SwitchingJPanel {
         textFieldUpdateWeight.setText("");
         textFieldUpdateSize.setText("");
         textPaneUpdateContent.setText("");
+        textFieldCustomerId.setText("");
+        textFieldCustomerName.setText("");
+        comboBoxCustomerGender.setSelectedIndex(0);
+        textFieldFlightId.setText("");
+        textFieldFliOrigin.setText("");
+        textFieldFliDestination.setText("");
+        textFieldFliDeparture.setText("");
+        textFieldFliArrival.setText("");
+        
+        DefaultTableModel datamodel = (DefaultTableModel) tableLugSearchFlight.getModel();
+        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+            datamodel.removeRow(i);
+        }
+        
+        datamodel = (DefaultTableModel) tableLugSearchCustomer.getModel();
+        for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+            datamodel.removeRow(i);
+        }
     }
     
     
@@ -103,8 +123,8 @@ public class LuggageDetails extends SwitchingJPanel {
                     + "INNER JOIN luggage_flight ON `luggage_flight`.`flight_id` "
                     + "WHERE luggage_id = ? AND `luggage_flight`.`flight_id` = `flight`.`flight_id`", new String[]{luggageID + ""});
             while(resultFlightDetails.next()) {
-                labelDisplayOrigin.setText(resultLuggage.getString("origin"));
-                labelDisplayDestination.setText(resultLuggage.getString("destination"));
+                labelDisplayOrigin.setText(resultFlightDetails.getString("origin"));
+                labelDisplayDestination.setText(resultFlightDetails.getString("destination"));
             }
             
             ResultSet resultOwner = db.query("SELECT customer_id FROM customer_luggage WHERE luggage_id = ?", new String[]{luggageID + ""});
@@ -256,6 +276,71 @@ public class LuggageDetails extends SwitchingJPanel {
         loadLuggage(currentLuggageId);
     }
     
+    private void searchCustomer() {
+        
+    }
+    
+    private void searchFlight() {
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
+        ArrayList<String> values = new ArrayList<String>();
+
+        // If Some text fields are not empty we add the WHERE clause
+        if (!textFieldFlightId.getText().equals("") || !textFieldFliOrigin.getText().equals("") ||
+            !textFieldFliDestination.getText().equals("") || !textFieldFliDeparture.getText().equals("") || 
+            !textFieldFliArrival.getText().equals("")) {
+            query += "WHERE 1=0 ";
+        }
+
+        try {
+            if (!textFieldFlightId.getText().equals("")) {
+                query += "OR flight_id = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFlightId.getText()));
+            }
+
+            if (!textFieldFliOrigin.getText().equals("")) {
+                query += "OR origin = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFliOrigin.getText()));
+            }
+
+            if (!textFieldFliDestination.getText().equals("")) {
+                query += "OR destination = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFliDestination.getText()));
+            }
+            if (!textFieldFliDeparture.getText().equals("")) {
+                query += "OR departure = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFliDeparture.getText()));
+            }
+            if (!textFieldFliArrival.getText().equals("")) {
+                query += "OR arrival = ? ";
+                values.add(helpers.Filters.filteredString(textFieldFliArrival.getText()));
+            }            
+
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableLugSearchFlight.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("flight_id"),
+                    result.getString("origin"),
+                    result.getString("destination"),
+                    result.getString("departure"),
+                    result.getString("arrival")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableLugSearchFlight.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -290,7 +375,7 @@ public class LuggageDetails extends SwitchingJPanel {
         tabPaneSearch = new javax.swing.JTabbedPane();
         panelSearchLuggage = new javax.swing.JPanel();
         scrollPaneLuggageTable = new javax.swing.JScrollPane();
-        tableLugSearchLuggage = new javax.swing.JTable();
+        tableLugSearchCustomer = new javax.swing.JTable();
         comboBoxCustomerGender = new javax.swing.JComboBox();
         textFieldCustomerName = new javax.swing.JFormattedTextField();
         textFieldCustomerId = new javax.swing.JFormattedTextField();
@@ -367,7 +452,7 @@ public class LuggageDetails extends SwitchingJPanel {
 
         jScrollPane2.setViewportView(textPaneUpdateContent);
 
-        tableLugSearchLuggage.setModel(new javax.swing.table.DefaultTableModel(
+        tableLugSearchCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -390,9 +475,9 @@ public class LuggageDetails extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableLugSearchLuggage.setFocusable(false);
-        tableLugSearchLuggage.getTableHeader().setReorderingAllowed(false);
-        scrollPaneLuggageTable.setViewportView(tableLugSearchLuggage);
+        tableLugSearchCustomer.setFocusable(false);
+        tableLugSearchCustomer.getTableHeader().setReorderingAllowed(false);
+        scrollPaneLuggageTable.setViewportView(tableLugSearchCustomer);
 
         comboBoxCustomerGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gender", "male", "female", "androgenous" }));
         comboBoxCustomerGender.setMaximumSize(new java.awt.Dimension(150, 150));
@@ -404,7 +489,7 @@ public class LuggageDetails extends SwitchingJPanel {
         buttonSearchUser.setText("Search");
         buttonSearchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchUser(evt);
+                buttonSearchCustomer(evt);
             }
         });
 
@@ -538,21 +623,17 @@ public class LuggageDetails extends SwitchingJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 51, Short.MAX_VALUE)
-                        .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))
                     .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(textFieldUpdateOwnerID)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxUpdateStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, 160, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxUpdateStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldUpdateColor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldUpdateSize)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textFieldUpdateSize)
+                                .addGap(2, 2, 2))
                             .addComponent(textFieldUpdateWeight)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,8 +648,12 @@ public class LuggageDetails extends SwitchingJPanel {
                                     .addComponent(labelDisplayDestination)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(labelDisplayOrigin)
-                                        .addComponent(labelDisplayFlightnumber)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(labelDisplayFlightnumber))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 51, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -614,11 +699,11 @@ public class LuggageDetails extends SwitchingJPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2)
-                        .addGap(35, 35, 35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonUpdate)
                             .addComponent(buttonCancel))
@@ -651,8 +736,7 @@ public class LuggageDetails extends SwitchingJPanel {
      */
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
         this.userNotAFK();
-        clearLuggage();
-        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
+        updateLuggage();
     }//GEN-LAST:event_butonCancelActionPerformed
 
     /**
@@ -678,14 +762,14 @@ public class LuggageDetails extends SwitchingJPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldUpdateSizeActionPerformed
 
-    private void buttonSearchUser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchUser
+    private void buttonSearchCustomer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchCustomer
         this.userNotAFK();
-        //this.searchLuggage();
-    }//GEN-LAST:event_buttonSearchUser
+        this.searchCustomer();
+    }//GEN-LAST:event_buttonSearchCustomer
 
     private void buttonSearchFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchFlight
         this.userNotAFK();
-        //this.searchFlight();
+        this.searchFlight();
     }//GEN-LAST:event_buttonSearchFlight
 
 
@@ -714,8 +798,8 @@ public class LuggageDetails extends SwitchingJPanel {
     private javax.swing.JScrollPane scrollPaneLuggageTable;
     private javax.swing.JSeparator separatorCenter;
     private javax.swing.JTabbedPane tabPaneSearch;
+    private javax.swing.JTable tableLugSearchCustomer;
     private javax.swing.JTable tableLugSearchFlight;
-    private javax.swing.JTable tableLugSearchLuggage;
     private javax.swing.JFormattedTextField textFieldCustomerId;
     private javax.swing.JFormattedTextField textFieldCustomerName;
     private javax.swing.JFormattedTextField textFieldFliArrival;
