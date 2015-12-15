@@ -2,8 +2,6 @@ package screen.search;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -13,13 +11,14 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseSearch;
 
 /**
  * Searches through the database with the given data for luggage
  *
  * @author Konrad
  */
-public class SearchLuggage extends SwitchingJPanel {
+public class SearchLuggage extends BaseSearch {
 
     private DatabaseMan db = new DatabaseMan();
 
@@ -355,7 +354,7 @@ public class SearchLuggage extends SwitchingJPanel {
      */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP_FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     /**
@@ -367,7 +366,7 @@ public class SearchLuggage extends SwitchingJPanel {
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK(); 
         clearSearchLuggage();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     /**

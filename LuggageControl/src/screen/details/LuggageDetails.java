@@ -25,6 +25,8 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 public class LuggageDetails extends SwitchingJPanel {
 
     private int currentLuggageId = 0; 
+    
+    private String luggageImage = "";
 
     private SecurityMan sc;
     /**
@@ -373,6 +375,9 @@ public class LuggageDetails extends SwitchingJPanel {
         textPaneUpdateContent = new javax.swing.JTextPane();
         labelStatus = new javax.swing.JLabel();
         tabPaneSearch = new javax.swing.JTabbedPane();
+        panelUploadImage = new javax.swing.JPanel();
+        labelLuggageImage = new javax.swing.JLabel();
+        buttonUploadImage = new javax.swing.JButton();
         panelSearchLuggage = new javax.swing.JPanel();
         scrollPaneLuggageTable = new javax.swing.JScrollPane();
         tableLugSearchCustomer = new javax.swing.JTable();
@@ -389,6 +394,7 @@ public class LuggageDetails extends SwitchingJPanel {
         textFieldFliDestination = new javax.swing.JFormattedTextField();
         textFieldFliArrival = new javax.swing.JFormattedTextField();
         textFieldFliDeparture = new javax.swing.JFormattedTextField();
+        labelDescription = new javax.swing.JLabel();
 
         labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelLuggageDetails.setText("Luggage details");
@@ -452,6 +458,40 @@ public class LuggageDetails extends SwitchingJPanel {
 
         jScrollPane2.setViewportView(textPaneUpdateContent);
 
+        labelLuggageImage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelLuggageImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelLuggageImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        buttonUploadImage.setText("Upload image");
+        buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUploadImagebuttonUploadsImageActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelUploadImageLayout = new javax.swing.GroupLayout(panelUploadImage);
+        panelUploadImage.setLayout(panelUploadImageLayout);
+        panelUploadImageLayout.setHorizontalGroup(
+            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUploadImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelUploadImageLayout.setVerticalGroup(
+            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUploadImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonUploadImage)
+                .addContainerGap())
+        );
+
+        tabPaneSearch.addTab("Upload image", panelUploadImage);
+
         tableLugSearchCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -501,9 +541,9 @@ public class LuggageDetails extends SwitchingJPanel {
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(comboBoxCustomerGender, 0, 491, Short.MAX_VALUE)
+                    .addComponent(comboBoxCustomerGender, 0, 536, Short.MAX_VALUE)
                     .addComponent(textFieldCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addComponent(textFieldCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSearchLuggageLayout.createSequentialGroup()
                         .addComponent(buttonSearchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -587,9 +627,9 @@ public class LuggageDetails extends SwitchingJPanel {
                         .addComponent(buttonSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchFlightLayout.createSequentialGroup()
-                        .addComponent(textFieldFliDeparture, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                        .addComponent(textFieldFliDeparture, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldFliArrival, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
+                        .addComponent(textFieldFliArrival, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelSearchFlightLayout.setVerticalGroup(
@@ -614,6 +654,9 @@ public class LuggageDetails extends SwitchingJPanel {
 
         tabPaneSearch.addTab("Flight", panelSearchFlight);
 
+        labelDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDescription.setText("Destination: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -622,7 +665,6 @@ public class LuggageDetails extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
                     .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(textFieldUpdateOwnerID)
                     .addGroup(layout.createSequentialGroup()
@@ -652,15 +694,17 @@ public class LuggageDetails extends SwitchingJPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 51, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelDescription))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addGap(18, 18, 18)
                 .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelSearch)
-                        .addGap(245, 245, 245)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -687,11 +731,11 @@ public class LuggageDetails extends SwitchingJPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDestination)
                             .addComponent(labelDisplayDestination))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldUpdateSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -700,8 +744,10 @@ public class LuggageDetails extends SwitchingJPanel {
                             .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelDescription)
+                        .addGap(0, 0, 0)
                         .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -772,6 +818,11 @@ public class LuggageDetails extends SwitchingJPanel {
         this.searchFlight();
     }//GEN-LAST:event_buttonSearchFlight
 
+    private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
+        this.userNotAFK();
+        luggageImage = selectLabelImage(labelLuggageImage);
+    }//GEN-LAST:event_buttonUploadImagebuttonUploadsImageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
@@ -780,20 +831,24 @@ public class LuggageDetails extends SwitchingJPanel {
     private javax.swing.JButton buttonSearchFlight;
     private javax.swing.JButton buttonSearchUser;
     private javax.swing.JButton buttonUpdate;
+    private javax.swing.JButton buttonUploadImage;
     private javax.swing.JComboBox comboBoxCustomerGender;
     private javax.swing.JComboBox comboBoxUpdateStatus;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelDescription;
     private javax.swing.JLabel labelDestination;
     private javax.swing.JLabel labelDisplayDestination;
     private javax.swing.JLabel labelDisplayFlightnumber;
     private javax.swing.JLabel labelDisplayOrigin;
     private javax.swing.JLabel labelFlightnumber;
     private javax.swing.JLabel labelLuggageDetails;
+    private javax.swing.JLabel labelLuggageImage;
     private javax.swing.JLabel labelOrigin;
     private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelStatus;
     private javax.swing.JPanel panelSearchFlight;
     private javax.swing.JPanel panelSearchLuggage;
+    private javax.swing.JPanel panelUploadImage;
     private javax.swing.JScrollPane scrollPaneFlightTable;
     private javax.swing.JScrollPane scrollPaneLuggageTable;
     private javax.swing.JSeparator separatorCenter;

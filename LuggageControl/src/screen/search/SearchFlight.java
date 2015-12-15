@@ -2,9 +2,6 @@ package screen.search;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
-import java.awt.TextField;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JFormattedTextField;
@@ -13,12 +10,13 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseSearch;
 
 /**
  *
  * @author Admin
  */
-public class SearchFlight extends SwitchingJPanel {
+public class SearchFlight extends BaseSearch {
 
     private DatabaseMan db = new DatabaseMan();
 
@@ -60,8 +58,8 @@ public class SearchFlight extends SwitchingJPanel {
      * @param flightId The specific database luggage id from the luggage table
      */
     public void switchFlightDetails(int flightId) {
-        this.luggageControl.prefillPanel(ScreenNames.FLIGHT_DETAILS, flightId);
-        this.luggageControl.switchJPanel(ScreenNames.FLIGHT_DETAILS);
+        this.luggageControl.prefillPanel(this.luggageControl.FLIGHT_DETAILS, flightId);
+        this.luggageControl.switchJPanel(this.luggageControl.FLIGHT_DETAILS);
     }
 
     /**
