@@ -7,7 +7,10 @@ package screen.home;
 
 import baseClasses.SwitchingJPanel;
 import java.awt.BorderLayout;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import main.LuggageControl;
+import managers.DatabaseMan;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
@@ -18,6 +21,8 @@ import snippits.PieChart_AWT;
  * @author Admin
  */
 public class HomeScreenManager extends SwitchingJPanel {
+
+    DatabaseMan DB = new DatabaseMan();
 
     /**
      *
@@ -131,9 +136,17 @@ public class HomeScreenManager extends SwitchingJPanel {
 
     private void piechartPercentageFoundLuggage(DefaultPieDataset dataset) {
         //finding percentage of lost luggage
-        //String query = "SELECT count(*) FROM luggagecontroldata.luggage where status = \"Lost\";";
-        int lost = 50;
-        int found = 45;
+
+        String[] values1 = new String[0];
+        String query = "SELECT count(*) FROM luggagecontroldata.luggage where status = \"Lost\";";
+        String result = DB.queryOneResult(query, values1);
+        
+        int lost = Integer.parseInt(result);
+        
+        query = "SELECT count(*) FROM luggagecontroldata.luggage where status = \"Found\";";
+        result = DB.queryOneResult(query, values1);
+        
+        int found = Integer.parseInt(result);
         int notFound = lost - found;
 
         // create a dataset with dataset.setValue and give the dataset a name with a new value 
