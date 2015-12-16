@@ -43,12 +43,16 @@ public class HomeScreenManager extends SwitchingJPanel {
         buttonHelp = new javax.swing.JButton();
         buttonChangeSettings = new javax.swing.JButton();
         panelChart = new javax.swing.JPanel();
-        buttonGenerateStatistics = new javax.swing.JButton();
 
         labelHome.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHome.setText("Home");
 
-        comboBoxStatistics.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Percentage found luggage", "Item 2", "Item 3", "Item 4" }));
+        comboBoxStatistics.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select statistics type", "Percentage found luggage", "Percentage returned luggage" }));
+        comboBoxStatistics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxStatisticsActionPerformed(evt);
+            }
+        });
 
         buttonExportStatistics.setText("Export statistics");
         buttonExportStatistics.addActionListener(new java.awt.event.ActionListener() {
@@ -82,13 +86,6 @@ public class HomeScreenManager extends SwitchingJPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        buttonGenerateStatistics.setText("Generate statistics");
-        buttonGenerateStatistics.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGenerateStatisticsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,74 +95,80 @@ public class HomeScreenManager extends SwitchingJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelHome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                        .addComponent(comboBoxStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addComponent(comboBoxStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonChangeSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonGenerateStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonExportStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonExportStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonHelp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonChangeSettings)
+                            .addComponent(comboBoxStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonHelp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonChangeSettings)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(comboBoxStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 234, Short.MAX_VALUE)
-                        .addComponent(buttonGenerateStatistics)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 268, Short.MAX_VALUE)
                         .addComponent(buttonExportStatistics))
                     .addComponent(panelChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonGenerateStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerateStatisticsActionPerformed
-        this.userNotAFK();
-        
-        DefaultPieDataset dataset = new DefaultPieDataset();
+    private void piechartPercentageFoundLuggage(DefaultPieDataset dataset) {
+        //finding percentage of lost luggage
+        //String query = "SELECT count(*) FROM luggagecontroldata.luggage where status = \"Lost\";";
+        int lost = 50;
+        int found = 45;
+        int notFound = lost - found;
+
         // create a dataset with dataset.setValue and give the dataset a name with a new value 
-        dataset.setValue("IPhone 5s", new Double(20));
-        dataset.setValue("SamSung Grand", new Double(20));
-        dataset.setValue("MotoG", new Double(40));
-        dataset.setValue("Nokia Lumia", new Double(10));
-        
+        dataset.setValue("Found", found);
+        dataset.setValue("Not found", notFound);
+    }
+
+    private void piechartPercentageReturnedLuggage(DefaultPieDataset dataset) {
+        //finding percentage of returned luggage        
+        int lost = 50;
+        int returned = 30;
+        int notReturned = lost - returned;
+
+        // create a dataset with dataset.setValue and give the dataset a name with a new value 
+        dataset.setValue("Returned", returned);
+        dataset.setValue("Not returned", notReturned);
+    }
+
+    private void buildChart(DefaultPieDataset dataset, String name) {
         JFreeChart chart = ChartFactory.createPieChart( // creates the chart as chart
-                "Mobile Sales", // chart title 
+                name, // chart title 
                 dataset, // data    
                 true, // include legend   
                 true, // include tooltips
                 false);
-        
+
         PieChart_AWT demo = new PieChart_AWT(chart);
-        
-        demo.setSize(560, 367);  // makes the demo with a preset size
+
+        panelChart.removeAll();
         panelChart.setLayout(new java.awt.BorderLayout());
         panelChart.add(demo, BorderLayout.CENTER);
         demo.setVisible(true); // makes the demo visible
         panelChart.revalidate();
         panelChart.repaint();
-    }//GEN-LAST:event_buttonGenerateStatisticsActionPerformed
+    }
 
     private void buttonExportStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExportStatisticsActionPerformed
         this.userNotAFK();
@@ -181,11 +184,26 @@ public class HomeScreenManager extends SwitchingJPanel {
         this.luggageControl.switchJPanel(this.luggageControl.CHANGE_SETTINGS);
     }//GEN-LAST:event_buttonChangeSettingsActionPerformed
 
+    private void comboBoxStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxStatisticsActionPerformed
+        comboBoxStatistics.removeItem("Select statistics type");
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        String chartName = "title";
+        if (comboBoxStatistics.getSelectedItem().equals("Percentage found luggage")) {
+            //generate percentage found luggage
+            piechartPercentageFoundLuggage(dataset);
+            chartName = "Finding percentage of lost luggage";
+        } else if (comboBoxStatistics.getSelectedItem().equals("Percentage returned luggage")) {
+            //generate percentage returned luggage
+            piechartPercentageReturnedLuggage(dataset);
+            chartName = "Finding percentage of returned luggage";
+        }
+        buildChart(dataset, chartName);
+    }//GEN-LAST:event_comboBoxStatisticsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonChangeSettings;
     private javax.swing.JButton buttonExportStatistics;
-    private javax.swing.JButton buttonGenerateStatistics;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JComboBox comboBoxStatistics;
     private javax.swing.JLabel labelHome;
