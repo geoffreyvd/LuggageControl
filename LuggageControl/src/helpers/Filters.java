@@ -51,7 +51,7 @@ public final class Filters {
      * @param originalString String to be checked for postcode validity
      * @return filteredPostcode with postcode or empty string if invalid.
      */
-    public static String fitleredPostcode(String originalString) {
+    public static String filteredPostcode(String originalString) {
         return originalString;
     }
     
@@ -60,6 +60,7 @@ public final class Filters {
     /**
      * Checks if the string is a valid according to the supplied date format
      * @param originalDate string to be checked for containing date string or empty string for default yyyy-MM-dd dateformat.
+     * @param dateFormat
      * @return the string if it is valid or a empty string if it is not
      */
     public static String filteredDate(String originalDate, String dateFormat) {
@@ -73,10 +74,16 @@ public final class Filters {
         } catch (Exception ex) {
             
         }
+        try{
         if(date.before(new Date())) {
             return originalDate;
+            
         }
         return "";
+        }
+        catch(Exception e){
+            return "";
+        }
     }
     
     /**

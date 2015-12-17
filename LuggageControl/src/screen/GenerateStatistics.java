@@ -14,6 +14,10 @@ import main.LuggageControl;
  */
 public class GenerateStatistics extends SwitchingJPanel {
 
+    /**
+     *
+     * @param luggageControl
+     */
     public GenerateStatistics(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

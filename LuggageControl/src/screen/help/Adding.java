@@ -11,10 +11,26 @@ import main.LuggageControl;
 public class Adding extends SwitchingJPanel {
     
     // static variables used to identify tabs
-    public static final String ADD_CUSTOMER = "ADD_CUSTOMER";
+
+    /**
+     *
+     */
+        public static final String ADD_CUSTOMER = "ADD_CUSTOMER";
+
+    /**
+     *
+     */
     public static final String ADD_FLIGHTS = "ADD_FLIGHTS";
+
+    /**
+     *
+     */
     public static final String ADD_LUGGAGE = "ADD_LUGGAGE";
 
+    /**
+     *
+     * @param luggageControl
+     */
     public Adding(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();

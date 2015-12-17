@@ -10,6 +10,10 @@ public class Administration {
     
     private final DatabaseMan db;
     
+    /**
+     *
+     * @param databaseManReference
+     */
     public Administration(DatabaseMan databaseManReference) {
         this.db = databaseManReference;
     }

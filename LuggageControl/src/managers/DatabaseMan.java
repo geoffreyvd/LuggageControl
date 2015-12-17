@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package managers;
 
 import baseClasses.ErrorJDialog;
+import com.mysql.jdbc.CommunicationsException;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +24,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import main.LuggageControl;
-import static managers.ConfigurationMan.getMysqlDumpLocationWindows;
 
 /**
  * DataBaseManager is a class with predefined credentials for the database. It
@@ -47,13 +39,27 @@ public class DatabaseMan {
     private final String DATABASE_PASSWORD = "verysecurepassword";
     private final String DATABASE_NAME = "luggagecontroldata";
 
+    /**
+     *
+     */
     public static final String PS_TYPE_STRING = "String";
+
+    /**
+     *
+     */
     public static final String PS_TYPE_INT = "Int";
 
+    /**
+     *
+     */
     public DatabaseMan() {
 
     }
 
+    /**
+     * Create the dialogs to ask for a location and export the database content and structure to this file.
+     * @param luggageControl
+     */
     public static void exportDatabase(LuggageControl luggageControl) {
         JTextField username = new JTextField(5);
         JPasswordField password = new JPasswordField(5);
@@ -184,9 +190,17 @@ public class DatabaseMan {
             else {
                 return "";
             }
-        } catch (SQLException ex) {
+        } 
+        catch(CommunicationsException ex) {
+            
+            // this could be used to determine that the database is offline
+            return "";
+        }
+        catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            
+            // please dont return NULL this will create errors everywhere
+            return "";
         }
     }
 
@@ -251,6 +265,7 @@ public class DatabaseMan {
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseMan.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();

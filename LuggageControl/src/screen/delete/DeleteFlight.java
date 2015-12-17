@@ -14,17 +14,30 @@ import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * Screen to remove flights from the database
+ *
  * @author Corne Lukken
  */
 public class DeleteFlight extends SwitchingJPanel {
-    
+
     private DatabaseMan db = new DatabaseMan();
 
+    /**
+     *
+     * @param luggageControl
+     */
     public DeleteFlight(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
         PromptSupport.setPrompt("Flightnumber", textFieldFlightNumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightNumber);
+        PromptSupport.setPrompt("Arrival", textFieldArrival);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldArrival);
+        PromptSupport.setPrompt("Departure", textFieldDeparture);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDeparture);
+        PromptSupport.setPrompt("Destination", textFieldDestination);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldDestination);
+        PromptSupport.setPrompt("Origion", textFieldOrigin);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOrigin);
     }
 
     /**
@@ -44,12 +57,30 @@ public class DeleteFlight extends SwitchingJPanel {
         buttonBack = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
+        textFieldOrigin = new javax.swing.JFormattedTextField();
+        textFieldDestination = new javax.swing.JFormattedTextField();
+        textFieldDeparture = new javax.swing.JFormattedTextField();
+        textFieldArrival = new javax.swing.JFormattedTextField();
 
         setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         labelName.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelName.setText("Delete Flight");
 
+        textFieldFlightNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldFlightNumberActionPerformed(evt);
+            }
+        });
         textFieldFlightNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 flightNumberKeyPressed(evt);
@@ -89,7 +120,7 @@ public class DeleteFlight extends SwitchingJPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        tableFlights.setPreferredSize(new java.awt.Dimension(1920, 500));
         tableFlights.getTableHeader().setReorderingAllowed(false);
         scrollPaneTable.setViewportView(tableFlights);
 
@@ -114,6 +145,40 @@ public class DeleteFlight extends SwitchingJPanel {
             }
         });
 
+        textFieldOrigin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldOriginActionPerformed(evt);
+            }
+        });
+        textFieldOrigin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldOriginflightNumberKeyPressed(evt);
+            }
+        });
+
+        textFieldDestination.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldDestinationflightNumberKeyPressed(evt);
+            }
+        });
+
+        textFieldDeparture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldDepartureActionPerformed(evt);
+            }
+        });
+        textFieldDeparture.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldDepartureflightNumberKeyPressed(evt);
+            }
+        });
+
+        textFieldArrival.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldArrivalflightNumberKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,16 +188,22 @@ public class DeleteFlight extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPaneTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textFieldFlightNumber)
-                                    .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldDestination)
+                                    .addComponent(textFieldOrigin)
+                                    .addComponent(textFieldFlightNumber))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldDeparture)
+                                    .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                                    .addComponent(textFieldArrival))
+                                .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -146,15 +217,23 @@ public class DeleteFlight extends SwitchingJPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonHelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonBack)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonUpdate)
                 .addContainerGap())
@@ -163,16 +242,17 @@ public class DeleteFlight extends SwitchingJPanel {
 
     /**
      * Switches the screen to the <code>HomeScreenAdministrator</code> screen
+     *
      * @param evt event with key and component information
      */
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
         this.userNotAFK();
-        new ErrorJDialog(this.luggageControl, true);
         this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBack
 
     /**
      * Opens the help screen about removing data entries
+     *
      * @param evt event with key and component information
      */
     private void buttonHelp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelp
@@ -183,6 +263,7 @@ public class DeleteFlight extends SwitchingJPanel {
 
     /**
      * Fills the table with the flight database data when the button is pressed.
+     *
      * @param evt event with key and component information
      */
     private void buttonSearch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearch
@@ -191,80 +272,145 @@ public class DeleteFlight extends SwitchingJPanel {
     }//GEN-LAST:event_buttonSearch
 
     /**
-     * Calls <code>fillFlightTable()</code> if the pressed key is enter. 
+     * Calls <code>fillFlightTable()</code> if the pressed key is enter.
+     *
      * @param evt event with key and component information
      */
     private void flightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flightNumberKeyPressed
         this.userNotAFK();
-        
+
         // identify the pressed key
-        if(evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             this.fillFlightTable();
         }
     }//GEN-LAST:event_flightNumberKeyPressed
 
     /**
-     * Loops through the table dataset and removes any rows which are marked for removal.
+     * Loops through the table dataset and removes any rows which are marked for
+     * removal.
+     *
      * @param evt event with key and component information
      */
     private void buttonUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdate
-        DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
-        String query = "DELETE FROM flights WHERE 1=0";
+        DefaultTableModel datamodel = (DefaultTableModel) tableFlights.getModel();
+        String query = "DELETE FROM flight WHERE 1=0";
+        String query1 = "DELETE FROM customer_flight WHERE 1=0";
+        String query2 = "DELETE FROM luggage_flight WHERE 1=0";
         ArrayList<String> data = new ArrayList();
         ArrayList<String> types = new ArrayList();
-        boolean[] idRemove = new boolean[datamodel.getRowCount()]; 
-        
-        for (int i = datamodel.getRowCount() - 1; i > 0; i--) {
-            
+        boolean[] idRemove = new boolean[datamodel.getRowCount()];
+
+        for (int i = datamodel.getRowCount() - 1; i >= 0; i--) {
+
             // if this entry equals true - true to remove
-            if((boolean)datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
+            if ((boolean) datamodel.getValueAt(i, (datamodel.getColumnCount() - 1))) {
                 query += " OR flight_id = ?";
-                data.add((String)datamodel.getValueAt(i, 0));
+                query1 += " OR flight_id = ?";
+                query2 += " OR flight_id = ?";
+                data.add((String) datamodel.getValueAt(i, 0));
                 types.add(db.PS_TYPE_INT);
             }
         }
-        
+
+        String[] values = data.toArray(new String[data.size()]);
+        String[] types2 = types.toArray(new String[types.size()]);
+
         try {
-            db.queryManipulation(query, data.toArray(new String[data.size()]), types.toArray(new String[types.size()]));
-        }
-        catch(Exception e) {
+            db.queryManipulation(query2, values, types2);
+            db.queryManipulation(query1, values, types2);
+            db.queryManipulation(query, values, types2);
+            fillFlightTable();
+        } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
         }
-        
-        for(boolean idrem: idRemove) {
+
+        for (boolean idrem : idRemove) {
             System.out.println(idrem);
         }
     }//GEN-LAST:event_buttonUpdate
 
+    private void textFieldOriginflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldOriginflightNumberKeyPressed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldOriginflightNumberKeyPressed
+
+    private void textFieldDestinationflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldDestinationflightNumberKeyPressed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldDestinationflightNumberKeyPressed
+
+    private void textFieldDepartureflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldDepartureflightNumberKeyPressed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldDepartureflightNumberKeyPressed
+
+    private void textFieldArrivalflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldArrivalflightNumberKeyPressed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldArrivalflightNumberKeyPressed
+
+    private void textFieldOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldOriginActionPerformed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldOriginActionPerformed
+
+    private void textFieldDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDepartureActionPerformed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldDepartureActionPerformed
+
+    private void textFieldFlightNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightNumberActionPerformed
+        this.userNotAFK();
+    }//GEN-LAST:event_textFieldFlightNumberActionPerformed
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        fillFlightTable();
+    }//GEN-LAST:event_formAncestorAdded
+
     /**
-     * Looks at the text fields and if their filled in, 
-     * determines how our database query should look and runs it and finally fills the table with the data.
+     * Looks at the text fields and if their filled in, determines how our
+     * database query should look and runs it and finally fills the table with
+     * the data.
      */
     private void fillFlightTable() {
+        ArrayList<String> values = new ArrayList<String>();
+        String query = "SELECT * FROM flight";
+        if (!textFieldFlightNumber.getText().equals("") || !textFieldArrival.getText().equals("")
+                || !textFieldDeparture.getText().equals("") || !textFieldDestination.getText().equals("")
+                || !textFieldOrigin.getText().equals("")) {
+            query += " WHERE 1 = 0";
+        } else {
+            query += " order by flight_id desc";
+        }
+        if (!textFieldFlightNumber.getText().equals("")) {
+            query += " OR flight_id = ?";
+            values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText(), 1, 10));
+        }
+        if (!textFieldDeparture.getText().equals("")) {
+            query += " OR departure LIKE ?";
+            values.add(helpers.Filters.filteredString("%" + textFieldDeparture.getText() + "%"));
+        }
+        if (!textFieldArrival.getText().equals("")) {
+            query += " OR arrival LIKE ?";
+            values.add(helpers.Filters.filteredString("%" + textFieldArrival.getText() + "%"));
+        }
+        if (!textFieldDestination.getText().equals("")) {
+            query += " OR destination = ?";
+            values.add(helpers.Filters.filteredString(textFieldDestination.getText(), 1, 45));
+        }
+        if (!textFieldOrigin.getText().equals("")) {
+            query += " OR origin = ?";
+            values.add(helpers.Filters.filteredString(textFieldOrigin.getText(), 1, 45));
+        }
+
         ResultSet result = new EmptyResultSet();
         try {
-            if(textFieldFlightNumber.getText().equals("")) {
-                String[] values = {};
-                result = db.query("SELECT * FROM flights;", values);
-            }
-            else {
-                // always filter user input with securitymanager
-                String[] values = {helpers.Filters.filteredInt(textFieldFlightNumber.getText(), 1, 12)};
-                result = db.query("SELECT * FROM flights WHERE flight_id = ? ;", values);
-            }
-            DefaultTableModel datamodel = (DefaultTableModel)tableFlights.getModel();
+            result = db.query(query, values.toArray(new String[values.size()]));
+            DefaultTableModel datamodel = (DefaultTableModel) tableFlights.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
                 datamodel.removeRow(i);
             }
-            while(result.next()) {
-                System.out.println(result.getString("origin"));
+            while (result.next()) {
                 Object[] data = {result.getString("flight_id"), result.getString("origin"), result.getString("destination"), result.getString("departure"), result.getString("arrival"), false};
                 // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
             tableFlights.setModel(datamodel);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Error: retrieving flights dataset", (new Throwable()).getStackTrace());
         }
     }
@@ -277,7 +423,11 @@ public class DeleteFlight extends SwitchingJPanel {
     private javax.swing.JLabel labelName;
     private javax.swing.JScrollPane scrollPaneTable;
     private javax.swing.JTable tableFlights;
+    private javax.swing.JFormattedTextField textFieldArrival;
+    private javax.swing.JFormattedTextField textFieldDeparture;
+    private javax.swing.JFormattedTextField textFieldDestination;
     private javax.swing.JFormattedTextField textFieldFlightNumber;
+    private javax.swing.JFormattedTextField textFieldOrigin;
     // End of variables declaration//GEN-END:variables
 
 }

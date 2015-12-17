@@ -2,28 +2,29 @@ package screen.search;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
-import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseSearch;
 
 /**
  * Searches through the database with the given data for luggage
  *
  * @author Konrad
  */
-public class SearchLuggage extends SwitchingJPanel {
+public class SearchLuggage extends BaseSearch {
 
     private DatabaseMan db = new DatabaseMan();
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
+     * @param luggageControl
      */
     public SearchLuggage(LuggageControl luggageControl) {
         super(luggageControl);
@@ -39,13 +40,24 @@ public class SearchLuggage extends SwitchingJPanel {
     }
 
     /**
+     * Clears all textfields
+     */
+    public void clearSearchLuggage() {
+        textFieldFlightNumber.setText("");
+        textFieldLocation.setText("");
+        textFieldOwnerID.setText("");
+        comboBoxLuggageStatus.setSelectedIndex(0);
+        textFieldLuggageID.setText("");
+    }
+    
+    /**
      * Go to the luggage details screen based on the selected lugggage id
      * This method is best used in conjunction with the fillTableLuggage.
      * @param luggageId The specific database luggage id from the luggage table
      */
     public void switchLuggageDetails(int luggageId) {
-        this.luggageControl.prefillPanel(ScreenNames.LUGGAGE_DETAILS, luggageId);
-        this.luggageControl.switchJPanel(ScreenNames.LUGGAGE_DETAILS);
+        this.luggageControl.prefillPanel(this.luggageControl.LUGGAGE_DETAILS, luggageId);
+        this.luggageControl.switchJPanel(this.luggageControl.LUGGAGE_DETAILS);
     }
     
     /**
@@ -55,53 +67,69 @@ public class SearchLuggage extends SwitchingJPanel {
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+        String luggageQuery = "";
         ArrayList<String> values = new ArrayList<String>();
+        ArrayList<String> luggageValues = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
         if (!textFieldLuggageID.getText().equals("") || !textFieldFlightNumber.getText().equals("") ||
             !textFieldOwnerID.getText().equals("") || !textFieldLocation.getText().equals("") || 
             !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
-            query += "WHERE 1=0 ";
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                    || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "WHERE 1=0 ";
+            }
         }
 
         try {
             if (!textFieldLuggageID.getText().equals("")) {
-                query += "OR luggage_id = ? ";
-                values.add(helpers.Filters.filteredString(textFieldLuggageID.getText()));
+                query += checkComboBox("`luggage`.`luggage_id`", textFieldLuggageID, values);
+                luggageQuery += checkComboBox("`luggage`.`luggage_id`", textFieldLuggageID, luggageValues);
             }
 
             if (!textFieldLocation.getText().equals("")) {
-                query += "OR location = ? ";
-                values.add(helpers.Filters.filteredString(textFieldLocation.getText()));
+                query += checkComboBox("location", textFieldLocation, values);
+                luggageQuery += checkComboBox("location", textFieldLocation, luggageValues);
             }
 
             if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
-                query += "OR status = ? ";
-                values.add(helpers.Filters.filteredString(comboBoxLuggageStatus.getSelectedItem().toString()));
+                query += checkComboBox("status", comboBoxLuggageStatus, values);
+                luggageQuery += checkComboBox("location", textFieldLocation, luggageValues);
             }
+            
 
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
             
             
-            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-            query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+            
             if (!textFieldFlightNumber.getText().equals("")) {
-                query += "`luggage_flight`.`flight_id` = ? AND ";
-                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
+                query += "AND flight_id = ?" + luggageQuery;
+                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
+                for (String luggageValue : luggageValues) {
+                    values.add(luggageValue);
+                }
             }
-            query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
             
-            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-            query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+            
+            
             if (!textFieldOwnerID.getText().equals("")) {
-                query += "`customer_luggage`.`customer_id` = ? AND ";
-                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE 1=1";
+                query += "AND `luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
+                query += "AND owner_id = ?" + luggageQuery;
+                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
+                for (String luggageValue : luggageValues) {
+                    values.add(luggageValue);
+                }
             }
-            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
-                    
-            
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
@@ -131,6 +159,46 @@ public class SearchLuggage extends SwitchingJPanel {
     }
     
     /**
+     * 
+     * @param kolomNaam
+     * @param textField
+     * @param values
+     * @return 
+     */
+    private String checkComboBox(String kolomNaam, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + kolomNaam + " = ? ";
+        }else if(comboBoxSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + kolomNaam + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + kolomNaam + " = ? ";
+        }
+    }
+    
+    /**
+     * 
+     * @param kolomNaam
+     * @param comboBox
+     * @param values
+     * @return 
+     */
+    private String checkComboBox(String kolomNaam, JComboBox comboBox,  ArrayList<String> values) {
+        if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(comboBox.getSelectedItem().toString()));
+            return " AND " + kolomNaam + " = ? ";
+        }else if(comboBoxSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + comboBox.getSelectedItem().toString() + "%"));
+            return " OR " + kolomNaam + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(comboBox.getSelectedItem().toString()));
+            return " OR " + kolomNaam + " = ? ";
+        }
+    }
+    
+    /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -150,6 +218,8 @@ public class SearchLuggage extends SwitchingJPanel {
         buttonHelpLinking = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        comboBoxSearchType = new javax.swing.JComboBox();
 
         addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -217,6 +287,10 @@ public class SearchLuggage extends SwitchingJPanel {
             }
         });
 
+        jLabel1.setText("Search type:");
+
+        comboBoxSearchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inclusive", "Exclusive", "Loose" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -233,23 +307,25 @@ public class SearchLuggage extends SwitchingJPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(buttonHelpLinking, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelSearchLuggage, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(textFieldLuggageID, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                    .addComponent(textFieldOwnerID)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textFieldLuggageID, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                                            .addComponent(textFieldFlightNumber))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(comboBoxLuggageStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(textFieldLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldOwnerID, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(textFieldFlightNumber))
-                                        .addGap(167, 167, 167)))
-                                .addGap(269, 269, 269)))
+                                            .addComponent(textFieldLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))))
+                                .addGap(0, 0, 0))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelSearchLuggage)
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonHelpLinking, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
@@ -258,7 +334,12 @@ public class SearchLuggage extends SwitchingJPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldLuggageID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,10 +347,10 @@ public class SearchLuggage extends SwitchingJPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldFlightNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(buttonHelpLinking))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -287,7 +368,7 @@ public class SearchLuggage extends SwitchingJPanel {
      */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP_FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     /**
@@ -297,13 +378,9 @@ public class SearchLuggage extends SwitchingJPanel {
      * @param evt
      */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        this.userNotAFK();
-        textFieldFlightNumber.setText("");
-        textFieldLocation.setText("");
-        textFieldOwnerID.setText("");
-        comboBoxLuggageStatus.setSelectedIndex(0);
-        textFieldLuggageID.setText("");
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        this.userNotAFK(); 
+        clearSearchLuggage();
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     /**
@@ -345,6 +422,8 @@ public class SearchLuggage extends SwitchingJPanel {
     private javax.swing.JButton buttonHelpLinking;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JComboBox comboBoxLuggageStatus;
+    private javax.swing.JComboBox comboBoxSearchType;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelSearchLuggage;
     private javax.swing.JTable tableLuggageSearch;

@@ -38,6 +38,11 @@ class examplePanel2 extends SwitchingJPanel {
 }
 
 // example main function
+
+/**
+ *
+ * @author geoffrey
+ */
 public class SwitchingJPanelExample extends javax.swing.JFrame {
     
     private examplePanel exmPanel;
@@ -53,6 +58,9 @@ public class SwitchingJPanelExample extends javax.swing.JFrame {
         }
     };
 
+    /**
+     *
+     */
     public SwitchingJPanelExample() {
         // while the screen classes differ we can still reference the same event instance,
         // since this property is inherited from our SwitchingJPanel class.
@@ -60,6 +68,11 @@ public class SwitchingJPanelExample extends javax.swing.JFrame {
         exmPanel2 = new examplePanel2(sjPanelEventsInstance);
     }
     
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         new SwitchingJPanelExample();
     }

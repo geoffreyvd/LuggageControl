@@ -1,11 +1,10 @@
 package managers;
 
+import baseClasses.ErrorJDialog;
 import constants.ScreenNames;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -13,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.LuggageControl;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Manage security aspects such as user input filtering and login management
@@ -89,21 +89,39 @@ public class SecurityMan {
     }
     
     /**
-     * 
+     *
      * @param password
-     * @return 
+     * @param saltString
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws Exception
      */
-    public String[] encodePassword(String password) {
-        SecureRandom number;
-        try {
-            number = SecureRandom.getInstance("SHA1PRNG");
-            byte[] salt = new byte[47];
-            number.nextBytes(salt);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SecurityMan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static String encodePassword(String password, String saltString) throws NoSuchAlgorithmException, Exception {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
 
-        return new String[]{"This", "Gonna suck"};
+        byte[] salt = saltString.getBytes();
+        byte[] passarray = new byte[password.getBytes().length + salt.length];
+
+        System.arraycopy(password.getBytes(), 0, passarray, 0, password.getBytes().length);
+        System.arraycopy(salt, 0, passarray, password.getBytes().length, salt.length);
+
+        password = new String(Base64.encodeBase64(md.digest(passarray)));
+        
+        return password;
+    }
+    
+    /**
+     *
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws Exception
+     */
+    public static String createSalt() throws NoSuchAlgorithmException, Exception {
+        SecureRandom number;
+        number = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[12];
+        number.nextBytes(salt);
+        return new String(Base64.encodeBase64(salt));
     }
     
     /**
@@ -114,10 +132,20 @@ public class SecurityMan {
      * @return true if successful, false when failed.
      */
     public boolean logInUser(String username, String password) {
+        
+        // get the salt, try catch in case our user does not exist
+        try {
+            String salt = databaseMan.queryOneResult("SELECT salt FROM user WHERE username = ?", new String[]{username});
+            password = this.encodePassword(password, salt);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         String[] values1 = new String[2];
         values1[0] = username;
         values1[1] = password;
-        String query = "select permission from user where username = ? and password = ?";
+        String query = "SELECT permission FROM user WHERE username = ? AND password = ?";
         
         //This query will return a string, it only returns 1 value!
         String result = databaseMan.queryOneResult(query, values1);
@@ -125,7 +153,6 @@ public class SecurityMan {
         username = null;
         password = null;
         if (!result.equals("")) {
-            System.out.println("succesful query");
             int resultInt = Byte.parseByte(result);
             if (resultInt == 0) {
                 //oude gebruiker gegevens zonder inlog
@@ -148,7 +175,7 @@ public class SecurityMan {
             this.userLoggedIn.set(true);
             return true;
         } else {
-            System.out.println("De opgegeven gebruiker niet gevonden in de database");
+            System.out.println("User was not found in the database");
             return false;
         }
     }
@@ -199,6 +226,7 @@ public class SecurityMan {
     /**
      * Resets the timeout time to the default time Please note that the timer
      * time does not change until you reset the timer.
+     * @param resetTimer
      * @return true if succeeded, false when failed.
      */
     public boolean resetTimeOutTime(boolean resetTimer) {
@@ -238,6 +266,7 @@ public class SecurityMan {
      * timer time does not change until you reset the timer.
      *
      * @param newTimeOutTime
+     * @param resetTimer
      * @return true if succeeded, false when failed.
      */
     public boolean setTimeOutTime(int newTimeOutTime, boolean resetTimer) {
@@ -253,6 +282,9 @@ public class SecurityMan {
         return true;
     }
     
+    /**
+     *
+     */
     public void startTimer() {
         //  start the timer with the timertask
         timeOut.scheduleAtFixedRate(fireTimeOut, timeOutTime, timeOutTime);

@@ -2,8 +2,6 @@ package screen.search;
 
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -11,17 +9,19 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import screen.base.BaseSearch;
 
 /**
  * Searches through the client database with the given data.
  * @author Konrad
  */
-public class SearchCustomer extends SwitchingJPanel {
+public class SearchCustomer extends BaseSearch {
     
     private DatabaseMan db = new DatabaseMan();
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
+     * @param luggageControl
      */
     public SearchCustomer(LuggageControl luggageControl) {
         super(luggageControl);
@@ -43,6 +43,17 @@ public class SearchCustomer extends SwitchingJPanel {
         for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
             datamodel.removeRow(i);
         }
+    }
+    
+    /**
+     * Clears all textfields
+     */
+    public void clearSearchCustomer() {
+        textFieldFlightnumber.setText("");
+        textFieldFirstName.setText("");
+        textFieldSurName.setText("");
+        textFieldCellphone.setText("");
+        textFieldEmail.setText("");
     }
     
     /**
@@ -129,8 +140,8 @@ public class SearchCustomer extends SwitchingJPanel {
      * @param customerId The specific database customer id from the customer table
      */
     public void switchCustomerDetails(int customerId) {
-        this.luggageControl.prefillPanel(ScreenNames.CUSTOMER_DETAILS, customerId);
-        this.luggageControl.switchJPanel(ScreenNames.CUSTOMER_DETAILS);
+        this.luggageControl.prefillPanel(this.luggageControl.CUSTOMER_DETAILS, customerId);
+        this.luggageControl.switchJPanel(this.luggageControl.CUSTOMER_DETAILS);
     }
 
     /**
@@ -314,12 +325,8 @@ public class SearchCustomer extends SwitchingJPanel {
      */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         this.userNotAFK();
-        textFieldFlightnumber.setText("");
-        textFieldFirstName.setText("");
-        textFieldSurName.setText("");
-        textFieldCellphone.setText("");
-        textFieldEmail.setText("");
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+        clearSearchCustomer();
+        this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     /**
@@ -328,7 +335,7 @@ public class SearchCustomer extends SwitchingJPanel {
      */
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.FINDING);
+        this.luggageControl.switchJPanel(this.luggageControl.HELP_FINDING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void textFieldFlightnumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldFlightnumberKeyPressed
