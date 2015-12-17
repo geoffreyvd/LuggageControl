@@ -67,71 +67,85 @@ public class AddUser extends SwitchingJPanel {
         this.clearFields();
     }
     private boolean checkInput(){
+        // validate first name placeholder
         if (textFieldFirstname.getText().equals("")) {
             labelStatus.setText("First name is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate sur name placeholder
         if (textFieldSurname.getText().equals("")) {
             labelStatus.setText("Sur name is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // vallidate gender placeholder
         if (comboBoxGender.getSelectedItem().toString().equals("Gender")) {
             labelStatus.setText("You must enter a gender");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // check if birthday is a valid date
         if (helpers.Filters.filteredDate(textFieldBirthday.getText(), "yyyy-MM-dd").equals("")){
             labelStatus.setText("Birthday not valid, birthday should be like YYYY-MM-DD");
             this.resetLabel(5000, labelStatus);
             return false; 
         }
+        // check if email is in the right format
         if (helpers.Filters.filteredEmail(textFieldEmail.getText()).equals("")) {
             labelStatus.setText("Email not valid");
             this.resetLabel(5000, labelStatus);
             return false;
-        }        
+        }
+        // check if cellphone is a number
         if (helpers.Filters.filteredCellphone(textFieldCellphone.getText()).equals("")) {
             labelStatus.setText("Cellphone number is not valid");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate nationality placeholder
         if (textFieldNationality.getText().equals("")) {
             labelStatus.setText("Nationality is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate city placeholder
         if (textFieldCity.getText().equals("")) {
             labelStatus.setText("City is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate adress placeholder
         if (textFieldAdress.getText().equals("")) {
             labelStatus.setText("Adress is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate postcode placeholder
         if (textFieldPostalcode.getText().equals("")) {
             labelStatus.setText("Postcode is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate profession placeholder
         if (comboBoxProfession.getSelectedIndex() == 0) {
             labelStatus.setText("You must enter a permission");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate username placeholder
         if (textFieldUsername.getText().equals("")) {
             labelStatus.setText("Username is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate password placeholder
         if (textFieldPassword.getText().equals("")) {
             labelStatus.setText("Password is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // check if image is selected
         if (imageBase64.equals("")) {
             labelStatus.setText("Image is not selected");
             this.resetLabel(5000, labelStatus);
