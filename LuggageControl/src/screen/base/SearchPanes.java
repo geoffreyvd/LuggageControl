@@ -16,6 +16,8 @@ public class SearchPanes extends JTabbedPane{
     public static final String SEARCH_LUGGAGE = "panelSearchLuggage";
     public static final String SEARCH_USER = "panelSearchUser";
     
+    private String image;
+    
     /* these have been not neccesary so far but I made them as a precaution
         public static final String UPLOAD_IMAGE_NAME = "Upload image";
         public static final String SEARCH_CUSTOMER_NAME = "Customer";
@@ -645,6 +647,15 @@ public class SearchPanes extends JTabbedPane{
     }
     //</editor-fold>
     
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    public String getImage() {
+        return image;
+    }
+    
+    //<editor-fold defaultstate="collapsed" desc="Tab related methods">
     /**
      * Add and appropriately name a tab, <U>does not check if tab already exists!</U>
      * @param panelId static string to identify the tab to be added.
@@ -698,4 +709,5 @@ public class SearchPanes extends JTabbedPane{
                 break;
         }
     }
+    //</editor-fold>
 }

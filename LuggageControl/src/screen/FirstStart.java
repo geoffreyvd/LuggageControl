@@ -656,7 +656,7 @@ public class FirstStart extends SwitchingJPanel {
 
         userPic.setIcon(helpers.ImageMaker.resizeImage(userPic.getWidth(), -1, path));
 
-        userImage = helpers.ImageMaker.base64Encode(path);
+        userImage = helpers.ImageMaker.encodeImage(path);
     }//GEN-LAST:event_buttonUploadImageActionPerformed
 
     private void buttonPthreeCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPthreeCreateUserActionPerformed

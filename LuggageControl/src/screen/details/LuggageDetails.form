@@ -17,25 +17,24 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="comboBoxUpdateStatus" pref="183" max="32767" attributes="0"/>
+                          <Component id="comboBoxUpdateStatus" max="32767" attributes="0"/>
                           <Component id="textFieldUpdateColor" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldUpdateWeight" pref="183" max="32767" attributes="0"/>
-                          <Component id="comboBoxSize" alignment="1" pref="183" max="32767" attributes="0"/>
+                          <Component id="textFieldUpdateWeight" max="32767" attributes="0"/>
+                          <Component id="comboBoxSize" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                   <Component id="labelStatus" alignment="0" max="32767" attributes="0"/>
-                  <Component id="textFieldUpdateOwnerID" alignment="1" max="32767" attributes="0"/>
-                  <Component id="textFieldUpdateLocation" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="textFieldOwnerID" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="buttonUpdate" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -43,7 +42,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labelLuggageDetails" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelLuggageDetails" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelDestination" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -61,8 +60,10 @@
                           </Group>
                           <Component id="labelDescription" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonRemoveOwner" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="textFieldUpdateLocation" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="separatorCenter" min="-2" max="-2" attributes="0"/>
@@ -105,7 +106,10 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldUpdateLocation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldUpdateOwnerID" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textFieldOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonRemoveOwner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboBoxUpdateStatus" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,7 +123,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelDescription" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="179" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="177" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelStatus" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -205,7 +209,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Location"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textFieldUpdateOwnerID">
+    <Component class="javax.swing.JFormattedTextField" name="textFieldOwnerID">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Owner id"/>
       </Properties>
@@ -310,6 +314,15 @@
           </StringArray>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonRemoveOwner">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Remove"/>
+        <Property name="toolTipText" type="java.lang.String" value="Remove the current owner"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveOwnerbuttonRemoveFlight"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

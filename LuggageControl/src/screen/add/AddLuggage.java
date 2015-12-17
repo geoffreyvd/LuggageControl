@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
-import org.apache.commons.codec.binary.Base64;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
@@ -95,16 +94,6 @@ public class AddLuggage extends SwitchingJPanel {
         textPaneContent.setText("");
         labelStatus.setText("");
         pic.setIcon(null);
-    }
-
-    /**
-     * encodes the image into a base64 string
-     *
-     * @param imageByteArray
-     * @return base64 string
-     */
-    public static String encodeImage(byte[] imageByteArray) {
-        return Base64.encodeBase64URLSafeString(imageByteArray);
     }
 
     /**

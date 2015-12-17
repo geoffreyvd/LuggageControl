@@ -122,7 +122,7 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
         
         label.setHorizontalAlignment(label.CENTER);
         label.setVerticalAlignment(label.CENTER);
-        return helpers.ImageMaker.base64Encode(tempCurrentImagePath);
+        return helpers.ImageMaker.encodeImage(tempCurrentImagePath);
     }
     
     /**

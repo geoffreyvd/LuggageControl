@@ -40,8 +40,8 @@ public class LuggageDetails extends BaseDetails {
         initComponents();
         PromptSupport.setPrompt("Location", textFieldUpdateLocation);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateLocation);
-        PromptSupport.setPrompt("OwnerID", textFieldUpdateOwnerID);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateOwnerID);
+        PromptSupport.setPrompt("OwnerID", textFieldOwnerID);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldOwnerID);
         PromptSupport.setPrompt("Color", textFieldUpdateColor);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateColor);
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
@@ -84,7 +84,7 @@ public class LuggageDetails extends BaseDetails {
      */
     private void clearLuggage() {
         textFieldUpdateLocation.setText("");
-        textFieldUpdateOwnerID.setText("");
+        textFieldOwnerID.setText("");
         textFieldUpdateColor.setText("");
         comboBoxUpdateStatus.setSelectedIndex(0);
         comboBoxSize.setSelectedIndex(0);
@@ -149,10 +149,18 @@ public class LuggageDetails extends BaseDetails {
                 labelDisplayDestination.setText(resultFlightDetails.getString("destination"));
             }
             
-            ResultSet resultOwner = db.query("SELECT customer_id FROM customer_luggage WHERE luggage_id = ?;", new String[]{luggageID + ""});
-            while(resultOwner.next()) {
-                textFieldUpdateOwnerID.setText(resultOwner.getString("customer_id"));
+            // do we have a owner and if so set it
+            if(Integer.parseInt(db.queryOneResult("SELECT COUNT(customer_id) FROM customer_luggage WHERE luggage_id = ?;", new String[]{luggageID + ""})) > 0) {
+                ResultSet resultOwner = db.query("SELECT customer_id FROM customer_luggage WHERE luggage_id = ?;", new String[]{luggageID + ""});
+                while(resultOwner.next()) {
+                    textFieldOwnerID.setText(resultOwner.getString("customer_id"));
+                }
             }
+            else {
+                // we dont have a owner so reset the text field
+                textFieldOwnerID.setText("");
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -268,13 +276,13 @@ public class LuggageDetails extends BaseDetails {
             
             // check if our customer is not already linked to this flight
             // this is the uglieest if statement I ever made.
-            if(!textFieldUpdateOwnerID.getText().equals("")) {
+            if(!textFieldOwnerID.getText().equals("")) {
                 if(db.queryOneResult("SELECT `customer_id` FROM customer WHERE customer_id = ?", 
-                        new String[]{textFieldUpdateOwnerID.getText()})
-                    .equals(textFieldUpdateOwnerID.getText())) {
+                        new String[]{textFieldOwnerID.getText()})
+                    .equals(textFieldOwnerID.getText())) {
                     
                     query = "INSERT INTO customer_luggage (customer_id, luggage_id) VALUES (?, ?)";
-                    values.add(helpers.Filters.filteredInt(textFieldUpdateOwnerID.getText(), 1, Integer.MAX_VALUE));
+                    values.add(helpers.Filters.filteredInt(textFieldOwnerID.getText(), 1, Integer.MAX_VALUE));
                     values.add(helpers.Filters.filteredInt(currentLuggageId + "", 1, Integer.MAX_VALUE));
                     types.add("Int"); 
                     types.add("Int");
@@ -285,7 +293,7 @@ public class LuggageDetails extends BaseDetails {
                         return;
                     }
             }
-            else if(!helpers.Filters.filteredString(textFieldUpdateOwnerID.getText(), new char[]{'0','1','2','3','4','5','6','7','8','9'}, true).equals("")) {
+            else if(!helpers.Filters.filteredString(textFieldOwnerID.getText(), new char[]{'0','1','2','3','4','5','6','7','8','9'}, true).equals("")) {
                     labelStatus.setText("Customer id must be numbers only");
                     this.resetLabel(5000, labelStatus);
                     return;
@@ -302,6 +310,16 @@ public class LuggageDetails extends BaseDetails {
         }
         
         loadLuggage(currentLuggageId);
+    }
+    
+    private void removeLuggageOwnerLink() {
+        try {
+            db.queryManipulation("DELETE FROM customer_luggage WHERE luggage_id = ?", 
+            new String[]{currentLuggageId + ""}, new String[]{"Int"});
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
     }
     
     /**
@@ -321,7 +339,7 @@ public class LuggageDetails extends BaseDetails {
         labelDestination = new javax.swing.JLabel();
         labelDisplayDestination = new javax.swing.JLabel();
         textFieldUpdateLocation = new javax.swing.JFormattedTextField();
-        textFieldUpdateOwnerID = new javax.swing.JFormattedTextField();
+        textFieldOwnerID = new javax.swing.JFormattedTextField();
         comboBoxUpdateStatus = new javax.swing.JComboBox();
         textFieldUpdateColor = new javax.swing.JFormattedTextField();
         textFieldUpdateWeight = new javax.swing.JFormattedTextField();
@@ -337,6 +355,7 @@ public class LuggageDetails extends BaseDetails {
         labelDescription = new javax.swing.JLabel();
         searchPanel = new screen.base.SearchPanes();
         comboBoxSize = new javax.swing.JComboBox();
+        buttonRemoveOwner = new javax.swing.JButton();
 
         labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelLuggageDetails.setText("Luggage details");
@@ -361,7 +380,7 @@ public class LuggageDetails extends BaseDetails {
 
         textFieldUpdateLocation.setToolTipText("Location");
 
-        textFieldUpdateOwnerID.setToolTipText("Owner id");
+        textFieldOwnerID.setToolTipText("Owner id");
 
         comboBoxUpdateStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found" }));
 
@@ -408,6 +427,14 @@ public class LuggageDetails extends BaseDetails {
 
         comboBoxSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Size", "Small", "Medium", "Large" }));
 
+        buttonRemoveOwner.setText("Remove");
+        buttonRemoveOwner.setToolTipText("Remove the current owner");
+        buttonRemoveOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveOwnerbuttonRemoveFlight(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -417,25 +444,24 @@ public class LuggageDetails extends BaseDetails {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxUpdateStatus, 0, 183, Short.MAX_VALUE)
+                            .addComponent(comboBoxUpdateStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textFieldUpdateColor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(comboBoxSize, javax.swing.GroupLayout.Alignment.TRAILING, 0, 183, Short.MAX_VALUE)))
+                            .addComponent(textFieldUpdateWeight)
+                            .addComponent(comboBoxSize, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldUpdateOwnerID)
-                    .addComponent(textFieldUpdateLocation)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textFieldOwnerID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelLuggageDetails, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelLuggageDetails, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelDestination)
@@ -448,7 +474,9 @@ public class LuggageDetails extends BaseDetails {
                                         .addComponent(labelDisplayOrigin)
                                         .addComponent(labelDisplayFlightnumber))))
                             .addComponent(labelDescription, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonRemoveOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -483,7 +511,9 @@ public class LuggageDetails extends BaseDetails {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldUpdateOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonRemoveOwner))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,7 +525,7 @@ public class LuggageDetails extends BaseDetails {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelDescription)
                         .addGap(0, 0, 0)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -550,11 +580,28 @@ public class LuggageDetails extends BaseDetails {
         this.luggageControl.switchJPanel(this.luggageControl.HELP_LINKING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
+    private void buttonRemoveOwnerbuttonRemoveFlight(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveOwnerbuttonRemoveFlight
+        this.userNotAFK();
+        try {
+            removeLuggageOwnerLink();
+        }
+        catch(NullPointerException e) {
+            labelStatus.setText("Failed to delete owner");
+            this.resetLabel(5000, labelStatus);
+            return;
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+        loadLuggage(currentLuggageId);
+    }//GEN-LAST:event_buttonRemoveOwnerbuttonRemoveFlight
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelp;
+    private javax.swing.JButton buttonRemoveOwner;
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JComboBox comboBoxSize;
     private javax.swing.JComboBox comboBoxUpdateStatus;
@@ -571,9 +618,9 @@ public class LuggageDetails extends BaseDetails {
     private javax.swing.JLabel labelStatus;
     private screen.base.SearchPanes searchPanel;
     private javax.swing.JSeparator separatorCenter;
+    private javax.swing.JFormattedTextField textFieldOwnerID;
     private javax.swing.JFormattedTextField textFieldUpdateColor;
     private javax.swing.JFormattedTextField textFieldUpdateLocation;
-    private javax.swing.JFormattedTextField textFieldUpdateOwnerID;
     private javax.swing.JFormattedTextField textFieldUpdateWeight;
     private javax.swing.JTextPane textPaneUpdateDescription;
     // End of variables declaration//GEN-END:variables
