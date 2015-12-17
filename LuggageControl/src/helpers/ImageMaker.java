@@ -110,4 +110,19 @@ public class ImageMaker {
         return imageIcon;
     }
     
+    /**
+     * Resizes the image to make it fit the jLabel
+     * @param width of the image
+     * @param height of the image 
+     * @param imageData data of the image
+     * @return the resized image(icon)
+     */
+    public static ImageIcon resizeImage(int width, int height, byte[] imageData) {
+        imageIcon = new ImageIcon(imageData);
+        Image image = imageIcon.getImage(); // transform image 
+        Image newImage = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); // scale the image the SMOOTH way 
+        imageIcon = new ImageIcon(newImage);  // transform image back
+        return imageIcon;
+    }
+    
 }

@@ -1,5 +1,8 @@
 package screen.base;
 
+import static helpers.ImageMaker.decodeImage;
+import static helpers.ImageMaker.encodeImage;
+import static helpers.ImageMaker.getImagePath;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
@@ -165,7 +168,7 @@ public class SearchPanes extends JTabbedPane{
             }
 
             private void buttonUploadImagebutton(ActionEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                setImage();
             }
         });
 
@@ -647,8 +650,35 @@ public class SearchPanes extends JTabbedPane{
     }
     //</editor-fold>
     
-    public void setImage(String image) {
+    public void setImage() {
+        String path = getImagePath();
+        this.setImage(path, false);
+    }
+    
+    public void setImage(String image, boolean bytes) {
         this.image = image;
+        ImageIcon imageIcon;
+        
+        if(bytes) {
+            imageIcon = new ImageIcon(image.getBytes());
+        }
+        else {
+            imageIcon = new ImageIcon(image);
+        }
+        
+        System.out.println(imageIcon);
+        if(imageIcon.getIconHeight() > imageIcon.getIconWidth()) {
+            labelLuggageImage.setIcon(helpers.ImageMaker.resizeImage(-1, labelLuggageImage.getHeight(), image));
+        }
+        else if(imageIcon.getIconHeight() < imageIcon.getIconWidth()) {
+            labelLuggageImage.setIcon(helpers.ImageMaker.resizeImage(labelLuggageImage.getWidth(), -1, image));
+        }
+        else {
+            labelLuggageImage.setIcon(helpers.ImageMaker.resizeImage(labelLuggageImage.getWidth(), labelLuggageImage.getHeight(), image));
+        }
+        
+        labelLuggageImage.setHorizontalAlignment(JLabel.CENTER);
+        labelLuggageImage.setVerticalAlignment(JLabel.CENTER);
     }
     
     public String getImage() {

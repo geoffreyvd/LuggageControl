@@ -559,6 +559,7 @@ public class LuggageDetails extends BaseDetails {
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
         this.userNotAFK();
         this.loadLuggage(currentLuggageId);
+        System.out.println(this.searchPanel.getImage());
     }//GEN-LAST:event_butonCancelActionPerformed
 
     /**
