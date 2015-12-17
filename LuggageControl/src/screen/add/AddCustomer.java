@@ -61,8 +61,6 @@ public class AddCustomer extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
         PromptSupport.setPrompt("LuggageID", textFieldLuggageID);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageID);
-        
-      
     }
     
     @Override
@@ -200,53 +198,63 @@ public class AddCustomer extends SwitchingJPanel {
      * @return
      */
     private boolean checkInput() {
+        // Check if luggage id exists
         if (!(textFieldLuggageID.getText().equals("")) && 
                 db.queryOneResult("SELECT `luggage_id` FROM luggage WHERE luggage_id = ?", new String[]{textFieldLuggageID.getText()}).equals("")) {
             labelStatus.setText("Luggage doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // Check if flight number exists
         if (!(textFieldFlightnumber.getText().equals("")) && 
                 db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
             labelStatus.setText("Flightnumber doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate name placeholder
         if (textFieldName.getText().equals("")){
             labelStatus.setText("First name is empty");
             this.resetLabel(5000, labelStatus);
             return false;    
         }
+        // validate sur name placeholder
         if (textFieldSurName.getText().equals("")){
             labelStatus.setText("Surname is empty");
             this.resetLabel(5000, labelStatus);
             return false;    
         }
+        // check if email is in the right format
         if (helpers.Filters.filteredEmail(textFieldEmail.getText()).equals("")){
             labelStatus.setText("Email not valid");
             this.resetLabel(5000, labelStatus);
             return false;    
         }
+        // check if cellphone is a number
         if (helpers.Filters.filteredCellphone(textFieldCellphoneNumber.getText()).equals("")){
             labelStatus.setText("Cellphone not valid");
             this.resetLabel(5000, labelStatus);
             return false;    
         }
+        // check if birthday is a valid date
         if (helpers.Filters.filteredDate(textFieldBirthday.getText(), "").equals("")){
             labelStatus.setText("Birthday not valid, birthday should be like YYYY-MM-DD");
             this.resetLabel(5000, labelStatus);
             return false; 
         }
+        // validate gender placeholder
        if (textFieldGender.getText().equals("")){
             labelStatus.setText("Gender is empty");
             this.resetLabel(5000, labelStatus);
             return false;    
         }
+       // validate adress placeholder
        if (textFieldAdress.getText().equals("")){
             labelStatus.setText("Adress is empty");
             this.resetLabel(5000, labelStatus);
             return false;    
         }
+       // check if postcode is in the right format
        if (helpers.Filters.filteredPostcode(textFieldPostcode.getText()).equals("")){
             labelStatus.setText("Postcode not valid");
             this.resetLabel(5000, labelStatus);
@@ -260,7 +268,6 @@ public class AddCustomer extends SwitchingJPanel {
             String queryInsertCustomer = "INSERT INTO `luggagecontroldata`.`customer`"
                     + "(`firstname`, `surname`, `email`, `cellphone`, `birthday`, `gender`, `adress`, `postcode`)"
                     + "VALUES(?,?,?,?,?,?,?,?)";
-
             String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`customer_luggage`"
                     + "(`customer_id`, `luggage_id`)  "
                     + "VALUES(?,?)";
@@ -324,6 +331,7 @@ public class AddCustomer extends SwitchingJPanel {
                 new ErrorJDialog(this.luggageControl, true, "Error: retrieving inserting customer", (new Throwable()).getStackTrace());
             }
             this.clearFields();
+            this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
             
         } 
     }

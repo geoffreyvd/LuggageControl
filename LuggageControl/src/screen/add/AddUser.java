@@ -153,8 +153,6 @@ public class AddUser extends SwitchingJPanel {
                 return;
             }
             
-            
-            
             String queryInsertUser = "INSERT INTO `luggagecontroldata`.`user`"
                    + "(`username`,`password`,`salt`,`email`,`firstname`,`surname`,`cellphone`,`birthday`,`gender`,`nationality`,`adress`,`city`,`postcode`,`image`,`permission`)"
                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

@@ -33,7 +33,7 @@ public class AddLuggage extends SwitchingJPanel {
     public AddLuggage(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
-        PromptSupport.setPrompt("Flightnumber", textFieldFlightnumber);
+        PromptSupport.setPrompt("Flight number", textFieldFlightnumber);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightnumber);
         PromptSupport.setPrompt("Location", textFieldLocation);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLocation);
@@ -45,8 +45,27 @@ public class AddLuggage extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldColor);
         PromptSupport.setPrompt("Size", textFieldSize);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSize);
-
-    }
+        PromptSupport.setPrompt("Flight number", textFieldFlightId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightId);
+        PromptSupport.setPrompt("Flight origin", textFieldFlightOrigin);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightOrigin);
+        PromptSupport.setPrompt("Flight destination", textFieldFlightDestination);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDestination);
+        PromptSupport.setPrompt("Flight arrival", textFieldFlightArrival);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightArrival);
+        PromptSupport.setPrompt("Flight departure", textFieldFlightDeparture);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDeparture);
+        PromptSupport.setPrompt("First name", textFieldFirstName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFirstName);
+        PromptSupport.setPrompt("Sur name", textFieldSurName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSurName);
+        PromptSupport.setPrompt("Cellphone number", textFieldCellphone);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
+        PromptSupport.setPrompt("Email", textFieldEmail);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
+    }   
+    
+    
     @Override
     public void updatePanelInformation() {
         System.err.println("Add panel not capabable of prefilling data");
@@ -758,10 +777,6 @@ public class AddLuggage extends SwitchingJPanel {
         this.userNotAFK();
         this.searchCustomer();
     }//GEN-LAST:event_buttonSearchCustomerActionPerformed
-
-    private void textFieldFlightnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldFlightnumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldFlightnumberActionPerformed
 
     private void buttonUploadImagebuttonUploadsImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUploadImagebuttonUploadsImageActionPerformed
         this.userNotAFK();
