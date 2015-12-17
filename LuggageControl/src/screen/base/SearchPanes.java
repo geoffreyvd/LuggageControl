@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class SearchPanes extends JTabbedPane{
     
-    public static final String UPLOAD_IMAGE = "panelUploadImage";
+    public static final String IMAGE = "panelImage";
     public static final String SEARCH_CUSTOMER = "panelSearchCustomer";
     public static final String SEARCH_FLIGHT = "panelSearchFlight";
     public static final String SEARCH_LUGGAGE = "panelSearchLuggage";
@@ -40,7 +40,7 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JPanel panelSearchFlight;
     private javax.swing.JPanel panelSearchLuggage;
     private javax.swing.JPanel panelSearchUser;
-    private javax.swing.JPanel panelUploadImage;
+    private javax.swing.JPanel panelImage;
     
     private javax.swing.JTable tableLugSearchFlight;
     private javax.swing.JTable tableLugSearchLuggage;
@@ -95,7 +95,7 @@ public class SearchPanes extends JTabbedPane{
     
     // <editor-fold defaultstate="collapsed" desc="initComponents">
     private void initComponents() {
-        panelUploadImage = new javax.swing.JPanel();
+        panelImage = new javax.swing.JPanel();
         panelSearchCustomer = new javax.swing.JPanel();
         
         scrollPaneCustomerTable = new javax.swing.JScrollPane();
@@ -156,7 +156,7 @@ public class SearchPanes extends JTabbedPane{
         labelLuggageImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labelLuggageImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        buttonUploadImage.setText("Upload image");
+        buttonUploadImage.setText("Uploadimage");
         buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUploadImagebutton(evt);
@@ -167,8 +167,8 @@ public class SearchPanes extends JTabbedPane{
             }
         });
 
-        javax.swing.GroupLayout panelUploadImageLayout = new javax.swing.GroupLayout(panelUploadImage);
-        panelUploadImage.setLayout(panelUploadImageLayout);
+        javax.swing.GroupLayout panelUploadImageLayout = new javax.swing.GroupLayout(panelImage);
+        panelImage.setLayout(panelUploadImageLayout);
         panelUploadImageLayout.setHorizontalGroup(
             panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUploadImageLayout.createSequentialGroup()
@@ -188,7 +188,7 @@ public class SearchPanes extends JTabbedPane{
                 .addContainerGap())
         );
         
-        this.addTab("Upload image", panelUploadImage);
+        this.addTab("Image", panelImage);
 
         tableSearchCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -651,8 +651,8 @@ public class SearchPanes extends JTabbedPane{
      */
     public void addSearchTab(String panelId) {
         switch(panelId) {
-            case UPLOAD_IMAGE:
-                this.insertTab("Upload image", null, panelUploadImage, "", this.getTabCount());
+            case IMAGE:
+                this.insertTab("Image", null, panelImage, "", this.getTabCount());
                 break;
             case SEARCH_CUSTOMER:
                 this.insertTab("Customer", null, panelSearchCustomer, "", this.getTabCount());
@@ -678,8 +678,8 @@ public class SearchPanes extends JTabbedPane{
      */
     public void removeSearchTab(String panelId) {
         switch(panelId) {
-            case UPLOAD_IMAGE:
-                this.remove(panelUploadImage);
+            case IMAGE:
+                this.remove(panelImage);
                 break;
             case SEARCH_CUSTOMER:
                 this.remove(panelSearchCustomer);

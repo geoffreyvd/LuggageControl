@@ -1,0 +1,14 @@
+baseClasses
+constants
+helpers
+main
+managers
+screen
+screen.add
+screen.base
+screen.delete
+screen.details
+screen.help
+screen.home
+screen.search
+snippits

@@ -42,8 +42,6 @@ public class LuggageDetails extends BaseDetails {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateLocation);
         PromptSupport.setPrompt("OwnerID", textFieldUpdateOwnerID);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateOwnerID);
-        PromptSupport.setPrompt("Size", textFieldUpdateSize);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateSize);
         PromptSupport.setPrompt("Color", textFieldUpdateColor);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateColor);
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
@@ -89,9 +87,9 @@ public class LuggageDetails extends BaseDetails {
         textFieldUpdateOwnerID.setText("");
         textFieldUpdateColor.setText("");
         comboBoxUpdateStatus.setSelectedIndex(0);
+        comboBoxSize.setSelectedIndex(0);
         textFieldUpdateWeight.setText("");
-        textFieldUpdateSize.setText("");
-        textPaneUpdateContent.setText("");
+        textPaneUpdateDescription.setText("");
     }
     
     
@@ -106,8 +104,34 @@ public class LuggageDetails extends BaseDetails {
                 textFieldUpdateLocation.setText(resultLuggage.getString("location"));
                 textFieldUpdateColor.setText(resultLuggage.getString("color"));
                 textFieldUpdateWeight.setText(resultLuggage.getString("weight"));
-                textFieldUpdateSize.setText(resultLuggage.getString("size"));
-                textPaneUpdateContent.setText(resultLuggage.getString("content"));
+                textPaneUpdateDescription.setText(resultLuggage.getString("content"));
+                
+                switch(resultLuggage.getString("size")) {
+                    case "Small":
+                        comboBoxSize.setSelectedIndex(1);
+                        break;
+                    case "Medium":
+                        comboBoxSize.setSelectedIndex(2);
+                        break;
+                    case "Large":
+                        comboBoxSize.setSelectedIndex(3);
+                        break;
+                    default:
+                        System.err.println("invalid result for comboBox size");
+                        break;
+                }
+                
+                switch(resultLuggage.getString("status")) {
+                    case "Lost":
+                        comboBoxUpdateStatus.setSelectedIndex(1);
+                        break;
+                    case "Found":
+                        comboBoxUpdateStatus.setSelectedIndex(2);
+                        break;
+                    default:
+                        System.err.println("invalid result for comboBox status");
+                        break;
+                }
                 
                 currentLuggageId = Integer.parseInt(resultLuggage.getString("luggage_id"));
             }
@@ -125,9 +149,9 @@ public class LuggageDetails extends BaseDetails {
                 labelDisplayDestination.setText(resultFlightDetails.getString("destination"));
             }
             
-            ResultSet resultOwner = db.query("SELECT customer_id FROM customer_luggage WHERE luggage_id = ?", new String[]{luggageID + ""});
-            while(resultFlight.next()) {
-                textFieldUpdateOwnerID.setText(resultFlight.getString("customer_id"));
+            ResultSet resultOwner = db.query("SELECT customer_id FROM customer_luggage WHERE luggage_id = ?;", new String[]{luggageID + ""});
+            while(resultOwner.next()) {
+                textFieldUpdateOwnerID.setText(resultOwner.getString("customer_id"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,8 +168,7 @@ public class LuggageDetails extends BaseDetails {
         
         // If Some text fields are not empty we add the SET clause
         if(!textFieldUpdateLocation.getText().equals("") || !textFieldUpdateColor.getText().equals("") ||
-            !textFieldUpdateWeight.getText().equals("")|| !textFieldUpdateSize.getText().equals("") ||
-            !textPaneUpdateContent.getText().equals("")){
+            !textFieldUpdateWeight.getText().equals("")|| !textPaneUpdateDescription.getText().equals("")){
             query += " SET ";
         }
         
@@ -203,21 +226,24 @@ public class LuggageDetails extends BaseDetails {
             }
             
             // validate size placeholder
-            if(!textFieldUpdateSize.getText().equals("")) {
+            if(comboBoxSize.getSelectedItem().toString().equals("Small") || 
+                comboBoxSize.getSelectedItem().toString().equals("Medium") || 
+                comboBoxSize.getSelectedItem().toString().equals("Large")
+            ) {
                 query += " size = ?,";
-                values.add(helpers.Filters.filteredString(textFieldUpdateSize.getText()));
+                values.add(helpers.Filters.filteredString(comboBoxSize.getSelectedItem().toString()));
                 types.add("String");
             }
             else {
-                labelStatus.setText("Size is not filled in");
+                labelStatus.setText("Size is not valid");
                 this.resetLabel(5000, labelStatus);
                 return;
             }
             
             // validate size placeholder
-            if(!textPaneUpdateContent.getText().equals("")) {
+            if(!textPaneUpdateDescription.getText().equals("")) {
                 query += " content = ?,";
-                values.add(helpers.Filters.filteredString(textPaneUpdateContent.getText()));
+                values.add(helpers.Filters.filteredString(textPaneUpdateDescription.getText()));
                 types.add("String");
             }
             else {
@@ -235,9 +261,10 @@ public class LuggageDetails extends BaseDetails {
             types.add("Int");
             
             db.queryManipulation(query + ";", values.toArray(new String[values.size()]), types.toArray(new String[types.size()]));
+            
+            query = "";
             values.clear();
             types.clear();
-          
             
             // check if our customer is not already linked to this flight
             // this is the uglieest if statement I ever made.
@@ -264,7 +291,10 @@ public class LuggageDetails extends BaseDetails {
                     return;
             }
          
-            db.queryManipulation(query + ";", values.toArray(new String[values.size()]), types.toArray(new String[types.size()]));
+            // Only execute this query if it exists
+            if(!query.equals("")) {
+                db.queryManipulation(query + ";", values.toArray(new String[values.size()]), types.toArray(new String[types.size()]));
+            }
                         
         }
         catch(Exception e) {
@@ -272,10 +302,6 @@ public class LuggageDetails extends BaseDetails {
         }
         
         loadLuggage(currentLuggageId);
-    }
-    
-    private void searchCustomer() {
-        
     }
     
     /**
@@ -299,7 +325,6 @@ public class LuggageDetails extends BaseDetails {
         comboBoxUpdateStatus = new javax.swing.JComboBox();
         textFieldUpdateColor = new javax.swing.JFormattedTextField();
         textFieldUpdateWeight = new javax.swing.JFormattedTextField();
-        textFieldUpdateSize = new javax.swing.JFormattedTextField();
         separatorCenter = new javax.swing.JSeparator();
         labelSearch = new javax.swing.JLabel();
         buttonUpdate = new javax.swing.JButton();
@@ -307,10 +332,11 @@ public class LuggageDetails extends BaseDetails {
         buttonBack = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        textPaneUpdateContent = new javax.swing.JTextPane();
+        textPaneUpdateDescription = new javax.swing.JTextPane();
         labelStatus = new javax.swing.JLabel();
         labelDescription = new javax.swing.JLabel();
         searchPanel = new screen.base.SearchPanes();
+        comboBoxSize = new javax.swing.JComboBox();
 
         labelLuggageDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelLuggageDetails.setText("Luggage details");
@@ -333,13 +359,15 @@ public class LuggageDetails extends BaseDetails {
         labelDisplayDestination.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDisplayDestination.setText(" XXXXXXXXX");
 
-        comboBoxUpdateStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lost", "Found", "Returned" }));
+        textFieldUpdateLocation.setToolTipText("Location");
 
-        textFieldUpdateSize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldUpdateSizeActionPerformed(evt);
-            }
-        });
+        textFieldUpdateOwnerID.setToolTipText("Owner id");
+
+        comboBoxUpdateStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found" }));
+
+        textFieldUpdateColor.setToolTipText("Color");
+
+        textFieldUpdateWeight.setToolTipText("Weight");
 
         labelSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelSearch.setText("Search");
@@ -372,10 +400,13 @@ public class LuggageDetails extends BaseDetails {
             }
         });
 
-        jScrollPane2.setViewportView(textPaneUpdateContent);
+        textPaneUpdateDescription.setToolTipText("Description");
+        jScrollPane2.setViewportView(textPaneUpdateDescription);
 
         labelDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDescription.setText("Description:");
+
+        comboBoxSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Size", "Small", "Medium", "Large" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -383,23 +414,29 @@ public class LuggageDetails extends BaseDetails {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldUpdateLocation, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textFieldUpdateOwnerID)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxUpdateStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxUpdateStatus, 0, 183, Short.MAX_VALUE)
                             .addComponent(textFieldUpdateColor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textFieldUpdateSize)
-                                .addGap(2, 2, 2))
-                            .addComponent(textFieldUpdateWeight)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelLuggageDetails)
-                            .addGroup(layout.createSequentialGroup()
+                            .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(comboBoxSize, javax.swing.GroupLayout.Alignment.TRAILING, 0, 183, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textFieldUpdateOwnerID)
+                    .addComponent(textFieldUpdateLocation)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelLuggageDetails, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelDestination)
                                     .addComponent(labelFlightnumber)
@@ -410,24 +447,17 @@ public class LuggageDetails extends BaseDetails {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(labelDisplayOrigin)
                                         .addComponent(labelDisplayFlightnumber))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelDescription))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2)
-                    .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                            .addComponent(labelDescription, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separatorCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(searchPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
+                        .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -457,29 +487,27 @@ public class LuggageDetails extends BaseDetails {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxUpdateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldUpdateSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboBoxSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldUpdateColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldUpdateWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelDescription)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonUpdate)
-                            .addComponent(buttonCancel)))
+                            .addComponent(buttonCancel)
+                            .addComponent(buttonBack)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonHelp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonBack)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(buttonHelp))
+                        .addGap(29, 29, 29)
                         .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
@@ -500,7 +528,7 @@ public class LuggageDetails extends BaseDetails {
      */
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
         this.userNotAFK();
-        updateLuggage();
+        this.loadLuggage(currentLuggageId);
     }//GEN-LAST:event_butonCancelActionPerformed
 
     /**
@@ -522,16 +550,13 @@ public class LuggageDetails extends BaseDetails {
         this.luggageControl.switchJPanel(this.luggageControl.HELP_LINKING);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
-    private void textFieldUpdateSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUpdateSizeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldUpdateSizeActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonUpdate;
+    private javax.swing.JComboBox comboBoxSize;
     private javax.swing.JComboBox comboBoxUpdateStatus;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDescription;
@@ -549,8 +574,7 @@ public class LuggageDetails extends BaseDetails {
     private javax.swing.JFormattedTextField textFieldUpdateColor;
     private javax.swing.JFormattedTextField textFieldUpdateLocation;
     private javax.swing.JFormattedTextField textFieldUpdateOwnerID;
-    private javax.swing.JFormattedTextField textFieldUpdateSize;
     private javax.swing.JFormattedTextField textFieldUpdateWeight;
-    private javax.swing.JTextPane textPaneUpdateContent;
+    private javax.swing.JTextPane textPaneUpdateDescription;
     // End of variables declaration//GEN-END:variables
 }

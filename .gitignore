@@ -3,3 +3,4 @@
 /LuggageControl/dist/*
 LuggageControl/build/*
 LuggageControl/config.ini
+/test/nbproject/private/
