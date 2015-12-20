@@ -1,10 +1,15 @@
 package screen.base;
 
-import static helpers.ImageMaker.decodeImage;
-import static helpers.ImageMaker.encodeImage;
+import baseClasses.EmptyResultSet;
+import baseClasses.ErrorJDialog;
 import static helpers.ImageMaker.getImagePath;
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import main.LuggageControl;
+import managers.DatabaseMan;
 
 /**
  * Contains all the classes to implement tabbed search pane mutations
@@ -19,7 +24,14 @@ public class SearchPanes extends JTabbedPane{
     public static final String SEARCH_LUGGAGE = "panelSearchLuggage";
     public static final String SEARCH_USER = "panelSearchUser";
     
+    private ResultSet customerResults;
+    private ResultSet flightResults;
+    private ResultSet luggageResults;
+    private ResultSet userResults;
+    
     private String image;
+    private DatabaseMan db;
+    private LuggageControl luggageControl;
     
     /* these have been not neccesary so far but I made them as a precaution
         public static final String UPLOAD_IMAGE_NAME = "Upload image";
@@ -48,11 +60,11 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JPanel panelImage;
     
     private javax.swing.JTable tableLugSearchFlight;
-    private javax.swing.JTable tableLugSearchLuggage;
-    private javax.swing.JTable tableLugSearchLuggage1;
+    private javax.swing.JTable tableSearchLuggage;
+    private javax.swing.JTable tableSearchUser;
     private javax.swing.JTable tableSearchCustomer;
     
-    private javax.swing.JLabel labelLuggageImage;
+    private javax.swing.JLabel labelImageContainer;
     private javax.swing.JLabel labelLuggageDescription;
     
     private javax.swing.JFormattedTextField textFieldCustomerAdress;
@@ -87,107 +99,109 @@ public class SearchPanes extends JTabbedPane{
     
     private javax.swing.JTextPane textPaneLuggageDescription;
     
-    private javax.swing.JScrollPane scrollPaneContent;
+    private javax.swing.JScrollPane scrollPaneLuggageDescription;
     private javax.swing.JScrollPane scrollPaneCustomerTable;
     private javax.swing.JScrollPane scrollPaneFlightTable;
     private javax.swing.JScrollPane scrollPaneLuggageTable;
     private javax.swing.JScrollPane scrollPaneUserTable;
     //</editor-fold>
     
-    public SearchPanes() {
+    public SearchPanes(LuggageControl luggageConrol, DatabaseMan db) {
+        this.db = db;
         initComponents();
     }
     
     // <editor-fold defaultstate="collapsed" desc="initComponents">
     private void initComponents() {
+        // panels
         panelImage = new javax.swing.JPanel();
         panelSearchCustomer = new javax.swing.JPanel();
+        panelSearchFlight = new javax.swing.JPanel();
+        panelSearchLuggage = new javax.swing.JPanel();
+        panelSearchUser = new javax.swing.JPanel();
         
+        // image panel
+        buttonUploadImage = new javax.swing.JButton();
+        labelImageContainer = new javax.swing.JLabel();
+        labelImageContainer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelImageContainer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelImageContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        
+        // customer panel
+        buttonSearchCustomer = new javax.swing.JButton();
+        comboBoxCustomerGender = new javax.swing.JComboBox();
         scrollPaneCustomerTable = new javax.swing.JScrollPane();
         tableSearchCustomer = new javax.swing.JTable();
-        comboBoxCustomerGender = new javax.swing.JComboBox();
-        textFieldCustomerSurname = new javax.swing.JFormattedTextField();
-        textFieldCustomerId = new javax.swing.JFormattedTextField();
-        buttonSearchCustomer = new javax.swing.JButton();
-        textFieldCustomerFirstname = new javax.swing.JFormattedTextField();
-        textFieldCustomerEmail = new javax.swing.JFormattedTextField();
-        textFieldCustomerCellphone = new javax.swing.JFormattedTextField();
-        textFieldCustomerBirthday = new javax.swing.JFormattedTextField();
-        textFieldCustomerPostcode = new javax.swing.JFormattedTextField();
         textFieldCustomerAdress = new javax.swing.JFormattedTextField();
-        panelSearchFlight = new javax.swing.JPanel();
+        textFieldCustomerBirthday = new javax.swing.JFormattedTextField();
+        textFieldCustomerCellphone = new javax.swing.JFormattedTextField();
+        textFieldCustomerEmail = new javax.swing.JFormattedTextField();
+        textFieldCustomerFirstname = new javax.swing.JFormattedTextField();
+        textFieldCustomerId = new javax.swing.JFormattedTextField();
+        textFieldCustomerPostcode = new javax.swing.JFormattedTextField();
+        textFieldCustomerSurname = new javax.swing.JFormattedTextField();
+        
+        // flight panel
+        buttonSearchFlight = new javax.swing.JButton();
         scrollPaneFlightTable = new javax.swing.JScrollPane();
         tableLugSearchFlight = new javax.swing.JTable();
-        textFieldFlightOrigin = new javax.swing.JFormattedTextField();
-        textFieldFlightId = new javax.swing.JFormattedTextField();
-        buttonSearchFlight = new javax.swing.JButton();
-        textFieldFlightDestination = new javax.swing.JFormattedTextField();
         textFieldFlightArrival = new javax.swing.JFormattedTextField();
         textFieldFlightDeparture = new javax.swing.JFormattedTextField();
-        panelSearchLuggage = new javax.swing.JPanel();
-        scrollPaneLuggageTable = new javax.swing.JScrollPane();
-        tableLugSearchLuggage = new javax.swing.JTable();
+        textFieldFlightDestination = new javax.swing.JFormattedTextField();
+        textFieldFlightId = new javax.swing.JFormattedTextField();
+        textFieldFlightOrigin = new javax.swing.JFormattedTextField();
+
+        // luggage panel
+        buttonSearchLuggage = new javax.swing.JButton();
+        comboBoxLuggageSize = new javax.swing.JComboBox();
         comboBoxLuggageStatus = new javax.swing.JComboBox();
+        labelLuggageDescription = new javax.swing.JLabel();
+        scrollPaneLuggageDescription = new javax.swing.JScrollPane();
+        scrollPaneLuggageTable = new javax.swing.JScrollPane();
+        tableSearchLuggage = new javax.swing.JTable();
+        textFieldLuggageColor = new javax.swing.JFormattedTextField();
         textFieldLuggageLocation = new javax.swing.JFormattedTextField();
         textFieldLuggageId = new javax.swing.JFormattedTextField();
-        buttonSearchLuggage = new javax.swing.JButton();
-        scrollPaneContent = new javax.swing.JScrollPane();
-        textPaneLuggageDescription = new javax.swing.JTextPane();
-        comboBoxLuggageSize = new javax.swing.JComboBox();
         textFieldLuggageWeight = new javax.swing.JFormattedTextField();
-        textFieldLuggageColor = new javax.swing.JFormattedTextField();
-        labelLuggageImage = new javax.swing.JLabel();
-        labelLuggageDescription = new javax.swing.JLabel();
-        panelSearchUser = new javax.swing.JPanel();
-        scrollPaneUserTable = new javax.swing.JScrollPane();
-        tableLugSearchLuggage1 = new javax.swing.JTable();
-        comboBoxUserGender = new javax.swing.JComboBox();
-        
-        textFieldUserName = new javax.swing.JFormattedTextField();
-        textFieldUserId = new javax.swing.JFormattedTextField();
-        
+        textPaneLuggageDescription = new javax.swing.JTextPane();       
+     
+        // user panel
         buttonSearchUser = new javax.swing.JButton();
-        buttonUploadImage = new javax.swing.JButton();
-        
-        textFieldUserFirstName = new javax.swing.JFormattedTextField();
-        textFieldUserSurName = new javax.swing.JFormattedTextField();
-        textFieldUserCellphone = new javax.swing.JFormattedTextField();
-        textFieldUserBirthday = new javax.swing.JFormattedTextField();
-        textFieldUserNationality = new javax.swing.JFormattedTextField();
+        comboBoxUserGender = new javax.swing.JComboBox();     
+        scrollPaneUserTable = new javax.swing.JScrollPane();
+        tableSearchUser = new javax.swing.JTable();
         textFieldUserAdress = new javax.swing.JFormattedTextField();
+        textFieldUserBirthday = new javax.swing.JFormattedTextField();
+        textFieldUserCellphone = new javax.swing.JFormattedTextField();
+        textFieldUserFirstName = new javax.swing.JFormattedTextField();
+        textFieldUserId = new javax.swing.JFormattedTextField();
+        textFieldUserName = new javax.swing.JFormattedTextField();
+        textFieldUserNationality = new javax.swing.JFormattedTextField();
         textFieldUserPostcode = new javax.swing.JFormattedTextField();
+        textFieldUserSurName = new javax.swing.JFormattedTextField();
         
-        labelLuggageImage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelLuggageImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        labelLuggageImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         buttonUploadImage.setText("Uploadimage");
         buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonUploadImagebutton(evt);
-            }
-
-            private void buttonUploadImagebutton(ActionEvent evt) {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
                 setImage();
             }
         });
 
         javax.swing.GroupLayout panelUploadImageLayout = new javax.swing.GroupLayout(panelImage);
         panelImage.setLayout(panelUploadImageLayout);
-        panelUploadImageLayout.setHorizontalGroup(
-            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelUploadImageLayout.setHorizontalGroup(panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUploadImageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                    .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelImageContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panelUploadImageLayout.setVerticalGroup(
-            panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelUploadImageLayout.setVerticalGroup(panelUploadImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUploadImageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelLuggageImage, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addComponent(labelImageContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonUploadImage)
                 .addContainerGap())
@@ -406,7 +420,7 @@ public class SearchPanes extends JTabbedPane{
 
         this.addTab("Flight", panelSearchFlight);
 
-        tableLugSearchLuggage.setModel(new javax.swing.table.DefaultTableModel(
+        tableSearchLuggage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -429,11 +443,11 @@ public class SearchPanes extends JTabbedPane{
                 return canEdit [columnIndex];
             }
         });
-        tableLugSearchLuggage.setColumnSelectionAllowed(true);
-        tableLugSearchLuggage.setFocusable(false);
-        tableLugSearchLuggage.getTableHeader().setReorderingAllowed(false);
-        scrollPaneLuggageTable.setViewportView(tableLugSearchLuggage);
-        tableLugSearchLuggage.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableSearchLuggage.setColumnSelectionAllowed(true);
+        tableSearchLuggage.setFocusable(false);
+        tableSearchLuggage.getTableHeader().setReorderingAllowed(false);
+        scrollPaneLuggageTable.setViewportView(tableSearchLuggage);
+        tableSearchLuggage.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found", "Not returned" }));
         comboBoxLuggageStatus.setMaximumSize(new java.awt.Dimension(150, 150));
@@ -449,11 +463,11 @@ public class SearchPanes extends JTabbedPane{
             }
 
             private void buttonSearchLuggage(ActionEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                searchLuggage();
             }
         });
 
-        scrollPaneContent.setViewportView(textPaneLuggageDescription);
+        scrollPaneLuggageDescription.setViewportView(textPaneLuggageDescription);
 
         comboBoxLuggageSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Size", "Small", "Medium", "Large" }));
         comboBoxLuggageSize.setMaximumSize(new java.awt.Dimension(150, 150));
@@ -467,12 +481,11 @@ public class SearchPanes extends JTabbedPane{
 
         javax.swing.GroupLayout panelSearchLuggageLayout = new javax.swing.GroupLayout(panelSearchLuggage);
         panelSearchLuggage.setLayout(panelSearchLuggageLayout);
-        panelSearchLuggageLayout.setHorizontalGroup(
-            panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchLuggageLayout.setHorizontalGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneContent, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollPaneLuggageDescription, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                         .addComponent(textFieldLuggageId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -493,8 +506,7 @@ public class SearchPanes extends JTabbedPane{
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        panelSearchLuggageLayout.setVerticalGroup(
-            panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchLuggageLayout.setVerticalGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLuggageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -511,7 +523,7 @@ public class SearchPanes extends JTabbedPane{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelLuggageDescription)
                 .addGap(0, 0, 0)
-                .addComponent(scrollPaneContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneLuggageDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -521,7 +533,7 @@ public class SearchPanes extends JTabbedPane{
 
         this.addTab("Luggage", panelSearchLuggage);
 
-        tableLugSearchLuggage1.setModel(new javax.swing.table.DefaultTableModel(
+        tableSearchUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -544,11 +556,11 @@ public class SearchPanes extends JTabbedPane{
                 return canEdit [columnIndex];
             }
         });
-        tableLugSearchLuggage1.setColumnSelectionAllowed(true);
-        tableLugSearchLuggage1.setFocusable(false);
-        tableLugSearchLuggage1.getTableHeader().setReorderingAllowed(false);
-        scrollPaneUserTable.setViewportView(tableLugSearchLuggage1);
-        tableLugSearchLuggage1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableSearchUser.setColumnSelectionAllowed(true);
+        tableSearchUser.setFocusable(false);
+        tableSearchUser.getTableHeader().setReorderingAllowed(false);
+        scrollPaneUserTable.setViewportView(tableSearchUser);
+        tableSearchUser.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         comboBoxUserGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gender", "Male", "Female", "Androgenous" }));
         comboBoxUserGender.setMaximumSize(new java.awt.Dimension(150, 150));
@@ -650,6 +662,93 @@ public class SearchPanes extends JTabbedPane{
     }
     //</editor-fold>
     
+    public void searchCustomer() {
+        
+    }
+    
+    public void searchFlight() {
+        
+    }
+    
+    public void searchLuggage() {
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+        ArrayList<String> values = new ArrayList<>();
+
+        // If Some text fields are not empty we add the WHERE clause
+        if (!textFieldLuggageLocation.getText().equals("") || !textFieldLuggageId.getText().equals("") ||
+            !textPaneLuggageDescription.getText().equals("")) {
+            query += "WHERE 1=0 ";
+        }
+
+        try {
+            if (!textFieldLuggageId.getText().equals("")) {
+                query += "OR luggage_id = ? ";
+                values.add(helpers.Filters.filteredString(textFieldLuggageId.getText()));
+            }
+
+            if (!textFieldLuggageLocation.getText().equals("")) {
+                query += "OR location = ? ";
+                values.add(helpers.Filters.filteredString(textFieldLuggageLocation.getText()));
+            }
+
+            if (!textPaneLuggageDescription.getText().equals("")) {
+                query += "OR content LIKE ? ";
+                values.add("%" + helpers.Filters.filteredString(textPaneLuggageDescription.getText()) + "%");
+            }   
+
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableSearchLuggage.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("luggage_id"),
+                    result.getString("location"),
+                    result.getString("color"),
+                    result.getString("weight"),
+                    result.getString("size"),
+                    result.getString("content"),
+                    result.getString("status")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableSearchLuggage.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+    }
+    
+    public void searchUser() {
+        
+    }
+    
+    public ResultSet getCustomerResults() {
+        // THIS IS A PARSE BY REFERENCE ORIGINAL OBJECT WILL BE LEAKED
+        return customerResults;
+    }
+    
+    public ResultSet getFlightResults() {
+        // THIS IS A PARSE BY REFERENCE ORIGINAL OBJECT WILL BE LEAKED
+        return flightResults;
+    }
+    
+    public ResultSet getLuggageResults() {
+        // THIS IS A PARSE BY REFERENCE ORIGINAL OBJECT WILL BE LEAKED
+        return luggageResults;
+    }
+    
+    public ResultSet getUserResults() {
+        // THIS IS A PARSE BY REFERENCE ORIGINAL OBJECT WILL BE LEAKED
+        return userResults;
+    }
+    
+    //<editor-fold defaultstate="collapsed" desc="Image related methods">
     public void setImage() {
         String path = getImagePath();
         this.setImage(path, false);
@@ -668,22 +767,24 @@ public class SearchPanes extends JTabbedPane{
         
         System.out.println(imageIcon);
         if(imageIcon.getIconHeight() > imageIcon.getIconWidth()) {
-            labelLuggageImage.setIcon(helpers.ImageMaker.resizeImage(-1, labelLuggageImage.getHeight(), image));
+            labelImageContainer.setIcon(helpers.ImageMaker.resizeImage(-1, labelImageContainer.getHeight(), image));
         }
         else if(imageIcon.getIconHeight() < imageIcon.getIconWidth()) {
-            labelLuggageImage.setIcon(helpers.ImageMaker.resizeImage(labelLuggageImage.getWidth(), -1, image));
+            labelImageContainer.setIcon(helpers.ImageMaker.resizeImage(labelImageContainer.getWidth(), -1, image));
         }
         else {
-            labelLuggageImage.setIcon(helpers.ImageMaker.resizeImage(labelLuggageImage.getWidth(), labelLuggageImage.getHeight(), image));
+            labelImageContainer.setIcon(helpers.ImageMaker.resizeImage(labelImageContainer.getWidth(), labelImageContainer.getHeight(), image));
         }
         
-        labelLuggageImage.setHorizontalAlignment(JLabel.CENTER);
-        labelLuggageImage.setVerticalAlignment(JLabel.CENTER);
+        labelImageContainer.setHorizontalAlignment(JLabel.CENTER);
+        labelImageContainer.setVerticalAlignment(JLabel.CENTER);
     }
+    
     
     public String getImage() {
         return image;
     }
+    //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Tab related methods">
     /**

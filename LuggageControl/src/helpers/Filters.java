@@ -14,6 +14,20 @@ public final class Filters {
     }
     
     /**
+     * Filters a string and validates that it is a gender.
+     * @param originalString String to be checked for gender validity
+     * @return String with gender or empty string if did not validate
+     */
+    public static String filteredLuggageSize(String originalString) {
+        if(originalString.equals("Small") || originalString.equals("Medium") || originalString.equals("Large")) {
+            return originalString;
+        }
+        else {
+            return "";
+        }
+    }
+    
+    /**
      * Filters a string and validates that it is a adress.
      * @param originalString String to be checked for adress validity
      * @return String with adress number or empty string if did not validate

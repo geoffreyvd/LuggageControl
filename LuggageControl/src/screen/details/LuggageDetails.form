@@ -302,6 +302,9 @@
       </Properties>
     </Component>
     <Component class="screen.base.SearchPanes" name="searchPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new screen.base.SearchPanes(luggageControl, db)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBoxSize">
       <Properties>

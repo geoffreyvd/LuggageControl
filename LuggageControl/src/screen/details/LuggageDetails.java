@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package screen.details;
 
-import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
-import java.awt.LayoutManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
@@ -53,15 +45,6 @@ public class LuggageDetails extends BaseDetails {
         searchPanel.addSearchTab(SearchPanes.SEARCH_FLIGHT);
         searchPanel.addSearchTab(SearchPanes.SEARCH_LUGGAGE);
         searchPanel.addSearchTab(SearchPanes.SEARCH_USER);
-        
-//        SearchPanes henk = new SearchPanes();
-//        LayoutManager ly = searchPanel.getLayout();
-//        henk.setVisible(true);
-//        ly.addLayoutComponent("SearchPanes", henk);
-//        searchPanel.add(henk);
-//        searchPanel.setLayout(ly);
-//        searchPanel.revalidate();
-//        searchPanel.repaint();
     }
     
     @Override
@@ -171,8 +154,8 @@ public class LuggageDetails extends BaseDetails {
      */
     private void updateLuggage() {
         String query = "UPDATE luggage";
-        ArrayList<String> values = new ArrayList<String>();
-        ArrayList<String> types = new ArrayList<String>();
+        ArrayList<String> values = new ArrayList<>();
+        ArrayList<String> types = new ArrayList<>();
         
         // If Some text fields are not empty we add the SET clause
         if(!textFieldUpdateLocation.getText().equals("") || !textFieldUpdateColor.getText().equals("") ||
@@ -234,10 +217,7 @@ public class LuggageDetails extends BaseDetails {
             }
             
             // validate size placeholder
-            if(comboBoxSize.getSelectedItem().toString().equals("Small") || 
-                comboBoxSize.getSelectedItem().toString().equals("Medium") || 
-                comboBoxSize.getSelectedItem().toString().equals("Large")
-            ) {
+            if(!helpers.Filters.filteredLuggageSize(comboBoxSize.getSelectedItem().toString()).equals("")) {
                 query += " size = ?,";
                 values.add(helpers.Filters.filteredString(comboBoxSize.getSelectedItem().toString()));
                 types.add("String");
@@ -353,7 +333,7 @@ public class LuggageDetails extends BaseDetails {
         textPaneUpdateDescription = new javax.swing.JTextPane();
         labelStatus = new javax.swing.JLabel();
         labelDescription = new javax.swing.JLabel();
-        searchPanel = new screen.base.SearchPanes();
+        searchPanel = new screen.base.SearchPanes(luggageControl, db);
         comboBoxSize = new javax.swing.JComboBox();
         buttonRemoveOwner = new javax.swing.JButton();
 
