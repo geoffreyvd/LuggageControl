@@ -60,6 +60,8 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JComboBox comboBoxLuggageSearchType;
     private javax.swing.JComboBox comboBoxUserSearchType;
     
+    private javax.swing.JLabel labelSearchType;
+    
     private javax.swing.JPanel panelSearchCustomer;
     private javax.swing.JPanel panelSearchFlight;
     private javax.swing.JPanel panelSearchLuggage;
@@ -134,6 +136,9 @@ public class SearchPanes extends JTabbedPane{
         comboBoxLuggageSearchType = new javax.swing.JComboBox();
         comboBoxUserSearchType = new javax.swing.JComboBox();
         
+        // search text label
+        labelSearchType = new javax.swing.JLabel();
+        
         // image panel
         buttonUploadImage = new javax.swing.JButton();
         labelImageContainer = new javax.swing.JLabel();
@@ -193,6 +198,19 @@ public class SearchPanes extends JTabbedPane{
         textFieldUserNationality = new javax.swing.JFormattedTextField();
         textFieldUserPostcode = new javax.swing.JFormattedTextField();
         textFieldUserSurName = new javax.swing.JFormattedTextField();
+        
+        DefaultComboBoxModel<String> searchTypeModel = new javax.swing.DefaultComboBoxModel(new String[] { "Inclusive", "Exclusive", "Loose" });
+        comboBoxCustomerSearchType.setModel(searchTypeModel);
+        comboBoxFlightSearchType.setModel(searchTypeModel);
+        comboBoxLuggageSearchType.setModel(searchTypeModel);
+        comboBoxUserSearchType.setModel(searchTypeModel);
+        
+        comboBoxCustomerSearchType.setMaximumSize(new java.awt.Dimension(150, 150));
+        comboBoxFlightSearchType.setMaximumSize(new java.awt.Dimension(150, 150));
+        comboBoxLuggageSearchType.setMaximumSize(new java.awt.Dimension(150, 150));
+        comboBoxUserSearchType.setMaximumSize(new java.awt.Dimension(150, 150));
+        
+        labelSearchType.setText("Search type:");
         
         buttonUploadImage.setText("Uploadimage");
         buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
@@ -491,7 +509,7 @@ public class SearchPanes extends JTabbedPane{
         textFieldLuggageColor.setMaximumSize(new java.awt.Dimension(150, 150));
 
         labelLuggageDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelLuggageDescription.setText("Destination: ");
+        labelLuggageDescription.setText("Description: ");
 
         javax.swing.GroupLayout panelSearchLuggageLayout = new javax.swing.GroupLayout(panelSearchLuggage);
         panelSearchLuggage.setLayout(panelSearchLuggageLayout);
@@ -499,6 +517,10 @@ public class SearchPanes extends JTabbedPane{
             .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSearchLuggageLayout.createSequentialGroup()
+                        .addComponent(labelSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboBoxLuggageSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(scrollPaneLuggageDescription, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
@@ -523,6 +545,10 @@ public class SearchPanes extends JTabbedPane{
         panelSearchLuggageLayout.setVerticalGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLuggageLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxLuggageSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldLuggageId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldLuggageLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -676,6 +702,7 @@ public class SearchPanes extends JTabbedPane{
     }
     //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="labelPrompts">
     private void setLabelPrompts() {
         // customer label prompts
         PromptSupport.setPrompt("Adress", textFieldCustomerAdress);
@@ -737,57 +764,72 @@ public class SearchPanes extends JTabbedPane{
         PromptSupport.setPrompt("Surname", textFieldUserSurName);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserSurName); 
     }
+    //</editor-fold>
     
-    private String checkCustomerCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
-        if (comboBoxCustomerSearchType.getSelectedItem().toString().equals("Inclusive")) {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " AND " + columnName + " = ? ";
-        }else if(comboBoxCustomerSearchType.getSelectedItem().toString().equals("Loose")){
-            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
-            return " OR " + columnName + " LIKE ? ";
-        }else {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " OR " + columnName + " = ? ";
+    /**
+     * 
+     * @param originalBox
+     * @param columnName
+     * @param textField
+     * @param values
+     * @return 
+     */
+    private String checkCombobox(JComboBox originalBox, String columnName, JFormattedTextField textField,  ArrayList<String> values) {
+        switch (originalBox.getSelectedItem().toString()) {
+            case "Inclusive":
+                values.add(helpers.Filters.filteredString(textField.getText()));
+                return " AND " + columnName + " = ? ";
+            case "Loose":
+                values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+                return " OR " + columnName + " LIKE ? ";
+            default:
+                values.add(helpers.Filters.filteredString(textField.getText()));
+                return " OR " + columnName + " = ? ";
         }
     }
     
-    private String checkFlightCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
-        if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Inclusive")) {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " AND " + columnName + " = ? ";
-        }else if(comboBoxFlightSearchType.getSelectedItem().toString().equals("Loose")){
-            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
-            return " OR " + columnName + " LIKE ? ";
-        }else {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " OR " + columnName + " = ? ";
+    /**
+     * 
+     * @param originalBox
+     * @param columnName
+     * @param comboBox
+     * @param values
+     * @return 
+     */
+    private String checkCombobox(JComboBox originalBox, String columnName, JComboBox comboBox,  ArrayList<String> values) {
+        switch (originalBox.getSelectedItem().toString()) {
+            case "Inclusive":
+                values.add(helpers.Filters.filteredString(comboBox.getSelectedItem().toString()));
+                return " AND " + columnName + " = ? ";
+            case "Loose":
+                values.add(helpers.Filters.filteredString("%" + comboBox.getSelectedItem().toString() + "%"));
+                return " OR " + columnName + " LIKE ? ";
+            default:
+                values.add(helpers.Filters.filteredString(comboBox.getSelectedItem().toString()));
+                return " OR " + columnName + " = ? ";
         }
     }
     
-    private String checkLuggageCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
-        if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " AND " + columnName + " = ? ";
-        }else if(comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")){
-            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
-            return " OR " + columnName + " LIKE ? ";
-        }else {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " OR " + columnName + " = ? ";
-        } 
-    }
-    
-    private String checkUserCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
-        if (comboBoxUserSearchType.getSelectedItem().toString().equals("Inclusive")) {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " AND " + columnName + " = ? ";
-        }else if(comboBoxUserSearchType.getSelectedItem().toString().equals("Loose")){
-            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
-            return " OR " + columnName + " LIKE ? ";
-        }else {
-            values.add(helpers.Filters.filteredString(textField.getText()));
-            return " OR " + columnName + " = ? ";
-        }       
+    /**
+     * 
+     * @param originalBox
+     * @param columnName
+     * @param textPane
+     * @param values
+     * @return 
+     */
+    private String checkCombobox(JComboBox originalBox, String columnName, JTextPane textPane,  ArrayList<String> values) {
+        switch (originalBox.getSelectedItem().toString()) {
+            case "Inclusive":
+                values.add(helpers.Filters.filteredString(textPane.getText()));
+                return " AND " + columnName + " = ? ";
+            case "Loose":
+                values.add(helpers.Filters.filteredString("%" + textPane.getText() + "%"));
+                return " OR " + columnName + " LIKE ? ";
+            default:
+                values.add(helpers.Filters.filteredString(textPane.getText()));
+                return " OR " + columnName + " = ? ";
+        }
     }
     
     public void searchCustomer() {
@@ -801,14 +843,12 @@ public class SearchPanes extends JTabbedPane{
     public void searchLuggage() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
-        String luggageQuery = "";
         ArrayList<String> values = new ArrayList<String>();
-        ArrayList<String> luggageValues = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
         if (!textFieldLuggageId.getText().equals("") || !textFieldLuggageColor.getText().equals("") ||
-            !textFieldLuggageLocation.getText().equals("") || !textFieldLuggageWeight.getText().equals("") || 
-            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") || textPaneLuggageDescription.equals("")) {
+            !textFieldLuggageLocation.getText().equals("") || !textFieldLuggageWeight.getText().equals("") ||
+            !textPaneLuggageDescription.getText().equals("") || !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") ) {
             if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
@@ -820,20 +860,35 @@ public class SearchPanes extends JTabbedPane{
 
         try {
             if (!textFieldLuggageId.getText().equals("")) {
-                query += checkLuggageCombobox("`luggage`.`luggage_id`", textFieldLuggageId, values);
-                luggageQuery += checkLuggageCombobox("`luggage`.`luggage_id`", textFieldLuggageId, luggageValues);
+                query += checkCombobox(comboBoxLuggageSearchType, "`luggage`.`luggage_id`", textFieldLuggageId, values);
             }
 
             if (!textFieldLuggageLocation.getText().equals("")) {
-                query += checkLuggageCombobox("location", textFieldLuggageLocation, values);
-                luggageQuery += checkLuggageCombobox("location", textFieldLuggageLocation, luggageValues);
+                query += checkCombobox(comboBoxLuggageSearchType, "location", textFieldLuggageLocation, values);
+            }
+            
+            if (!textFieldLuggageWeight.getText().equals("")) {
+                query += checkCombobox(comboBoxLuggageSearchType, "weight", textFieldLuggageWeight, values);
+            }
+            
+            if (!textFieldLuggageColor.getText().equals("")) {
+                query += checkCombobox(comboBoxLuggageSearchType, "color", textFieldLuggageColor, values);
+            }
+            
+            if (!textPaneLuggageDescription.getText().equals("")) {
+                // Description is still named content in our database #ourlittlesecret
+                query += checkCombobox(comboBoxLuggageSearchType, "content", textPaneLuggageDescription, values);
             }
 
-            // switch to checkCombboBox
-//            if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
-//                query += checkLuggageCombobox("status", comboBoxLuggageStatus, values);
-//                luggageQuery += checkLuggageCombobox("status", textFieldLocation, luggageValues);
-//            }
+            // switch to checkComboBox status
+            if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+                query += checkCombobox(comboBoxLuggageSearchType, "status", comboBoxLuggageStatus, values);
+            }
+            
+            // switch to checkComboBox size
+            if (!comboBoxLuggageSize.getSelectedItem().toString().equals("Size")) {
+                query += checkCombobox(comboBoxLuggageSearchType, "size", comboBoxLuggageSize, values);
+            }
             
 
             // If you get a mysql error saying: not unique table/alias look here 
