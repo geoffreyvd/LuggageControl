@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * Contains all the classes to implement tabbed search pane mutations
@@ -52,6 +53,12 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JComboBox comboBoxLuggageSize;
     private javax.swing.JComboBox comboBoxLuggageStatus;
     private javax.swing.JComboBox comboBoxUserGender;
+    
+    // comboboxes for inclusive, excusive and loose searching
+    private javax.swing.JComboBox comboBoxCustomerSearchType;
+    private javax.swing.JComboBox comboBoxFlightSearchType;
+    private javax.swing.JComboBox comboBoxLuggageSearchType;
+    private javax.swing.JComboBox comboBoxUserSearchType;
     
     private javax.swing.JPanel panelSearchCustomer;
     private javax.swing.JPanel panelSearchFlight;
@@ -109,6 +116,7 @@ public class SearchPanes extends JTabbedPane{
     public SearchPanes(LuggageControl luggageConrol, DatabaseMan db) {
         this.db = db;
         initComponents();
+        setLabelPrompts();
     }
     
     // <editor-fold defaultstate="collapsed" desc="initComponents">
@@ -119,6 +127,12 @@ public class SearchPanes extends JTabbedPane{
         panelSearchFlight = new javax.swing.JPanel();
         panelSearchLuggage = new javax.swing.JPanel();
         panelSearchUser = new javax.swing.JPanel();
+        
+        // search types
+        comboBoxCustomerSearchType = new javax.swing.JComboBox();
+        comboBoxFlightSearchType = new javax.swing.JComboBox();
+        comboBoxLuggageSearchType = new javax.swing.JComboBox();
+        comboBoxUserSearchType = new javax.swing.JComboBox();
         
         // image panel
         buttonUploadImage = new javax.swing.JButton();
@@ -449,7 +463,7 @@ public class SearchPanes extends JTabbedPane{
         scrollPaneLuggageTable.setViewportView(tableSearchLuggage);
         tableSearchLuggage.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found", "Not returned" }));
+        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found" }));
         comboBoxLuggageStatus.setMaximumSize(new java.awt.Dimension(150, 150));
 
         textFieldLuggageLocation.setMaximumSize(new java.awt.Dimension(150, 150));
@@ -662,6 +676,120 @@ public class SearchPanes extends JTabbedPane{
     }
     //</editor-fold>
     
+    private void setLabelPrompts() {
+        // customer label prompts
+        PromptSupport.setPrompt("Adress", textFieldCustomerAdress);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerAdress);
+        PromptSupport.setPrompt("Birthday", textFieldCustomerBirthday);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerBirthday);
+        PromptSupport.setPrompt("Cellphone", textFieldCustomerCellphone);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerCellphone);
+        PromptSupport.setPrompt("Email", textFieldCustomerEmail);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerEmail);
+        PromptSupport.setPrompt("Firstname", textFieldCustomerFirstname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerFirstname);
+        PromptSupport.setPrompt("Customer ID", textFieldCustomerId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerId);
+        PromptSupport.setPrompt("Postcode", textFieldCustomerPostcode);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerPostcode);
+        PromptSupport.setPrompt("Surname", textFieldCustomerSurname);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerSurname);
+        
+        // flight label prompts
+        PromptSupport.setPrompt("Arrival", textFieldFlightArrival);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightArrival);
+        PromptSupport.setPrompt("Departure", textFieldFlightDeparture);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDeparture);
+        PromptSupport.setPrompt("Destination", textFieldFlightDestination);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDestination);
+        PromptSupport.setPrompt("Flight ID", textFieldFlightId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightId);
+        PromptSupport.setPrompt("Origin", textFieldFlightOrigin);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightOrigin);
+        
+        // luggage label prompts
+        PromptSupport.setPrompt("Color", textFieldLuggageColor);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageColor);
+        PromptSupport.setPrompt("Luggage ID", textFieldLuggageId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageId);
+        PromptSupport.setPrompt("Location", textFieldLuggageLocation);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageLocation);
+        PromptSupport.setPrompt("Weight", textFieldLuggageWeight);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageWeight);
+        
+        // user label prompts
+        PromptSupport.setPrompt("Adress", textFieldUserAdress);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserAdress);
+        PromptSupport.setPrompt("Birthday", textFieldUserBirthday);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserBirthday);
+        PromptSupport.setPrompt("Cellphone", textFieldUserCellphone);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserCellphone);
+        PromptSupport.setPrompt("Firstname", textFieldUserFirstName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserFirstName);
+        PromptSupport.setPrompt("User ID", textFieldUserId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserId);
+        PromptSupport.setPrompt("Username", textFieldUserName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserName);
+        PromptSupport.setPrompt("Nationality", textFieldUserNationality);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserNationality);
+        PromptSupport.setPrompt("Postcode", textFieldUserPostcode);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserPostcode);
+        PromptSupport.setPrompt("Surname", textFieldUserSurName);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserSurName); 
+    }
+    
+    private String checkCustomerCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxCustomerSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + columnName + " = ? ";
+        }else if(comboBoxCustomerSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + columnName + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + columnName + " = ? ";
+        }
+    }
+    
+    private String checkFlightCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + columnName + " = ? ";
+        }else if(comboBoxFlightSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + columnName + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + columnName + " = ? ";
+        }
+    }
+    
+    private String checkLuggageCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + columnName + " = ? ";
+        }else if(comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + columnName + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + columnName + " = ? ";
+        } 
+    }
+    
+    private String checkUserCombobox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxUserSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + columnName + " = ? ";
+        }else if(comboBoxUserSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + columnName + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + columnName + " = ? ";
+        }       
+    }
+    
     public void searchCustomer() {
         
     }
@@ -673,29 +801,70 @@ public class SearchPanes extends JTabbedPane{
     public void searchLuggage() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
-        ArrayList<String> values = new ArrayList<>();
+        String luggageQuery = "";
+        ArrayList<String> values = new ArrayList<String>();
+        ArrayList<String> luggageValues = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldLuggageLocation.getText().equals("") || !textFieldLuggageId.getText().equals("") ||
-            !textPaneLuggageDescription.getText().equals("")) {
-            query += "WHERE 1=0 ";
+        if (!textFieldLuggageId.getText().equals("") || !textFieldLuggageColor.getText().equals("") ||
+            !textFieldLuggageLocation.getText().equals("") || !textFieldLuggageWeight.getText().equals("") || 
+            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") || textPaneLuggageDescription.equals("")) {
+            if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Exclusive")
+                    || comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "WHERE 1=0 ";
+            }
         }
 
         try {
             if (!textFieldLuggageId.getText().equals("")) {
-                query += "OR luggage_id = ? ";
-                values.add(helpers.Filters.filteredString(textFieldLuggageId.getText()));
+                query += checkLuggageCombobox("`luggage`.`luggage_id`", textFieldLuggageId, values);
+                luggageQuery += checkLuggageCombobox("`luggage`.`luggage_id`", textFieldLuggageId, luggageValues);
             }
 
             if (!textFieldLuggageLocation.getText().equals("")) {
-                query += "OR location = ? ";
-                values.add(helpers.Filters.filteredString(textFieldLuggageLocation.getText()));
+                query += checkLuggageCombobox("location", textFieldLuggageLocation, values);
+                luggageQuery += checkLuggageCombobox("location", textFieldLuggageLocation, luggageValues);
             }
 
-            if (!textPaneLuggageDescription.getText().equals("")) {
-                query += "OR content LIKE ? ";
-                values.add("%" + helpers.Filters.filteredString(textPaneLuggageDescription.getText()) + "%");
-            }   
+            // switch to checkCombboBox
+//            if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+//                query += checkLuggageCombobox("status", comboBoxLuggageStatus, values);
+//                luggageQuery += checkLuggageCombobox("status", textFieldLocation, luggageValues);
+//            }
+            
+
+            // If you get a mysql error saying: not unique table/alias look here 
+            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
+            // You need to create a mysql alias if you select multiple times from the same table!
+            
+            
+            // we dont have a field for a flight number
+//            if (!textFieldFlightNumber.getText().equals("")) {
+//                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+//                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+//                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
+//                query += "AND flight_id = ?" + luggageQuery;
+//                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
+//                for (String luggageValue : luggageValues) {
+//                    values.add(luggageValue);
+//                }
+//            }
+            
+            
+            // we dont have a field for owner ID!
+//            if (!textFieldL.getText().equals("")) {
+//                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+//                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE 1=1";
+//                query += "AND `luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
+//                query += "AND owner_id = ?" + luggageQuery;
+//                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
+//                for (String luggageValue : luggageValues) {
+//                    values.add(luggageValue);
+//                }
+//            }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
