@@ -66,10 +66,16 @@ public class SearchLuggage extends BaseSearch {
      */
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
-        String luggageQuery = "";
+        String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, content, `status` FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
-        ArrayList<String> luggageValues = new ArrayList<String>();
+
+        if (!textFieldFlightNumber.getText().equals("")) {
+                query += "INNER JOIN `luggage_flight` ON `luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+        }
+        
+        if (!textFieldOwnerID.getText().equals("")) {
+                query += "INNER JOIN `luggage` ON `luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+        }
 
         // If Some text fields are not empty we add the WHERE clause
         if (!textFieldLuggageID.getText().equals("") || !textFieldFlightNumber.getText().equals("") ||
@@ -87,48 +93,22 @@ public class SearchLuggage extends BaseSearch {
         try {
             if (!textFieldLuggageID.getText().equals("")) {
                 query += checkComboBox("`luggage`.`luggage_id`", textFieldLuggageID, values);
-                luggageQuery += checkComboBox("`luggage`.`luggage_id`", textFieldLuggageID, luggageValues);
             }
 
             if (!textFieldLocation.getText().equals("")) {
                 query += checkComboBox("location", textFieldLocation, values);
-                luggageQuery += checkComboBox("location", textFieldLocation, luggageValues);
             }
 
             if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
                 query += checkComboBox("status", comboBoxLuggageStatus, values);
-                luggageQuery += checkComboBox("location", textFieldLocation, luggageValues);
             }
-            
-
-            // If you get a mysql error saying: not unique table/alias look here 
-            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
-            // You need to create a mysql alias if you select multiple times from the same table!
-            
-            
             
             if (!textFieldFlightNumber.getText().equals("")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
-                query += "AND flight_id = ?" + luggageQuery;
-                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
-                for (String luggageValue : luggageValues) {
-                    values.add(luggageValue);
-                }
+                query += checkComboBox("flight_id", textFieldFlightNumber, values);
             }
             
-            
-            
             if (!textFieldOwnerID.getText().equals("")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE 1=1";
-                query += "AND `luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
-                query += "AND owner_id = ?" + luggageQuery;
-                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
-                for (String luggageValue : luggageValues) {
-                    values.add(luggageValue);
-                }
+                query += checkComboBox("customer_id", textFieldOwnerID, values);
             }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
