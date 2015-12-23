@@ -69,19 +69,22 @@ public class SearchLuggage extends BaseSearch {
         String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, content, `status` FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
 
-        if (!textFieldFlightNumber.getText().equals("")) {
+        if (!textFieldFlightNumber.getText().equals("") && 
+            comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "INNER JOIN `luggage_flight` ON `luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
         }
         
-        if (!textFieldOwnerID.getText().equals("")) {
-                query += "INNER JOIN `luggage` ON `luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+        if (!textFieldOwnerID.getText().equals("") && 
+            comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "INNER JOIN `customer_luggage` ON `luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
         }
 //        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
 //        ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
         if (!textFieldLuggageID.getText().equals("") || !textFieldLocation.getText().equals("") || 
-            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") ||
+            !textFieldOwnerID.getText().equals("") || !textFieldFlightNumber.getText().equals("")) {
             if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
@@ -89,11 +92,6 @@ public class SearchLuggage extends BaseSearch {
                     || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
                 query += "WHERE 1=0 ";
             }
-        }
-        // if all inputs for the luggage table are empty but external references are not and the search type is Inclusive we create a condition
-        // in which we will show all results for luggage no matter what the input is, This else if conditions aferts that.
-        else if(!textFieldOwnerID.getText().equals("") || !textFieldFlightNumber.getText().equals("")){
-            query += "WHERE 1=0 ";
         }
 
         try {
@@ -109,30 +107,38 @@ public class SearchLuggage extends BaseSearch {
                 query += checkComboBox("status", comboBoxLuggageStatus, values);
             }
             
-            if (!textFieldFlightNumber.getText().equals("")) {
+            if (!textFieldFlightNumber.getText().equals("") && 
+                comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += checkComboBox("flight_id", textFieldFlightNumber, values);
             }
             
-            if (!textFieldOwnerID.getText().equals("")) {
+            if (!textFieldOwnerID.getText().equals("") && 
+                comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += checkComboBox("customer_id", textFieldOwnerID, values);
+            }
+            
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
               
-            // if (!textFieldFlightNumber.getText().equals("")) {
-            //     query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-            //     query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-            //     query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
-            //     query += "AND flight_id = ?";
-            //     values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
-            // }
+            if (!textFieldFlightNumber.getText().equals("") &&
+                comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+                query += "AND flight_id = ?";
+                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+            }
             
-            // if (!textFieldOwnerID.getText().equals("")) {
-            //     query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-            //     query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-            //     query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
-            //     query += "AND customer_id = ?";
-            //     values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
+            if (!textFieldOwnerID.getText().equals("") &&
+                comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+                query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+                query += "AND customer_id = ?";
+                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
             }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
