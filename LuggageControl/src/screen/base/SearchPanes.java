@@ -91,6 +91,8 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JFormattedTextField textFieldFlightId;
     private javax.swing.JFormattedTextField textFieldFlightOrigin;
     
+    private javax.swing.JFormattedTextField textFieldLuggageOwnerId;
+    private javax.swing.JFormattedTextField textFieldLuggageFlightId;
     private javax.swing.JFormattedTextField textFieldLuggageColor;
     private javax.swing.JFormattedTextField textFieldLuggageId;
     private javax.swing.JFormattedTextField textFieldLuggageLocation;
@@ -181,6 +183,8 @@ public class SearchPanes extends JTabbedPane{
         textFieldLuggageColor = new javax.swing.JFormattedTextField();
         textFieldLuggageLocation = new javax.swing.JFormattedTextField();
         textFieldLuggageId = new javax.swing.JFormattedTextField();
+        textFieldLuggageOwnerId = new javax.swing.JFormattedTextField();
+        textFieldLuggageFlightId = new javax.swing.JFormattedTextField();
         textFieldLuggageWeight = new javax.swing.JFormattedTextField();
         textPaneLuggageDescription = new javax.swing.JTextPane();       
      
@@ -519,22 +523,26 @@ public class SearchPanes extends JTabbedPane{
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                         .addComponent(labelSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
                         .addComponent(comboBoxLuggageSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelSearchLuggageLayout.createSequentialGroup()
+                        .addComponent(textFieldLuggageOwnerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(14, 14, 14)
+                        .addComponent(textFieldLuggageFlightId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(scrollPaneLuggageDescription, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scrollPaneLuggageTable, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                         .addComponent(textFieldLuggageId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
                         .addComponent(textFieldLuggageLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
-                        .addComponent(comboBoxLuggageStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(14, 14, 14)
-                        .addComponent(comboBoxLuggageSize, 0, 359, Short.MAX_VALUE))
+                        .addComponent(comboBoxLuggageSize,javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
-                        .addComponent(textFieldLuggageWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                        .addComponent(textFieldLuggageWeight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(14, 14, 14)
-                        .addComponent(textFieldLuggageColor, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                        .addComponent(textFieldLuggageColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
                         .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -548,6 +556,10 @@ public class SearchPanes extends JTabbedPane{
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxLuggageSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldLuggageOwnerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textFieldLuggageFlightId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldLuggageId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -735,6 +747,10 @@ public class SearchPanes extends JTabbedPane{
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightOrigin);
         
         // luggage label prompts
+        PromptSupport.setPrompt("FlightNumber", textFieldLuggageFlightId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageFlightId);
+        PromptSupport.setPrompt("Owner ID", textFieldLuggageOwnerId);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageOwnerId);
         PromptSupport.setPrompt("Color", textFieldLuggageColor);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageColor);
         PromptSupport.setPrompt("Luggage ID", textFieldLuggageId);
@@ -846,9 +862,12 @@ public class SearchPanes extends JTabbedPane{
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldLuggageId.getText().equals("") || !textFieldLuggageColor.getText().equals("") ||
-            !textFieldLuggageLocation.getText().equals("") || !textFieldLuggageWeight.getText().equals("") ||
-            !textPaneLuggageDescription.getText().equals("") || !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") ) {
+        if (!textFieldLuggageId.getText().equals("") || 
+            !textFieldLuggageColor.getText().equals("") ||
+            !textFieldLuggageLocation.getText().equals("") || 
+            !textFieldLuggageWeight.getText().equals("") ||
+            !textPaneLuggageDescription.getText().equals("") || 
+            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
             if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
@@ -856,6 +875,11 @@ public class SearchPanes extends JTabbedPane{
                     || comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")) {
                 query += "WHERE 1=0 ";
             }
+        }
+        // if all inputs for the luggage table are empty but external references are not and the search type is Inclusive we create a condition
+        // in which we will show all results for luggage no matter what the input is, This else if conditions aferts that.
+        else if(!textFieldLuggageFlightId.getText().equals("") || !textFieldLuggageOwnerId.getText().equals("")){
+            query += "WHERE 1=0 ";
         }
 
         try {
@@ -890,36 +914,27 @@ public class SearchPanes extends JTabbedPane{
                 query += checkCombobox(comboBoxLuggageSearchType, "size", comboBoxLuggageSize, values);
             }
             
-
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
-            
-            
+               
             // we dont have a field for a flight number
-//            if (!textFieldFlightNumber.getText().equals("")) {
-//                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-//                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-//                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
-//                query += "AND flight_id = ?" + luggageQuery;
-//                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
-//                for (String luggageValue : luggageValues) {
-//                    values.add(luggageValue);
-//                }
-//            }
-            
+            if (!textFieldLuggageFlightId.getText().equals("")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+                query += "AND flight_id = ?";
+                values.add(textFieldLuggageFlightId.getText());
+            }  
             
             // we dont have a field for owner ID!
-//            if (!textFieldL.getText().equals("")) {
-//                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-//                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE 1=1";
-//                query += "AND `luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
-//                query += "AND owner_id = ?" + luggageQuery;
-//                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
-//                for (String luggageValue : luggageValues) {
-//                    values.add(luggageValue);
-//                }
-//            }
+            if (!textFieldLuggageOwnerId.getText().equals("")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+                query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+                query += "AND customer_id = ?";
+                values.add(textFieldLuggageOwnerId.getText());
+            }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
