@@ -60,7 +60,10 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JComboBox comboBoxLuggageSearchType;
     private javax.swing.JComboBox comboBoxUserSearchType;
     
-    private javax.swing.JLabel labelSearchType;
+    private javax.swing.JLabel labelSearchTypeCustomer;
+    private javax.swing.JLabel labelSearchTypeFlight;
+    private javax.swing.JLabel labelSearchTypeLuggage;
+    private javax.swing.JLabel labelSearchTypeUser;
     
     private javax.swing.JPanel panelSearchCustomer;
     private javax.swing.JPanel panelSearchFlight;
@@ -68,7 +71,7 @@ public class SearchPanes extends JTabbedPane{
     private javax.swing.JPanel panelSearchUser;
     private javax.swing.JPanel panelImage;
     
-    private javax.swing.JTable tableLugSearchFlight;
+    private javax.swing.JTable tableSearchFlight;
     private javax.swing.JTable tableSearchLuggage;
     private javax.swing.JTable tableSearchUser;
     private javax.swing.JTable tableSearchCustomer;
@@ -139,7 +142,10 @@ public class SearchPanes extends JTabbedPane{
         comboBoxUserSearchType = new javax.swing.JComboBox();
         
         // search text label
-        labelSearchType = new javax.swing.JLabel();
+        labelSearchTypeCustomer = new javax.swing.JLabel();
+        labelSearchTypeFlight = new javax.swing.JLabel();
+        labelSearchTypeLuggage = new javax.swing.JLabel();
+        labelSearchTypeUser = new javax.swing.JLabel();
         
         // image panel
         buttonUploadImage = new javax.swing.JButton();
@@ -165,7 +171,7 @@ public class SearchPanes extends JTabbedPane{
         // flight panel
         buttonSearchFlight = new javax.swing.JButton();
         scrollPaneFlightTable = new javax.swing.JScrollPane();
-        tableLugSearchFlight = new javax.swing.JTable();
+        tableSearchFlight = new javax.swing.JTable();
         textFieldFlightArrival = new javax.swing.JFormattedTextField();
         textFieldFlightDeparture = new javax.swing.JFormattedTextField();
         textFieldFlightDestination = new javax.swing.JFormattedTextField();
@@ -214,7 +220,10 @@ public class SearchPanes extends JTabbedPane{
         comboBoxLuggageSearchType.setMaximumSize(new java.awt.Dimension(150, 150));
         comboBoxUserSearchType.setMaximumSize(new java.awt.Dimension(150, 150));
         
-        labelSearchType.setText("Search type:");
+        labelSearchTypeCustomer.setText("Search type:");
+        labelSearchTypeFlight.setText("Search type:");
+        labelSearchTypeLuggage.setText("Search type:");
+        labelSearchTypeUser.setText("Search type:");
         
         buttonUploadImage.setText("Uploadimage");
         buttonUploadImage.addActionListener(new java.awt.event.ActionListener() {
@@ -284,11 +293,7 @@ public class SearchPanes extends JTabbedPane{
         buttonSearchCustomer.setText("Search");
         buttonSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchCustomer(evt);
-            }
-
-            private void buttonSearchCustomer(ActionEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                searchCustomer();
             }
         });
 
@@ -306,11 +311,14 @@ public class SearchPanes extends JTabbedPane{
 
         javax.swing.GroupLayout panelSearchCustomerLayout = new javax.swing.GroupLayout(panelSearchCustomer);
         panelSearchCustomer.setLayout(panelSearchCustomerLayout);
-        panelSearchCustomerLayout.setHorizontalGroup(
-            panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchCustomerLayout.setHorizontalGroup(panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSearchCustomerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSearchCustomerLayout.createSequentialGroup()
+                        .addComponent(labelSearchTypeCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(comboBoxCustomerSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(textFieldCustomerEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrollPaneCustomerTable, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addGroup(panelSearchCustomerLayout.createSequentialGroup()
@@ -330,10 +338,13 @@ public class SearchPanes extends JTabbedPane{
                             .addComponent(comboBoxCustomerGender, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        panelSearchCustomerLayout.setVerticalGroup(
-            panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchCustomerLayout.setVerticalGroup(panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchCustomerLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearchTypeCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxCustomerSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxCustomerGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -360,7 +371,7 @@ public class SearchPanes extends JTabbedPane{
 
         this.addTab("Customer", panelSearchCustomer);
 
-        tableLugSearchFlight.setModel(new javax.swing.table.DefaultTableModel(
+        tableSearchFlight.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -383,12 +394,12 @@ public class SearchPanes extends JTabbedPane{
                 return canEdit [columnIndex];
             }
         });
-        tableLugSearchFlight.setColumnSelectionAllowed(true);
-        tableLugSearchFlight.setFocusable(false);
-        tableLugSearchFlight.setRowSelectionAllowed(false);
-        tableLugSearchFlight.getTableHeader().setReorderingAllowed(false);
-        scrollPaneFlightTable.setViewportView(tableLugSearchFlight);
-        tableLugSearchFlight.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableSearchFlight.setColumnSelectionAllowed(true);
+        tableSearchFlight.setFocusable(false);
+        tableSearchFlight.setRowSelectionAllowed(false);
+        tableSearchFlight.getTableHeader().setReorderingAllowed(false);
+        scrollPaneFlightTable.setViewportView(tableSearchFlight);
+        tableSearchFlight.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         textFieldFlightOrigin.setMaximumSize(new java.awt.Dimension(150, 150));
 
@@ -397,11 +408,7 @@ public class SearchPanes extends JTabbedPane{
         buttonSearchFlight.setText("Search");
         buttonSearchFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchFlight(evt);
-            }
-
-            private void buttonSearchFlight(ActionEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                searchFlight();
             }
         });
 
@@ -413,12 +420,15 @@ public class SearchPanes extends JTabbedPane{
 
         javax.swing.GroupLayout panelSearchFlightLayout = new javax.swing.GroupLayout(panelSearchFlight);
         panelSearchFlight.setLayout(panelSearchFlightLayout);
-        panelSearchFlightLayout.setHorizontalGroup(
-            panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchFlightLayout.setHorizontalGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSearchFlightLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPaneFlightTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelSearchFlightLayout.createSequentialGroup()
+                        .addComponent(labelSearchTypeFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(comboBoxFlightSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSearchFlightLayout.createSequentialGroup()
                         .addGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -434,10 +444,13 @@ public class SearchPanes extends JTabbedPane{
                             .addComponent(textFieldFlightArrival, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        panelSearchFlightLayout.setVerticalGroup(
-            panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchFlightLayout.setVerticalGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchFlightLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearchTypeFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxFlightSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFieldFlightId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchFlightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -495,10 +508,6 @@ public class SearchPanes extends JTabbedPane{
         buttonSearchLuggage.setText("Search");
         buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchLuggage(evt);
-            }
-
-            private void buttonSearchLuggage(ActionEvent evt) {
                 searchLuggage();
             }
         });
@@ -522,7 +531,7 @@ public class SearchPanes extends JTabbedPane{
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
-                        .addComponent(labelSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
+                        .addComponent(labelSearchTypeLuggage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(comboBoxLuggageSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSearchLuggageLayout.createSequentialGroup()
@@ -554,7 +563,7 @@ public class SearchPanes extends JTabbedPane{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLuggageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSearchTypeLuggage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxLuggageSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -624,11 +633,7 @@ public class SearchPanes extends JTabbedPane{
         buttonSearchUser.setText("Search");
         buttonSearchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchUser(evt);
-            }
-
-            private void buttonSearchUser(ActionEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                searchUser();
             }
         });
 
@@ -648,12 +653,15 @@ public class SearchPanes extends JTabbedPane{
 
         javax.swing.GroupLayout panelSearchUserLayout = new javax.swing.GroupLayout(panelSearchUser);
         panelSearchUser.setLayout(panelSearchUserLayout);
-        panelSearchUserLayout.setHorizontalGroup(
-            panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchUserLayout.setHorizontalGroup(panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSearchUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPaneUserTable, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addGroup(panelSearchUserLayout.createSequentialGroup()
+                        .addComponent(labelSearchTypeUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(comboBoxUserSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSearchUserLayout.createSequentialGroup()
                         .addComponent(textFieldUserId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -679,10 +687,13 @@ public class SearchPanes extends JTabbedPane{
                             .addComponent(comboBoxUserGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        panelSearchUserLayout.setVerticalGroup(
-            panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSearchUserLayout.setVerticalGroup(panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchUserLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearchTypeUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxUserSearchType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -719,7 +730,7 @@ public class SearchPanes extends JTabbedPane{
         // customer label prompts
         PromptSupport.setPrompt("Adress", textFieldCustomerAdress);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerAdress);
-        PromptSupport.setPrompt("Birthday", textFieldCustomerBirthday);
+        PromptSupport.setPrompt("Birthday [yyyy-mm-dd]", textFieldCustomerBirthday);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerBirthday);
         PromptSupport.setPrompt("Cellphone", textFieldCustomerCellphone);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerCellphone);
@@ -735,9 +746,9 @@ public class SearchPanes extends JTabbedPane{
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCustomerSurname);
         
         // flight label prompts
-        PromptSupport.setPrompt("Arrival", textFieldFlightArrival);
+        PromptSupport.setPrompt("Arrival [yyyy-mm-dd hh-mm-ss]", textFieldFlightArrival);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightArrival);
-        PromptSupport.setPrompt("Departure", textFieldFlightDeparture);
+        PromptSupport.setPrompt("Departure [yyyy-mm-dd hh-mm-ss]", textFieldFlightDeparture);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDeparture);
         PromptSupport.setPrompt("Destination", textFieldFlightDestination);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDestination);
@@ -763,7 +774,7 @@ public class SearchPanes extends JTabbedPane{
         // user label prompts
         PromptSupport.setPrompt("Adress", textFieldUserAdress);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserAdress);
-        PromptSupport.setPrompt("Birthday", textFieldUserBirthday);
+        PromptSupport.setPrompt("Birthday [yyyy-mm-dd]", textFieldUserBirthday);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserBirthday);
         PromptSupport.setPrompt("Cellphone", textFieldUserCellphone);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserCellphone);
@@ -849,11 +860,177 @@ public class SearchPanes extends JTabbedPane{
     }
     
     public void searchCustomer() {
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT * FROM customer";
+        ArrayList<String> values = new ArrayList<String>();
         
+        // If Some text fields are not empty we add the WHERE clause
+        if(!textFieldCustomerAdress.getText().equals("") ||
+            !textFieldCustomerBirthday.getText().equals("") ||
+            !textFieldCustomerCellphone.getText().equals("") ||
+            !textFieldCustomerEmail.getText().equals("") ||
+            !textFieldCustomerFirstname.getText().equals("") || 
+            !textFieldCustomerId.getText().equals("") ||
+            !textFieldCustomerPostcode.getText().equals("") ||
+            !textFieldCustomerSurname.getText().equals("")
+        ) {
+            query += " WHERE 1=0 ";
+        }
+        
+        try {
+            if(!textFieldCustomerAdress.getText().equals("")) {
+                query += "OR firstname = ? ";
+                values.add(textFieldCustomerAdress.getText());
+            }
+            
+            if(!textFieldCustomerBirthday.getText().equals("")) {
+                query += "OR firstname = ? ";
+                values.add(textFieldCustomerBirthday.getText());
+            }
+            
+            if(!helpers.Filters.filteredCellphone(textFieldCustomerCellphone.getText()).equals("")) {
+                query += "OR cellphone = ? ";
+                values.add(textFieldCustomerCellphone.getText());
+            }
+            
+            if(!textFieldCustomerEmail.getText().equals("")) {
+                query += "OR email = ? ";
+                values.add(helpers.Filters.filteredString(textFieldCustomerEmail.getText()));
+            } 
+            
+            if(!textFieldCustomerFirstname.getText().equals("")) {
+                query += "OR firstname = ? ";
+                values.add(helpers.Filters.filteredString(textFieldCustomerFirstname.getText()));
+            }
+            
+            if(!textFieldCustomerSurname.getText().equals("")) {
+                query += "OR surname = ? ";
+                values.add(helpers.Filters.filteredString(textFieldCustomerSurname.getText()));
+            }
+            
+            // If you get a mysql error saying: not unique table/alias look here 
+            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
+            // You need to create a mysql alias if you select multiple times from the same table!
+//            if(!textFieldFlightnumber.getText().equals("")) {
+//                query += "UNION SELECT customer.customer_id, firstname, surname, email, cellphone, birthday, gender, adress, postcode ";
+//                query += "FROM `customer_flight` INNER JOIN `customer` ON `customer`.`customer_id` ";
+//                query += "WHERE `customer_flight`.`flight_id` = ? AND `customer`.`customer_id` = `customer_flight`.`customer_id`";
+//                values.add(helpers.Filters.filteredString(textFieldFlightnumber.getText()));
+//            }
+            
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+                        
+            DefaultTableModel datamodel = (DefaultTableModel) tableSearchCustomer.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            
+            while(result.next()) {
+
+                Object[] data = {
+                    result.getString("customer_id"), 
+                    result.getString("firstname"), 
+                    result.getString("surname"), 
+                    result.getString("email"), 
+                    result.getString("cellphone"), 
+                    result.getString("birthday"), 
+                    result.getString("gender"), 
+                    result.getString("adress"), 
+                    result.getString("postcode")
+                };
+                
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableSearchCustomer.setModel(datamodel);
+        }
+        catch(Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
     }
     
     public void searchFlight() {
-        
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
+        ArrayList<String> values = new ArrayList<String>();
+
+        // If Some text fields are not empty we add the WHERE clause
+        if (!textFieldFlightId.getText().equals("") || !textFieldFlightOrigin.getText().equals("")
+                || !textFieldFlightDestination.getText().equals("") || !textFieldFlightDeparture.getText().equals("")
+                || !textFieldFlightArrival.getText().equals("")) {
+            if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Exclusive")
+                    || comboBoxFlightSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "WHERE 1=0 ";
+            }
+        }
+
+        try {
+            //mid
+            if (!textFieldFlightId.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "flight_id", textFieldFlightId, values);
+            }
+
+            if (!textFieldFlightOrigin.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "origin", textFieldFlightOrigin, values);
+            }
+
+            if (!textFieldFlightDestination.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "destination", textFieldFlightDestination, values);
+            }
+
+            if (!textFieldFlightDeparture.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "departure", textFieldFlightDeparture, values);
+            }
+
+            if (!textFieldFlightArrival.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "arrival", textFieldFlightArrival, values);
+            }
+
+//            // If you get a mysql error saying: not unique table/alias look here 
+//            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
+//            // You need to create a mysql alias if you select multiple times from the same table!
+//            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+//            query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+//            if (!textFieldFlightNumber.getText().equals("")) {
+//                query += "`luggage_flight`.`flight_id` = ? AND ";
+//                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+//            }
+//            query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
+//            
+//            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+//            query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+//            if (!textFieldOwnerID.getText().equals("")) {
+//                query += "`customer_luggage`.`customer_id` = ? AND ";
+//                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
+//            }
+//            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableSearchFlight.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("flight_id"),
+                    result.getString("origin"),
+                    result.getString("destination"),
+                    result.getString("departure"),
+                    result.getString("arrival")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableSearchFlight.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
     }
     
     public void searchLuggage() {
