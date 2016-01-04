@@ -376,7 +376,7 @@ public class SearchPanes extends JTabbedPane{
 
             },
             new String [] {
-                "Flight ID", "Origin", "Destination", "Departure", "Arrival"
+                "Flight number", "Origin", "Destination", "Departure", "Arrival"
             }
         ) {
             Class[] types = new Class [] {
@@ -474,7 +474,7 @@ public class SearchPanes extends JTabbedPane{
 
             },
             new String [] {
-                "Luggage ID", "Location", "Color", "Wieght", "Size", "Description", "Status"
+                "Luggage ID", "Location", "Color", "Weight", "Size", "Description", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -752,7 +752,7 @@ public class SearchPanes extends JTabbedPane{
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDeparture);
         PromptSupport.setPrompt("Destination", textFieldFlightDestination);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightDestination);
-        PromptSupport.setPrompt("Flight ID", textFieldFlightId);
+        PromptSupport.setPrompt("Flight number", textFieldFlightId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightId);
         PromptSupport.setPrompt("Origin", textFieldFlightOrigin);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightOrigin);
@@ -861,51 +861,58 @@ public class SearchPanes extends JTabbedPane{
     
     public void searchCustomer() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT * FROM customer";
+        String query = "SELECT * FROM customer ";
         ArrayList<String> values = new ArrayList<String>();
         
         // If Some text fields are not empty we add the WHERE clause
-        if(!textFieldCustomerAdress.getText().equals("") ||
+        if (!textFieldCustomerAdress.getText().equals("") ||
             !textFieldCustomerBirthday.getText().equals("") ||
             !textFieldCustomerCellphone.getText().equals("") ||
             !textFieldCustomerEmail.getText().equals("") ||
             !textFieldCustomerFirstname.getText().equals("") || 
             !textFieldCustomerId.getText().equals("") ||
             !textFieldCustomerPostcode.getText().equals("") ||
-            !textFieldCustomerSurname.getText().equals("")
-        ) {
-            query += " WHERE 1=0 ";
+            !textFieldCustomerSurname.getText().equals("")) {
+            if (comboBoxCustomerSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxCustomerSearchType.getSelectedItem().toString().equals("Exclusive")
+                    || comboBoxCustomerSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "WHERE 1=0 ";
+            }
         }
         
         try {
             if(!textFieldCustomerAdress.getText().equals("")) {
-                query += "OR firstname = ? ";
-                values.add(textFieldCustomerAdress.getText());
+                query += checkCombobox(comboBoxCustomerSearchType, "adress", textFieldCustomerAdress, values);
             }
             
             if(!textFieldCustomerBirthday.getText().equals("")) {
-                query += "OR firstname = ? ";
-                values.add(textFieldCustomerBirthday.getText());
+                query += checkCombobox(comboBoxCustomerSearchType, "birthday", textFieldCustomerBirthday, values);
             }
             
             if(!helpers.Filters.filteredCellphone(textFieldCustomerCellphone.getText()).equals("")) {
-                query += "OR cellphone = ? ";
-                values.add(textFieldCustomerCellphone.getText());
+                query += checkCombobox(comboBoxCustomerSearchType, "cellphone", textFieldCustomerCellphone, values);
             }
             
             if(!textFieldCustomerEmail.getText().equals("")) {
-                query += "OR email = ? ";
-                values.add(helpers.Filters.filteredString(textFieldCustomerEmail.getText()));
+                query += checkCombobox(comboBoxCustomerSearchType, "email", textFieldCustomerEmail, values);
+            } 
+            
+            if(!textFieldCustomerId.getText().equals("")) {
+                query += checkCombobox(comboBoxCustomerSearchType, "customer_id", textFieldCustomerId, values);
+            }
+            
+            if(!textFieldCustomerPostcode.getText().equals("")) {
+                query += checkCombobox(comboBoxCustomerSearchType, "postcode", textFieldCustomerPostcode, values);
             } 
             
             if(!textFieldCustomerFirstname.getText().equals("")) {
-                query += "OR firstname = ? ";
-                values.add(helpers.Filters.filteredString(textFieldCustomerFirstname.getText()));
+                query += checkCombobox(comboBoxCustomerSearchType, "firstname", textFieldCustomerFirstname, values);
             }
             
             if(!textFieldCustomerSurname.getText().equals("")) {
-                query += "OR surname = ? ";
-                values.add(helpers.Filters.filteredString(textFieldCustomerSurname.getText()));
+                query += checkCombobox(comboBoxCustomerSearchType, "surname", textFieldCustomerSurname, values);
             }
             
             // If you get a mysql error saying: not unique table/alias look here 
@@ -1035,28 +1042,37 @@ public class SearchPanes extends JTabbedPane{
     
     public void searchLuggage() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+        String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, description, `status` FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
+
+        if (!textFieldLuggageFlightId.getText().equals("") && 
+            comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "INNER JOIN `luggage_flight` ON `luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+        }
+        
+        if (!textFieldLuggageOwnerId.getText().equals("") && 
+            comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "INNER JOIN `customer_luggage` ON `luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+        }
 
         // If Some text fields are not empty we add the WHERE clause
         if (!textFieldLuggageId.getText().equals("") || 
-            !textFieldLuggageColor.getText().equals("") ||
+            !textFieldLuggageWeight.getText().equals("") || 
+            !textFieldLuggageColor.getText().equals("") || 
+            !textPaneLuggageDescription.getText().equals("") ||
             !textFieldLuggageLocation.getText().equals("") || 
-            !textFieldLuggageWeight.getText().equals("") ||
-            !textPaneLuggageDescription.getText().equals("") || 
-            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+            !textFieldLuggageOwnerId.getText().equals("") || 
+            !textFieldLuggageFlightId.getText().equals("") ||
+            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") ||
+            !comboBoxLuggageSize.getSelectedItem().toString().equals("Size")) {
             if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
-            if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Exclusive")
-                    || comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")) {
+            if (comboBoxLuggageSearchType.getSelectedItem().toString().equals("Exclusive") || 
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")
+            ) {
                 query += "WHERE 1=0 ";
             }
-        }
-        // if all inputs for the luggage table are empty but external references are not and the search type is Inclusive we create a condition
-        // in which we will show all results for luggage no matter what the input is, This else if conditions aferts that.
-        else if(!textFieldLuggageFlightId.getText().equals("") || !textFieldLuggageOwnerId.getText().equals("")){
-            query += "WHERE 1=0 ";
         }
 
         try {
@@ -1077,40 +1093,49 @@ public class SearchPanes extends JTabbedPane{
             }
             
             if (!textPaneLuggageDescription.getText().equals("")) {
-                // Description is still named content in our database #ourlittlesecret
-                query += checkCombobox(comboBoxLuggageSearchType, "content", textPaneLuggageDescription, values);
+                query += checkCombobox(comboBoxLuggageSearchType, "description", textPaneLuggageDescription, values);
             }
 
-            // switch to checkComboBox status
             if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
                 query += checkCombobox(comboBoxLuggageSearchType, "status", comboBoxLuggageStatus, values);
             }
             
-            // switch to checkComboBox size
             if (!comboBoxLuggageSize.getSelectedItem().toString().equals("Size")) {
                 query += checkCombobox(comboBoxLuggageSearchType, "size", comboBoxLuggageSize, values);
+            }
+            
+            if (!textFieldLuggageFlightId.getText().equals("") && 
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += checkCombobox(comboBoxLuggageSearchType, "flight_id", textFieldLuggageFlightId, values);
+            }
+            
+            if (!textFieldLuggageOwnerId.getText().equals("") && 
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += checkCombobox(comboBoxLuggageSearchType, "customer_id", textFieldLuggageOwnerId, values);
             }
             
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
-               
-            // we dont have a field for a flight number
-            if (!textFieldLuggageFlightId.getText().equals("")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+              
+            if (!textFieldLuggageFlightId.getText().equals("") &&
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Exclusive") || 
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, description, status ";
                 query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
                 query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
                 query += "AND flight_id = ?";
-                values.add(textFieldLuggageFlightId.getText());
-            }  
+                values.add(helpers.Filters.filteredString(textFieldLuggageFlightId.getText()));
+            }
             
-            // we dont have a field for owner ID!
-            if (!textFieldLuggageOwnerId.getText().equals("")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+            if (!textFieldLuggageOwnerId.getText().equals("") &&
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Exclusive") || 
+                comboBoxLuggageSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, description, status ";
                 query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
                 query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
                 query += "AND customer_id = ?";
-                values.add(textFieldLuggageOwnerId.getText());
+                values.add(helpers.Filters.filteredString(textFieldLuggageOwnerId.getText()));
             }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
@@ -1127,7 +1152,7 @@ public class SearchPanes extends JTabbedPane{
                     result.getString("color"),
                     result.getString("weight"),
                     result.getString("size"),
-                    result.getString("content"),
+                    result.getString("description"),
                     result.getString("status")
                 };
 

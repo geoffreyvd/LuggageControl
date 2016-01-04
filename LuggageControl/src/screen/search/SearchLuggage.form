@@ -146,7 +146,7 @@
                 <Column editable="false" title="Color" type="java.lang.String"/>
                 <Column editable="false" title="Weight" type="java.lang.Integer"/>
                 <Column editable="false" title="Size" type="java.lang.String"/>
-                <Column editable="false" title="Content" type="java.lang.String"/>
+                <Column editable="false" title="Description" type="java.lang.String"/>
                 <Column editable="false" title="Status" type="java.lang.String"/>
               </Table>
             </Property>

@@ -177,7 +177,7 @@ public class AddLuggage extends SwitchingJPanel {
     public void addLuggage() {
         if (checkInput()) {
             String queryInsertLuggage = "INSERT INTO `luggagecontroldata`.`luggage`"
-                    + "(`location`, `color`, `weight`, `size`, `status`, `content`, `image`)  "
+                    + "(`location`, `color`, `weight`, `size`, `status`, `description`, `image`)  "
                     + "VALUES(?,?,?,?,?,?,?)";
             String queryInsertFlight = "INSERT INTO `luggagecontroldata`.`luggage_flight`"
                     + "(`flight_id`, `luggage_id`)  "
@@ -187,7 +187,7 @@ public class AddLuggage extends SwitchingJPanel {
                     + "VALUES(?,?)";
             String querySearchLuggage = "SELECT luggage_id FROM luggage WHERE "
                     + "location = ? AND color = ? AND weight = ? AND size = ? "
-                    + "AND status = ? AND content = ? AND image = ?;";
+                    + "AND status = ? AND description = ? AND image = ?;";
 
 
             String[] values = new String[7];

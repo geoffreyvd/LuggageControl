@@ -66,7 +66,7 @@ public class SearchLuggage extends BaseSearch {
      */
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, content, `status` FROM luggage ";
+        String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, description, `status` FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
 
         if (!textFieldFlightNumber.getText().equals("") && 
@@ -124,7 +124,7 @@ public class SearchLuggage extends BaseSearch {
             if (!textFieldFlightNumber.getText().equals("") &&
                 comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
                 || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, description, status ";
                 query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
                 query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
                 query += "AND flight_id = ?";
@@ -134,7 +134,7 @@ public class SearchLuggage extends BaseSearch {
             if (!textFieldOwnerID.getText().equals("") &&
                 comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
                 || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, description, status ";
                 query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
                 query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
                 query += "AND customer_id = ?";
@@ -155,7 +155,7 @@ public class SearchLuggage extends BaseSearch {
                     result.getString("color"),
                     result.getString("weight"),
                     result.getString("size"),
-                    result.getString("content"),
+                    result.getString("description"),
                     result.getString("status")
                 };
 
@@ -232,12 +232,12 @@ public class SearchLuggage extends BaseSearch {
         comboBoxSearchType = new javax.swing.JComboBox();
 
         addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 formAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -251,7 +251,7 @@ public class SearchLuggage extends BaseSearch {
 
             },
             new String [] {
-                "Luggage ID", "Location", "Color", "Weight", "Size", "Content", "Status"
+                "Luggage ID", "Location", "Color", "Weight", "Size", "Description", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -316,18 +316,15 @@ public class SearchLuggage extends BaseSearch {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
+                            .addComponent(textFieldOwnerID)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(textFieldOwnerID)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldLuggageID, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                            .addComponent(textFieldFlightNumber))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(comboBoxLuggageStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(textFieldLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))))
-                                .addGap(0, 0, 0))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldLuggageID, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                                    .addComponent(textFieldFlightNumber))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboBoxLuggageStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelSearchLuggage)
                                 .addGap(58, 58, 58)

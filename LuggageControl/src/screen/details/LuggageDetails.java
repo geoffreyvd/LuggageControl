@@ -87,7 +87,7 @@ public class LuggageDetails extends BaseDetails {
                 textFieldUpdateLocation.setText(resultLuggage.getString("location"));
                 textFieldUpdateColor.setText(resultLuggage.getString("color"));
                 textFieldUpdateWeight.setText(resultLuggage.getString("weight"));
-                textPaneUpdateDescription.setText(resultLuggage.getString("content"));
+                textPaneUpdateDescription.setText(resultLuggage.getString("description"));
                 
                 switch(resultLuggage.getString("size")) {
                     case "Small":
