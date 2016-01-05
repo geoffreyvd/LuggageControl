@@ -285,10 +285,6 @@ public class DeleteCustomer extends SwitchingJPanel {
         } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
         }
-
-        for (boolean idrem : idRemove) {
-            System.out.println(idrem);
-        }
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
     private void buildTable() {
