@@ -39,12 +39,8 @@ public class LuggageDetails extends BaseDetails {
         PromptSupport.setPrompt("Weight", textFieldUpdateWeight);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
         
-        searchPanel.removeSearchTab(SearchPanes.SEARCH_FLIGHT);
         searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
         searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
-        searchPanel.addSearchTab(SearchPanes.SEARCH_FLIGHT);
-        searchPanel.addSearchTab(SearchPanes.SEARCH_LUGGAGE);
-        searchPanel.addSearchTab(SearchPanes.SEARCH_USER);
     }
     
     @Override

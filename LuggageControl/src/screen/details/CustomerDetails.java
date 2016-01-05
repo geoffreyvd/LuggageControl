@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
 import screen.base.BaseDetails;
+import screen.base.SearchPanes;
 
 /**
  *
@@ -32,6 +33,9 @@ public class CustomerDetails extends BaseDetails {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldPostcode);
         PromptSupport.setPrompt("Adress", textFieldAdress);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAdress);
+        
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_CUSTOMER);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
     
     @Override
@@ -429,7 +433,7 @@ public class CustomerDetails extends BaseDetails {
         textFieldAddLuggage = new javax.swing.JFormattedTextField();
         labelOwnerId1 = new javax.swing.JLabel();
         labelOwnerId2 = new javax.swing.JLabel();
-        searchPanes1 = new screen.base.SearchPanes(luggageControl, db);
+        searchPanel = new screen.base.SearchPanes(luggageControl, db);
 
         labelHeaderLeftSide.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelHeaderLeftSide.setText("Customer details");
@@ -596,7 +600,7 @@ public class CustomerDetails extends BaseDetails {
                         .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchPanes1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -610,7 +614,7 @@ public class CustomerDetails extends BaseDetails {
                             .addComponent(labelHeaderSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonHelp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchPanes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelHeaderLeftSide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -734,7 +738,7 @@ public class CustomerDetails extends BaseDetails {
     private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelSurname;
     private javax.swing.JLabel labelSurnameDisplay;
-    private screen.base.SearchPanes searchPanes1;
+    private screen.base.SearchPanes searchPanel;
     private javax.swing.JSeparator separatorScreenDefider;
     private javax.swing.JFormattedTextField textFieldAddFlight;
     private javax.swing.JFormattedTextField textFieldAddLuggage;

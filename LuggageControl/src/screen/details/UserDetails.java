@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
 import screen.base.BaseDetails;
+import screen.base.SearchPanes;
 
 /**
  * User details screen for the administrator to manage users
@@ -28,6 +29,11 @@ public class UserDetails extends BaseDetails {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
         PromptSupport.setPrompt("Zipcode", textFieldZipcode);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldZipcode);
+        
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_CUSTOMER);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_FLIGHT);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
 
     /**
@@ -55,7 +61,7 @@ public class UserDetails extends BaseDetails {
         buttonHelp = new javax.swing.JButton();
         labelName = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        searchPanes1 = new screen.base.SearchPanes(luggageControl, db);
+        searchPanel = new screen.base.SearchPanes(luggageControl, db);
 
         addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -143,7 +149,7 @@ public class UserDetails extends BaseDetails {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(searchPanes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,7 +192,7 @@ public class UserDetails extends BaseDetails {
                                 .addComponent(buttonBack))
                             .addComponent(labelUserSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchPanes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
             .addComponent(jSeparator1)
         );
@@ -227,7 +233,7 @@ public class UserDetails extends BaseDetails {
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelUserDetails;
     private javax.swing.JLabel labelUserSearch;
-    private screen.base.SearchPanes searchPanes1;
+    private screen.base.SearchPanes searchPanel;
     private javax.swing.JFormattedTextField textFieldAdress;
     private javax.swing.JFormattedTextField textFieldCellphoneNumber;
     private javax.swing.JFormattedTextField textFieldCity;
