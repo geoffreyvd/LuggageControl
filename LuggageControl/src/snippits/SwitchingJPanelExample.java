@@ -1,7 +1,7 @@
 package snippits;
 
-import constants.ScreenNames;
 import javax.swing.JPanel;
+import main.LuggageControl;
 import screen.LoginScreen;
 
 /**
@@ -33,7 +33,7 @@ class examplePanel2 extends SwitchingJPanel {
         sJPanelEventsInstance = sJPanelEventsReference;
         
         // switch screen to add customer
-        sJPanelEventsInstance.switchPanel(ScreenNames.ADD_CUSTOMER);
+        sJPanelEventsInstance.switchPanel(LuggageControl.ADD_CUSTOMER);
     }
 }
 
@@ -78,25 +78,25 @@ public class SwitchingJPanelExample extends javax.swing.JFrame {
     }
     
     private void switchJPanel(String screenName) {
-        if(screenName.equals(ScreenNames.ADD_CUSTOMER)) {
+        if(screenName.equals(LuggageControl.ADD_CUSTOMER)) {
             
         }
-        else if(screenName.equals(ScreenNames.ADD_LUGGAGE)) {
+        else if(screenName.equals(LuggageControl.ADD_LUGGAGE)) {
             
         }
-        else if(screenName.equals(ScreenNames.CHANGE_SETTINGS)) {
+        else if(screenName.equals(LuggageControl.CHANGE_SETTINGS)) {
             
         }
-        else if(screenName.equals(ScreenNames.HOME_SCREEN_EMPLOYEE)) {
+        else if(screenName.equals(LuggageControl.HOME_SCREEN_EMPLOYEE)) {
             
         }
-        else if(screenName.equals(ScreenNames.LOGINSCREEN)) {
+        else if(screenName.equals(LuggageControl.LOGINSCREEN)) {
             
         }
-        else if(screenName.equals(ScreenNames.SEARCH_CUSTOMER)) {
+        else if(screenName.equals(LuggageControl.SEARCH_CUSTOMER)) {
             
         }
-        else if(screenName.equals(ScreenNames.USER_MANAGEMENT)) {
+        else if(screenName.equals(LuggageControl.USER_MANAGEMENT)) {
             
         }
         else {

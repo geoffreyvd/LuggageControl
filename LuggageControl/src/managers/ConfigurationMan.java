@@ -2,7 +2,6 @@ package managers;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.PopUpJDialog;
-import constants.ScreenNames;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.BufferedReader;
