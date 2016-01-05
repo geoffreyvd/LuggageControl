@@ -295,7 +295,7 @@ public class SearchPanes extends javax.swing.JTabbedPane {
         scrollPaneCustomerTable.setViewportView(tableSearchCustomer);
         tableSearchCustomer.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        comboBoxCustomerGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gender", "male", "female", "androgenous" }));
+        comboBoxCustomerGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gender", "male", "female", "androgenous" }));
         comboBoxCustomerGender.setMaximumSize(new java.awt.Dimension(150, 150));
 
         textFieldCustomerSurname.setMaximumSize(new java.awt.Dimension(150, 150));
@@ -618,14 +618,14 @@ public class SearchPanes extends javax.swing.JTabbedPane {
 
             },
             new String [] {
-                "User ID", "Username", "Firstname", "Email", "Cellphone", "Birthday", "Gender", "Nationality", "Adress", "Postcode"
+                "User ID", "Username", "Firstname", "Surname", "Email", "Cellphone", "Birthday", "Gender", "Nationality", "Adress", "Postcode"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, true, true
             };
 
             @Override
@@ -894,7 +894,8 @@ public class SearchPanes extends javax.swing.JTabbedPane {
             !textFieldCustomerFirstname.getText().equals("") || 
             !textFieldCustomerId.getText().equals("") ||
             !textFieldCustomerPostcode.getText().equals("") ||
-            !textFieldCustomerSurname.getText().equals("")) {
+            !textFieldCustomerSurname.getText().equals("") || 
+            !comboBoxCustomerGender.getSelectedItem().equals("Gender")) {
             if (comboBoxCustomerSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
@@ -920,6 +921,10 @@ public class SearchPanes extends javax.swing.JTabbedPane {
             if(!textFieldCustomerEmail.getText().equals("")) {
                 query += checkCombobox(comboBoxCustomerSearchType, "email", textFieldCustomerEmail, values);
             } 
+            
+            if (!comboBoxCustomerGender.getSelectedItem().toString().equals("Gender")) {
+                query += checkCombobox(comboBoxCustomerSearchType, "gender", comboBoxCustomerGender, values);
+            }
             
             if(!textFieldCustomerId.getText().equals("")) {
                 query += checkCombobox(comboBoxCustomerSearchType, "customer_id", textFieldCustomerId, values);
@@ -978,71 +983,57 @@ public class SearchPanes extends javax.swing.JTabbedPane {
         }
     }
     
+    /**
+     * DONE
+     */
     public void searchFlight() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
+        String query = "SELECT `flight`.`flight_id`, origin, destination, departure, arrival FROM flight ";
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldFlightId.getText().equals("") || !textFieldFlightOrigin.getText().equals("")
-                || !textFieldFlightDestination.getText().equals("") || !textFieldFlightDeparture.getText().equals("")
-                || !textFieldFlightArrival.getText().equals("")) {
+        if (!textFieldFlightArrival.getText().equals("") || 
+            !textFieldFlightDeparture.getText().equals("") || 
+            !textFieldFlightDestination.getText().equals("") || 
+            !textFieldFlightId.getText().equals("") ||
+            !textFieldFlightOrigin.getText().equals("")) {
             if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
-            if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Exclusive")
-                    || comboBoxFlightSearchType.getSelectedItem().toString().equals("Loose")) {
+            if (comboBoxFlightSearchType.getSelectedItem().toString().equals("Exclusive") || 
+                comboBoxFlightSearchType.getSelectedItem().toString().equals("Loose")
+            ) {
                 query += "WHERE 1=0 ";
             }
         }
 
         try {
-            //mid
-            if (!textFieldFlightId.getText().equals("")) {
-                query += checkCombobox(comboBoxFlightSearchType, "flight_id", textFieldFlightId, values);
-            }
-
-            if (!textFieldFlightOrigin.getText().equals("")) {
-                query += checkCombobox(comboBoxFlightSearchType, "origin", textFieldFlightOrigin, values);
-            }
-
-            if (!textFieldFlightDestination.getText().equals("")) {
-                query += checkCombobox(comboBoxFlightSearchType, "destination", textFieldFlightDestination, values);
+            if (!textFieldFlightArrival.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "`arrival`", textFieldFlightArrival, values);
             }
 
             if (!textFieldFlightDeparture.getText().equals("")) {
                 query += checkCombobox(comboBoxFlightSearchType, "departure", textFieldFlightDeparture, values);
             }
-
-            if (!textFieldFlightArrival.getText().equals("")) {
-                query += checkCombobox(comboBoxFlightSearchType, "arrival", textFieldFlightArrival, values);
+            
+            if (!textFieldFlightDestination.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "destination", textFieldFlightDestination, values);
+            }
+            
+            if (!textFieldFlightId.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "flight_id", textFieldFlightId, values);
+            }
+            
+            if (!textFieldFlightOrigin.getText().equals("")) {
+                query += checkCombobox(comboBoxFlightSearchType, "origin", textFieldFlightOrigin, values);
             }
 
-//            // If you get a mysql error saying: not unique table/alias look here 
-//            // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
-//            // You need to create a mysql alias if you select multiple times from the same table!
-//            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-//            query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-//            if (!textFieldFlightNumber.getText().equals("")) {
-//                query += "`luggage_flight`.`flight_id` = ? AND ";
-//                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
-//            }
-//            query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
-//            
-//            query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-//            query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-//            if (!textFieldOwnerID.getText().equals("")) {
-//                query += "`customer_luggage`.`customer_id` = ? AND ";
-//                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
-//            }
-//            query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
             DefaultTableModel datamodel = (DefaultTableModel) tableSearchFlight.getModel();
             for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
                 datamodel.removeRow(i);
             }
-            
             while (result.next()) {
 
                 Object[] data = {
@@ -1062,6 +1053,9 @@ public class SearchPanes extends javax.swing.JTabbedPane {
         }
     }
     
+    /**
+     * DONE
+     */
     public void searchLuggage() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, description, `status` FROM luggage ";
@@ -1187,8 +1181,115 @@ public class SearchPanes extends javax.swing.JTabbedPane {
         }
     }
     
+    /**
+     * DONE
+     */
     public void searchUser() {
-        
+        ResultSet result = new EmptyResultSet();
+        String query = "SELECT `user`.`user_id`, username, email, firstname, surname, cellphone, `birthday`, nationality, adress, postcode, gender FROM user ";
+        ArrayList<String> values = new ArrayList<String>();
+
+//        if (!textFieldLuggageFlightId.getText().equals("") && 
+//            comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+//                query += "INNER JOIN `luggage_flight` ON `luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+//        }
+//        
+//        if (!textFieldLuggageOwnerId.getText().equals("") && 
+//            comboBoxLuggageSearchType.getSelectedItem().toString().equals("Inclusive")) {
+//                query += "INNER JOIN `customer_luggage` ON `luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+//        }
+
+        // If Some text fields are not empty we add the WHERE clause
+        if (!textFieldUserAdress.getText().equals("") || 
+            !textFieldUserBirthday.getText().equals("") || 
+            !textFieldUserCellphone.getText().equals("") || 
+            !textFieldUserFirstName.getText().equals("") ||
+            !textFieldUserId.getText().equals("") || 
+            !textFieldUserName.getText().equals("") || 
+            !textFieldUserNationality.getText().equals("") ||
+            !textFieldUserPostcode.getText().equals("") ||
+            !textFieldUserSurName.getText().equals("") ||
+            !comboBoxUserGender.getSelectedItem().toString().equals("Gender")) {
+            if (comboBoxUserSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxUserSearchType.getSelectedItem().toString().equals("Exclusive") || 
+                comboBoxUserSearchType.getSelectedItem().toString().equals("Loose")
+            ) {
+                query += "WHERE 1=0 ";
+            }
+        }
+
+        try {
+            if (!textFieldUserAdress.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "`adress`", textFieldUserAdress, values);
+            }
+
+            if (!textFieldUserBirthday.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "birthday", textFieldUserBirthday, values);
+            }
+            
+            if (!textFieldUserCellphone.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "cellphone", textFieldUserCellphone, values);
+            }
+            
+            if (!textFieldUserFirstName.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "firstname", textFieldUserFirstName, values);
+            }
+            
+            if (!comboBoxUserGender.getSelectedItem().toString().equals("Gender")) {
+                query += checkCombobox(comboBoxUserSearchType, "gender", comboBoxUserGender, values);
+            }
+            
+            if (!textFieldUserId.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "user_id", textFieldUserId, values);
+            }
+            
+            if (!textFieldUserNationality.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "nationality", textFieldUserNationality, values);
+            }
+            
+            if (!textFieldUserName.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "username", textFieldUserName, values);
+            }
+            
+            if (!textFieldUserPostcode.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "postcode", textFieldUserPostcode, values);
+            }
+            
+            if (!textFieldUserSurName.getText().equals("")) {
+                query += checkCombobox(comboBoxUserSearchType, "surname", textFieldUserSurName, values);
+            }
+            
+            result = db.query(query + ";", values.toArray(new String[values.size()]));
+
+            DefaultTableModel datamodel = (DefaultTableModel) tableSearchUser.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("user_id"),
+                    result.getString("username"),
+                    result.getString("firstname"),
+                    result.getString("surname"),
+                    result.getString("email"),
+                    result.getString("cellphone"),
+                    result.getString("birthday"),
+                    result.getString("gender"),
+                    result.getString("nationality"),
+                    result.getString("adress"),
+                    result.getString("postcode")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableSearchLuggage.setModel(datamodel);
+        } catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
     }
     
     public ResultSet getCustomerResults() {
