@@ -251,7 +251,7 @@ public class AddFlight extends SwitchingJPanel {
     
     private void searchLuggage() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+        String query = "SELECT luggage_id, location, color, weight, size, description, status FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause

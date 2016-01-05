@@ -230,7 +230,7 @@ public class LuggageDetails extends BaseDetails {
             
             // validate size placeholder
             if(!textPaneUpdateDescription.getText().equals("")) {
-                query += " content = ?,";
+                query += " description = ?,";
                 values.add(helpers.Filters.filteredString(textPaneUpdateDescription.getText()));
                 types.add("String");
             }

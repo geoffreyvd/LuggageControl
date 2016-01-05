@@ -27,6 +27,7 @@ public class AddLuggage extends SwitchingJPanel {
 
     /**
      * Creates new form AddFlight and sets a prompt on all the textfields
+     *
      * @param luggageControl
      */
     public AddLuggage(LuggageControl luggageControl) {
@@ -62,24 +63,23 @@ public class AddLuggage extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
         PromptSupport.setPrompt("Email", textFieldEmail);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
-    }   
-    
-    
+    }
+
     @Override
     public void updatePanelInformation() {
         System.err.println("Add panel not capabable of prefilling data");
     }
-    
+
     @Override
     public void updatePanelInformation(int customerId) {
         this.updatePanelInformation();
     }
-    
+
     @Override
     public void clearPanelInformation() {
         this.clearFields();
     }
-    
+
     /**
      *
      */
@@ -98,7 +98,8 @@ public class AddLuggage extends SwitchingJPanel {
 
     /**
      * check input
-     * @return 
+     *
+     * @return
      */
     public boolean checkInput() {
 
@@ -110,15 +111,15 @@ public class AddLuggage extends SwitchingJPanel {
         }
 
         // check if flightnumber exists
-        if (!(textFieldFlightnumber.getText().equals("")) && 
-                db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
+        if (!(textFieldFlightnumber.getText().equals(""))
+                && db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
             labelStatus.setText("Flightnumber doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
 
         // check if customer exists
-        if (!(textFieldOwnerID.getText().equals("")) 
+        if (!(textFieldOwnerID.getText().equals(""))
                 && db.queryOneResult("SELECT `customer_id` FROM customer WHERE customer_id = ?", new String[]{textFieldOwnerID.getText()}).equals("")) {
             labelStatus.setText("Customer doesn't exist");
             this.resetLabel(5000, labelStatus);
@@ -154,14 +155,14 @@ public class AddLuggage extends SwitchingJPanel {
             this.resetLabel(5000, labelStatus);
             return false;
         }
-        
+
         // check if content is filled in
         if (textPaneContent.getText().equals("")) {
-                labelStatus.setText("Content is empty");
+            labelStatus.setText("Description is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
-        
+
         // check if an image is selected
         if (imageBase64.equals("")) {
             labelStatus.setText("Image is not selected");
@@ -189,7 +190,6 @@ public class AddLuggage extends SwitchingJPanel {
                     + "location = ? AND color = ? AND weight = ? AND size = ? "
                     + "AND status = ? AND description = ? AND image = ?;";
 
-
             String[] values = new String[7];
             String[] types = new String[7];
 
@@ -206,12 +206,6 @@ public class AddLuggage extends SwitchingJPanel {
             values[4] = comboBoxLuggageStatus.getSelectedItem().toString();
             values[5] = textPaneContent.getText();
             values[6] = imageBase64;
-            
-            values2[0] = textFieldFlightnumber.getText();
-            values2[1] = db.queryOneResult(querySearchLuggage, values);
-            
-            values3[0] = textFieldOwnerID.getText();
-            values3[1] = db.queryOneResult(querySearchLuggage, values);
 
             types[0] = "String";
             types[1] = "String";
@@ -220,37 +214,41 @@ public class AddLuggage extends SwitchingJPanel {
             types[4] = "String";
             types[5] = "String";
             types[6] = "String";
-            
+
             types2[0] = "Int";
             types2[1] = "Int";
-            
+
             types3[0] = "Int";
             types3[1] = "Int";
 
             try {
                 db.queryManipulation(queryInsertLuggage, values, types);
-                if(!textFieldFlightnumber.getText().equals("")){
+                if (!textFieldFlightnumber.getText().equals("")) {
+                    values2[0] = textFieldFlightnumber.getText();
+                    values2[1] = db.queryOneResult(querySearchLuggage, values);
                     db.queryManipulation(queryInsertFlight, values2, types2);
                 }
-                if (!textFieldOwnerID.getText().equals("")) {   
+                if (!textFieldOwnerID.getText().equals("")) {
+                    values3[0] = textFieldOwnerID.getText();
+                    values3[1] = db.queryOneResult(querySearchLuggage, values);
                     db.queryManipulation(queryInsertCustomer, values3, types3);
                 }
             } catch (SQLException e) {
-                
+
             }
             this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
             this.clearFields();
         }
     }
-    
+
     private void searchCustomer() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT * FROM customer ";
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldFirstName.getText().equals("") || !textFieldSurName.getText().equals("") ||
-            !textFieldCellphone.getText().equals("") || !textFieldEmail.getText().equals("")) {
+        if (!textFieldFirstName.getText().equals("") || !textFieldSurName.getText().equals("")
+                || !textFieldCellphone.getText().equals("") || !textFieldEmail.getText().equals("")) {
             query += "WHERE 1=0 ";
         }
 
@@ -264,7 +262,7 @@ public class AddLuggage extends SwitchingJPanel {
                 query += "OR surname = ? ";
                 values.add(helpers.Filters.filteredString(textFieldSurName.getText()));
             }
-            
+
             if (!textFieldCellphone.getText().equals("")) {
                 query += "OR cellphone = ? ";
                 values.add(helpers.Filters.filteredString(textFieldCellphone.getText()));
@@ -303,15 +301,16 @@ public class AddLuggage extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
     }
+
     private void searchFlight() {
         ResultSet result = new EmptyResultSet();
         String query = "SELECT flight_id, origin, destination, departure, arrival FROM flight ";
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldFlightId.getText().equals("") || !textFieldFlightOrigin.getText().equals("") ||
-            !textFieldFlightDestination.getText().equals("") || !textFieldFlightDeparture.getText().equals("") || 
-            !textFieldFlightArrival.getText().equals("")) {
+        if (!textFieldFlightId.getText().equals("") || !textFieldFlightOrigin.getText().equals("")
+                || !textFieldFlightDestination.getText().equals("") || !textFieldFlightDeparture.getText().equals("")
+                || !textFieldFlightArrival.getText().equals("")) {
             query += "WHERE 1=0 ";
         }
 
@@ -337,7 +336,7 @@ public class AddLuggage extends SwitchingJPanel {
             if (!textFieldFlightArrival.getText().equals("")) {
                 query += "OR arrival = ? ";
                 values.add(helpers.Filters.filteredString(textFieldFlightArrival.getText()));
-            }            
+            }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
 
@@ -363,6 +362,7 @@ public class AddLuggage extends SwitchingJPanel {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
