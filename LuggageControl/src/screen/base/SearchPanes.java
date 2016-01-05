@@ -6,7 +6,12 @@ import static helpers.ImageMaker.getImagePath;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import managers.DatabaseMan;
@@ -17,7 +22,7 @@ import org.jdesktop.swingx.prompt.PromptSupport;
  * and the tabbed <code>searchpane</code> itself.
  * @author Corne Lukken
  */
-public class SearchPanes extends JTabbedPane{
+public class SearchPanes extends javax.swing.JTabbedPane {
     
     public static final String IMAGE = "panelImage";
     public static final String SEARCH_CUSTOMER = "panelSearchCustomer";
@@ -31,7 +36,7 @@ public class SearchPanes extends JTabbedPane{
     private ResultSet userResults;
     
     private String image;
-    private DatabaseMan db;
+    private final DatabaseMan db;
     private LuggageControl luggageControl;
     
     /* these have been not neccesary so far but I made them as a precaution
@@ -124,6 +129,11 @@ public class SearchPanes extends JTabbedPane{
         this.db = db;
         initComponents();
         setLabelPrompts();
+    }
+    
+    // java beans must have constructor with no parameters
+    public SearchPanes() {
+        this.db = new DatabaseMan();
     }
     
     // <editor-fold defaultstate="collapsed" desc="initComponents">
@@ -269,10 +279,12 @@ public class SearchPanes extends JTabbedPane{
                 false, false, false, false, false, false, false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -292,6 +304,7 @@ public class SearchPanes extends JTabbedPane{
 
         buttonSearchCustomer.setText("Search");
         buttonSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchCustomer();
             }
@@ -386,10 +399,12 @@ public class SearchPanes extends JTabbedPane{
                 false, false, false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -407,6 +422,7 @@ public class SearchPanes extends JTabbedPane{
 
         buttonSearchFlight.setText("Search");
         buttonSearchFlight.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchFlight();
             }
@@ -484,10 +500,12 @@ public class SearchPanes extends JTabbedPane{
                 false, false, false, false, false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -507,6 +525,7 @@ public class SearchPanes extends JTabbedPane{
 
         buttonSearchLuggage.setText("Search");
         buttonSearchLuggage.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchLuggage();
             }
@@ -609,10 +628,12 @@ public class SearchPanes extends JTabbedPane{
                 false, false, false, false, false, false, false, false, true, true
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -632,6 +653,7 @@ public class SearchPanes extends JTabbedPane{
 
         buttonSearchUser.setText("Search");
         buttonSearchUser.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchUser();
             }
