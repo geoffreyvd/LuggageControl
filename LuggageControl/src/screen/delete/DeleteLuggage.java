@@ -300,6 +300,8 @@ public class DeleteLuggage extends SwitchingJPanel {
         String query = "DELETE FROM luggage WHERE 1=0";
         String query1 = "DELETE FROM luggage_flight WHERE 1=0";
         String query2 = "DELETE FROM customer_luggage WHERE 1=0";
+        String query3 = "DELETE FROM luggage_lost_found WHERE 1=0";
+        String query4 = query3;
         ArrayList<String> data = new ArrayList();
         ArrayList<String> types = new ArrayList();
         boolean[] idRemove = new boolean[datamodel.getRowCount()];
@@ -311,6 +313,8 @@ public class DeleteLuggage extends SwitchingJPanel {
                 query += " OR luggage_id = ?";
                 query1 += " OR luggage_id = ?";
                 query2 += " OR luggage_id = ?";
+                query3 += " OR luggage_lost_id = ?";
+                query4 += " OR luggage_found_id = ?";
                 data.add((String) datamodel.getValueAt(i, 0));
                 types.add(db.PS_TYPE_INT);
             }
@@ -320,6 +324,8 @@ public class DeleteLuggage extends SwitchingJPanel {
         String[] types2 = types.toArray(new String[types.size()]);
 
         try {
+            db.queryManipulation(query4, values, types2);
+            db.queryManipulation(query3, values, types2);
             db.queryManipulation(query2, values, types2);
             db.queryManipulation(query1, values, types2);
             db.queryManipulation(query, values, types2);
