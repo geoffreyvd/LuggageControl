@@ -62,6 +62,16 @@ public class UserDetails extends BaseDetails {
         tableUserSearch = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
 
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         labelUserDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelUserDetails.setText("User details");
 
@@ -264,7 +274,7 @@ public class UserDetails extends BaseDetails {
             }
             while(result.next()) {
                 System.out.println(result.getString("user_id"));
-                Object[] data = {result.getInt("user_id"), result.getString("firstname"), result.getString("surname"), result.getString("username"), result.getString("email"), result.getInt("permissions")};
+                Object[] data = {result.getInt("user_id"), result.getString("firstname"), result.getString("surname"), result.getString("username"), result.getString("email"), result.getInt("permission")};
                 // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
@@ -286,6 +296,10 @@ public class UserDetails extends BaseDetails {
         this.userNotAFK();
         this.luggageControl.switchJPanel(this.luggageControl.HELP); 
     }//GEN-LAST:event_buttonHelpActionPerformed
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        fillSearchUserTable();
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -194,7 +194,7 @@ public class HomeScreenAdministrator extends SwitchingJPanel {
 
     private void buttonUserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserManagementActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(this.luggageControl.USER_MANAGEMENT);
+        this.luggageControl.switchJPanel(this.luggageControl.USER_DETAILS);
     }//GEN-LAST:event_buttonUserManagementActionPerformed
 
     private void buttonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddUserActionPerformed
