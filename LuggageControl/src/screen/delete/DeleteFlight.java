@@ -321,11 +321,7 @@ public class DeleteFlight extends SwitchingJPanel {
             fillFlightTable();
         } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
-        }
-
-        for (boolean idrem : idRemove) {
-            System.out.println(idrem);
-        }
+        }        
     }//GEN-LAST:event_buttonUpdate
 
     private void textFieldOriginflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldOriginflightNumberKeyPressed
