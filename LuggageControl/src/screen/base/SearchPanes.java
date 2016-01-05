@@ -1286,7 +1286,7 @@ public class SearchPanes extends javax.swing.JTabbedPane {
                 // datamodel.addRow is skipped problaby exception
                 datamodel.addRow(data);
             }
-            tableSearchLuggage.setModel(datamodel);
+            tableSearchUser.setModel(datamodel);
         } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
         }
