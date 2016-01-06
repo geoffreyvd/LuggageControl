@@ -189,6 +189,9 @@ public class AddLuggage extends SwitchingJPanel {
             String querySearchLuggage = "SELECT luggage_id FROM luggage WHERE "
                     + "location = ? AND color = ? AND weight = ? AND size = ? "
                     + "AND status = ? AND description = ? AND image = ?;";
+            
+            String querySearchLuggageSimilar = "SELECT * FROM luggage WHERE "
+                    + "status = ?;";
 
             String[] values = new String[7];
             String[] types = new String[7];
@@ -221,22 +224,36 @@ public class AddLuggage extends SwitchingJPanel {
             types3[0] = "Int";
             types3[1] = "Int";
 
-            try {
-                db.queryManipulation(queryInsertLuggage, values, types);
-                if (!textFieldFlightnumber.getText().equals("")) {
-                    values2[0] = textFieldFlightnumber.getText();
-                    values2[1] = db.queryOneResult(querySearchLuggage, values);
-                    db.queryManipulation(queryInsertFlight, values2, types2);
-                }
-                if (!textFieldOwnerID.getText().equals("")) {
-                    values3[0] = textFieldOwnerID.getText();
-                    values3[1] = db.queryOneResult(querySearchLuggage, values);
-                    db.queryManipulation(queryInsertCustomer, values3, types3);
-                }
-            } catch (SQLException e) {
-
+//            try {
+//                db.queryManipulation(queryInsertLuggage, values, types);
+//                if (!textFieldFlightnumber.getText().equals("")) {
+//                    values2[0] = textFieldFlightnumber.getText();
+//                    values2[1] = db.queryOneResult(querySearchLuggage, values);
+//                    db.queryManipulation(queryInsertFlight, values2, types2);
+//                }
+//                if (!textFieldOwnerID.getText().equals("")) {
+//                    values3[0] = textFieldOwnerID.getText();
+//                    values3[1] = db.queryOneResult(querySearchLuggage, values);
+//                    db.queryManipulation(queryInsertCustomer, values3, types3);
+//                }
+//            } catch (SQLException e) {
+//
+//            }
+            
+            String valuesPrefill[] = new String[1];
+            
+            if(values[4].equals("Lost")) {
+                valuesPrefill[0] = "Found";
             }
-            this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_EMPLOYEE);
+            else {
+                valuesPrefill[0] = "Lost";
+            }
+            
+            ResultSet result = db.query(querySearchLuggageSimilar, valuesPrefill);
+            this.luggageControl.prefillSearchLuggage(result);
+            
+            System.out.println(querySearchLuggageSimilar);
+            this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
             this.clearFields();
         }
     }
@@ -413,7 +430,7 @@ public class AddLuggage extends SwitchingJPanel {
         labelAddLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddLuggage.setText("Add luggage");
 
-        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found", "Returned" }));
+        comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found" }));
 
         jScrollPane1.setViewportView(textPaneContent);
 

@@ -18,6 +18,7 @@ import managers.DatabaseMan;
 import managers.SecurityMan;
 import org.jdesktop.swingx.prompt.PromptSupport;
 import screen.base.BaseDetails;
+import screen.base.SearchPanes;
 
 /**
  *
@@ -45,6 +46,10 @@ public class FlightDetails extends BaseDetails {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateDepartureDate);
         PromptSupport.setPrompt("Arrival", textFieldUpdateArrivaDate);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateArrivaDate);
+        
+        searchPanel.removeSearchTab(SearchPanes.IMAGE);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
 
     /**
@@ -179,7 +184,7 @@ public class FlightDetails extends BaseDetails {
         buttonHelp = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         labelHeaderSearch = new javax.swing.JLabel();
-        searchPanes1 = new screen.base.SearchPanes(luggageControl, db);
+        searchPanel = new screen.base.SearchPanes(luggageControl, db);
 
         labelDisplayFLightnumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDisplayFLightnumber.setText("Flightnumber:  ");
@@ -256,7 +261,7 @@ public class FlightDetails extends BaseDetails {
                         .addComponent(labelHeaderSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                         .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchPanes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -291,7 +296,7 @@ public class FlightDetails extends BaseDetails {
                             .addComponent(buttonBack))
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchPanes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -329,7 +334,7 @@ public class FlightDetails extends BaseDetails {
     private javax.swing.JLabel labelHeaderSearch;
     private javax.swing.JLabel labelOwnerIdDisplay;
     private javax.swing.JLabel labelStatus;
-    private screen.base.SearchPanes searchPanes1;
+    private screen.base.SearchPanes searchPanel;
     private javax.swing.JTextField textFieldUpdateArrivaDate;
     private javax.swing.JTextField textFieldUpdateDepartureDate;
     private javax.swing.JTextField textFieldUpdateDestination;

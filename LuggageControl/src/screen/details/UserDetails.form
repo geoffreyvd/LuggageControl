@@ -59,7 +59,7 @@
                           <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="searchPanes1" max="32767" attributes="0"/>
+                  <Component id="searchPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -113,7 +113,7 @@
                           <Component id="labelUserSearch" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="searchPanes1" max="32767" attributes="0"/>
+                      <Component id="searchPanel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -206,7 +206,7 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Container class="screen.base.SearchPanes" name="searchPanes1">
+    <Container class="screen.base.SearchPanes" name="searchPanel">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new screen.base.SearchPanes(luggageControl, db)"/>
       </AuxValues>

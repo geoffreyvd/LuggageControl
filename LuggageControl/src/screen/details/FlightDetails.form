@@ -54,7 +54,7 @@
                       <EmptySpace pref="233" max="32767" attributes="0"/>
                       <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="searchPanes1" max="32767" attributes="0"/>
+                  <Component id="searchPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -96,7 +96,7 @@
                       <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="searchPanes1" max="32767" attributes="0"/>
+                      <Component id="searchPanel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -181,7 +181,7 @@
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
     </Component>
-    <Container class="screen.base.SearchPanes" name="searchPanes1">
+    <Container class="screen.base.SearchPanes" name="searchPanel">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new screen.base.SearchPanes(luggageControl, db)"/>
       </AuxValues>
