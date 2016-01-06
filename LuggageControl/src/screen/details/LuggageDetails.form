@@ -35,6 +35,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="textFieldOwnerID" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelLuggageDetails" alignment="0" pref="260" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonRemoveOwner" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="textFieldUpdateLocation" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="buttonUpdate" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -42,14 +50,14 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="buttonBack" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labelLuggageDetails" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelDescription" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelDestination" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelFlightnumber" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelOrigin" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="labelDisplayDestination" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -58,12 +66,13 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="labelDescription" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonRemoveOwner" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="textFieldUpdateLocation" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="textFieldLuggageCorresponding" min="-2" pref="146" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="separatorCenter" min="-2" max="-2" attributes="0"/>
@@ -71,7 +80,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="labelSearch" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="286" max="32767" attributes="0"/>
                       <Component id="buttonHelp" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <Component id="searchPanel" alignment="1" pref="469" max="32767" attributes="0"/>
@@ -102,6 +111,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelDestination" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelDisplayDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldLuggageCorresponding" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textFieldUpdateLocation" min="-2" max="-2" attributes="0"/>
@@ -123,7 +133,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelDescription" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="177" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="174" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelStatus" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -325,6 +335,11 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveOwnerbuttonRemoveFlight"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textFieldLuggageCorresponding">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldLuggageCorrespondingActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
