@@ -190,8 +190,7 @@ public class AddLuggage extends SwitchingJPanel {
                     + "location = ? AND color = ? AND weight = ? AND size = ? "
                     + "AND status = ? AND description = ? AND image = ?;";
             
-            String querySearchLuggageSimilar = "SELECT * FROM luggage WHERE "
-                    + "status = ?;";
+            String querySearchLuggageSimilar = "SELECT * FROM luggage WHERE status = ?;";
 
             String[] values = new String[7];
             String[] types = new String[7];
@@ -249,11 +248,10 @@ public class AddLuggage extends SwitchingJPanel {
                 valuesPrefill[0] = "Lost";
             }
             
+            this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
             ResultSet result = db.query(querySearchLuggageSimilar, valuesPrefill);
             this.luggageControl.prefillSearchLuggage(result);
             
-            System.out.println(querySearchLuggageSimilar);
-            this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
             this.clearFields();
         }
     }
