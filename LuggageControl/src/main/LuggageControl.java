@@ -6,6 +6,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import managers.SecurityMan;
 import baseClasses.SwitchingJPanel;
+import java.sql.ResultSet;
 import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -752,7 +753,14 @@ public class LuggageControl extends javax.swing.JFrame {
             new ErrorJDialog(this, true, "Error: Trying to prefill detail panel which does not exist", (new Throwable()).getStackTrace());
         }
     }
-
+    
+    /**
+     * 
+     */
+    public void prefillSearchLuggage(ResultSet result) {
+        this.searchLuggage.remoteFillLuggageTable(result);
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="user management methods">
     /**
      * Parse to login to the security manager and attempt a login sequence.

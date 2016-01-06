@@ -61,6 +61,39 @@ public class SearchLuggage extends BaseSearch {
     }
     
     /**
+     * remote method to fill the luggage table with a resultset
+     * @param result the resultset used to fill the table
+     */
+    public void remoteFillLuggageTable(ResultSet result) {
+        try {
+            DefaultTableModel datamodel = (DefaultTableModel) tableLuggageSearch.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("luggage_id"),
+                    result.getString("location"),
+                    result.getString("color"),
+                    result.getString("weight"),
+                    result.getString("size"),
+                    result.getString("description"),
+                    result.getString("status")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableLuggageSearch.setModel(datamodel);
+        }
+        catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+    }
+    
+    /**
      * Searches through the database for the luggage withe filters from 
      * the textfields or for every luggage when none of the fields are filled in
      */
