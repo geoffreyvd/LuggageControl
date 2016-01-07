@@ -190,7 +190,9 @@ public class AddLuggage extends SwitchingJPanel {
                     + "location = ? AND color = ? AND weight = ? AND size = ? "
                     + "AND status = ? AND description = ? AND image = ?;";
             
-            String querySearchLuggageSimilar = "SELECT * FROM luggage WHERE status = ?;";
+            String querySearchLuggageSimilar = "SELECT * FROM luggage WHERE status = ? "
+                    + "AND (location LIKE ? OR color LIKE ? OR weight LIKE ? OR size = ? "
+                    + "OR description LIKE ?);";
 
             String[] values = new String[7];
             String[] types = new String[7];
@@ -223,23 +225,23 @@ public class AddLuggage extends SwitchingJPanel {
             types3[0] = "Int";
             types3[1] = "Int";
 
-//            try {
-//                db.queryManipulation(queryInsertLuggage, values, types);
-//                if (!textFieldFlightnumber.getText().equals("")) {
-//                    values2[0] = textFieldFlightnumber.getText();
-//                    values2[1] = db.queryOneResult(querySearchLuggage, values);
-//                    db.queryManipulation(queryInsertFlight, values2, types2);
-//                }
-//                if (!textFieldOwnerID.getText().equals("")) {
-//                    values3[0] = textFieldOwnerID.getText();
-//                    values3[1] = db.queryOneResult(querySearchLuggage, values);
-//                    db.queryManipulation(queryInsertCustomer, values3, types3);
-//                }
-//            } catch (SQLException e) {
-//
-//            }
+            try {
+                db.queryManipulation(queryInsertLuggage, values, types);
+                if (!textFieldFlightnumber.getText().equals("")) {
+                    values2[0] = textFieldFlightnumber.getText();
+                    values2[1] = db.queryOneResult(querySearchLuggage, values);
+                    db.queryManipulation(queryInsertFlight, values2, types2);
+                }
+                if (!textFieldOwnerID.getText().equals("")) {
+                    values3[0] = textFieldOwnerID.getText();
+                    values3[1] = db.queryOneResult(querySearchLuggage, values);
+                    db.queryManipulation(queryInsertCustomer, values3, types3);
+                }
+            } catch (SQLException e) {
+                
+            }
             
-            String valuesPrefill[] = new String[1];
+            String valuesPrefill[] = new String[6];
             
             if(values[4].equals("Lost")) {
                 valuesPrefill[0] = "Found";
@@ -247,6 +249,12 @@ public class AddLuggage extends SwitchingJPanel {
             else {
                 valuesPrefill[0] = "Lost";
             }
+            
+            valuesPrefill[1] = textFieldLocation.getText();
+            valuesPrefill[2] = textFieldColor.getText();
+            valuesPrefill[3] = textFieldWeight.getText();
+            valuesPrefill[4] = textFieldSize.getText();
+            valuesPrefill[5] = textPaneContent.getText();
             
             this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
             ResultSet result = db.query(querySearchLuggageSimilar, valuesPrefill);
