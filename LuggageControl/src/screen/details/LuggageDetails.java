@@ -42,7 +42,7 @@ public class LuggageDetails extends BaseDetails {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUpdateWeight);
         PromptSupport.setPrompt("Corresponding Luggage ID", textFieldLuggageCorresponding);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageCorresponding);
-        
+
         searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
         searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
@@ -143,6 +143,28 @@ public class LuggageDetails extends BaseDetails {
                 textFieldOwnerID.setText("");
             }
 
+            // check for correspondig luggage id
+            String query, result, result2;
+
+            query = "SELECT luggage_lost_id FROM luggagecontroldata.luggage_lost_found WHERE luggage_lost_id = ? OR luggage_found_id = ? ;";
+            result = db.queryOneResult(query, new String[]{luggageID + "", luggageID + ""});
+            if (result != "") {
+                if (Integer.parseInt(result) != currentLuggageId) {
+                    textFieldLuggageCorresponding.setText(result);
+                }
+            }
+
+            query = "SELECT luggage_found_id FROM luggagecontroldata.luggage_lost_found WHERE luggage_lost_id = ? OR luggage_found_id = ? ;";
+            result2 = db.queryOneResult(query, new String[]{luggageID + "", luggageID + ""});
+            if (result2 != "") {
+                if (Integer.parseInt(result2) != currentLuggageId) {
+                    textFieldLuggageCorresponding.setText(result2);
+                }
+            }
+
+            if (result == "" && result2 == "") {
+                textFieldLuggageCorresponding.setText("");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -275,8 +297,15 @@ public class LuggageDetails extends BaseDetails {
             }
             if (!textFieldLuggageCorresponding.getText().equals("")) {
                 //first check if there's not already a row with this id in the luggage_lost_found table
+                String query2 = "delete from luggage_lost_found where luggage_lost_id = ? or luggage_found_id = ? ;";
                 query = "SELECT * FROM luggagecontroldata.luggage_lost_found WHERE luggage_lost_id = ? OR luggage_found_id = ? ;";
+
                 boolean luggageLinkExits = true;
+                types = new ArrayList<>();
+                values = new ArrayList<>();
+
+                types.add("Int");
+                types.add("Int");
 
                 //blijf checken voor overeenkomsten
                 while (luggageLinkExits) {
@@ -289,8 +318,9 @@ public class LuggageDetails extends BaseDetails {
 
                     if (!(result == "" || result == null)) {
                         luggageLinkExits = true;
-                        System.out.println("Luggage link bestaat al");
+                        System.out.println("Luggage link met luggage id bestaat al, wordt verwijdert");
                         //verwijder bestaande links
+                        db.queryManipulation(query2, values.toArray(new String[values.size()]), types.toArray(new String[values.size()]));
                     }
 
                     values = new ArrayList<>();
@@ -301,12 +331,19 @@ public class LuggageDetails extends BaseDetails {
 
                     if (!(result == "" || result == null)) {
                         luggageLinkExits = true;
-                        System.out.println("Luggage link bestaat al");
+                        System.out.println("Luggage link met opgegeven 'corresponding id' bestaat al, wordt verwijdert");
                         //verwijder bestaande links
+                        db.queryManipulation(query2, values.toArray(new String[values.size()]), types.toArray(new String[values.size()]));
                     }
                 }
 
-                types = new ArrayList<>();
+                values = new ArrayList<>();
+                values.add(Integer.toString(currentLuggageId));
+                values.add(textFieldLuggageCorresponding.getText());
+
+                query = "INSERT INTO `luggagecontroldata`.`luggage_lost_found` (`luggage_lost_id`, `luggage_found_id`) VALUES (?, ?);";
+                db.queryManipulation(query, values.toArray(new String[values.size()]), types.toArray(new String[values.size()]));
+
             }
 
         } catch (Exception e) {
