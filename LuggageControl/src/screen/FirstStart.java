@@ -655,8 +655,16 @@ public class FirstStart extends SwitchingJPanel {
         System.out.println(String.valueOf(buttonUploadImage.getWidth()) + " here"); // check button width
         String path = helpers.ImageMaker.getImagePath();
         ImageIcon imageIcon = new ImageIcon(path);
-
-        userPic.setIcon(helpers.ImageMaker.resizeImage(userPic.getWidth(), -1, path));
+        
+        if(imageIcon.getIconHeight() > imageIcon.getIconWidth()) {
+            userPic.setIcon(helpers.ImageMaker.resizeImage(-1, userPic.getHeight(), path));
+        }
+        else if(imageIcon.getIconHeight() < imageIcon.getIconWidth()) {
+            userPic.setIcon(helpers.ImageMaker.resizeImage(userPic.getWidth(), -1, path));
+        }
+        else {
+            userPic.setIcon(helpers.ImageMaker.resizeImage(userPic.getWidth(), userPic.getHeight(), path));
+        }
 
         userImage = helpers.ImageMaker.encodeImage(path);
     }//GEN-LAST:event_buttonUploadImageActionPerformed
