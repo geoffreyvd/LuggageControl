@@ -43,7 +43,6 @@ public class LuggageDetails extends BaseDetails {
         PromptSupport.setPrompt("Corresponding Luggage ID", textFieldLuggageCorresponding);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLuggageCorresponding);
 
-        searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
         searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
 

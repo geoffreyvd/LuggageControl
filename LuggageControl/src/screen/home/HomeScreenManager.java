@@ -208,7 +208,7 @@ public class HomeScreenManager extends SwitchingJPanel {
         } else if (comboBoxStatistics.getSelectedItem().equals("Percentage returned luggage")) {
             //generate percentage returned luggage
             piechartPercentageReturnedLuggage(dataset);
-            chartName = "Finding percentage of returned luggage";
+            chartName = "Percentage of returned luggage to customer";
         }
         buildChart(dataset, chartName);
     }//GEN-LAST:event_comboBoxStatisticsActionPerformed

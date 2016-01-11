@@ -43,8 +43,6 @@ public class AddLuggage extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldWeight);
         PromptSupport.setPrompt("Color", textFieldColor);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldColor);
-        PromptSupport.setPrompt("Size", textFieldSize);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldSize);
         PromptSupport.setPrompt("Flight number", textFieldFlightId);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldFlightId);
         PromptSupport.setPrompt("Flight origin", textFieldFlightOrigin);
@@ -90,7 +88,7 @@ public class AddLuggage extends SwitchingJPanel {
         comboBoxLuggageStatus.setSelectedIndex(0);
         textFieldWeight.setText("");
         textFieldColor.setText("");
-        textFieldSize.setText("");
+        comboBoxLuggageSize.setSelectedIndex(0);
         textPaneContent.setText("");
         labelStatus.setText("");
         pic.setIcon(null);
@@ -142,8 +140,9 @@ public class AddLuggage extends SwitchingJPanel {
             return false;
         }
 
-        // validate size placeholder
-        if (textFieldSize.getText().equals("")) {
+        if (!(comboBoxLuggageSize.getSelectedItem().toString().equals("Small")
+                || comboBoxLuggageSize.getSelectedItem().toString().equals("Medium")
+                || comboBoxLuggageSize.getSelectedItem().toString().equals("Large"))) {
             labelStatus.setText("Size is not valid");
             this.resetLabel(5000, labelStatus);
             return false;
@@ -164,7 +163,7 @@ public class AddLuggage extends SwitchingJPanel {
         }
 
         // check if an image is selected
-        if (imageBase64.equals("")) {
+        if (imageBase64.equals("") && comboBoxLuggageStatus.getSelectedItem().toString().equals("Found")) {
             labelStatus.setText("Image is not selected");
             this.resetLabel(5000, labelStatus);
             return false;
@@ -206,7 +205,7 @@ public class AddLuggage extends SwitchingJPanel {
             values[0] = textFieldLocation.getText();
             values[1] = textFieldColor.getText();
             values[2] = textFieldWeight.getText();
-            values[3] = textFieldSize.getText();
+            values[3] = comboBoxLuggageSize.getSelectedItem().toString();
             values[4] = comboBoxLuggageStatus.getSelectedItem().toString();
             values[5] = textPaneContent.getText();
             values[6] = imageBase64;
@@ -253,7 +252,7 @@ public class AddLuggage extends SwitchingJPanel {
             valuesPrefill[1] = textFieldLocation.getText();
             valuesPrefill[2] = textFieldColor.getText();
             valuesPrefill[3] = textFieldWeight.getText();
-            valuesPrefill[4] = textFieldSize.getText();
+            valuesPrefill[4] = comboBoxLuggageSize.getSelectedItem().toString();
             valuesPrefill[5] = textPaneContent.getText();
             
             this.luggageControl.switchJPanel(this.luggageControl.SEARCH_LUGGAGE);
@@ -401,7 +400,6 @@ public class AddLuggage extends SwitchingJPanel {
         textFieldOwnerID = new javax.swing.JFormattedTextField();
         comboBoxLuggageStatus = new javax.swing.JComboBox();
         textFieldColor = new javax.swing.JFormattedTextField();
-        textFieldSize = new javax.swing.JFormattedTextField();
         textFieldWeight = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         textPaneContent = new javax.swing.JTextPane();
@@ -432,11 +430,17 @@ public class AddLuggage extends SwitchingJPanel {
         textFieldSurName = new javax.swing.JFormattedTextField();
         textFieldEmail = new javax.swing.JFormattedTextField();
         textFieldCellphone = new javax.swing.JFormattedTextField();
+        comboBoxLuggageSize = new javax.swing.JComboBox();
 
         labelAddLuggage.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelAddLuggage.setText("Add luggage");
 
         comboBoxLuggageStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Status", "Lost", "Found" }));
+        comboBoxLuggageStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxLuggageStatusActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(textPaneContent);
 
@@ -676,6 +680,18 @@ public class AddLuggage extends SwitchingJPanel {
 
         tabPaneSearch.addTab("Customer", panelSearchCustomer);
 
+        comboBoxLuggageSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Size", "Small", "Medium", "Large" }));
+        comboBoxLuggageSize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                comboBoxLuggageSizeMousePressed(evt);
+            }
+        });
+        comboBoxLuggageSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxLuggageSizeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -692,7 +708,7 @@ public class AddLuggage extends SwitchingJPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(textFieldSize, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                                .addComponent(comboBoxLuggageSize, 0, 244, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(textFieldWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -739,8 +755,8 @@ public class AddLuggage extends SwitchingJPanel {
                             .addComponent(comboBoxLuggageStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxLuggageSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -800,6 +816,18 @@ public class AddLuggage extends SwitchingJPanel {
         this.searchFlight();
     }//GEN-LAST:event_buttonSearchFlight
 
+    private void comboBoxLuggageSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxLuggageSizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxLuggageSizeActionPerformed
+
+    private void comboBoxLuggageSizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxLuggageSizeMousePressed
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_comboBoxLuggageSizeMousePressed
+
+    private void comboBoxLuggageStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxLuggageStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxLuggageStatusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonCancel;
@@ -809,6 +837,7 @@ public class AddLuggage extends SwitchingJPanel {
     private javax.swing.JButton buttonSearchCustomer;
     private javax.swing.JButton buttonSearchFlight;
     private javax.swing.JButton buttonUploadImage;
+    private javax.swing.JComboBox comboBoxLuggageSize;
     private javax.swing.JComboBox comboBoxLuggageStatus;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -835,7 +864,6 @@ public class AddLuggage extends SwitchingJPanel {
     private javax.swing.JFormattedTextField textFieldFlightnumber;
     private javax.swing.JFormattedTextField textFieldLocation;
     private javax.swing.JFormattedTextField textFieldOwnerID;
-    private javax.swing.JFormattedTextField textFieldSize;
     private javax.swing.JFormattedTextField textFieldSurName;
     private javax.swing.JFormattedTextField textFieldWeight;
     private javax.swing.JTextPane textPaneContent;
