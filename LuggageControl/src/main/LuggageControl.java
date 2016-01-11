@@ -6,8 +6,12 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import managers.SecurityMan;
 import baseClasses.SwitchingJPanel;
+import constants.Styling;
+import java.awt.Color;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import managers.ConfigurationMan;
@@ -197,8 +201,6 @@ public class LuggageControl extends javax.swing.JFrame {
     // Used to determine if components have been initialized
     private boolean componentsInitialized = false;
 
-    private JMenuBar menuBar;
-
     // keeps a reference to the current active panel
     private SwitchingJPanel currentPanel;
     private SwitchingJPanel previousPanel;
@@ -224,6 +226,8 @@ public class LuggageControl extends javax.swing.JFrame {
         // this needs to switch to the monitor the application will appear in the future
         graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         monitorSize = new Dimension(graphicsDevice.getDisplayMode().getWidth(), graphicsDevice.getDisplayMode().getHeight());
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/corendon.png")));
 
         // Exits the application on closing this JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -352,21 +356,7 @@ public class LuggageControl extends javax.swing.JFrame {
             userDetails.setSize(monitorSize);
             userDetails.setVisible(true);
             //</editor-fold>
-
-            /* Corendon red menubar
-             menuBar = new JMenuBar();
-             menuBar.setSize(1920, 50);
-             menuBar.setBackground(Styling.CORENDON_RED);
-             menuBar.setVisible(true);
-
-             JMenuItem menuItem = new JMenuItem();
-             menuItem.setText("Test item");
-             menuItem.setForeground(Color.WHITE);
-             menuItem.setBackground(Styling.CORENDON_RED);
-             menuBar.add(menuItem);
-
-             this.add(menuBar);
-             */
+            
             this.currentPanel = loginScreen;
             this.switchJPanel(this.LOGINSCREEN);
 
