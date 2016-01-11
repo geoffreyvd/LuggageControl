@@ -21,9 +21,9 @@ public class CustomerDetails extends BaseDetails {
     public CustomerDetails(LuggageControl luggageControl) {
         super(luggageControl);
         initComponents();
-        PromptSupport.setPrompt("Link flight with flightnumber", textFieldAddFlight);
+        PromptSupport.setPrompt("Link customer with flightnumber", textFieldAddFlight);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAddFlight);
-        PromptSupport.setPrompt("Link flight with luggage", textFieldAddLuggage);
+        PromptSupport.setPrompt("Link customer with luggage", textFieldAddLuggage);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldAddLuggage);
         PromptSupport.setPrompt("Cellphone", textFieldCellphone);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldCellphone);
@@ -600,7 +600,7 @@ public class CustomerDetails extends BaseDetails {
                         .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
