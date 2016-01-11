@@ -743,7 +743,6 @@ public class LuggageControl extends javax.swing.JFrame {
             luggageDetails.updatePanelInformation(id);
         }
         else if(panelName.equals(this.FLIGHT_DETAILS)) {
-            // does not work!
             flightDetails.updatePanelInformation(id);
         }
         else if(panelName.equals(this.USER_DETAILS)) {
