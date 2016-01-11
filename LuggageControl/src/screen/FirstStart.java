@@ -309,7 +309,7 @@ public class FirstStart extends SwitchingJPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelOneLayout.createSequentialGroup()
                         .addGap(0, 1076, Short.MAX_VALUE)
                         .addComponent(buttonPOneNext, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelPoneHeader, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE))
+                    .addComponent(labelPoneHeader, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelOneLayout.setVerticalGroup(
@@ -318,7 +318,7 @@ public class FirstStart extends SwitchingJPanel {
                 .addContainerGap()
                 .addComponent(labelPoneHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonPOneNext)
                 .addContainerGap())
@@ -454,33 +454,36 @@ public class FirstStart extends SwitchingJPanel {
             .addGroup(panelThreeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelThreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonPthreeCreateUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelUserStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelPthreeHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonPthreeCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(labelUserStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(labelPthreeHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(panelThreeLayout.createSequentialGroup()
-                        .addComponent(textFieldFirstname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(textFieldFirstname, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldSurname, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                    .addComponent(textFieldNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(textFieldBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(comboBoxGender, 0, 0, Short.MAX_VALUE)
                     .addGroup(panelThreeLayout.createSequentialGroup()
-                        .addComponent(textFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelThreeLayout.createSequentialGroup()
-                        .addComponent(textFieldAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldPostalcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textFieldNationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelThreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(textFieldAdress, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                        .addGroup(panelThreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelThreeLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThreeLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(textFieldPostalcode, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelThreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThreeLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 584, Short.MAX_VALUE)
                         .addComponent(buttonPThreeNext, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelUserImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -561,11 +564,6 @@ public class FirstStart extends SwitchingJPanel {
                 .addContainerGap())
         );
 
-        layeredPaneSubScreens.setLayer(panelOne, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layeredPaneSubScreens.setLayer(panelTwo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layeredPaneSubScreens.setLayer(panelThree, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layeredPaneSubScreens.setLayer(panelFour, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout layeredPaneSubScreensLayout = new javax.swing.GroupLayout(layeredPaneSubScreens);
         layeredPaneSubScreens.setLayout(layeredPaneSubScreensLayout);
         layeredPaneSubScreensLayout.setHorizontalGroup(
@@ -602,6 +600,10 @@ public class FirstStart extends SwitchingJPanel {
                     .addComponent(panelFour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
+        layeredPaneSubScreens.setLayer(panelOne, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPaneSubScreens.setLayer(panelTwo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPaneSubScreens.setLayer(panelThree, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPaneSubScreens.setLayer(panelFour, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

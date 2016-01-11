@@ -128,7 +128,7 @@
                               <EmptySpace min="0" pref="1076" max="32767" attributes="0"/>
                               <Component id="buttonPOneNext" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labelPoneHeader" alignment="0" pref="1176" max="32767" attributes="0"/>
+                          <Component id="labelPoneHeader" alignment="0" pref="1180" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -140,7 +140,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelPoneHeader" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="426" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="432" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonPOneNext" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -286,37 +286,43 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="buttonPthreeCreateUser" max="32767" attributes="0"/>
-                          <Component id="labelUserStatus" alignment="1" max="32767" attributes="0"/>
-                          <Component id="labelPthreeHeader" alignment="1" max="32767" attributes="0"/>
+                          <Component id="buttonPthreeCreateUser" pref="0" max="32767" attributes="0"/>
+                          <Component id="labelUserStatus" alignment="1" pref="0" max="32767" attributes="0"/>
+                          <Component id="labelPthreeHeader" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="textFieldFirstname" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldSurname" max="32767" attributes="0"/>
+                              <Component id="textFieldFirstname" pref="206" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldSurname" pref="206" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="textFieldUsername" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldPassword" max="32767" attributes="0"/>
+                          <Component id="textFieldNationality" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="textFieldCellphone" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="textFieldEmail" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="textFieldBirthday" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="comboBoxGender" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textFieldUsername" pref="206" max="32767" attributes="0"/>
+                                  <Component id="textFieldAdress" pref="206" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textFieldPassword" pref="206" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="textFieldPostalcode" pref="194" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="textFieldAdress" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldPostalcode" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="textFieldNationality" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldCellphone" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldEmail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldBirthday" alignment="0" max="32767" attributes="0"/>
-                          <Component id="comboBoxGender" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="24" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonUploadImage" pref="658" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="584" max="32767" attributes="0"/>
                               <Component id="buttonPThreeNext" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Component id="panelUserImage" max="32767" attributes="0"/>
