@@ -52,6 +52,16 @@ public class FlightDetails extends BaseDetails {
         searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
 
+    @Override
+    public void updatePanelInformation() {
+        this.loadFlight(currentFlightId);
+    }
+
+    @Override
+    public void updatePanelInformation(int flightId) {
+        this.loadFlight(flightId);
+    }
+    
     /**
      * clear all textFields on flight details
      */
@@ -78,7 +88,7 @@ public class FlightDetails extends BaseDetails {
                 textFieldUpdateDestination.setText(resultFlight.getString("destination"));
                 textFieldUpdateDepartureDate.setText(resultFlight.getString("departure"));
                 textFieldUpdateArrivaDate.setText(resultFlight.getString("arrival"));
-                
+                System.out.println("test");
                 currentFlightId = Integer.parseInt(resultFlight.getString("flight_id"));
                 labelOwnerIdDisplay.setText(resultFlight.getString("flight_id"));
             }

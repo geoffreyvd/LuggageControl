@@ -33,7 +33,6 @@ public class UserDetails extends BaseDetails {
         searchPanel.removeSearchTab(SearchPanes.SEARCH_CUSTOMER);
         searchPanel.removeSearchTab(SearchPanes.SEARCH_FLIGHT);
         searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
-        searchPanel.removeSearchTab(SearchPanes.SEARCH_USER);
     }
 
     /**

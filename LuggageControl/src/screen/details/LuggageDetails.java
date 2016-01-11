@@ -119,12 +119,12 @@ public class LuggageDetails extends BaseDetails {
                 currentLuggageId = Integer.parseInt(resultLuggage.getString("luggage_id"));
             }
 
-            ResultSet resultFlight = db.query("SELECT flight_id FROM luggage_flight WHERE luggage_id = ?", new String[]{luggageID + ""});
+            ResultSet resultFlight = db.query("SELECT * FROM luggage_flight WHERE luggage_id = ?", new String[]{luggageID + ""});
             while (resultFlight.next()) {
                 labelDisplayFlightnumber.setText(resultFlight.getString("flight_id"));
             }
 
-            ResultSet resultFlightDetails = db.query("SELECT origin, destination FROM flight "
+            ResultSet resultFlightDetails = db.query("SELECT * FROM flight "
                     + "INNER JOIN luggage_flight ON `luggage_flight`.`flight_id` "
                     + "WHERE luggage_id = ? AND `luggage_flight`.`flight_id` = `flight`.`flight_id`", new String[]{luggageID + ""});
             while (resultFlightDetails.next()) {
