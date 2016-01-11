@@ -129,12 +129,25 @@ public class DatabaseMan {
                         new ErrorJDialog(luggageControl, true, e.getMessage(), e.getStackTrace());
                     }
                 }
+                
                 else{
                     return;
                 }
-
+               
                 try {
-                    String[] commands = {"CMD", ConfigurationMan.getMysqlDumpLocationWindows(luggageControl)+ " luggagecontroldata -u" + username.getText() + " -p" + password.getText() + " -r" + file, password.getText()};
+                    String[] commands = new String[7];
+                    commands[0] = "CMD";
+                    commands[1] = "/c";
+                    commands[2] = "C:\\Program^ Files\\MySQL\\MySQL^ Server^ 5.7\\bin\\mysqldump.exe";   
+                    commands[3] = "luggagecontroldata";
+                    commands[4] = "-u" + username.getText();
+                    commands[5] = "-p" + password.getText();  
+                    commands[6] = "-r" + file;
+
+                     
+                    
+                    
+                    //String[] commands4 = {"CMD", "/c","C:\\Program^ Files\\MySQL\\MySQL^ Server^ 5.7\\bin\\mysqldump.exe", "luggagecontroldata", "-u " +username.getText(), "-p " + password.getText() , "-r" + file};
                     Process process2 = Runtime.getRuntime().exec(commands);
                     BufferedReader bri = new BufferedReader(new InputStreamReader(process2.getInputStream()));
                     BufferedReader bre = new BufferedReader(new InputStreamReader(process2.getErrorStream()));
@@ -154,7 +167,7 @@ public class DatabaseMan {
                     bre.close();
                     process2.waitFor();
 
-                } catch (IOException | HeadlessException | InterruptedException e) {
+                } catch (IOException | HeadlessException | InterruptedException | NullPointerException e) {
                     new ErrorJDialog(luggageControl, true, "Error: " + e.getMessage(), e.getStackTrace());
 
                 }
