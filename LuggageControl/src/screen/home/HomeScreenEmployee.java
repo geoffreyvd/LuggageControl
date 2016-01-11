@@ -291,7 +291,7 @@ public class HomeScreenEmployee extends SwitchingJPanel {
         String[] values = { //sc.filteredString(textFieldQuickSearchFlightNumber.getText())
         };
 
-        query += " limit 4;";
+        query += " limit 30;";
 
         ResultSet result;
         
