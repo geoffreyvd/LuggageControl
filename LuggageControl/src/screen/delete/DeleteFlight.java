@@ -3,7 +3,6 @@ package screen.delete;
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -247,7 +246,7 @@ public class DeleteFlight extends SwitchingJPanel {
      */
     private void buttonBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBack
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        this.luggageControl.switchJPanel(luggageControl.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBack
 
     /**
@@ -257,8 +256,8 @@ public class DeleteFlight extends SwitchingJPanel {
      */
     private void buttonHelp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelp
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.Help.REMOVING);
-        this.luggageControl.switchTab(screen.help.Removing.REMOVE_ENTRIES, ScreenNames.Help.REMOVING);
+        this.luggageControl.switchJPanel(luggageControl.HELP_REMOVING);
+        this.luggageControl.switchTab(screen.help.Removing.REMOVE_ENTRIES, luggageControl.HELP_REMOVING);
     }//GEN-LAST:event_buttonHelp
 
     /**
@@ -322,11 +321,7 @@ public class DeleteFlight extends SwitchingJPanel {
             fillFlightTable();
         } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
-        }
-
-        for (boolean idrem : idRemove) {
-            System.out.println(idrem);
-        }
+        }        
     }//GEN-LAST:event_buttonUpdate
 
     private void textFieldOriginflightNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldOriginflightNumberKeyPressed

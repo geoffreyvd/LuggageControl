@@ -57,46 +57,52 @@ public class AddFlight extends SwitchingJPanel {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldLugLocation);
     }
     public boolean checkInput(){
+        // check if customer id exists
         if (!(textFieldOwnerID.getText().equals("")) 
                 && db.queryOneResult("SELECT `customer_id` FROM customer WHERE customer_id = ?", new String[]{textFieldOwnerID.getText()}).equals("")) {
             labelStatus.setText("Customer doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // check if luggage id exists
         if (!(textFieldLuggageID.getText().equals("")) && 
                 db.queryOneResult("SELECT `luggage_id` FROM luggage WHERE luggage_id = ?", new String[]{textFieldLuggageID.getText()}).equals("")) {
             labelStatus.setText("Luggage doesn't exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // check if flightnumber isnt taken
         if (!(textFieldFlightnumber.getText().equals("")) 
                 && !db.queryOneResult("SELECT `flight_id` FROM flight WHERE flight_id = ?", new String[]{textFieldFlightnumber.getText()}).equals("")) {
             labelStatus.setText("Flightnumber does already exist");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // check if departure time is in right datetime format
         if(helpers.Filters.filteredDateTime(textFieldDepartureTime.getText()).equals("")){
             labelStatus.setText("Not a correct entry for Departure time!");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // check if arrival time is in right datetime format
         if(helpers.Filters.filteredDateTime(textFieldArrivalTime.getText()).equals("")){
             labelStatus.setText("Not a correct entry for arrival time!");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate origin placeholder
         if (textFieldOrigin.getText().equals("")) {
             labelStatus.setText("Origin is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
+        // validate origin placeholder
         if (textFieldDestination.getText().equals("")) {
             labelStatus.setText("Destination is empty");
             this.resetLabel(5000, labelStatus);
             return false;
         }
-        return true;
-        
+        return true;  
     }
     private void addFlight(){
         
@@ -245,7 +251,7 @@ public class AddFlight extends SwitchingJPanel {
     
     private void searchLuggage() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+        String query = "SELECT luggage_id, location, color, weight, size, description, status FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause

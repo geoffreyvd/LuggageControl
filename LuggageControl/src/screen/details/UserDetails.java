@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
 import org.jdesktop.swingx.prompt.PromptSupport;
 import screen.base.BaseDetails;
+import screen.base.SearchPanes;
 
 /**
  * User details screen for the administrator to manage users
@@ -28,8 +29,10 @@ public class UserDetails extends BaseDetails {
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldEmail);
         PromptSupport.setPrompt("Zipcode", textFieldZipcode);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldZipcode);
-        PromptSupport.setPrompt("UserId", textFieldUserId);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, textFieldUserId);
+        
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_CUSTOMER);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_FLIGHT);
+        searchPanel.removeSearchTab(SearchPanes.SEARCH_LUGGAGE);
     }
 
     /**
@@ -51,16 +54,23 @@ public class UserDetails extends BaseDetails {
         textFieldCity = new javax.swing.JFormattedTextField();
         textFieldZipcode = new javax.swing.JFormattedTextField();
         labelUserSearch = new javax.swing.JLabel();
-        textFieldUserId = new javax.swing.JFormattedTextField();
         buttonUpdate = new javax.swing.JButton();
         buttonDelete = new javax.swing.JButton();
-        buttonSearch = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
         buttonHelp = new javax.swing.JButton();
         labelName = new javax.swing.JLabel();
-        scrollPaneTable = new javax.swing.JScrollPane();
-        tableUserSearch = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
+        searchPanel = new screen.base.SearchPanes(luggageControl, db);
+
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         labelUserDetails.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         labelUserDetails.setText("User details");
@@ -69,7 +79,7 @@ public class UserDetails extends BaseDetails {
         LabelUserId.setText("User ID: XXXXXXXXXXX ");
 
         labelUserSearch.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        labelUserSearch.setText("User search");
+        labelUserSearch.setText("Search");
 
         buttonUpdate.setText("Update");
         buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -82,13 +92,6 @@ public class UserDetails extends BaseDetails {
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeletebutonCancelActionPerformed(evt);
-            }
-        });
-
-        buttonSearch.setText("Search");
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchActionPerformed(evt);
             }
         });
 
@@ -109,48 +112,21 @@ public class UserDetails extends BaseDetails {
         labelName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelName.setText("Name: XXXXXXXXXXX");
 
-        scrollPaneTable.setPreferredSize(new java.awt.Dimension(1920, 1080));
-
-        tableUserSearch.setAutoCreateRowSorter(true);
-        tableUserSearch.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "User ID", "Name", "Surname", "Username", "Email", "Permission"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableUserSearch.setPreferredSize(new java.awt.Dimension(1920, 1080));
-        tableUserSearch.getTableHeader().setReorderingAllowed(false);
-        scrollPaneTable.setViewportView(tableUserSearch);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboBoxProfession, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldCity)
                     .addComponent(textFieldEmail)
-                    .addComponent(labelUserDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldCellphoneNumber)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textFieldAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldZipcode, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -161,26 +137,18 @@ public class UserDetails extends BaseDetails {
                                 .addComponent(labelName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LabelUserId, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(textFieldAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldZipcode, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)))
+                    .addComponent(labelUserDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(labelUserSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldUserId, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrollPaneTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -194,23 +162,23 @@ public class UserDetails extends BaseDetails {
                         .addComponent(LabelUserId)
                         .addGap(18, 18, 18)
                         .addComponent(labelName)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboBoxProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(textFieldAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))
+                        .addGap(29, 29, 29)
+                        .addComponent(textFieldCellphoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboBoxProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldZipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonUpdate)
+                            .addComponent(buttonDelete))
+                        .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -219,15 +187,8 @@ public class UserDetails extends BaseDetails {
                                 .addComponent(buttonBack))
                             .addComponent(labelUserSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textFieldUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(scrollPaneTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonUpdate)
-                    .addComponent(buttonDelete)
-                    .addComponent(buttonSearch))
-                .addGap(30, 30, 30))
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
             .addComponent(jSeparator1)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -240,43 +201,7 @@ public class UserDetails extends BaseDetails {
         this.userNotAFK();
         this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_ADMINISTRATOR); 
     }//GEN-LAST:event_buttonDeletebutonCancelActionPerformed
-
-    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        this.fillSearchUserTable();
-        this.userNotAFK();
-    }//GEN-LAST:event_buttonSearchActionPerformed
-
-    private void fillSearchUserTable() {
-        ResultSet result = new EmptyResultSet();
-        try {
-            if(textFieldUserId.getText().equals("")) {
-                String[] values = {};
-                result = db.query("SELECT * FROM user;", values);
-            }
-            else {
-                // always filter user input with securitymanager
-                String[] values = {helpers.Filters.filteredInt(textFieldUserId.getText(),0,1)};
-                result = db.query("SELECT * FROM user WHERE user_id = ? ;", values);
-            }
-            DefaultTableModel datamodel = (DefaultTableModel)tableUserSearch.getModel();
-            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
-                datamodel.removeRow(i);
-            }
-            while(result.next()) {
-                System.out.println(result.getString("user_id"));
-                Object[] data = {result.getInt("user_id"), result.getString("firstname"), result.getString("surname"), result.getString("username"), result.getString("email"), result.getInt("permissions")};
-                // datamodel.addRow is skipped problaby exception
-                datamodel.addRow(data);
-            }
-            tableUserSearch.setModel(datamodel);
-        }
-        catch(Exception e) {
-            new ErrorJDialog(this.luggageControl, true, "Error: retrieving flights dataset", (new Throwable()).getStackTrace());
-        }
-    
-    }
-    
-    
+       
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
         this.luggageControl.switchJPanel(this.luggageControl.HOME_SCREEN_ADMINISTRATOR);
@@ -287,26 +212,27 @@ public class UserDetails extends BaseDetails {
         this.luggageControl.switchJPanel(this.luggageControl.HELP); 
     }//GEN-LAST:event_buttonHelpActionPerformed
 
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        
+    }//GEN-LAST:event_formAncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelUserId;
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonHelp;
-    private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JComboBox comboBoxProfession;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelUserDetails;
     private javax.swing.JLabel labelUserSearch;
-    private javax.swing.JScrollPane scrollPaneTable;
-    private javax.swing.JTable tableUserSearch;
+    private screen.base.SearchPanes searchPanel;
     private javax.swing.JFormattedTextField textFieldAdress;
     private javax.swing.JFormattedTextField textFieldCellphoneNumber;
     private javax.swing.JFormattedTextField textFieldCity;
     private javax.swing.JFormattedTextField textFieldEmail;
-    private javax.swing.JFormattedTextField textFieldUserId;
     private javax.swing.JFormattedTextField textFieldZipcode;
     // End of variables declaration//GEN-END:variables
 }

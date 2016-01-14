@@ -122,7 +122,9 @@ public abstract class SwitchingJPanel extends javax.swing.JPanel{
         
         label.setHorizontalAlignment(label.CENTER);
         label.setVerticalAlignment(label.CENTER);
-        return helpers.ImageMaker.base64Encode(tempCurrentImagePath);
+        // yes it seems we are storing the base64 string of the path instead of the image itself !
+        System.err.println("Storing image path instead of image data in database!");
+        return helpers.ImageMaker.encodeImage(tempCurrentImagePath);
     }
     
     /**

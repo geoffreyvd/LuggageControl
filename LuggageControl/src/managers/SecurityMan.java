@@ -1,7 +1,6 @@
 package managers;
 
 import baseClasses.ErrorJDialog;
-import constants.ScreenNames;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -160,15 +159,15 @@ public class SecurityMan {
             }else if (resultInt == 1) {
                 //gebruiker
                 this.userPermissions.set(1);
-                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_EMPLOYEE);
+                this.luggageControl.switchJPanel(luggageControl.HOME_SCREEN_EMPLOYEE);
             }else if (resultInt == 2) {
                 //manager
                 this.userPermissions.set(2);
-                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_MANAGER);
+                this.luggageControl.switchJPanel(luggageControl.HOME_SCREEN_MANAGER);
             }else if (resultInt == 3) {
                 //admin
                 this.userPermissions.set(3);
-                this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+                this.luggageControl.switchJPanel(luggageControl.HOME_SCREEN_ADMINISTRATOR);
             }
             // set the user permission and start the time out timer.
             this.resetTimer();

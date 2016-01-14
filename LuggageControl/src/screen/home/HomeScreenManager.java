@@ -150,19 +150,27 @@ public class HomeScreenManager extends SwitchingJPanel {
         int notFound = lost - found;
 
         // create a dataset with dataset.setValue and give the dataset a name with a new value 
-        dataset.setValue("Found", found);
-        dataset.setValue("Not found", notFound);
+        dataset.setValue(found + " Found", found);
+        dataset.setValue(notFound + "Not found", notFound);
     }
 
     private void piechartPercentageReturnedLuggage(DefaultPieDataset dataset) {
         //finding percentage of returned luggage        
-        int lost = 50;
-        int returned = 30;
-        int notReturned = lost - returned;
+        String[] values1 = new String[0];
+        String query = "SELECT count(*) FROM luggagecontroldata.luggage_lost_found;";
+        String result = DB.queryOneResult(query, values1); 
+        
+        int opgelost = Integer.parseInt(result);
+        
+        query = "SELECT count(*) FROM luggagecontroldata.luggage;";
+        result = DB.queryOneResult(query, values1);
+        
+        int totaalKoffers = Integer.parseInt(result) / 2;        
+        int notReturned = totaalKoffers - opgelost;
 
         // create a dataset with dataset.setValue and give the dataset a name with a new value 
-        dataset.setValue("Returned", returned);
-        dataset.setValue("Not returned", notReturned);
+        dataset.setValue(opgelost + " Luggage returned", opgelost);
+        dataset.setValue(notReturned + " Not returned", notReturned);
     }
 
     private void buildChart(DefaultPieDataset dataset, String name) {
@@ -208,7 +216,7 @@ public class HomeScreenManager extends SwitchingJPanel {
         } else if (comboBoxStatistics.getSelectedItem().equals("Percentage returned luggage")) {
             //generate percentage returned luggage
             piechartPercentageReturnedLuggage(dataset);
-            chartName = "Finding percentage of returned luggage";
+            chartName = "Percentage of returned luggage to customer";
         }
         buildChart(dataset, chartName);
     }//GEN-LAST:event_comboBoxStatisticsActionPerformed

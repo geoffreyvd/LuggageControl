@@ -1,7 +1,6 @@
 package screen;
 
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import main.LuggageControl;
 
 /**

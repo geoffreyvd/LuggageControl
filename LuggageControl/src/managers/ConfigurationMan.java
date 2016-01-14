@@ -2,7 +2,6 @@ package managers;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.PopUpJDialog;
-import constants.ScreenNames;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.BufferedReader;
@@ -86,6 +85,7 @@ public class ConfigurationMan {
      */
     public ConfigurationMan(LuggageControl luggageControl) {
         this.luggageControl = luggageControl;
+        msqlDialog =  new FindMysqlJDialog(this.luggageControl, false);
 
         // test for if config file exists
         try {
@@ -112,6 +112,8 @@ public class ConfigurationMan {
         if(this.getMysqlDumpLocationWindows(this.luggageControl).equals("") || !this.mysqlDumpExists(this.luggageControl)) {
             this.findMysqlDumpLocationWindows();
         } 
+        
+        msqlDialog.dispose();
         
         // proceed with the initialization if the configuration is done
         if(proceedInitialization) {
@@ -254,7 +256,6 @@ public class ConfigurationMan {
                 }
             }
         };
-        msqlDialog.dispose();
         findMysqlDumpLocationThread.run();
     }
 }

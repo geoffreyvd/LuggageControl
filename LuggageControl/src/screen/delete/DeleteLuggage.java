@@ -8,7 +8,6 @@ package screen.delete;
 import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -218,12 +217,12 @@ public class DeleteLuggage extends SwitchingJPanel {
 
     private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HELP);
+        this.luggageControl.switchJPanel(luggageControl.HELP);
     }//GEN-LAST:event_buttonHelpActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         this.userNotAFK();
-        this.luggageControl.switchJPanel(ScreenNames.HOME_SCREEN_ADMINISTRATOR);
+        this.luggageControl.switchJPanel(luggageControl.HOME_SCREEN_ADMINISTRATOR);
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
@@ -300,6 +299,8 @@ public class DeleteLuggage extends SwitchingJPanel {
         String query = "DELETE FROM luggage WHERE 1=0";
         String query1 = "DELETE FROM luggage_flight WHERE 1=0";
         String query2 = "DELETE FROM customer_luggage WHERE 1=0";
+        String query3 = "DELETE FROM luggage_lost_found WHERE 1=0";
+        String query4 = query3;
         ArrayList<String> data = new ArrayList();
         ArrayList<String> types = new ArrayList();
         boolean[] idRemove = new boolean[datamodel.getRowCount()];
@@ -311,6 +312,8 @@ public class DeleteLuggage extends SwitchingJPanel {
                 query += " OR luggage_id = ?";
                 query1 += " OR luggage_id = ?";
                 query2 += " OR luggage_id = ?";
+                query3 += " OR luggage_lost_id = ?";
+                query4 += " OR luggage_found_id = ?";
                 data.add((String) datamodel.getValueAt(i, 0));
                 types.add(db.PS_TYPE_INT);
             }
@@ -320,17 +323,15 @@ public class DeleteLuggage extends SwitchingJPanel {
         String[] types2 = types.toArray(new String[types.size()]);
 
         try {
+            db.queryManipulation(query4, values, types2);
+            db.queryManipulation(query3, values, types2);
             db.queryManipulation(query2, values, types2);
             db.queryManipulation(query1, values, types2);
             db.queryManipulation(query, values, types2);
             fillFlightTable();
         } catch (Exception e) {
             new ErrorJDialog(this.luggageControl, true, "Critical error: my god what have you done!", e.getStackTrace(), true);
-        }
-
-        for (boolean idrem : idRemove) {
-            System.out.println(idrem);
-        }
+        }        
     }//GEN-LAST:event_buttonUpdateActionPerformed
 
 

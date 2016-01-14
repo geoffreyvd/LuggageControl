@@ -7,7 +7,6 @@ package screen;
 
 import baseClasses.ErrorJDialog;
 import baseClasses.SwitchingJPanel;
-import constants.ScreenNames;
 import javax.swing.JList;
 import main.LuggageControl;
 
@@ -38,48 +37,48 @@ public class Help extends SwitchingJPanel{
      */
     public void openHelpScreen(String listItemName) {
         if(listItemName.equals(helpList.getModel().getElementAt(0))) {
-            luggageControl.switchJPanel(ScreenNames.Help.ADDING);
-            luggageControl.switchTab(screen.help.Adding.ADD_CUSTOMER, ScreenNames.Help.ADDING);
+            luggageControl.switchJPanel(luggageControl.HELP_ADDING);
+            luggageControl.switchTab(screen.help.Adding.ADD_CUSTOMER, luggageControl.HELP_ADDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(1))) {
-            luggageControl.switchJPanel(ScreenNames.Help.ADDING);
-            luggageControl.switchTab(screen.help.Adding.ADD_FLIGHTS, ScreenNames.Help.ADDING);
+            luggageControl.switchJPanel(luggageControl.HELP_ADDING);
+            luggageControl.switchTab(screen.help.Adding.ADD_FLIGHTS, luggageControl.HELP_ADDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(2))) {
-            luggageControl.switchJPanel(ScreenNames.Help.ADDING);
-            luggageControl.switchTab(screen.help.Adding.ADD_LUGGAGE, ScreenNames.Help.ADDING);
+            luggageControl.switchJPanel(luggageControl.HELP_ADDING);
+            luggageControl.switchTab(screen.help.Adding.ADD_LUGGAGE, luggageControl.HELP_ADDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(3))) {
-            luggageControl.switchJPanel(ScreenNames.Help.FINDING);
-            luggageControl.switchTab(screen.help.Finding.FIND_CUSTOMER, ScreenNames.Help.FINDING);
+            luggageControl.switchJPanel(luggageControl.HELP_FINDING);
+            luggageControl.switchTab(screen.help.Finding.FIND_CUSTOMER, luggageControl.HELP_FINDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(4))) {
-            luggageControl.switchJPanel(ScreenNames.Help.FINDING);
-            luggageControl.switchTab(screen.help.Finding.FIND_FLIGHTS, ScreenNames.Help.FINDING);
+            luggageControl.switchJPanel(luggageControl.HELP_FINDING);
+            luggageControl.switchTab(screen.help.Finding.FIND_FLIGHTS, luggageControl.HELP_FINDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(5))) {
-            luggageControl.switchJPanel(ScreenNames.Help.FINDING);
-            luggageControl.switchTab(screen.help.Finding.FIND_LUGGAGE, ScreenNames.Help.FINDING);
+            luggageControl.switchJPanel(luggageControl.HELP_FINDING);
+            luggageControl.switchTab(screen.help.Finding.FIND_LUGGAGE, luggageControl.HELP_FINDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(6))) {
-            luggageControl.switchJPanel(ScreenNames.Help.FINDING);
-            luggageControl.switchTab(screen.help.Finding.FIND_LINKS, ScreenNames.Help.FINDING);
+            luggageControl.switchJPanel(luggageControl.HELP_FINDING);
+            luggageControl.switchTab(screen.help.Finding.FIND_LINKS, luggageControl.HELP_FINDING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(7))) {
-            luggageControl.switchJPanel(ScreenNames.Help.LINKING);
-            luggageControl.switchTab(screen.help.Linking.CUSTOMER_TO_FLIGHTS, ScreenNames.Help.LINKING);
+            luggageControl.switchJPanel(luggageControl.HELP_LINKING);
+            luggageControl.switchTab(screen.help.Linking.CUSTOMER_TO_FLIGHTS, luggageControl.HELP_LINKING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(8))) {
-            luggageControl.switchJPanel(ScreenNames.Help.LINKING);
-            luggageControl.switchTab(screen.help.Linking.FLIGHTS_TO_LUGGAGE, ScreenNames.Help.LINKING);
+            luggageControl.switchJPanel(luggageControl.HELP_LINKING);
+            luggageControl.switchTab(screen.help.Linking.FLIGHTS_TO_LUGGAGE, luggageControl.HELP_LINKING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(9))) {
-            luggageControl.switchJPanel(ScreenNames.Help.LINKING);
-            luggageControl.switchTab(screen.help.Linking.LUGGAGE_TO_CUSTOMER, ScreenNames.Help.LINKING);
+            luggageControl.switchJPanel(luggageControl.HELP_LINKING);
+            luggageControl.switchTab(screen.help.Linking.LUGGAGE_TO_CUSTOMER, luggageControl.HELP_LINKING);
         }
         else if(listItemName.equals(helpList.getModel().getElementAt(10))) {
-            luggageControl.switchJPanel(ScreenNames.Help.LINKING);
-            luggageControl.switchTab(screen.help.Linking.LUGGAGE_TO_LUGGAGE, ScreenNames.Help.LINKING);
+            luggageControl.switchJPanel(luggageControl.HELP_LINKING);
+            luggageControl.switchTab(screen.help.Linking.LUGGAGE_TO_LUGGAGE, luggageControl.HELP_LINKING);
         }
         else {
             new ErrorJDialog(this.luggageControl, true, listItemName, (new Throwable()).getStackTrace());

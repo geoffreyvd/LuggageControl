@@ -61,20 +61,63 @@ public class SearchLuggage extends BaseSearch {
     }
     
     /**
+     * remote method to fill the luggage table with a resultset
+     * @param result the resultset used to fill the table
+     */
+    public void remoteFillLuggageTable(ResultSet result) {
+        try {
+            DefaultTableModel datamodel = (DefaultTableModel) tableLuggageSearch.getModel();
+            for (int i = datamodel.getRowCount() - 1; i > -1; i--) {
+                datamodel.removeRow(i);
+            }
+
+            while (result.next()) {
+
+                Object[] data = {
+                    result.getString("luggage_id"),
+                    result.getString("location"),
+                    result.getString("color"),
+                    result.getString("weight"),
+                    result.getString("size"),
+                    result.getString("description"),
+                    result.getString("status")
+                };
+
+                // datamodel.addRow is skipped problaby exception
+                datamodel.addRow(data);
+            }
+            tableLuggageSearch.setModel(datamodel);
+        }
+        catch (Exception e) {
+            new ErrorJDialog(this.luggageControl, true, e.getMessage(), e.getStackTrace());
+        }
+    }
+    
+    /**
      * Searches through the database for the luggage withe filters from 
      * the textfields or for every luggage when none of the fields are filled in
      */
     private void fillSearchLuggageTable() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
-        String luggageQuery = "";
+        String query = "SELECT `luggage`.`luggage_id`, location, color, weight, size, description, `status` FROM luggage ";
         ArrayList<String> values = new ArrayList<String>();
-        ArrayList<String> luggageValues = new ArrayList<String>();
+
+        if (!textFieldFlightNumber.getText().equals("") && 
+            comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "INNER JOIN `luggage_flight` ON `luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+        }
+        
+        if (!textFieldOwnerID.getText().equals("") && 
+            comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "INNER JOIN `customer_luggage` ON `luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+        }
+//        String query = "SELECT luggage_id, location, color, weight, size, content, status FROM luggage ";
+//        ArrayList<String> values = new ArrayList<String>();
 
         // If Some text fields are not empty we add the WHERE clause
-        if (!textFieldLuggageID.getText().equals("") || !textFieldFlightNumber.getText().equals("") ||
-            !textFieldOwnerID.getText().equals("") || !textFieldLocation.getText().equals("") || 
-            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
+        if (!textFieldLuggageID.getText().equals("") || !textFieldLocation.getText().equals("") || 
+            !comboBoxLuggageStatus.getSelectedItem().toString().equals("Status") ||
+            !textFieldOwnerID.getText().equals("") || !textFieldFlightNumber.getText().equals("")) {
             if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
                 query += "WHERE 1=1 ";
             }
@@ -87,48 +130,48 @@ public class SearchLuggage extends BaseSearch {
         try {
             if (!textFieldLuggageID.getText().equals("")) {
                 query += checkComboBox("`luggage`.`luggage_id`", textFieldLuggageID, values);
-                luggageQuery += checkComboBox("`luggage`.`luggage_id`", textFieldLuggageID, luggageValues);
             }
 
             if (!textFieldLocation.getText().equals("")) {
                 query += checkComboBox("location", textFieldLocation, values);
-                luggageQuery += checkComboBox("location", textFieldLocation, luggageValues);
             }
 
             if (!comboBoxLuggageStatus.getSelectedItem().toString().equals("Status")) {
                 query += checkComboBox("status", comboBoxLuggageStatus, values);
-                luggageQuery += checkComboBox("location", textFieldLocation, luggageValues);
             }
             
-
+            if (!textFieldFlightNumber.getText().equals("") && 
+                comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += checkComboBox("flight_id", textFieldFlightNumber, values);
+            }
+            
+            if (!textFieldOwnerID.getText().equals("") && 
+                comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += checkComboBox("customer_id", textFieldOwnerID, values);
+            }
+            
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
-            
-            
-            
-            if (!textFieldFlightNumber.getText().equals("")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
+              
+            if (!textFieldFlightNumber.getText().equals("") &&
+                comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, description, status ";
                 query += "FROM `luggage_flight` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
-                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id`";
-                query += "AND flight_id = ?" + luggageQuery;
-                values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
-                for (String luggageValue : luggageValues) {
-                    values.add(luggageValue);
-                }
+                query += "`luggage`.`luggage_id` = `luggage_flight`.`luggage_id` ";
+                query += "AND flight_id = ?";
+                values.add(helpers.Filters.filteredString(textFieldFlightNumber.getText()));
             }
             
-            
-            
-            if (!textFieldOwnerID.getText().equals("")) {
-                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, content, status ";
-                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE 1=1";
-                query += "AND `luggage`.`luggage_id` = `customer_luggage`.`luggage_id`";
-                query += "AND owner_id = ?" + luggageQuery;
+            if (!textFieldOwnerID.getText().equals("") &&
+                comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "UNION SELECT `luggage`.`luggage_id`, location, color, weight, size, description, status ";
+                query += "FROM `customer_luggage` INNER JOIN `luggage` ON `luggage`.`luggage_id` WHERE ";
+                query += "`luggage`.`luggage_id` = `customer_luggage`.`luggage_id` ";
+                query += "AND customer_id = ?";
                 values.add(helpers.Filters.filteredString(textFieldOwnerID.getText()));
-                for (String luggageValue : luggageValues) {
-                    values.add(luggageValue);
-                }
             }
 
             result = db.query(query + ";", values.toArray(new String[values.size()]));
@@ -145,7 +188,7 @@ public class SearchLuggage extends BaseSearch {
                     result.getString("color"),
                     result.getString("weight"),
                     result.getString("size"),
-                    result.getString("content"),
+                    result.getString("description"),
                     result.getString("status")
                 };
 
@@ -165,16 +208,16 @@ public class SearchLuggage extends BaseSearch {
      * @param values
      * @return 
      */
-    private String checkComboBox(String kolomNaam, JFormattedTextField textField,  ArrayList<String> values) {
+    private String checkComboBox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
         if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
             values.add(helpers.Filters.filteredString(textField.getText()));
-            return " AND " + kolomNaam + " = ? ";
+            return " AND " + columnName + " = ? ";
         }else if(comboBoxSearchType.getSelectedItem().toString().equals("Loose")){
             values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
-            return " OR " + kolomNaam + " LIKE ? ";
+            return " OR " + columnName + " LIKE ? ";
         }else {
             values.add(helpers.Filters.filteredString(textField.getText()));
-            return " OR " + kolomNaam + " = ? ";
+            return " OR " + columnName + " = ? ";
         }
     }
     
@@ -185,16 +228,16 @@ public class SearchLuggage extends BaseSearch {
      * @param values
      * @return 
      */
-    private String checkComboBox(String kolomNaam, JComboBox comboBox,  ArrayList<String> values) {
+    private String checkComboBox(String columnName, JComboBox comboBox,  ArrayList<String> values) {
         if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
             values.add(helpers.Filters.filteredString(comboBox.getSelectedItem().toString()));
-            return " AND " + kolomNaam + " = ? ";
+            return " AND " + columnName + " = ? ";
         }else if(comboBoxSearchType.getSelectedItem().toString().equals("Loose")){
             values.add(helpers.Filters.filteredString("%" + comboBox.getSelectedItem().toString() + "%"));
-            return " OR " + kolomNaam + " LIKE ? ";
+            return " OR " + columnName + " LIKE ? ";
         }else {
             values.add(helpers.Filters.filteredString(comboBox.getSelectedItem().toString()));
-            return " OR " + kolomNaam + " = ? ";
+            return " OR " + columnName + " = ? ";
         }
     }
     
@@ -241,7 +284,7 @@ public class SearchLuggage extends BaseSearch {
 
             },
             new String [] {
-                "Luggage ID", "Location", "Color", "Weight", "Size", "Content", "Status"
+                "Luggage ID", "Location", "Color", "Weight", "Size", "Description", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -306,21 +349,18 @@ public class SearchLuggage extends BaseSearch {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
+                            .addComponent(textFieldOwnerID)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(textFieldOwnerID)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldLuggageID, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                            .addComponent(textFieldFlightNumber))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(comboBoxLuggageStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(textFieldLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))))
-                                .addGap(0, 0, 0))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldLuggageID, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                                    .addComponent(textFieldFlightNumber))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboBoxLuggageStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelSearchLuggage)
-                                .addGap(58, 58, 58)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -334,7 +374,7 @@ public class SearchLuggage extends BaseSearch {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)

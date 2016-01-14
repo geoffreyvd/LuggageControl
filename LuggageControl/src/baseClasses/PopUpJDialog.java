@@ -1,10 +1,8 @@
 package baseClasses;
 
-import constants.Styling;
 import static java.awt.Dialog.DEFAULT_MODALITY_TYPE;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
-import javax.swing.WindowConstants;
 
 /**
  *
@@ -22,7 +20,7 @@ public class PopUpJDialog extends javax.swing.JDialog {
         initComponents();
         this.setTitle("Pop-up");
         this.setAlwaysOnTop(true);
-        this.setMinimumSize(Styling.MINIMUM_DIMENSION);
+        this.setMinimumSize(new Dimension(100, 100));
         this.setSize(popUpDimension);
         this.centerFrame();
     }

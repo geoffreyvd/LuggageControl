@@ -4,6 +4,7 @@ import baseClasses.EmptyResultSet;
 import baseClasses.ErrorJDialog;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main.LuggageControl;
@@ -63,42 +64,49 @@ public class SearchCustomer extends BaseSearch {
      */
     public void fillCustomerTable() {
         ResultSet result = new EmptyResultSet();
-        String query = "SELECT * FROM customer";
+        String query = "SELECT * FROM customer ";
         ArrayList<String> values = new ArrayList<String>();
+        
+        if (!textFieldFlightnumber.getText().equals("") && 
+            comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "INNER JOIN `customer_flight` ON `customer`.`customer_id` = `customer_flight`.`customer_id` ";
+        }
         
         // If Some text fields are not empty we add the WHERE clause
         if(!textFieldFirstName.getText().equals("") || !textFieldSurName.getText().equals("") || 
-        !textFieldEmail.getText().equals("") || !textFieldCellphone.getText().equals("") ||
-        !textFieldFlightnumber.getText().equals("")) {
-            query += " WHERE 1=0 ";
+        !textFieldEmail.getText().equals("") || !textFieldCellphone.getText().equals("")) {
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+                query += "WHERE 1=1 ";
+            }
+            if (comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                    || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
+                query += "WHERE 1=0 ";
+            }
         }
         
         try {
-            if(!textFieldFirstName.getText().equals("")) {
-                query += "OR firstname = ? ";
-                values.add(helpers.Filters.filteredString(textFieldFirstName.getText()));
+            if (!textFieldFirstName.getText().equals("")) {
+                query += checkComboBox("firstname", textFieldFirstName, values);
             }
             
-            if(!textFieldSurName.getText().equals("")) {
-                query += "OR surname = ? ";
-                values.add(helpers.Filters.filteredString(textFieldSurName.getText()));
+            if (!textFieldSurName.getText().equals("")) {
+                query += checkComboBox("surname", textFieldSurName, values);
             }
             
-            if(!textFieldEmail.getText().equals("")) {
-                query += "OR email = ? ";
-                values.add(helpers.Filters.filteredString(textFieldEmail.getText()));
+            if (!textFieldEmail.getText().equals("")) {
+                query += checkComboBox("email", textFieldEmail, values);
             }
             
-            if(!helpers.Filters.filteredCellphone(textFieldCellphone.getText()).equals("")) {
-                query += "OR cellphone = ? ";
-                values.add(textFieldCellphone.getText());
+            if (!helpers.Filters.filteredCellphone(textFieldCellphone.getText()).equals("")) {
+                query += checkComboBox("cellphone", textFieldCellphone, values);
             }
-            
             
             // If you get a mysql error saying: not unique table/alias look here 
             // <link>http://stackoverflow.com/questions/19590007/1066-not-unique-table-alias</link>
             // You need to create a mysql alias if you select multiple times from the same table!
-            if(!textFieldFlightnumber.getText().equals("")) {
+            if(!textFieldFlightnumber.getText().equals("") &&
+                comboBoxSearchType.getSelectedItem().toString().equals("Exclusive")
+                || comboBoxSearchType.getSelectedItem().toString().equals("Loose")) {
                 query += "UNION SELECT customer.customer_id, firstname, surname, email, cellphone, birthday, gender, adress, postcode ";
                 query += "FROM `customer_flight` INNER JOIN `customer` ON `customer`.`customer_id` ";
                 query += "WHERE `customer_flight`.`flight_id` = ? AND `customer`.`customer_id` = `customer_flight`.`customer_id`";
@@ -135,6 +143,26 @@ public class SearchCustomer extends BaseSearch {
     }
     
     /**
+     * 
+     * @param columnName
+     * @param textField
+     * @param values
+     * @return string that is part of the query
+     */
+    private String checkComboBox(String columnName, JFormattedTextField textField,  ArrayList<String> values) {
+        if (comboBoxSearchType.getSelectedItem().toString().equals("Inclusive")) {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " AND " + columnName + " = ? ";
+        }else if(comboBoxSearchType.getSelectedItem().toString().equals("Loose")){
+            values.add(helpers.Filters.filteredString("%" + textField.getText() + "%"));
+            return " OR " + columnName + " LIKE ? ";
+        }else {
+            values.add(helpers.Filters.filteredString(textField.getText()));
+            return " OR " + columnName + " = ? ";
+        }
+    }
+    
+    /**
      * Go to the customer details screen based on the selected customer id
      * This method is best used in conjunction with the fillTableCustomers.
      * @param customerId The specific database customer id from the customer table
@@ -164,14 +192,16 @@ public class SearchCustomer extends BaseSearch {
         buttonHelp = new javax.swing.JButton();
         scrollPaneTable = new javax.swing.JScrollPane();
         tableCustomer = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        comboBoxSearchType = new javax.swing.JComboBox();
 
         addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 formAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -251,6 +281,10 @@ public class SearchCustomer extends BaseSearch {
         });
         scrollPaneTable.setViewportView(tableCustomer);
 
+        jLabel1.setText("Search type:");
+
+        comboBoxSearchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inclusive", "Exclusive", "Loose" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,46 +296,52 @@ public class SearchCustomer extends BaseSearch {
                         .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scrollPaneTable, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(labelSearchCustomer)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldCellphone, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textFieldSurName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                            .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(117, 117, 117)
-                        .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(buttonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldSurName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelSearchCustomer)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelSearchCustomer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldCellphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldSurName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(buttonHelp))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldCellphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldSurName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFieldFlightnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearch)
@@ -379,6 +419,8 @@ public class SearchCustomer extends BaseSearch {
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonSearch;
+    private javax.swing.JComboBox comboBoxSearchType;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelSearchCustomer;
     private javax.swing.JScrollPane scrollPaneTable;
     private javax.swing.JTable tableCustomer;

@@ -9,8 +9,6 @@ import main.LuggageControl;
  */
 public class BaseSearch extends SwitchingJPanel{
     
-    private SearchPanes searchPanes = new SearchPanes();
-    
     public BaseSearch(LuggageControl luggageControl) {
         super(luggageControl);
     }
