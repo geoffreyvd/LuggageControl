@@ -180,8 +180,8 @@ public class DatabaseMan {
      * This query will return one value, a string: It returns the value from the
      * first column and the first row.
      *
-     * @param query
-     * @param values
+     * @param query SQL query
+     * @param values used values in the SQL query
      * @return String value
      */
     public String queryOneResult(String query, String[] values) {
@@ -245,7 +245,7 @@ public class DatabaseMan {
     /**
      * Prepared statement insert query, insert queries ONLY!!
      *
-     * @param query String with ? for the valuess
+     * @param query SQL String with ? for the values
      * @param values the values to be inserted
      * @param types the value types, supported: String, Int
      * @throws SQLException
